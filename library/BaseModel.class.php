@@ -13,6 +13,8 @@ abstract class BaseModel {
      *             => 'publicname' =>
      */
     public $time;
+    public $picture;
+    public $pictureurl;
     public $db;
     public $infos;
     public $exists = false;
@@ -52,6 +54,20 @@ abstract class BaseModel {
 		    $this->exists = false;
 	}
 
+	public function hydrate($datas) {
+
+		// On parcourt le schema pour insérer les données correspondant dans les data
+		foreach($this->schema AS $field => $infos) {
+			if(isset($datas[$field]))
+				$this->infos[$field] = $datas[$field];
+			}
+
+		// On récupère l'url de l'image si elle existe
+		if(isset($datas[$this->picture])) {
+			$this->pictureurl =  $datas[$this->picture];
+		}
+	}
+
 	/**
 	 * BaseModel::checkData()
 	 * 
@@ -72,15 +88,18 @@ abstract class BaseModel {
 	            if($fieldinfo['required'] && !isset($post[$field]))
 	                $error[] = 'Le champ '.$fieldinfo['publicname'].' est requis';
 	            
-	            // On nettoie les données, et on met les valeurs par défaut quand il y a des manques
-	            if($fieldinfo['fieldtype'] == 'VARCHAR')
-	                $data[$field] = pun_trim(isset($post[$field]) ? $post[$field] : $fieldinfo['default']);
-	            else if($fieldinfo['fieldtype'] == 'INT')
-	                $data[$field] = intval(isset($post[$field]) ? $post[$field] : $fieldinfo['default']);
-	            else if($fieldinfo['fieldtype'] == 'TEXT')
-	                $data[$field] = pun_trim(isset($post[$field]) ? $post[$field] : $fieldinfo['default']);
-	            else if($fieldinfo['fieldtype'] == 'DATE')
-	                $data[$field] = pun_trim(isset($post[$field]) ? $post[$field] : $fieldinfo['default']);
+	            // On passe la clé
+	            if($field != $this->key) {
+		            // On nettoie les données, et on met les valeurs par défaut quand il y a des manques
+		            if($fieldinfo['fieldtype'] == 'VARCHAR')
+		                $data[$field] = pun_trim(isset($post[$field]) ? $post[$field] : $fieldinfo['default']);
+		            else if($fieldinfo['fieldtype'] == 'INT')
+		                $data[$field] = intval(isset($post[$field]) ? $post[$field] : $fieldinfo['default']);
+		            else if($fieldinfo['fieldtype'] == 'TEXT')
+		                $data[$field] = pun_trim(isset($post[$field]) ? $post[$field] : $fieldinfo['default']);
+		            else if($fieldinfo['fieldtype'] == 'DATE')
+		                $data[$field] = pun_trim(isset($post[$field]) ? $post[$field] : $fieldinfo['default']);
+	        	}
 	        }
 	    }
 	    else if($modiftype == 'update')
@@ -105,25 +124,37 @@ abstract class BaseModel {
 	/**
 	 * BaseModel::add()
 	 * 
-	 * @param array $post
 	 * @return array $errot
 	 */
-	public function add($post) {
+	public function add() {
 	    global $pun_user;
 	    
 	    $error = array();
 	    // On vérifie les données, les remplaçant par la valeur par défaut si besoin
-	    $datas = $this->checkData('insert', $post, $error);
+	    $datas = $this->checkData('insert', $this->infos, $error);
 	    
 	    // On insert les données en base
-	    $this->db->query(Query::insert($this->table, $datas, $this->time))or error('Impossible de créer la fiche dans la table : '.$this->table, __FILE__, __LINE__, $this->db->error());
-	    $id = $this->db->insert_id();
+
+	    // echo Query::insert($this->table, $datas, $this->time);
 	    
-	    // On récupère la fiche. Nécessaire ? Non on redirige !
-	    // $this->exists($id);
+	    $this->db->query(Query::insert($this->table, $datas, $this->time))or error('Impossible de créer la fiche dans la table : '.$this->table, __FILE__, __LINE__, $this->db->error());
+	    
+	    $id =  $this->db->insert_id();
+
+	    // On regarde s'il y a une image a rapatrier
+	    if($this->pictureurl != '')
+	    	$this->getPoster($id);
+	    
 	    return $id;
 	}
 	
+	public function getPoster($id) {
+
+		echo $this->pictureurl;
+		$image = new \library\Image();
+		$image->download($this->pictureurl, 'movie', $id);
+	}
+
 	/**
 	 * BaseModel::edit()
 	 * 
@@ -137,5 +168,35 @@ abstract class BaseModel {
 	            
 	    // On enregistre les modifications en base
 	    $this->db->query(Query::update($this->table, $datas, array($this->key => $this->infos[$this->key]), $this->time))or error('Impossible de modifier la fiche '.$this->infos[$this->key].' dans la table : '.$this->table, __FILE__, __LINE__, $this->db->error());
+	}
+
+	public function getLasts() {
+		$result = $this->db->query('SELECT * FROM '.$this->table.' ORDER BY created_at DESC');
+
+		$last = array();
+		while($cur = $this->db->fetch_assoc($result)) {
+			$last[] = $cur;
+		}
+		return $last;
+	}
+
+	public function assoc($type, $movieid, $datas) {
+		/*
+		if($type == 'genre') {
+			$this->db->query('DELETE FROM movie_genre WHERE movieid = '.intval($movieid))or error('Impossible de supprimer les liens entre le film et les genre', __FILE__, __LINE__, $this->db->error());
+
+			foreach($datas AS $data) {
+				$genre = new \modules\Genre\Genre();
+				$genre->exists($data['code'], true);
+
+				if($genre->exists) {
+
+				}
+				else {
+
+				}
+			}
+		}
+	*/
 	}
 }

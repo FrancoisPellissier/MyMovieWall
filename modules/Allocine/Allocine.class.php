@@ -64,7 +64,8 @@ class Allocine {
             	$data['duree_texte'] = gmdate("G\hi", $data['duree']);
 
             	$data['synopsis'] = $this->getVar($film['synopsis']);
-            	$data['infosbase'] = $this->getVar($film['castingShort']);
+            	$data['realisateur'] = $this->getVar($film['castingShort']['directors']);
+                $data['acteur'] = $this->getVar($film['castingShort']['actors']);
 
             	$data['affiche'] = $this->getVar($film['poster']->url());
 

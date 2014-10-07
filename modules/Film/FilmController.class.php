@@ -4,8 +4,10 @@ namespace modules\Film;
 class FilmController extends \library\BaseController {
 	
 	public function index() {
+		$film = new \modules\Film\Film();
+		$last = $film->getLasts();
 		
-		$this->view->with('request', $this->request);
+		$this->view->with('last', $last);
 		$this->view->make();
 	}
 
@@ -20,5 +22,54 @@ class FilmController extends \library\BaseController {
 		}
 
 		$this->view->make();
+	}
+
+	public function add() {
+		$id = intval($this->request->getData('id'));
+
+		$allocine = new \modules\Allocine\Allocine();
+
+		// Temp
+		/*
+		$datas = $allocine->getFilm($id);
+		dump($datas);
+		*/
+		
+		$film = new \modules\Film\Film();
+		$film->exists($id, true);
+
+		// Est-ce que le film existe déjà
+		if($film->exists) {
+			header("Location: /movie/film/".$film->infos[$film->key]);
+	    	exit;
+		}
+		else {
+			$datas = $allocine->getFilm($id);
+			$film->hydrate($datas);
+			$id = $film->add();
+
+			// On parcourt les réalisateurs pour les insérer/associer
+			// On parcourt les acteurs pour les insérer/associer
+			// On parcout les genres pour les insérer/associer
+
+			header("Location: /movie/film/".$id);
+	    	exit;
+		}	
+	}
+
+	public function show() {
+		$id = intval($this->request->getData('id'));
+		$film = new \modules\Film\Film();
+		$film->exists($id);
+
+		// Si la fiche n'existe pas, on redirige vers l'accueil du module
+		if(!$film->exists) {
+			header("Location: /movie/film");
+	    	exit;
+		}
+		else {
+			$this->view->with('curFiche', $film->infos);
+			$this->view->make();
+		}
 	}
 }

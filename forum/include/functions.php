@@ -1339,7 +1339,7 @@ function redirect($destination_url, $message)
 	$destination_url = preg_replace('%([\r\n])|(\%0[ad])|(;\s*data\s*:)%i', '', $destination_url);
 
 	// If the delay is 0 seconds, we might as well skip the redirect all together
-	if ($pun_config['o_redirect_delay'] == '0')
+	if ($pun_config['o_redirect_delay'] >= '0')
 	{
 		$db->end_transaction();
 		$db->close();
