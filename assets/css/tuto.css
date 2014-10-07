@@ -1,0 +1,19 @@
+body {
+  padding-top: 50px;
+}
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 1200px;
+}
+
+[class*="col"] { margin-bottom: 0px; padding: 5px; }
+
+img { width: 100%; }
