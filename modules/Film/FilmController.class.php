@@ -65,6 +65,7 @@ class FilmController extends \library\BaseController {
 	    	exit;
 		}
 		else {
+			$film->getInfos();
 			$this->view->with('curFiche', $film->infos);
 			$this->view->make();
 		}

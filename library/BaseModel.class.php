@@ -43,12 +43,19 @@ abstract class BaseModel {
 		if($this->db->num_rows($result)) {
 		    $cur = $this->db->fetch_assoc($result);
 		    $this->exists = true;
-		    $this->infos = $cur;
 		    
+		    // On génère le chemin pour l'image
+		    if($this->picture != '' && !$allocine)
+		    	$cur['folder'] = 'img/'.$this->table.'/'.intval($cur[$this->key] / 100).'/';
+
+		    $this->infos = $cur;
+		    /*
+		    // L'info n'est pertinente que pour le fiche vu, pas pour la récupération dans le cadre d'un test d'existence
 		    // On enregistre la visite de cette "page" pour pouvoir faire des stats plus tard
 		    if($allocine && isset($this->schema['code'])) {
 		    	$this->db->query(Query::insert('stats_log', array('tablename' => $this->table, 'tableid' => $this->infos[$this->key], 'ip' => get_remote_address(), 'userid' => $pun_user['id']) , true));
 		    }
+		    */
 		}
 		else 
 		    $this->exists = false;

@@ -26,4 +26,20 @@ class Film extends \library\BaseModel {
 		'code' => array('fieldtype' => 'INT', 'required' => false, 'default' => 0, 'publicname' => 'Code Allocine')
 	    );
 	}
+
+	public function getInfos() {
+		$result = $this->db->query('SELECT p.personid, p.fullname, mp.role FROM movie_person AS mp INNER JOIN person AS p ON mp.personid = p.personid AND mp.movieid = '.$this->infos['movieid'].' AND mp.type = \'1\' ORDER BY mp.roleid');
+
+		$acteurs = array();
+		
+		while($cur = $this->db->fetch_assoc($result)) {
+			$acteurs[] = array(
+				'personid' => $cur['personid'],
+				'fullname' => $cur['fullname'],
+				'role' => $cur['role'],
+				'folder' => 'img/person/'.intval($cur['personid'] / 100).'/'
+				);
+		}
+		$this->infos['acteurs'] = $acteurs;
+	}
 }
