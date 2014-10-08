@@ -29,11 +29,9 @@ class FilmController extends \library\BaseController {
 
 		$allocine = new \modules\Allocine\Allocine();
 
-		// Temp
-		/*
-		$datas = $allocine->getFilm($id);
-		dump($datas);
-		*/
+		// $datas = $allocine->getFilm($id);
+		// dump($datas);
+
 		
 		$film = new \modules\Film\Film();
 		$film->exists($id, true);
@@ -48,13 +46,17 @@ class FilmController extends \library\BaseController {
 			$film->hydrate($datas);
 			$id = $film->add();
 
+			// On parcout les genres pour les insérer/associer
+			$film->assocGenre($id, $datas['genre']);
+
 			// On parcourt les réalisateurs pour les insérer/associer
 			// On parcourt les acteurs pour les insérer/associer
-			// On parcout les genres pour les insérer/associer
+			
 
 			header("Location: /movie/film/".$id);
 	    	exit;
 		}	
+		
 	}
 
 	public function show() {

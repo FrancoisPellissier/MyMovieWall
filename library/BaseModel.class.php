@@ -133,18 +133,15 @@ abstract class BaseModel {
 	    // On vérifie les données, les remplaçant par la valeur par défaut si besoin
 	    $datas = $this->checkData('insert', $this->infos, $error);
 	    
-	    // On insert les données en base
-
-	    // echo Query::insert($this->table, $datas, $this->time);
-	    
+	    // On insère les données en base
 	    $this->db->query(Query::insert($this->table, $datas, $this->time))or error('Impossible de créer la fiche dans la table : '.$this->table, __FILE__, __LINE__, $this->db->error());
-	    
 	    $id =  $this->db->insert_id();
 
 	    // On regarde s'il y a une image a rapatrier
 	    if($this->pictureurl != '')
 	    	$this->getPoster($id);
 	    
+	    // On renvoit l'ID généré
 	    return $id;
 	}
 	
@@ -180,23 +177,44 @@ abstract class BaseModel {
 		return $last;
 	}
 
-	public function assoc($type, $movieid, $datas) {
-		/*
-		if($type == 'genre') {
-			$this->db->query('DELETE FROM movie_genre WHERE movieid = '.intval($movieid))or error('Impossible de supprimer les liens entre le film et les genre', __FILE__, __LINE__, $this->db->error());
+	public function assocPerson($moveid, $datas) {
+		$type = array(1 => 'acteurs', 2 => 'realisateurs');
 
-			foreach($datas AS $data) {
+		// On supprime tous les liens
+
+		// On parcourt les types
+
+			// On parcourt les personnes
+
+				// On regarde si elles existent
+
+				// On les créé si elles n'exitent pas
+
+			// On insère le lien film / person / type
+	}
+
+	public function assocGenre($movieid, $datas) {
+		// On supprime les liens Films / Genre existant pour cette fiche
+		$this->db->query('DELETE FROM movie_genre WHERE movieid = '.intval($movieid))or error('Impossible de supprimer les liens entre le film et les genre', __FILE__, __LINE__, $this->db->error());
+
+		if(!empty($datas)) {
+			// On parcourt les genres
+			foreach($datas AS $code => $name) {
+				// On regarde s'il existe
 				$genre = new \modules\Genre\Genre();
-				$genre->exists($data['code'], true);
+				$genre->exists($code, true);
 
-				if($genre->exists) {
-
+				// S'il n'existe pas on le créé
+				if(!$genre->exists) {
+					$genre->hydrate(array('genrename' => $name, 'code' => $code));
+					$genreid = $genre->add();
 				}
-				else {
+				else
+					$genreid = $genre->infos['genreid'];
 
-				}
+			// On insère le lien film / genre
+			$this->db->query('INSERT INTO movie_genre (movieid, genreid) VALUES('.$movieid.', '.$genreid.')')or error('Impossible de créer les liens entre le film et les genre', __FILE__, __LINE__, $this->db->error());
 			}
 		}
-	*/
 	}
 }

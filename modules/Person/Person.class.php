@@ -12,10 +12,11 @@ class Person extends \library\BaseModel {
         $this->table = 'person';
         $this->key = 'personid';
         $this->time = true;
+        $this->picture = 'picture';
         
         $this->schema = array(
-        'personid' => array('fieldtype' => 'INT', 'required' => false, 'default' => '', 'publicname' => 'ID du film'),
-        'fullname' => array('fieldtype' => 'VARCHAR', 'required' => false, 'default' => '', 'publicname' => 'Titre français'),
+        'personid' => array('fieldtype' => 'INT', 'required' => false, 'default' => '', 'publicname' => 'ID de la personne'),
+        'fullname' => array('fieldtype' => 'VARCHAR', 'required' => false, 'default' => '', 'publicname' => 'Nom complet de la personne'),
         'code' => array('fieldtype' => 'INT', 'required' => false, 'default' => 0, 'publicname' => 'Code Allocine')
         );
     }

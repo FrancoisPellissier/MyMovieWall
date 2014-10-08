@@ -51,22 +51,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "modules/Film/Film.class.php",
-			"settings":
-			{
-				"buffer_size": 73,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "modules/Film/FilmController.class.php",
-			"settings":
-			{
-				"buffer_size": 489,
-				"line_ending": "Windows"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -120,6 +104,9 @@
 	},
 	"file_history":
 	[
+		"/C/xampp/htdocs/movie/modules/Film/Film.class.php",
+		"/C/xampp/htdocs/movie/modules/Film/FilmController.class.php",
+		"/C/xampp/htdocs/movie/.gitignore",
 		"/C/xampp/htdocs/movie/.htaccess",
 		"/C/xampp/htdocs/movie/modules/Person/Person.class.php",
 		"/C/xampp/htdocs/movie/assets/layouts/menu.php",
@@ -130,7 +117,6 @@
 		"/C/xampp/htdocs/movie/assets/layouts/header.php",
 		"/C/xampp/htdocs/movie/library/Image.class.php",
 		"/C/xampp/htdocs/movie/modules/Allocine/Allocine.class.php",
-		"/C/xampp/htdocs/movie/modules/Film/FilmController.class.php",
 		"/C/xampp/htdocs/movie/modules/Film/view/index.tpl.php",
 		"/C/xampp/htdocs/movie/modules/Film/view/searchAllocine.tpl.php",
 		"/C/xampp/htdocs/movie/index.php",
@@ -245,9 +231,7 @@
 		"/C/wamp/www/webfantasy_v3/Library/Router.class.php",
 		"/C/wamp/www/webfantasy_v3/Library/Route.class.php",
 		"/C/wamp/www/wf_poo/livres.html",
-		"/C/wamp/www/loyaltymedia/include/class/Maj.class.php",
-		"/C/wamp/www/loyaltymedia/maj.php",
-		"/C/wamp/www/webfantasy_v3/Library/Page.class.php"
+		"/C/wamp/www/loyaltymedia/include/class/Maj.class.php"
 	],
 	"find":
 	{
@@ -300,62 +284,8 @@
 	"groups":
 	[
 		{
-			"selected": 1,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "modules/Film/Film.class.php",
-					"settings":
-					{
-						"buffer_size": 73,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "modules/Film/FilmController.class.php",
-					"settings":
-					{
-						"buffer_size": 489,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								211,
-								211
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],
