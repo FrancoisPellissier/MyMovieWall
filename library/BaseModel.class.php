@@ -147,7 +147,7 @@ abstract class BaseModel {
 	
 	public function getPoster($id) {
 		$image = new \library\Image();
-		$image->download($this->pictureurl, 'movie', $id);
+		$image->download($this->pictureurl, $this->table, $id);
 	}
 
 	/**

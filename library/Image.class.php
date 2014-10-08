@@ -94,5 +94,9 @@ class Image {
 
 		// On enregistre l'image redimensionnée
 		imagejpeg($image, $folder.'/'.$nom.'.jpg', 100);
+
+		// On supprime l'image source
+		if(file_exists($source))
+		  unlink($source);
 	}
 }
