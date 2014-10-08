@@ -50,11 +50,12 @@ class FilmController extends \library\BaseController {
 			$film->assocGenre($id, $datas['genre']);
 
 			// On parcourt les réalisateurs pour les insérer/associer
+			$film->assocPerson($id, $datas);
 			// On parcourt les acteurs pour les insérer/associer
 			
-
 			header("Location: /movie/film/".$id);
 	    	exit;
+
 		}	
 		
 	}

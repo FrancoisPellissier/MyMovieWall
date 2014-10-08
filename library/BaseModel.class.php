@@ -146,8 +146,6 @@ abstract class BaseModel {
 	}
 	
 	public function getPoster($id) {
-
-		echo $this->pictureurl;
 		$image = new \library\Image();
 		$image->download($this->pictureurl, 'movie', $id);
 	}
@@ -177,20 +175,41 @@ abstract class BaseModel {
 		return $last;
 	}
 
-	public function assocPerson($moveid, $datas) {
+	public function assocPerson($movieid, $datas) {
 		$type = array(1 => 'acteurs', 2 => 'realisateurs');
 
 		// On supprime tous les liens
+		$this->db->query('DELETE FROM movie_person WHERE movieid = '.intval($movieid))or error('Impossible de supprimer les liens entre le film et les genre', __FILE__, __LINE__, $this->db->error());
 
 		// On parcourt les types
-
+		foreach($type AS $typeid => $typename) {
+			
 			// On parcourt les personnes
-
+			foreach($datas[$typename] AS $data) {
 				// On regarde si elles existent
+				$person = new \modules\Person\Person();
+				$person->exists($data['code'], true);
 
-				// On les créé si elles n'exitent pas
+				// On les créé si elles n'existent pas
+				if(!$person->exists) {
+					$person->hydrate(array(
+						'fullname' => $data['nom'],
+						'picture' => $data['picture'],
+						'code' => $data['code'])
+						);
+					$personid = $person->add();
+				}
+				else
+					$personid = $person->infos['personid'];
+
 
 			// On insère le lien film / person / type
+			if($typeid == 1)
+				$this->db->query('INSERT INTO movie_person (movieid, personid, type, role) VALUES('.$movieid.', '.$personid.', \''.$typeid.'\', \''.$this->db->escape($data['role']).'\')')or error('Impossible de créer les liens entre le film et les personnes', __FILE__, __LINE__, $this->db->error());
+			else
+				$this->db->query('INSERT INTO movie_person (movieid, personid, type, role) VALUES('.$movieid.', '.$personid.', \''.$typeid.'\', \'\')')or error('Impossible de créer les liens entre le film et les personnes', __FILE__, __LINE__, $this->db->error());
+			}
+		}
 	}
 
 	public function assocGenre($movieid, $datas) {
