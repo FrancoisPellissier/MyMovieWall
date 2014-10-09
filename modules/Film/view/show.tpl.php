@@ -4,6 +4,7 @@
     </div>
     <div class="col-md-9">
     	<h1><?php echo $curFiche['titrevf']; ?></h1>
+        <p><button type="button" class="btn btn-success" id="bluray">Blur-Ray</button></p>
     	<p><strong>Date de sortie :</strong> <?php echo $curFiche['datesortie']; ?></p>
     	<p><strong>Réalisateur :</strong> <?php echo $curFiche['realisateur']; ?></p>
     	<p><strong>Acteurs principaux :</strong> <?php echo $curFiche['acteur']; ?></p>

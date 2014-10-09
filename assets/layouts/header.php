@@ -6,5 +6,8 @@
 		<link href="assets/css/bootstrap.css" rel="stylesheet">
 		<link href="assets/css/tuto.css" rel="stylesheet">
 		<title><?php echo $titre_page; ?> - Movie</title>
+
+		<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 	</head>
 <body>

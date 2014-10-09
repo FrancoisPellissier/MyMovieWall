@@ -32,9 +32,30 @@ class User extends \library\BaseModel {
                 'movieid' => $movieid,
                 $type => $value
                 );
-            echo \library\Query::insertORupdate('users_biblio', $datas, array($type), true);
+            
             $this->db->query(\library\Query::insertORupdate('users_biblio', $datas, array($type), true));
         }
 
+    }
+
+    public function addView($movieid, $type, $date = null) {
+        // Le film existe ?
+        $film = new \modules\Film\Film();
+        $film->exists($movieid);
+
+        if($film->exists && in_array($type, array('1', '2'))) {
+
+            $datas = array(
+                'userid' => $this->infos['id'],
+                'movieid' => $movieid,
+                'type' => $type
+                );
+
+            if($date)
+                $datas['viewdate'] = $date;
+            
+            $this->db->query(\library\Query::insert('users_views', $datas, true));
+
+        }
     }
 }

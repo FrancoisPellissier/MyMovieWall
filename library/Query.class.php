@@ -62,7 +62,7 @@ class Query {
     }
 
     /**
-     * Query::update()
+     * Query::insertORupdate()
      * 
      * @param String $table
      * @param Array $datas
