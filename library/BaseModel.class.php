@@ -209,12 +209,15 @@ abstract class BaseModel {
 				else
 					$personid = $person->infos['personid'];
 
+				// On insère le lien film / person / type
+				$data_insert = array(
+					'movieid ' => $movieid,
+					'personid' => $personid,
+					'type' => $typeid,
+					'role' => ($typeid == 1 ? $data['role'] : '')
+					);
 
-			// On insère le lien film / person / type
-			if($typeid == 1)
-				$this->db->query('INSERT INTO movie_person (movieid, personid, type, role) VALUES('.$movieid.', '.$personid.', \''.$typeid.'\', \''.$this->db->escape($data['role']).'\')')or error('Impossible de créer les liens entre le film et les personnes', __FILE__, __LINE__, $this->db->error());
-			else
-				$this->db->query('INSERT INTO movie_person (movieid, personid, type, role) VALUES('.$movieid.', '.$personid.', \''.$typeid.'\', \'\')')or error('Impossible de créer les liens entre le film et les personnes', __FILE__, __LINE__, $this->db->error());
+		    	$this->db->query(Query::insert('movie_person', $data_insert, false))or error('Impossible de créer les liens entre le film et les personnes', __FILE__, __LINE__, $this->db->error());
 			}
 		}
 	}
