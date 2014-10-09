@@ -52,9 +52,7 @@ class View {
      * 
      * @return void
      */
-    public function make() {
-        global $pun_user, $domaine, $site_config;
-        
+    public function make() { 
         if(!empty($this->data)) {
             foreach($this->data AS $var => $value)
                 ${$var} = $value;

@@ -4,7 +4,7 @@ $navs = array();
 $navs[] = array('url' => '/film', 'title' => 'Films');
 
 // Cas des visiteurs
-if($pun_user['[is_guest']) {
+if($user['[is_guest']) {
   
 
 }
@@ -30,7 +30,7 @@ $navs[] = array('url' => '/movie/about', 'title' => 'A propos');
   </ul>
 
   <?php
-  if($pun_user['is_guest']) {
+  if($user['is_guest']) {
     ?>
     <div class="navbar-collapse collapse">
     <form class="navbar-form navbar-right" role="form" method="post" action="login.php?action=in">
@@ -48,7 +48,7 @@ $navs[] = array('url' => '/movie/about', 'title' => 'A propos');
     <?php
   }
   else
-    echo '<p class="navbar-text navbar-right">'.$pun_user['username'].' <a href="login.php?action=out&amp;id='.$pun_user['id'].'&amp;csrf_token='.pun_hash($pun_user['id'].pun_hash(get_remote_address())).'"><span class="glyphicon glyphicon-off"></span></a></p>';
+    echo '<p class="navbar-text navbar-right">'.$user['username'].' <a href="login.php?action=out&amp;id='.$pun_user['id'].'&amp;csrf_token='.pun_hash($pun_user['id'].pun_hash(get_remote_address())).'"><span class="glyphicon glyphicon-off"></span></a></p>';
   ?>
   
   </div>
