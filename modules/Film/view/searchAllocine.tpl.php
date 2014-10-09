@@ -18,7 +18,7 @@ if(isset($datas)) {
         <div class="col-md-4"><?php echo '<img src="'.$data['affiche'].'"" width="160" height="240" alt="Affiche" title="'.$data['titre'].'" class="img-rounded" />'; ?></div>
         <div class="col-md-8">
           <?php echo '<p>'.$data['titre'].'</p><p>'.$data['realisateur'].'</p><p>'.$data['acteur'].'</p>'; ?>
-          <p><a href="film/add/<?php echo $data['code']; ?>"><button type="button" class="btn btn-primary">Ajouter</button></a></p>
+          <p><a href="film/add/<?php echo $data['code']; ?>" class="addFilm"><button type="button" class="btn btn-primary">Ajouter</button></a></p>
       </div>
       </div>
     <?php

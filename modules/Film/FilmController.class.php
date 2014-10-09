@@ -36,8 +36,7 @@ class FilmController extends \library\BaseController {
 
 		// Est-ce que le film existe déjà
 		if($film->exists) {
-			header("Location: /movie/film/".$film->infos[$film->key]);
-	    	exit;
+			$id = $film->infos[$film->key];
 		}
 		else {
 			$datas = $allocine->getFilm($id);
@@ -49,10 +48,13 @@ class FilmController extends \library\BaseController {
 
 			// On parcourt les acteurs/réalisateurs pour les insérer/associer
 			$film->assocPerson($id, $datas);
-			
-			header("Location: /movie/film/".$id);
-	    	exit;
 		}	
+		
+		echo $id;
+		exit();
+		// On redirige vers la fiche du film
+		// header("Location: /movie/film/".$id);
+	    //exit;
 		
 	}
 

@@ -56,18 +56,20 @@ class Image {
 	 * @return void
 	 */
 	public function download($url, $fichetype, $ficheid) {	    
-	    $ficheid = intval($ficheid);
+		if($url != '') {
+		    $ficheid = intval($ficheid);
 
-	    // Création des dossiers
-	    $this->createFolder($fichetype, $ficheid);
-	    
-	    if(file_exists(FOLDER_IMAGES.'/temp/'.$ficheid.'.jpg'))
-	    	unlink(FOLDER_IMAGES.'/temp/'.$ficheid.'.jpg');
-	    // Téléchargement de l'image dans le dossier temp
-	    copy($url, FOLDER_IMAGES.'/temp/'.$ficheid.'.jpg');
+		    // Création des dossiers
+		    $this->createFolder($fichetype, $ficheid);
+		    
+		    if(file_exists(FOLDER_IMAGES.'/temp/'.$ficheid.'.jpg'))
+		    	unlink(FOLDER_IMAGES.'/temp/'.$ficheid.'.jpg');
+		    // Téléchargement de l'image dans le dossier temp
+		    copy($url, FOLDER_IMAGES.'/temp/'.$ficheid.'.jpg');
 
-	    // On redimensionne l'image pour qu'elle respecte les bonnes proportions
-	    $this->imageResize(FOLDER_IMAGES.'/temp/'.$ficheid.'.jpg', FOLDER_IMAGES.'/'.$fichetype.'/'.$this->folder($ficheid), $ficheid, 350, 480);
+		    // On redimensionne l'image pour qu'elle respecte les bonnes proportions
+		    $this->imageResize(FOLDER_IMAGES.'/temp/'.$ficheid.'.jpg', FOLDER_IMAGES.'/'.$fichetype.'/'.$this->folder($ficheid), $ficheid, 350, 480);
+		}
 	}
 
 	 /**
@@ -80,8 +82,8 @@ class Image {
 	  * @param int $hauteur
 	  * @return void
 	  */
-	 public function imageResize($source, $folder, $nom, $largeur, $hauteur) {
-		$source = imagecreatefromjpeg($source); // La photo est la source
+	 public function imageResize($url, $folder, $nom, $largeur, $hauteur) {
+		$source = imagecreatefromjpeg($url); // La photo est la source
 		$largeur_source = imagesx($source);
 		$hauteur_source = imagesy($source);
 
@@ -96,7 +98,7 @@ class Image {
 		imagejpeg($image, $folder.'/'.$nom.'.jpg', 100);
 
 		// On supprime l'image source
-		if(file_exists($source))
-		  unlink($source);
+		if(file_exists($url))
+		  unlink($url);
 	}
 }
