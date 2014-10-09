@@ -74,4 +74,19 @@ class FilmController extends \library\BaseController {
 			$this->makeView();
 		}
 	}
+
+	public function addBiblio() {
+		$id = intval($this->request->getData('id'));
+		$film = new \modules\Film\Film();
+		$film->exists($id);
+
+		// Si la fiche n'existe pas, on redirige vers l'accueil du module
+		if(!$film->exists) {
+			return false;
+		}
+		else {
+			$this->user->addBiblio($id, $this->request->getData('type'));
+			return true;
+		}
+	}
 }

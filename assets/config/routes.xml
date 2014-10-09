@@ -8,5 +8,7 @@
  	<route url="/film/([0-9]+)" module="Film" action="show" vars="id" />
  	<route url="/film/([0-9]+)/([a-zA-Z0-9_]+)" module="Film" action="show" vars="id,name" />
 
+ 	<route url="/film/([0-9]+)/addBiblio/([a-z]+)" module="Film" action="addBiblio" vars="id,type" />
+
  	<route url="/about" module="About" action="index" />
 </routes>

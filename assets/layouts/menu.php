@@ -53,4 +53,5 @@ $navs[] = array('url' => '/movie/about', 'title' => 'A propos');
   
   </div>
 </div>
+<p id="alert"></p>
 <div class="container">
