@@ -241,8 +241,13 @@ abstract class BaseModel {
 				else
 					$genreid = $genre->infos['genreid'];
 
-			// On insère le lien film / genre
-			$this->db->query('INSERT INTO movie_genre (movieid, genreid) VALUES('.$movieid.', '.$genreid.')')or error('Impossible de créer les liens entre le film et les genre', __FILE__, __LINE__, $this->db->error());
+				// On insère le lien film / genre
+				$data_insert = array(
+					'movieid ' => $movieid,
+					'genreid' => $genreid
+					);
+				
+		    	$this->db->query(Query::insert('movie_genre', $data_insert, false))or error('Impossible de créer les liens entre le film et les genres', __FILE__, __LINE__, $this->db->error());
 			}
 		}
 	}
