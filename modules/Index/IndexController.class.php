@@ -5,8 +5,7 @@ class IndexController extends \library\BaseController {
 	
 	public function index() {
 		
-
-		$this->view->with('request', $this->request);
-		$this->view->make();
+		$this->titre_page = 'Index';
+		$this->makeView();
 	}
 }

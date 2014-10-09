@@ -4,11 +4,13 @@ namespace modules\Film;
 class FilmController extends \library\BaseController {
 	
 	public function index() {
+		$this->titre_page = 'Liste des films';
+
 		$film = new \modules\Film\Film();
 		$last = $film->getLasts();
 		
 		$this->view->with('last', $last);
-		$this->view->make();
+		$this->makeView();
 	}
 
 	public function searchAllocine() {
@@ -20,8 +22,8 @@ class FilmController extends \library\BaseController {
 			$datas = $allocine->search($keyword);
 			$this->view->with('datas', $datas);
 		}
-
-		$this->view->make();
+		$this->titre_page = 'Ajouter un film';
+		$this->makeView();
 	}
 
 	public function add() {
@@ -66,8 +68,10 @@ class FilmController extends \library\BaseController {
 		}
 		else {
 			$film->getInfos();
+			$this->titre_page = $film->infos['titrevf'];
+
 			$this->view->with('curFiche', $film->infos);
-			$this->view->make();
+			$this->makeView();
 		}
 	}
 }

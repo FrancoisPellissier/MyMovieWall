@@ -6,6 +6,7 @@ abstract class BaseController {
 	protected $module = '';
 	protected $view = '';
 	protected $request;
+	protected $titre_page;
 
 	public function __construct(\library\HTTPRequest $request, $module, $action) {
 		$this->setModule($module);
@@ -31,5 +32,10 @@ abstract class BaseController {
 	 
 	public function setAction($action) {
 		$this->action = $action;
-	}	
+	}
+
+	public function makeView() {	    
+		$this->view->with('titre_page', $this->titre_page);
+		$this->view->make();
+	}
 }

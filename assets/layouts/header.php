@@ -5,6 +5,6 @@
 		<base href="http://localhost/movie/" />
 		<link href="assets/css/bootstrap.css" rel="stylesheet">
 		<link href="assets/css/tuto.css" rel="stylesheet">
-		<title>Movie</title>
+		<title><?php echo $titre_page; ?> - Movie</title>
 	</head>
 <body>
