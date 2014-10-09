@@ -60,5 +60,42 @@ class Query {
         
         return 'UPDATE '.$table.' SET '.implode(', ', $sql_set).' WHERE '.implode(' AND ', $sql_where);
     }
+
+    /**
+     * Query::update()
+     * 
+     * @param String $table
+     * @param Array $datas
+     * @param Array $set
+     * @param Boolean $time
+     * @return SQL_UPDATE
+     */
+    public static function insertORupdate($table, $datas, $set, $time = NULL) {
+        global $db;
+        
+        // Query FIELDS
+        $sql_fields = array();
+        $sql_values = array();
+        $sql_set = array();
+        
+        foreach($datas AS $field => $value) {
+            $sql_fields[] = $field;
+            $sql_values[] = ($value == 'NULL' && strlen($value) == 4 ? 'NULL' : '\''.$db->escape($value).'\'');
+            
+            if(in_array($field, $set))
+                $sql_set[] = $field.' = '.($value == 'NULL' && strlen($value) == 4 ? 'NULL' : '\''.$db->escape($value).'\'');
+        }
+        
+        if($time)
+        {
+            $sql_fields[] = 'created_at';
+            $sql_fields[] = 'updated_at';
+            $sql_values[] = 'NOW()';
+            $sql_values[] = 'NOW()';
+            $sql_set[] = 'updated_at = NOW()';
+        }
+        
+        return 'INSERT INTO '.$table.' ('.implode(', ', $sql_fields).') VALUES ('.implode(', ', $sql_values).') ON DUPLICATE KEY UPDATE '.implode(', ', $sql_set);
+    }
 }
 ?>

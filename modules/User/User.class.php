@@ -21,7 +21,20 @@ class User extends \library\BaseModel {
         );
     }
 
-    public function addBiblio() {
+    public function addBiblio($movieid, $type, $value = 1) {
+        // Le film existe ?
+        $film = new \modules\Film\Film();
+        $film->exists($movieid);
+
+        if($film->exists && in_array($type, array('bluray', 'dvd', 'numerique'))) {
+            $datas = array(
+                'userid' => $this->infos['id'],
+                'movieid' => $movieid,
+                $type => $value
+                );
+            echo \library\Query::insertORupdate('users_biblio', $datas, array($type), true);
+            $this->db->query(\library\Query::insertORupdate('users_biblio', $datas, array($type), true));
+        }
 
     }
 }
