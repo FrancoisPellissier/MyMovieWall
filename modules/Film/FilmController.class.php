@@ -72,6 +72,8 @@ class FilmController extends \library\BaseController {
 			$film->getInfos();
 			$this->titre_page = $film->infos['titrevf'];
 
+			$this->user->hasFilm($id);
+
 			$this->view->with('curFiche', $film->infos);
 			$this->makeView();
 		}

@@ -4,6 +4,8 @@ $(function() {
 		event.preventDefault();
 
 		$(this).children().removeClass('btn-default').addClass('btn-success');
+		$(this).removeClass('addBiblio').addClass('delBiblio');
+		this.href = this.href.replace('addBiblio', 'delBiblio');
 		$.ajax(this.href);
 	});
 });

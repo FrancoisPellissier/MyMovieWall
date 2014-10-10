@@ -8,7 +8,7 @@
         <p>
             <?php
             foreach(array('bluray' => 'Blu-Ray', 'dvd' => 'DVD') AS $type => $typename) {
-                echo "\n\t\t\t".'<a title="'.$type.'" href="film/'.$curFiche['movieid'].'/addBiblio/'.$type.'" class="addBiblio"><button type="button" class="btn btn-default" id="'.$type.'">'.$typename.'</button></a>';
+                echo "\n\t\t\t".'<a title="'.$type.'" href="film/'.$curFiche['movieid'].'/addBiblio/'.$type.'" class="addBiblio"><button type="button" class="btn '.($user['hasFilm'][$type] == 1 ? 'btn-success' : 'btn-default').'" id="'.$type.'">'.$typename.'</button></a>';
             }
             ?>
         </p>

@@ -38,6 +38,15 @@ class User extends \library\BaseModel {
 
     }
 
+    public function hasFilm($movieid) {
+        $result = $this->db->query('SELECT bluray, dvd FROM users_biblio WHERE userid = '.$this->infos['id'].' AND movieid = '.intval($movieid));
+
+        if($this->db->num_rows($result))
+            $this->infos['hasFilm'] = $this->db->fetch_assoc($result);
+        else
+            $this->infos['hasFilm'] = array('bluray' => '0', 'dvd' => '0');
+    }
+
     public function addView($movieid, $type, $date = null) {
         // Le film existe ?
         $film = new \modules\Film\Film();
