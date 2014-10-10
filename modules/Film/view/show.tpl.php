@@ -6,8 +6,11 @@
     	<h1><?php echo $curFiche['titrevf']; ?></h1>
         
         <p>
-            <button type="button" class="btn btn-default addBiblio" id="bluray">Blu-Ray</button>
-            <button type="button" class="btn btn-default addBiblio" id="dvd">DVD</button>
+            <?php
+            foreach(array('bluray' => 'Blu-Ray', 'dvd' => 'DVD') AS $type => $typename) {
+                echo "\n\t\t\t".'<a title="'.$type.'" href="film/'.$curFiche['movieid'].'/addBiblio/'.$type.'" class="addBiblio"><button type="button" class="btn btn-default" id="'.$type.'">'.$typename.'</button></a>';
+            }
+            ?>
         </p>
     	
         <p><strong>Date de sortie :</strong> <?php echo $curFiche['datesortie']; ?></p>

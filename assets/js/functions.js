@@ -1,13 +1,10 @@
 // Ajouter un film dans sa vidéotheque
 $(function() {
 	$('.addBiblio').click(function(event) {
-	   event.preventDefault();
-	  
-	  $.ajax('http://localhost/movie/film/18/addBiblio/'+this.id, {
-	      success: function() {
-	         this.removeClass('btn-default').removeClass('active').addClass('btn-success');
-	      }
-	   });
+		event.preventDefault();
+
+		$(this).children().removeClass('btn-default').addClass('btn-success');
+		$.ajax(this.href);
 	});
 });
 
@@ -23,3 +20,22 @@ $(function() {
 	   });
 	});
 });
+
+function onChangeFamilleLevel(cur) {
+   
+    var next = cur + 1;
+   
+    for(j = next;j <= 7; j++) {
+        $("select#famille_id_"+j).html('');
+        }
+       
+   
+    if(cur < 7) {
+    $.post("include/ajax/articles_famille.php", {
+        niveau: next,
+        valeur_select: $("select#famille_id_"+cur+" option:selected").attr('value')
+        }, function (data) {
+        $("select#famille_id_"+next).html(data);  
+        });
+    }
+}
