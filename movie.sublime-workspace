@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"back",
+				"background-color"
+			],
+			[
 				"ans",
 				"answerid"
 			],
@@ -51,46 +55,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "assets/js/functions.js",
-			"settings":
-			{
-				"buffer_size": 1049,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "modules/Film/view/show.tpl.php",
-			"settings":
-			{
-				"buffer_size": 1386,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "assets/config/routes.xml",
-			"settings":
-			{
-				"buffer_size": 623,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "modules/User/User.class.php",
-			"settings":
-			{
-				"buffer_size": 2051,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "modules/Film/FilmController.class.php",
-			"settings":
-			{
-				"buffer_size": 2150,
-				"line_ending": "Windows"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -144,37 +108,61 @@
 	},
 	"file_history":
 	[
-		"/C/xampp/htdocs/movie/assets/layouts/menu.php",
+		"/C/xampp/htdocs/movie/assets/js/functions.js",
+		"/C/xampp/htdocs/movie/library/Image.class.php",
+		"/C/xampp/htdocs/movie/modules/Film/view/show.tpl.php",
+		"/C/xampp/htdocs/movie/modules/Film/FilmController.class.php",
 		"/C/xampp/htdocs/movie/modules/Film/view/searchAllocine.tpl.php",
 		"/C/xampp/htdocs/movie/library/BaseModel.class.php",
-		"/C/xampp/htdocs/distrimontage/trunk/include/ajax/articles_famille.php",
-		"/C/xampp/htdocs/distrimontage/trunk/js/functions.js",
 		"/C/xampp/htdocs/movie/library/Query.class.php",
-		"/C/xampp/htdocs/movie/modules/Film/FilmController.class.php",
+		"/C/Program Files (x86)/Git/etc/gitconfig",
+		"/D/Documents/Logiciels/GIT/etc/gitconfig",
 		"/C/xampp/htdocs/movie/modules/Allocine/Allocine.class.php",
-		"/C/xampp/htdocs/movie/library/Application.class.php",
-		"/C/xampp/htdocs/movie/modules/Person/Person.class.php",
 		"/C/xampp/htdocs/movie/modules/Film/Film.class.php",
-		"/C/xampp/htdocs/movie/library/Image.class.php",
-		"/C/xampp/htdocs/movie/modules/Genre/Genre.class.php",
-		"/C/xampp/htdocs/movie/.gitignore",
-		"/C/xampp/htdocs/movie/modules/Allocine/AlloHelper.class.php",
-		"/C/xampp/htdocs/movie/.htaccess",
-		"/C/xampp/htdocs/movie/login.php",
-		"/C/xampp/htdocs/movie/assets/config/config.php",
-		"/C/xampp/htdocs/movie/forum/header.php",
-		"/C/xampp/htdocs/movie/forum/login.php",
+		"/C/xampp/htdocs/movie/modules/Person/Person.class.php",
+		"/C/xampp/htdocs/movie/modules/User/User.class.php",
+		"/C/xampp/htdocs/movie/modules/Index/IndexController.class.php",
+		"/C/xampp/htdocs/movie/modules/Index/view/index.tpl.php",
+		"/C/xampp/htdocs/movie/assets/layouts/menu.php",
+		"/C/xampp/htdocs/movie/assets/config/routes.xml",
 		"/C/xampp/htdocs/movie/assets/layouts/header.php",
+		"/C/xampp/htdocs/movie/library/Application.class.php",
+		"/C/xampp/htdocs/movie/library/BaseController.class.php",
+		"/C/xampp/htdocs/movie/library/View.class.php",
+		"/C/xampp/htdocs/movie/modules/User/Users.class.php",
+		"/C/xampp/htdocs/movie/modules/About/AboutController.class.php",
 		"/C/xampp/htdocs/movie/modules/Film/view/index.tpl.php",
+		"/C/xampp/htdocs/movie/assets/css/tuto.css",
+		"/C/xampp/htdocs/movie/login.php",
+		"/C/xampp/htdocs/movie/library/HTTPRequest.class.php",
+		"/C/xampp/htdocs/movie/forum/cache/cache_config.php",
+		"/C/xampp/htdocs/movie/forum/include/functions.php",
 		"/C/xampp/htdocs/movie/index.php",
-		"/C/xampp/htdocs/movie/modules/film/Film.class.php",
 		"/C/xampp/htdocs/test/search.php",
-		"/C/xampp/htdocs/test/film.php",
-		"/C/xampp/htdocs/movie/Allocine.php",
+		"/C/xampp/htdocs/movie/modules/Allocine/AlloHelper.class.php",
+		"/C/xampp/htdocs/movie/modules/Film/view/searchAllocine.class.php",
+		"/C/xampp/htdocs/movie/modules/About/view/index.tpl.php",
+		"/C/xampp/htdocs/movie/assets/layouts/footer.php",
+		"/C/xampp/htdocs/movie/.htaccess",
+		"/C/xampp/htdocs/movie/library/Router.class.php",
+		"/C/xampp/htdocs/movie/library/Route.class.php",
+		"/C/xampp/htdocs/movie/config.php",
+		"/C/xampp/htdocs/movie/library/HTTPResponse.class.php",
+		"/C/xampp/htdocs/movie/assets/layouts/layout.tpl.php",
+		"/C/xampp/htdocs/movie/autoload.php",
+		"/C/xampp/htdocs/movie/movie.sublime-project",
+		"/C/xampp/htdocs/movie/movie.sublime-workspace",
+		"/C/xampp/htdocs/movie/modules/Allocine/AlloImage.class.php",
+		"/C/xampp/htdocs/movie/modules/Allocine/api-allocine-helper.php",
 		"/C/xampp/htdocs/movie/library/allocine/api-allocine-helper.php",
-		"/C/xampp/htdocs/movie/library/allocine/AlloImage.class.php",
+		"/C/xampp/htdocs/movie/modules/Allocine/AlloData.class.php",
 		"/C/xampp/htdocs/movie/library/allocine/AlloHelper.class.php",
+		"/C/xampp/htdocs/movie/library/allocine/AlloImage.class.php",
 		"/C/xampp/htdocs/movie/library/allocine/AlloData.class.php",
+		"/C/xampp/htdocs/movie/library/autoload.php",
+		"/C/xampp/htdocs/test/film.php",
+		"/C/xampp/htdocs/movie/modules/film/Film.class.php",
+		"/C/xampp/htdocs/movie/Allocine.php",
 		"/C/xampp/htdocs/movie1/app/routes.php",
 		"/C/xampp/htdocs/movie1/app/controllers/MovieController.php",
 		"/C/xampp/htdocs/movie1/public/index.php",
@@ -247,31 +235,7 @@
 		"/C/wamp/www/webfantasy_v3/Applications/Application.class.php",
 		"/C/wamp/www/webfantasy_v3/Applications/Modules/Page/Views/show.php",
 		"/C/wamp/www/webfantasy_v3/Library/config.php",
-		"/C/Users/francois.pellissier/Documents/Logiciels_Portable/Sublime Text/Data/Packages/Color Scheme - Default/Monokai Bright.tmTheme",
-		"/C/wamp/www/webfantasy_v3/Applications/Modules/Livre/Views/show.php",
-		"/C/wamp/www/webfantasy_v3/Library/Managers.class.php",
-		"/C/wamp/www/webfantasy_v3/Applications/Modules/Accueil/AccueilController.class.php",
-		"/C/wamp/www/webfantasy_v3/Applications/Modules/Page/show.php",
-		"/C/wamp/www/webfantasy_v3/Applications/Modules/News/Views/show.php",
-		"/C/wamp/www/webfantasy_v3/Applications/Modules/Page/PageManager.classs.php",
-		"/C/wamp/www/webfantasy_v3/Applications/Modules/Page/PageController.class.ph",
-		"/C/wamp/www/webfantasy_v3/Applications/Config/config.xml",
-		"/C/Users/francois.pellissier/Documents/Logiciels_Portable/Sublime Text/Data/Packages/Default/Preferences.sublime-settings",
-		"/C/wamp/www/webfantasy_v3/Web/forum/include/parser.php",
-		"/C/wamp/www/webfantasy_v3/Web/test.php",
-		"/C/wamp/www/webfantasy_v3/Web/forum/include/parser_wiki.php",
-		"/C/wamp/www/webfantasy_v3/Web/forum/viewtopic.php",
-		"/C/wamp/www/webfantasy_v3/Applications/Modules/Accueil/Views/index.php",
-		"/C/wamp/www/webfantasy_v3/Applications/Modules/News/Views/month.php",
-		"/C/wamp/www/webfantasy_v3/Web/forum/include/common.php",
-		"/C/wamp/www/site_auteurs_v3/actualite.php",
-		"/C/wamp/www/webfantasy_v3/Applications/Frontend/Config/routes.xml",
-		"/C/wamp/www/webfantasy_v3/Web/forum/log/1381317663.log",
-		"/C/wamp/www/webfantasy_v3/Web/forum/log/1381317601.log",
-		"/C/wamp/www/webfantasy_v3/Library/BackModel.class.php",
-		"/C/wamp/www/webfantasy_v3/WebFantasyV3.sublime-project",
-		"/C/wamp/www/webfantasy_v3/WebFantasyV3.sublime-workspace",
-		"/C/wamp/www/webfantasy_v3/Web/forum/cache/cache_site_config.php"
+		"/C/Users/francois.pellissier/Documents/Logiciels_Portable/Sublime Text/Data/Packages/Color Scheme - Default/Monokai Bright.tmTheme"
 	],
 	"find":
 	{
@@ -289,8 +253,14 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"hasFilm",
-			"']);\n",
+			"\n						",
+			"'])\n",
+			"\",\n",
+			"redir",
+			" AUTO_INCREMENT=1",
+			"$db",
+			"....",
+			"movie",
 			">';",
 			"livre",
 			"Livre",
@@ -326,145 +296,8 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "assets/js/functions.js",
-					"settings":
-					{
-						"buffer_size": 1049,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								343,
-								343
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "modules/Film/view/show.tpl.php",
-					"settings":
-					{
-						"buffer_size": 1386,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1156,
-								1156
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "assets/config/routes.xml",
-					"settings":
-					{
-						"buffer_size": 623,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/XML/XML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "modules/User/User.class.php",
-					"settings":
-					{
-						"buffer_size": 2051,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								547,
-								585
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 180.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "modules/Film/FilmController.class.php",
-					"settings":
-					{
-						"buffer_size": 2150,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								978,
-								978
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 225.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -540,6 +373,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 196.0,
+	"side_bar_width": 258.0,
 	"status_bar_visible": true
 }

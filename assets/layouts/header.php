@@ -9,6 +9,9 @@
 
 		<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-		<script src="assets/js/functions.js"></script>
+		<?php
+		if($jsfile != '')
+			echo "\n\t".'<script src="assets/js/'.$jsfile.'.js"></script>';
+		?>
 	</head>
 <body>

@@ -8,6 +8,7 @@ abstract class BaseController {
 	protected $request;
 	protected $titre_page;
 	protected $user;
+	protected $jsfile;
 
 	public function __construct(\library\HTTPRequest $request, $module, $action) {
 		$this->setModule($module);
@@ -39,6 +40,7 @@ abstract class BaseController {
 	public function makeView() {	    
 		$this->view->with('titre_page', $this->titre_page);
 		$this->view->with('user', $this->user->infos);
+		$this->view->with('jsfile', $this->jsfile);
 		$this->view->make();
 	}
 }

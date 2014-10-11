@@ -23,6 +23,7 @@ class FilmController extends \library\BaseController {
 			$this->view->with('datas', $datas);
 		}
 		$this->titre_page = 'Ajouter un film';
+		$this->jsfile = 'film_searchAllocine';
 		$this->makeView();
 	}
 
@@ -73,6 +74,7 @@ class FilmController extends \library\BaseController {
 			$this->titre_page = $film->infos['titrevf'];
 
 			$this->user->hasFilm($id);
+			$this->jsfile = 'film_show';
 
 			$this->view->with('curFiche', $film->infos);
 			$this->makeView();
