@@ -59,15 +59,15 @@
 			"file": "modules/Film/view/show.tpl.php",
 			"settings":
 			{
-				"buffer_size": 2218,
+				"buffer_size": 2307,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "modules/User/User.class.php",
+			"file": "assets/css/tuto.css",
 			"settings":
 			{
-				"buffer_size": 2504,
+				"buffer_size": 356,
 				"line_ending": "Windows"
 			}
 		}
@@ -124,6 +124,7 @@
 	},
 	"file_history":
 	[
+		"/C/xampp/htdocs/movie/modules/User/User.class.php",
 		"/C/xampp/htdocs/movie/assets/config/routes.xml",
 		"/C/xampp/htdocs/movie/modules/Film/FilmController.class.php",
 		"/C/xampp/htdocs/movie/assets/layouts/header.php",
@@ -144,7 +145,6 @@
 		"/D/Documents/Logiciels/GIT/etc/gitconfig",
 		"/C/xampp/htdocs/movie/modules/Allocine/Allocine.class.php",
 		"/C/xampp/htdocs/movie/modules/Person/Person.class.php",
-		"/C/xampp/htdocs/movie/modules/User/User.class.php",
 		"/C/xampp/htdocs/movie/modules/Index/IndexController.class.php",
 		"/C/xampp/htdocs/movie/modules/Index/view/index.tpl.php",
 		"/C/xampp/htdocs/movie/library/Application.class.php",
@@ -320,15 +320,15 @@
 					"file": "modules/Film/view/show.tpl.php",
 					"settings":
 					{
-						"buffer_size": 2218,
+						"buffer_size": 2307,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1174,
-								1174
+								611,
+								611
 							]
 						],
 						"settings":
@@ -339,36 +339,33 @@
 							"word_wrap": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 50.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "modules/User/User.class.php",
+					"file": "assets/css/tuto.css",
 					"settings":
 					{
-						"buffer_size": 2504,
+						"buffer_size": 356,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2330,
-								2330
+								299,
+								299
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true,
-							"word_wrap": true
+							"syntax": "Packages/CSS/CSS.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 754.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
