@@ -55,6 +55,22 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "modules/Film/view/show.tpl.php",
+			"settings":
+			{
+				"buffer_size": 2218,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "modules/User/User.class.php",
+			"settings":
+			{
+				"buffer_size": 2504,
+				"line_ending": "Windows"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -108,26 +124,30 @@
 	},
 	"file_history":
 	[
-		"/C/xampp/htdocs/movie/assets/js/functions.js",
-		"/C/xampp/htdocs/movie/library/Image.class.php",
-		"/C/xampp/htdocs/movie/modules/Film/view/show.tpl.php",
+		"/C/xampp/htdocs/movie/assets/config/routes.xml",
 		"/C/xampp/htdocs/movie/modules/Film/FilmController.class.php",
-		"/C/xampp/htdocs/movie/modules/Film/view/searchAllocine.tpl.php",
+		"/C/xampp/htdocs/movie/assets/layouts/header.php",
+		"/C/xampp/htdocs/movie/.gitignore",
 		"/C/xampp/htdocs/movie/library/BaseModel.class.php",
+		"/C/xampp/htdocs/movie/modules/Film/Film.class.php",
+		"/C/xampp/htdocs/movie/assets/js/film_show.js",
+		"/C/xampp/htdocs/movie/assets/js/functions.js",
+		"/C/xampp/htdocs/movie/modules/Film/view/show.tpl.php",
+		"/C/xampp/htdocs/movie/assets/layouts/menu.php",
+		"/C/xampp/htdocs/movie/assets/layouts/footer.php",
+		"/C/xampp/htdocs/movie/library/BaseController.class.php",
+		"/C/xampp/htdocs/movie/assets/js/film_searchAllocine.js",
+		"/C/xampp/htdocs/movie/library/Image.class.php",
+		"/C/xampp/htdocs/movie/modules/Film/view/searchAllocine.tpl.php",
 		"/C/xampp/htdocs/movie/library/Query.class.php",
 		"/C/Program Files (x86)/Git/etc/gitconfig",
 		"/D/Documents/Logiciels/GIT/etc/gitconfig",
 		"/C/xampp/htdocs/movie/modules/Allocine/Allocine.class.php",
-		"/C/xampp/htdocs/movie/modules/Film/Film.class.php",
 		"/C/xampp/htdocs/movie/modules/Person/Person.class.php",
 		"/C/xampp/htdocs/movie/modules/User/User.class.php",
 		"/C/xampp/htdocs/movie/modules/Index/IndexController.class.php",
 		"/C/xampp/htdocs/movie/modules/Index/view/index.tpl.php",
-		"/C/xampp/htdocs/movie/assets/layouts/menu.php",
-		"/C/xampp/htdocs/movie/assets/config/routes.xml",
-		"/C/xampp/htdocs/movie/assets/layouts/header.php",
 		"/C/xampp/htdocs/movie/library/Application.class.php",
-		"/C/xampp/htdocs/movie/library/BaseController.class.php",
 		"/C/xampp/htdocs/movie/library/View.class.php",
 		"/C/xampp/htdocs/movie/modules/User/Users.class.php",
 		"/C/xampp/htdocs/movie/modules/About/AboutController.class.php",
@@ -142,7 +162,6 @@
 		"/C/xampp/htdocs/movie/modules/Allocine/AlloHelper.class.php",
 		"/C/xampp/htdocs/movie/modules/Film/view/searchAllocine.class.php",
 		"/C/xampp/htdocs/movie/modules/About/view/index.tpl.php",
-		"/C/xampp/htdocs/movie/assets/layouts/footer.php",
 		"/C/xampp/htdocs/movie/.htaccess",
 		"/C/xampp/htdocs/movie/library/Router.class.php",
 		"/C/xampp/htdocs/movie/library/Route.class.php",
@@ -232,10 +251,7 @@
 		"/C/wamp/www/webfantasy_v3/Applications/Modules/Auteur/AuteurManager.class.php",
 		"/C/wamp/www/webfantasy_v3/Applications/Modules/Page/Page.class.php",
 		"/C/wamp/www/webfantasy_v3/Applications/Modules/Auteur/Views/show.php",
-		"/C/wamp/www/webfantasy_v3/Applications/Application.class.php",
-		"/C/wamp/www/webfantasy_v3/Applications/Modules/Page/Views/show.php",
-		"/C/wamp/www/webfantasy_v3/Library/config.php",
-		"/C/Users/francois.pellissier/Documents/Logiciels_Portable/Sublime Text/Data/Packages/Color Scheme - Default/Monokai Bright.tmTheme"
+		"/C/wamp/www/webfantasy_v3/Applications/Application.class.php"
 	],
 	"find":
 	{
@@ -296,8 +312,67 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "modules/Film/view/show.tpl.php",
+					"settings":
+					{
+						"buffer_size": 2218,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1174,
+								1174
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 50.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "modules/User/User.class.php",
+					"settings":
+					{
+						"buffer_size": 2504,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2330,
+								2330
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 754.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],

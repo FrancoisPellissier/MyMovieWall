@@ -33,9 +33,8 @@ class User extends \library\BaseModel {
                 $type => $value
                 );
             
-            $this->db->query(\library\Query::insertORupdate('users_biblio', $datas, array($type), true));
+            $this->db->query(\library\Query::insertORupdate('users_biblio', $datas, array($type), true))or error($this->db->error());
         }
-
     }
 
     public function hasFilm($movieid) {
@@ -48,7 +47,6 @@ class User extends \library\BaseModel {
     }
 
     public function addView($movieid, $type, $date = null) {
-        // Le film existe ?
         $film = new \modules\Film\Film();
         $film->exists($movieid);
 
@@ -62,9 +60,19 @@ class User extends \library\BaseModel {
 
             if($date)
                 $datas['viewdate'] = $date;
-            
-            $this->db->query(\library\Query::insert('users_views', $datas, true));
 
+            $this->db->query(\library\Query::insert('users_views', $datas, true))or error($this->db->error());
+        }
+    }
+
+    public function hasViewFilm($movieid) {
+        $result = $this->db->query('SELECT type, viewdate FROM users_views WHERE userid = '.$this->infos['id'].' AND movieid = '.intval($movieid).' ORDER BY viewdate DESC');
+
+        $this->infos['hasViewFilm'] = array();
+
+        if($this->db->num_rows($result)) {
+            while($cur = $this->db->fetch_assoc($result))
+                $this->infos['hasViewFilm'][] = $cur;
         }
     }
 }

@@ -74,6 +74,7 @@ class FilmController extends \library\BaseController {
 			$this->titre_page = $film->infos['titrevf'];
 
 			$this->user->hasFilm($id);
+			$this->user->hasViewFilm($id);
 			$this->jsfile = 'film_show';
 
 			$this->view->with('curFiche', $film->infos);
@@ -94,5 +95,21 @@ class FilmController extends \library\BaseController {
 			$this->user->addBiblio($id, $this->request->getData('type'));
 			return true;
 		}
+	}
+
+	public function addView() {
+		$id = intval($this->request->getData('id'));
+		$film = new \modules\Film\Film();
+		$film->exists($id);
+
+		// Si la fiche n'existe pas, on redirige vers l'accueil du module
+		if(!$film->exists) {
+				
+		}
+		else {
+			$this->user->addView($id, $this->request->postData('type'), $this->request->postData('viewdate'));
+		}
+		header("Location: /movie/film/".$id);
+	    exit;
 	}
 }

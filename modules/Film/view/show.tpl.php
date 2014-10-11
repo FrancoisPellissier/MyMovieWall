@@ -12,6 +12,23 @@
             }
             ?>
         </p>
+        <?php
+        if(empty($user['hasViewFilm']))
+            echo '<p>Vous n\'avez jamais vu ce film</p>';
+        else {
+            echo "\n\t\t".'<p>Vous avez vu ce film ';
+
+            foreach($user['hasViewFilm'] AS $id => $vue) {
+                echo ($id != 0 ? ', ' : '').'le '.$vue['viewdate'].($vue['type'] == '1' ? ' au cinéma' : ' à la télé');
+            }
+            echo '.</p>';
+        }
+        
+        ?>
+        <form action="film/<?php echo $curFiche['movieid']; ?>/addView" method="post">
+            <p>
+                <label><input type="radio" name="type" value="1" />Cinéma</label> <label><input type="radio" name="type" value="2" /> Télé</label> <input type="date" name="viewdate" id="viewdate" /> <input type="submit" name="addView" value="Enregistrer" /></p>
+        </form>
     	
         <p><strong>Date de sortie :</strong> <?php echo $curFiche['datesortie']; ?></p>
     	<p><strong>Réalisateur :</strong> <?php echo $curFiche['realisateur']; ?></p>
@@ -23,6 +40,6 @@
 <div class="row">
 	<?php
 	foreach($curFiche['acteurs'] AS $acteur)
-		echo "\n\t".'<div class="col-xs-4 col-sm-3 col-md-2"><img src="'.$acteur['folder'].$acteur['personid'].'.jpg" title="'.$acteur['fullname'].' - '.$acteur['role'].'" /></div>';
+		echo "\n\t".'<div class="col-xs-4 col-sm-3 col-md-2"><img src="'.$acteur['folder'].$acteur['personid'].'.jpg" title="'.$acteur['fullname'].' - '.$acteur['role'].'" class="img-rounded" /></div>';
 	?>
 </div>
