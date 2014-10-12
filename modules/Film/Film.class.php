@@ -42,4 +42,14 @@ class Film extends \library\BaseModel {
 		}
 		$this->infos['acteurs'] = $acteurs;
 	}
+
+	public function getFilms() {
+		$result = $this->db->query('SELECT * FROM '.$this->table.' ORDER BY titrevf');
+
+		$last = array();
+		while($cur = $this->db->fetch_assoc($result)) {
+			$last[] = $cur;
+		}
+		return $last;
+	}
 }

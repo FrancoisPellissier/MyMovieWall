@@ -8,7 +8,7 @@ class FilmController extends \library\BaseController {
 		$this->menu_actif = 'film_index';
 
 		$film = new \modules\Film\Film();
-		$last = $film->getLasts();
+		$last = $film->getFilms();
 		
 		$this->view->with('last', $last);
 		$this->makeView();
