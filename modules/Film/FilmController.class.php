@@ -30,6 +30,7 @@ class FilmController extends \library\BaseController {
 	}
 
 	public function add() {
+		ob_start();
 		$id = intval($this->request->getData('id'));
 
 		$allocine = new \modules\Allocine\Allocine();
@@ -52,7 +53,7 @@ class FilmController extends \library\BaseController {
 			// On parcourt les acteurs/réalisateurs pour les insérer/associer
 			$film->assocPerson($id, $datas);
 		}	
-		
+		ob_end_clean();
 		echo $id;
 		exit();
 		// On redirige vers la fiche du film
@@ -86,6 +87,7 @@ class FilmController extends \library\BaseController {
 	}
 
 	public function addBiblio() {
+		ob_start();
 		$id = intval($this->request->getData('id'));
 		$film = new \modules\Film\Film();
 		$film->exists($id);
@@ -94,9 +96,11 @@ class FilmController extends \library\BaseController {
 		if($film->exists) {
 			$this->user->addBiblio($id, $this->request->getData('type'));
 		}
+		ob_end_clean();
 	}
 
 	public function delBiblio() {
+		ob_start();
 		$id = intval($this->request->getData('id'));
 		$film = new \modules\Film\Film();
 		$film->exists($id);
@@ -105,6 +109,7 @@ class FilmController extends \library\BaseController {
 		if($film->exists) {
 			$this->user->addBiblio($id, $this->request->getData('type'), '0');
 		}
+		ob_end_clean();
 	}
 
 	public function addView() {

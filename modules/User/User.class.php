@@ -92,7 +92,7 @@ class User extends \library\BaseModel {
     }
 
     public function getLastBiblio() {
-        $result = $this->db->query('SELECT m.* FROM movie AS m INNER JOIN users_biblio AS ub ON m.movieid = ub.movieid AND ub.userid = '.$this->infos['id'].' ORDER BY created_at DESC LIMIT 6');
+        $result = $this->db->query('SELECT m.* FROM movie AS m INNER JOIN users_biblio AS ub ON m.movieid = ub.movieid AND ub.userid = '.$this->infos['id'].' ORDER BY ub.created_at DESC LIMIT 6');
 
         $last = array();
         while($cur = $this->db->fetch_assoc($result)) {
