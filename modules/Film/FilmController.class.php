@@ -91,12 +91,19 @@ class FilmController extends \library\BaseController {
 		$film->exists($id);
 
 		// Si la fiche n'existe pas, on redirige vers l'accueil du module
-		if(!$film->exists) {
-			return false;
-		}
-		else {
+		if($film->exists) {
 			$this->user->addBiblio($id, $this->request->getData('type'));
-			return true;
+		}
+	}
+
+	public function delBiblio() {
+		$id = intval($this->request->getData('id'));
+		$film = new \modules\Film\Film();
+		$film->exists($id);
+
+		// Si la fiche n'existe pas, on redirige vers l'accueil du module
+		if($film->exists) {
+			$this->user->addBiblio($id, $this->request->getData('type'), '0');
 		}
 	}
 

@@ -14,7 +14,10 @@
         <p>Vous le possédez en :<br />
             <?php
             foreach(array('bluray' => 'Blu-Ray', 'dvd' => 'DVD') AS $type => $typename) {
-                echo "\n\t\t\t".'<a title="'.$type.'" href="film/'.$curFiche['movieid'].'/addBiblio/'.$type.'" class="addBiblio"><button type="button" class="btn '.($user['hasFilm'][$type] == 1 ? 'btn-success' : 'btn-default').'" id="'.$type.'">'.$typename.'</button></a>';
+                if($user['hasFilm'][$type] == 0)
+                    echo "\n\t\t\t".'<a title="'.$type.'" href="film/'.$curFiche['movieid'].'/addBiblio/'.$type.'" class="addBiblio"><button type="button" class="btn btn-default" id="'.$type.'">'.$typename.'</button></a>';
+                else
+                    echo "\n\t\t\t".'<a title="'.$type.'" href="film/'.$curFiche['movieid'].'/delBiblio/'.$type.'" class="delBiblio"><button type="button" class="btn btn-success" id="'.$type.'">'.$typename.'</button></a>';
             }
             ?>
         </p>
