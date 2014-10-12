@@ -75,4 +75,27 @@ class User extends \library\BaseModel {
                 $this->infos['hasViewFilm'][] = $cur;
         }
     }
+
+    public function getLastViews($type = 'all') {
+        if(!in_array($type, array('1', '2')))
+            $type = 'all';
+
+        $result = $this->db->query('SELECT m.* FROM movie AS m INNER JOIN users_views AS uv ON m.movieid = uv.movieid AND uv.userid = '.$this->infos['id'].($type == 'all' ? '' : ' AND uv.type = \''.$type.'\'').' ORDER BY viewdate DESC, created_at DESC LIMIT 6');
+
+        $last = array();
+        while($cur = $this->db->fetch_assoc($result)) {
+            $last[] = $cur;
+        }
+        return $last;
+    }
+
+    public function getLastBiblio() {
+        $result = $this->db->query('SELECT m.* FROM movie AS m INNER JOIN users_biblio AS ub ON m.movieid = ub.movieid AND ub.userid = '.$this->infos['id'].' ORDER BY created_at DESC LIMIT 6');
+
+        $last = array();
+        while($cur = $this->db->fetch_assoc($result)) {
+            $last[] = $cur;
+        }
+        return $last;
+    }
 }
