@@ -1,7 +1,7 @@
 <?php
 $navs = array();
 
-$navs[] = array('url' => '/film', 'title' => 'Films');
+$navs[] = array('url' => '/film', 'title' => 'Films', 'item' => 'film_index');
 
 // Cas des visiteurs
 if($user['[is_guest']) {
@@ -11,10 +11,10 @@ if($user['[is_guest']) {
 // Cas des utilisateurs connectés
 else {
   // $navs = array('Films', 'Ma vidéothèque', 'Mes visionnages', 'Ajouter');
-  $navs[] = array('url' => '/film/add', 'title' => 'Ajouter');
+  $navs[] = array('url' => '/film/add', 'title' => 'Ajouter', 'item' => 'film_add');
 }
 
-$navs[] = array('url' => '/movie/about', 'title' => 'A propos');
+$navs[] = array('url' => '/about', 'title' => 'A propos', 'item' => 'about');
 
 ?>
 
@@ -24,7 +24,7 @@ $navs[] = array('url' => '/movie/about', 'title' => 'A propos');
     <ul class="nav navbar-nav">
     <?php
     foreach ($navs as $id => $value) {
-      echo "\n\t\t".'<li'.($id == 0 ? ' class="active"' : '').'><a href="/movie'.$value['url'].'">'.$value['title'].'</a></li>';
+      echo "\n\t\t".'<li'.($value['item'] == $menu_actif ? ' class="active"' : '').'><a href="/movie'.$value['url'].'">'.$value['title'].'</a></li>';
     }
     ?>
   </ul>

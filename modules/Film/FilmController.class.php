@@ -5,6 +5,7 @@ class FilmController extends \library\BaseController {
 	
 	public function index() {
 		$this->titre_page = 'Liste des films';
+		$this->menu_actif = 'film_index';
 
 		$film = new \modules\Film\Film();
 		$last = $film->getLasts();
@@ -23,6 +24,7 @@ class FilmController extends \library\BaseController {
 			$this->view->with('datas', $datas);
 		}
 		$this->titre_page = 'Ajouter un film';
+		$this->menu_actif = 'film_add';
 		$this->jsfile = 'film_searchAllocine';
 		$this->makeView();
 	}
