@@ -101,4 +101,8 @@ class Image {
 		if(file_exists($url))
 		  unlink($url);
 	}
+
+	public static function getUrl($type, $id) {
+		return 'img/'.$type.'/'.intval($id / 100).'/'.$id.'.jpg';
+	}
 }

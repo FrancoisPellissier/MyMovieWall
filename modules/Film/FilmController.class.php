@@ -74,6 +74,7 @@ class FilmController extends \library\BaseController {
 		else {
 			$film->getInfos();
 			$this->titre_page = $film->infos['titrevf'];
+			$this->menu_actif = 'film_index';
 
 			$this->user->hasFilm($id);
 			$this->user->hasViewFilm($id);

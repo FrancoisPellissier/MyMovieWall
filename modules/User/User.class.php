@@ -35,7 +35,7 @@ class User extends \library\BaseModel {
             
             $this->db->query(\library\Query::insertORupdate('users_biblio', $datas, array($type), true))or error($this->db->error());
             // On supprime la ligne s'il ne reste plus aucune possession
-            $this->db->query('DELETE FROM users_biblio WHERE movieid = '.$movieid.' AND userid = '.$this->infos['id'].' AND bluray = \'0\' AND dvd = \'0\' AND numerique = \'0\''1);
+            $this->db->query('DELETE FROM users_biblio WHERE movieid = '.$movieid.' AND userid = '.$this->infos['id'].' AND bluray = \'0\' AND dvd = \'0\' AND numerique = \'0\'');
         }
     }
 
