@@ -78,11 +78,11 @@ class User extends \library\BaseModel {
         }
     }
 
-    public function getLastViews($type = 'all') {
+    public function getLastViews($type = 'all', $index = true) {
         if(!in_array($type, array('1', '2')))
             $type = 'all';
 
-        $result = $this->db->query('SELECT m.* FROM movie AS m INNER JOIN users_views AS uv ON m.movieid = uv.movieid AND uv.userid = '.$this->infos['id'].($type == 'all' ? '' : ' AND uv.type = \''.$type.'\'').' ORDER BY viewdate DESC, created_at DESC LIMIT 6');
+        $result = $this->db->query('SELECT m.*, uv.type, uv.viewdate FROM movie AS m INNER JOIN users_views AS uv ON m.movieid = uv.movieid AND uv.userid = '.$this->infos['id'].($type == 'all' ? '' : ' AND uv.type = \''.$type.'\'').' ORDER BY viewdate DESC, created_at DESC'.($index ? ' LIMIT 6' : ''));
 
         $last = array();
         while($cur = $this->db->fetch_assoc($result)) {

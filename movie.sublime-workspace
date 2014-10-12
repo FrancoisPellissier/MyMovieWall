@@ -56,18 +56,42 @@
 	"buffers":
 	[
 		{
-			"file": "modules/Film/view/show.tpl.php",
+			"file": "assets/config/routes.xml",
 			"settings":
 			{
-				"buffer_size": 2307,
+				"buffer_size": 765,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "assets/css/tuto.css",
+			"file": "modules/Film/FilmController.class.php",
 			"settings":
 			{
-				"buffer_size": 356,
+				"buffer_size": 2942,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "modules/Film/view/lastview.tpl.php",
+			"settings":
+			{
+				"buffer_size": 301,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "library/Application.class.php",
+			"settings":
+			{
+				"buffer_size": 5036,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "modules/User/User.class.php",
+			"settings":
+			{
+				"buffer_size": 3674,
 				"line_ending": "Windows"
 			}
 		}
@@ -124,40 +148,44 @@
 	},
 	"file_history":
 	[
-		"/C/xampp/htdocs/movie/modules/User/User.class.php",
-		"/C/xampp/htdocs/movie/assets/config/routes.xml",
+		"/C/xampp/htdocs/movie/modules/Film/view/index.tpl.php",
 		"/C/xampp/htdocs/movie/modules/Film/FilmController.class.php",
-		"/C/xampp/htdocs/movie/assets/layouts/header.php",
-		"/C/xampp/htdocs/movie/.gitignore",
+		"/C/xampp/htdocs/movie/modules/Film/view/show.tpl.php",
+		"/C/xampp/htdocs/movie/modules/Index/view/index.tpl.php",
+		"/C/xampp/htdocs/movie/modules/User/User.class.php",
+		"/C/xampp/htdocs/movie/library/Image.class.php",
+		"/C/xampp/htdocs/movie/modules/About/AboutController.class.php",
+		"/C/xampp/htdocs/movie/assets/layouts/menu.php",
+		"/C/xampp/htdocs/movie/library/BaseController.class.php",
+		"/C/xampp/htdocs/movie/modules/Index/IndexController.class.php",
 		"/C/xampp/htdocs/movie/library/BaseModel.class.php",
 		"/C/xampp/htdocs/movie/modules/Film/Film.class.php",
+		"/C/xampp/htdocs/movie/library/Date.class.php",
+		"/C/xampp/htdocs/movie/library/Application.class.php",
+		"/C/Users/François/AppData/Roaming/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/C/xampp/htdocs/movie/library/Date.php",
+		"/C/xampp/htdocs/movie/index.php",
+		"/C/xampp/htdocs/movie/library/View.class.php",
+		"/C/xampp/htdocs/movie/.gitignore",
+		"/C/xampp/htdocs/movie/library/Query.class.php",
+		"/C/xampp/htdocs/movie/assets/config/config.php",
+		"/C/xampp/htdocs/movie/assets/css/tuto.css",
+		"/C/xampp/htdocs/movie/assets/config/routes.xml",
+		"/C/xampp/htdocs/movie/assets/layouts/header.php",
 		"/C/xampp/htdocs/movie/assets/js/film_show.js",
 		"/C/xampp/htdocs/movie/assets/js/functions.js",
-		"/C/xampp/htdocs/movie/modules/Film/view/show.tpl.php",
-		"/C/xampp/htdocs/movie/assets/layouts/menu.php",
 		"/C/xampp/htdocs/movie/assets/layouts/footer.php",
-		"/C/xampp/htdocs/movie/library/BaseController.class.php",
 		"/C/xampp/htdocs/movie/assets/js/film_searchAllocine.js",
-		"/C/xampp/htdocs/movie/library/Image.class.php",
 		"/C/xampp/htdocs/movie/modules/Film/view/searchAllocine.tpl.php",
-		"/C/xampp/htdocs/movie/library/Query.class.php",
 		"/C/Program Files (x86)/Git/etc/gitconfig",
 		"/D/Documents/Logiciels/GIT/etc/gitconfig",
 		"/C/xampp/htdocs/movie/modules/Allocine/Allocine.class.php",
 		"/C/xampp/htdocs/movie/modules/Person/Person.class.php",
-		"/C/xampp/htdocs/movie/modules/Index/IndexController.class.php",
-		"/C/xampp/htdocs/movie/modules/Index/view/index.tpl.php",
-		"/C/xampp/htdocs/movie/library/Application.class.php",
-		"/C/xampp/htdocs/movie/library/View.class.php",
 		"/C/xampp/htdocs/movie/modules/User/Users.class.php",
-		"/C/xampp/htdocs/movie/modules/About/AboutController.class.php",
-		"/C/xampp/htdocs/movie/modules/Film/view/index.tpl.php",
-		"/C/xampp/htdocs/movie/assets/css/tuto.css",
 		"/C/xampp/htdocs/movie/login.php",
 		"/C/xampp/htdocs/movie/library/HTTPRequest.class.php",
 		"/C/xampp/htdocs/movie/forum/cache/cache_config.php",
 		"/C/xampp/htdocs/movie/forum/include/functions.php",
-		"/C/xampp/htdocs/movie/index.php",
 		"/C/xampp/htdocs/test/search.php",
 		"/C/xampp/htdocs/movie/modules/Allocine/AlloHelper.class.php",
 		"/C/xampp/htdocs/movie/modules/Film/view/searchAllocine.class.php",
@@ -247,11 +275,7 @@
 		"/C/wamp/www/webfantasy_v3/Applications/Modules/Auteur/Auteur.class.php",
 		"/C/wamp/www/webfantasy_v3/Applications/Modules/Cycle/Views/page.php",
 		"/C/wamp/www/webfantasy_v3/Applications/Modules/Auteur/Views/page.php",
-		"/C/wamp/www/webfantasy_v3/Applications/Modules/Livre/Views/page.php",
-		"/C/wamp/www/webfantasy_v3/Applications/Modules/Auteur/AuteurManager.class.php",
-		"/C/wamp/www/webfantasy_v3/Applications/Modules/Page/Page.class.php",
-		"/C/wamp/www/webfantasy_v3/Applications/Modules/Auteur/Views/show.php",
-		"/C/wamp/www/webfantasy_v3/Applications/Application.class.php"
+		"/C/wamp/www/webfantasy_v3/Applications/Modules/Livre/Views/page.php"
 	],
 	"find":
 	{
@@ -312,23 +336,129 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 4,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "modules/Film/view/show.tpl.php",
+					"file": "assets/config/routes.xml",
 					"settings":
 					{
-						"buffer_size": 2307,
+						"buffer_size": 765,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								611,
-								611
+								423,
+								423
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/XML/XML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "modules/Film/FilmController.class.php",
+					"settings":
+					{
+						"buffer_size": 2942,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2935,
+								2935
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1390.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "modules/Film/view/lastview.tpl.php",
+					"settings":
+					{
+						"buffer_size": 301,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								55,
+								55
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "library/Application.class.php",
+					"settings":
+					{
+						"buffer_size": 5036,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 760.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "modules/User/User.class.php",
+					"settings":
+					{
+						"buffer_size": 3674,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2803,
+								2803
 							]
 						],
 						"settings":
@@ -339,33 +469,7 @@
 							"word_wrap": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "assets/css/tuto.css",
-					"settings":
-					{
-						"buffer_size": 356,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								299,
-								299
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1143.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

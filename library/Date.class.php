@@ -56,7 +56,11 @@ class Date {
         $mois = intval($dates[1]);
         $annee = intval($dates[0]);
 
-        if($format == 'J mois annee');
+        if($format == 'J mois annee')
             return $jour.' '.$list_mois[$mois].' '.$annee;
+        else if($format == 'mois annee')
+            return $list_mois[$mois].' '.$annee;
+        else
+            return $date;
     }
 }

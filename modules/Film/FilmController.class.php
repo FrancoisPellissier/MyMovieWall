@@ -115,4 +115,22 @@ class FilmController extends \library\BaseController {
 		header("Location: /movie/film/".$id);
 	    exit;
 	}
+
+	public function lastview() {
+		$type = $this->request->getData('type');
+
+		if($type) {
+			if($type == 'cinema')
+				$type = '1';
+			else
+				$type = '2';
+		}
+		else
+			$type = 'all';
+
+		$this->titre_page = 'Derniers films vus';
+		$this->menu_actif = 'film_index';
+		$this->view->with('lastView', $this->user->getLastViews($type, false));
+		$this->makeView();
+	}
 }
