@@ -1,4 +1,5 @@
 <?php
+namespace library;
 
 class Date {
     /**
@@ -44,5 +45,18 @@ class Date {
         
         if($format == 1)
             return date('d/m/Y H:i:s', $time);
+    }
+
+    public static function formatDate($date, $format) {
+        $list_mois = array(1 => 'janvier', 2 => 'février', 3 => 'mars', 4 => 'avril', 5 => 'mai', 6 => 'juin', 7 => 'juillet', 8 => 'août', 9 => 'septembre', 10 => 'octobre', 11 => 'novembre', 12 => 'décembre');
+        $list_jours = array(1 => 'lundi', 2 => 'mardi', 3 => 'mercredi', 4 => 'jeudi', 5 => 'vendredi', 6 => 'samedi', 7 => 'dimanche');
+
+        $dates = explode('-', $date);
+        $jour = intval($dates[2]);
+        $mois = intval($dates[1]);
+        $annee = intval($dates[0]);
+
+        if($format == 'J mois annee');
+            return $jour.' '.$list_mois[$mois].' '.$annee;
     }
 }

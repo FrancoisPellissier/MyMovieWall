@@ -10,8 +10,6 @@ class Application {
 	}
 
 	public function run() {
-		// echo $this->httpRequest->requestURI();
-
 		$this->migrate();
 
 		$controller = $this->getController();

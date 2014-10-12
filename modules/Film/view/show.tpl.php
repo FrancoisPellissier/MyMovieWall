@@ -25,7 +25,7 @@
             echo "\n\t\t".'<p>Vous l\'avez vu :';
 
             foreach($user['hasViewFilm'] AS $id => $vue) {
-                echo '<br />- le '.$vue['viewdate'].($vue['type'] == '1' ? ' au cinéma' : ' à la télé');
+                echo '<br />- le '.\library\Date::formatDate($vue['viewdate'], 'J mois annee').($vue['type'] == '1' ? ' au cinéma' : ' à la télé');
             }
             echo '</p>';
         }
