@@ -15,10 +15,9 @@ class FilmController extends \library\BaseController {
 	}
 
 	public function searchAllocine() {
-		if($this->user->infos['is_guest']) {
-			header("Location: /movie/");
-	    	exit;
-		}
+		// On redirige vers l'accueil si c'est un invité
+		if($this->user->infos['is_guest'])
+			$this->response->redirect('');
 
 		if($this->request->postExists('keyword')) {
 			$keyword = $this->request->postData('keyword');
@@ -35,10 +34,9 @@ class FilmController extends \library\BaseController {
 	}
 
 	public function add() {
-		if($this->user->infos['is_guest']) {
-			header("Location: /movie/");
-	    	exit;
-		}
+		// On redirige vers l'accueil si c'est un invité
+		if($this->user->infos['is_guest'])
+			$this->response->redirect('');
 
 		ob_start();
 		$id = intval($this->request->getData('id'));
@@ -123,10 +121,9 @@ class FilmController extends \library\BaseController {
 	}
 
 	public function addView() {
-		if($this->user->infos['is_guest']) {
-			header("Location: /movie/");
-	    	exit;
-		}
+		// On redirige vers l'accueil si c'est un invité
+		if($this->user->infos['is_guest'])
+			$this->response->redirect('');
 
 		$id = intval($this->request->getData('id'));
 		$film = new \modules\Film\Film();
@@ -144,10 +141,9 @@ class FilmController extends \library\BaseController {
 	}
 
 	public function lastview() {
-		if($this->user->infos['is_guest']) {
-			header("Location: /movie/");
-	    	exit;
-		}
+		// On redirige vers l'accueil si c'est un invité
+		if($this->user->infos['is_guest'])
+			$this->response->redirect('');
 
 		$type = $this->request->getData('type');
 

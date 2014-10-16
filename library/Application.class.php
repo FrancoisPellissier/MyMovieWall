@@ -68,13 +68,14 @@ class Application {
 	    catch (\RuntimeException $e) {
 	      if ($e->getCode() == \Library\Router::NO_ROUTE) {
 	        // Si aucune route ne correspond, c'est que la page demandée n'existe pas.
+	         $matchedRoute = new Route($url, 'Error', 'error_404', array());
 	        // $this->httpResponse->redirect404();
 	      }
 	    }
 	     
 	    // On ajoute les variables de l'URL au tableau $_GET.
 	    $_GET = array_merge($_GET, $matchedRoute->vars());
-	     
+
 	    // On instancie le contrôleur.
 	    $controllerClass = '\modules\\'.$matchedRoute->module().'\\'.$matchedRoute->module().'Controller';
 

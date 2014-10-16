@@ -6,6 +6,7 @@ abstract class BaseController {
 	protected $module = '';
 	protected $view = '';
 	protected $request;
+	protected $response;
 	protected $titre_page;
 	protected $menu_actif;
 	protected $user;
@@ -15,6 +16,7 @@ abstract class BaseController {
 		$this->setModule($module);
 		$this->setAction($action);
 		$this->request = $request;
+		$this->response = new \library\HTTPResponse();
 
 		$this->user = new \modules\User\User();
 		$this->view = new \library\View($module, $action);

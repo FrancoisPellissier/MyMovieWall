@@ -60,5 +60,9 @@ class View {
         $view = $this->view;
         include($this->layout);
     }
+
+    public function addHeader($header) {
+        header($header);
+    }
 }
 ?>
