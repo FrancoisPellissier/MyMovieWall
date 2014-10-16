@@ -56,10 +56,18 @@
 	"buffers":
 	[
 		{
-			"file": "modules/Film/view/lastview.tpl.php",
+			"file": "modules/Film/FilmController.class.php",
 			"settings":
 			{
-				"buffer_size": 992,
+				"buffer_size": 3836,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "assets/layouts/menu.php",
+			"settings":
+			{
+				"buffer_size": 2150,
 				"line_ending": "Windows"
 			}
 		}
@@ -116,6 +124,10 @@
 	},
 	"file_history":
 	[
+		"/C/xampp/htdocs/movie/modules/Film/view/searchAllocine.tpl.php",
+		"/C/xampp/htdocs/movie/assets/layouts/header.php",
+		"/C/xampp/htdocs/movie/assets/layouts/menu.php",
+		"/C/xampp/htdocs/movie/modules/Film/view/lastview.tpl.php",
 		"/C/xampp/htdocs/movie/modules/Index/view/index.tpl.php",
 		"/C/xampp/htdocs/movie/modules/User/User.class.php",
 		"/C/xampp/htdocs/movie/modules/Film/Film.class.php",
@@ -125,20 +137,16 @@
 		"/C/xampp/htdocs/movie/modules/Allocine/Allocine.class.php",
 		"/C/xampp/htdocs/movie/modules/Allocine/AlloData.class.php",
 		"/C/xampp/htdocs/movie/assets/config/routes.xml",
-		"/C/xampp/htdocs/movie/assets/layouts/header.php",
 		"/C/xampp/htdocs/movie/assets/js/film_show.js",
 		"/C/xampp/htdocs/movie/modules/Film/view/show.tpl.php",
-		"/C/xampp/htdocs/movie/modules/Film/view/searchAllocine.tpl.php",
 		"/C/xampp/htdocs/movie/library/Date.class.php",
 		"/C/xampp/htdocs/movie/modules/Index/IndexController.class.php",
-		"/C/xampp/htdocs/movie/modules/Film/view/lastview.tpl.php",
 		"/C/xampp/htdocs/movie/library/Application.class.php",
 		"/C/xampp/htdocs/movie/movie.sublime-project",
 		"/C/xampp/htdocs/movie/movie.sublime-workspace",
 		"/C/xampp/htdocs/movie/modules/Film/view/index.tpl.php",
 		"/C/xampp/htdocs/movie/library/Image.class.php",
 		"/C/xampp/htdocs/movie/modules/About/AboutController.class.php",
-		"/C/xampp/htdocs/movie/assets/layouts/menu.php",
 		"/C/xampp/htdocs/movie/library/BaseController.class.php",
 		"/C/Users/François/AppData/Roaming/Sublime Text 2/Packages/User/Preferences.sublime-settings",
 		"/C/xampp/htdocs/movie/library/Date.php",
@@ -310,24 +318,52 @@
 			[
 				{
 					"buffer": 0,
-					"file": "modules/Film/view/lastview.tpl.php",
+					"file": "modules/Film/FilmController.class.php",
 					"settings":
 					{
-						"buffer_size": 992,
+						"buffer_size": 3836,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								357,
+								357
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/PHP/PHP.tmLanguage",
 							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "assets/layouts/menu.php",
+					"settings":
+					{
+						"buffer_size": 2150,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								866,
+								883
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,

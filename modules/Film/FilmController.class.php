@@ -15,6 +15,10 @@ class FilmController extends \library\BaseController {
 	}
 
 	public function searchAllocine() {
+		if($this->user->infos['is_guest']) {
+			header("Location: /movie/");
+	    	exit;
+		}
 
 		if($this->request->postExists('keyword')) {
 			$keyword = $this->request->postData('keyword');
@@ -27,9 +31,15 @@ class FilmController extends \library\BaseController {
 		$this->menu_actif = 'film_add';
 		$this->jsfile = 'film_searchAllocine';
 		$this->makeView();
+
 	}
 
 	public function add() {
+		if($this->user->infos['is_guest']) {
+			header("Location: /movie/");
+	    	exit;
+		}
+
 		ob_start();
 		$id = intval($this->request->getData('id'));
 
@@ -113,6 +123,11 @@ class FilmController extends \library\BaseController {
 	}
 
 	public function addView() {
+		if($this->user->infos['is_guest']) {
+			header("Location: /movie/");
+	    	exit;
+		}
+
 		$id = intval($this->request->getData('id'));
 		$film = new \modules\Film\Film();
 		$film->exists($id);
@@ -129,6 +144,11 @@ class FilmController extends \library\BaseController {
 	}
 
 	public function lastview() {
+		if($this->user->infos['is_guest']) {
+			header("Location: /movie/");
+	    	exit;
+		}
+
 		$type = $this->request->getData('type');
 
 		if($type) {
