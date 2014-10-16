@@ -1,8 +1,12 @@
 <?php
-if($_SERVER['SERVER_NAME'] == 'localhost')
+if($_SERVER['SERVER_NAME'] == 'localhost') {
     define('PUN_ROOT', 'C:/xampp/htdocs/movie/forum/');
-else
+    define('WWW_ROOT', 'http://localhost/movie/');
+	}
+else {
     define('PUN_ROOT', '/var/www/movie/forum/');
+    define('WWW_ROOT', 'http://www.webfantasy.fr/movie/');
+}
 
 require PUN_ROOT.'include/common.php';
 require PUN_ROOT.'include/parser.php';

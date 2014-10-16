@@ -20,11 +20,11 @@ else {
 
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
-    <a class="navbar-brand" href="/movie">Movie</a>
+    <a class="navbar-brand" href="<?php echo WWW_ROOT; ?>">Movie</a>
     <ul class="nav navbar-nav">
     <?php
     foreach ($navs as $id => $value) {
-      echo "\n\t\t".'<li'.($value['item'] == $menu_actif ? ' class="active"' : '').'><a href="/movie'.$value['url'].'">'.$value['title'].'</a></li>';
+      echo "\n\t\t".'<li'.($value['item'] == $menu_actif ? ' class="active"' : '').'><a href="'.WWW_ROOT.$value['url'].'">'.$value['title'].'</a></li>';
     }
     ?>
   </ul>
@@ -35,7 +35,7 @@ else {
     <div class="navbar-collapse collapse">
     <form class="navbar-form navbar-right" role="form" method="post" action="login.php?action=in">
       <input type="hidden" name="form_sent" value="1" />
-      <input type="hidden" name="redirect_url" value="http://localhost/movie/" />
+      <input type="hidden" name="redirect_url" value="<?php echo WWW_ROOT; ?>" />
      <div class="form-group">
        <input type="text" placeholder="Email" name="req_username" class="form-control">
      </div>
