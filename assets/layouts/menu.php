@@ -11,10 +11,10 @@ if($user['[is_guest']) {
 // Cas des utilisateurs connectés
 else {
   // $navs = array('Films', 'Ma vidéothèque', 'Mes visionnages', 'Ajouter');
-  $navs[] = array('url' => '/film/add', 'title' => 'Ajouter', 'item' => 'film_add');
+  // $navs[] = array('url' => '/film/add', 'title' => 'Ajouter', 'item' => 'film_add');
 }
 
-$navs[] = array('url' => '/about', 'title' => 'A propos', 'item' => 'about');
+// $navs[] = array('url' => '/about', 'title' => 'A propos', 'item' => 'about');
 
 ?>
 
@@ -47,8 +47,15 @@ $navs[] = array('url' => '/about', 'title' => 'A propos', 'item' => 'about');
     </div>
     <?php
   }
-  else
+  else {
+    ?>
+    <form class="navbar-form navbar-right" role="form" method="post" action="film/add">
+      <input type="text" class="form-control" name="keyword" id="keyword" placeholder="Mots-clé">
+     <button type="submit" class="btn btn-success">Chercher</button>
+    </form>
+    <?php
     echo '<p class="navbar-text navbar-right">'.$user['username'].' <a href="login.php?action=out&amp;id='.$pun_user['id'].'&amp;csrf_token='.pun_hash($pun_user['id'].pun_hash(get_remote_address())).'"><span class="glyphicon glyphicon-off"></span></a></p>';
+  }
   ?>
   
   </div>
