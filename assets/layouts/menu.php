@@ -1,7 +1,7 @@
 <?php
 $navs = array();
 
-$navs[] = array('url' => '/film', 'title' => 'Films', 'item' => 'film_index');
+$navs[] = array('url' => 'film', 'title' => 'Films', 'item' => 'film_index');
 
 // Cas des visiteurs
 if($user['[is_guest']) {
@@ -11,10 +11,10 @@ if($user['[is_guest']) {
 // Cas des utilisateurs connectés
 else {
   // $navs = array('Films', 'Ma vidéothèque', 'Mes visionnages', 'Ajouter');
-  // $navs[] = array('url' => '/film/add', 'title' => 'Ajouter', 'item' => 'film_add');
+  // $navs[] = array('url' => 'film/add', 'title' => 'Ajouter', 'item' => 'film_add');
 }
 
-// $navs[] = array('url' => '/about', 'title' => 'A propos', 'item' => 'about');
+// $navs[] = array('url' => 'about', 'title' => 'A propos', 'item' => 'about');
 
 ?>
 

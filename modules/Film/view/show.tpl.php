@@ -8,6 +8,7 @@
         <p><strong>Date de sortie :</strong> <?php echo $curFiche['datesortie']; ?></p>
     	<p><strong>Réalisateur :</strong> <?php echo $curFiche['realisateur']; ?></p>
     	<p><strong>Acteurs principaux :</strong> <?php echo $curFiche['acteur']; ?></p>
+        <p><strong>Durée :</strong> <?php echo gmdate("G\hi", $curFiche['duree']); ?></p>
     	<p><strong>Synopsis :</strong> <?php echo $curFiche['synopsis']; ?></p>
     </div>
     <div class="col-md-2">
