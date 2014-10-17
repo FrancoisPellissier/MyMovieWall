@@ -54,7 +54,7 @@ else {
      <button type="submit" class="btn btn-success">Chercher</button>
     </form>
     <?php
-    echo '<p class="navbar-text navbar-right">'.$user['username'].' <a href="login.php?action=out&amp;id='.$pun_user['id'].'&amp;csrf_token='.pun_hash($pun_user['id'].pun_hash(get_remote_address())).'"><span class="glyphicon glyphicon-off"></span></a></p>';
+    echo '<p class="navbar-text navbar-right">'.$user['username'].' <a href="login.php?action=out&amp;id='.$user['id'].'&amp;csrf_token='.pun_hash($user['id'].pun_hash(get_remote_address())).'"><span class="glyphicon glyphicon-off"></span></a></p>';
   }
   ?>
   

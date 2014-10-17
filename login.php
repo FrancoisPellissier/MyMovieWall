@@ -9,10 +9,14 @@
 if (isset($_GET['action']))
 	define('PUN_QUIET_VISIT', 1);
 
-if($_SERVER['SERVER_NAME'] == 'localhost')
+if($_SERVER['SERVER_NAME'] == 'localhost') {
     define('PUN_ROOT', 'C:/xampp/htdocs/movie/forum/');
-else
+    define('WWW_ROOT', 'http://localhost/movie/');
+	}
+else {
     define('PUN_ROOT', '/var/www/movie/forum/');
+    define('WWW_ROOT', 'http://www.webfantasy.fr/movie/');
+}
 
 require PUN_ROOT.'include/common.php';
 
@@ -88,7 +92,7 @@ if (isset($_POST['form_sent']) && $action == 'in')
 	// Reset tracked topics
 	set_tracked_topics(null);
 
-	redirect(pun_htmlspecialchars($_POST['redirect_url']), $lang_login['Login redirect']);
+	redirect(WWW_ROOT, $lang_login['Login redirect']);
 }
 
 
@@ -96,7 +100,7 @@ else if ($action == 'out')
 {
 	if ($pun_user['is_guest'] || !isset($_GET['id']) || $_GET['id'] != $pun_user['id'] || !isset($_GET['csrf_token']) || $_GET['csrf_token'] != pun_hash($pun_user['id'].pun_hash(get_remote_address())))
 	{
-		header('Location: index.php');
+		header('Location: '.WWW_ROOT);
 		exit;
 	}
 
@@ -109,7 +113,7 @@ else if ($action == 'out')
 
 	pun_setcookie(1, pun_hash(uniqid(rand(), true)), time() + 31536000);
 
-	redirect('http://localhost/movie/', $lang_login['Logout redirect']);
+	redirect(WWW_ROOT, $lang_login['Logout redirect']);
 }
 
 
@@ -117,7 +121,7 @@ else if ($action == 'forget' || $action == 'forget_2')
 {
 	if (!$pun_user['is_guest'])
 	{
-		header('Location: index.php');
+		header('Location: '.WWW_ROOT);
 		exit;
 	}
 
@@ -236,7 +240,7 @@ if (!empty($errors))
 
 if (!$pun_user['is_guest'])
 {
-	header('Location: index.php');
+	header('Location: '.WWW_ROOT);
 	exit;
 }
 
