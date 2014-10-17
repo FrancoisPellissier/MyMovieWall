@@ -1,13 +1,13 @@
 </p>
 <?php
 $liens = array();
-$liens[] = array('url' => 'film/lastview', 'title' => 'Tout');
-$liens[] = array('url' => 'film/lastview/cinema', 'title' => 'Cinéma');
-$liens[] = array('url' => 'film/lastview/tele', 'title' => 'Télé');
+$liens[] = array('type' => 'all', 'url' => 'film/lastview', 'title' => 'Tout');
+$liens[] = array('type' => '1', 'url' => 'film/lastview/cinema', 'title' => 'Cinéma');
+$liens[] = array('type' => '2', 'url' => 'film/lastview/tele', 'title' => 'Télé');
 
 
 foreach($liens AS $lien) {
-	echo "\n\t".'<a href="'.$lien['url'].'"><button type="button" class="btn btn-primary">'.$lien['title'].'</button></a> ';
+	echo "\n\t".'<a href="'.$lien['url'].'"><button type="button" class="btn '.($lien['type'] == $type ? 'btn-success' : 'btn-primary').'">'.$lien['title'].'</button></a> ';
 }
 ?>
 <p>

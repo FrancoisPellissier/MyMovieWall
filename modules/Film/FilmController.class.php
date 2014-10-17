@@ -159,6 +159,7 @@ class FilmController extends \library\BaseController {
 		$this->titre_page = 'Derniers films vus';
 		$this->menu_actif = 'film_index';
 		$this->view->with('lastView', $this->user->getLastViews($type, false));
+		$this->view->with('type', $type);
 		$this->makeView();
 	}
 }
