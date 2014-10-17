@@ -12,6 +12,9 @@
     	<p><strong>Synopsis :</strong> <?php echo $curFiche['synopsis']; ?></p>
     </div>
     <div class="col-md-2">
+        <?php
+        if(!$user['is_guest']) {
+        ?>
         <p>Vous le possédez en :<br />
             <?php
             foreach(array('bluray' => 'Blu-Ray', 'dvd' => 'DVD') AS $type => $typename) {
@@ -41,6 +44,9 @@
                 <br /><input type="date" name="viewdate" id="viewdate" />
                 <br /><input type="submit" name="addView" value="Enregistrer" /></p>
         </form>
+        <?php
+            }
+        ?>
     </div>
 
 </div>
