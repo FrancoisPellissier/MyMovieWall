@@ -1,7 +1,7 @@
 <form role="form form-inline" method="post">
   <div class="form-group">
     <label for="keyword"></label>
-    <input type="text" class="form-control" name="keyword" id="keyword" placeholder="Mots-clé">
+    <input type="text" class="form-control" name="keyword" id="keyword" placeholder="Mots-clé" value="<?php echo (isset($keyword) ? str_replace('"', '', $keyword) : ''); ?>">
   </div>
   <button type="submit" class="btn btn-default">Submit</button>
 </form>

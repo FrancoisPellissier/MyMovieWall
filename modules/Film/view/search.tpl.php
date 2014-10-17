@@ -11,4 +11,6 @@ if(isset($datas)) {
   }
   echo "\n\t".'</div>';
 }
+
+echo '<p>Vous ne trouvez pas le film que vous cherchez ? <a href="film/searchAllocine/'.str_replace(' ', '+', $keyword).'">Ajoutez le</a></p>';
 ?>

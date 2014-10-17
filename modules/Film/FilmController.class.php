@@ -19,12 +19,19 @@ class FilmController extends \library\BaseController {
 		if($this->user->infos['is_guest'])
 			$this->response->redirect('');
 
-		if($this->request->postExists('keyword')) {
+		// Une recherche est passée en GET ou en POST ?
+		if($this->request->getExists('keyword'))
+			$keyword = $this->request->getData('keyword');
+		else if($this->request->postExists('keyword'))
 			$keyword = $this->request->postData('keyword');
+
+		if(isset($keyword)) {
+			$keyword = str_replace('+', ' ', $keyword);
 
 			$allocine = new \modules\Allocine\Allocine();
 			$datas = $allocine->search($keyword);
 			$this->view->with('datas', $datas);
+			$this->view->with('keyword', $keyword);
 		}
 		$this->titre_page = 'Ajouter un film';
 		$this->jsfile = 'film_searchAllocine';

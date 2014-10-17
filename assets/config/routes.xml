@@ -4,9 +4,9 @@
  	
  	<route url="/film" module="Film" action="index" />
  	<route url="/film/search" module="Film" action="search" />
- 	<route url="/film/add/([0-9]+)" module="Film" action="add" vars="id" />
- 	<route url="/film/add" module="Film" action="searchAllocine" />
  	<route url="/film/([0-9]+)" module="Film" action="show" vars="id" />
+ 	<route url="/film/searchAllocine/(.*)" module="Film" action="searchAllocine" vars="keyword" />
+ 	<route url="/film/add/([0-9]+)" module="Film" action="add" vars="id" />
 
  	<route url="/film/lastview" module="Film" action="lastview" />
  	<route url="/film/lastview/([a-z]+)" module="Film" action="lastview" vars="type" />
