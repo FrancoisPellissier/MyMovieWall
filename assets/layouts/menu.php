@@ -49,8 +49,8 @@ else {
   }
   else {
     ?>
-    <form class="navbar-form navbar-right" role="form" method="post" action="film/add">
-      <input type="text" class="form-control" name="keyword" id="keyword" placeholder="Mots-clé">
+    <form class="navbar-form navbar-right" role="form" method="post" action="film/search">
+      <input type="text" class="form-control" name="keyword" id="keyword" placeholder="Mots-clé" value="<?php echo (isset($keyword) ? str_replace('"', '', $keyword) : ''); ?>">
      <button type="submit" class="btn btn-success">Chercher</button>
     </form>
     <?php

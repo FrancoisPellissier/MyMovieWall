@@ -27,10 +27,19 @@ class FilmController extends \library\BaseController {
 			$this->view->with('datas', $datas);
 		}
 		$this->titre_page = 'Ajouter un film';
-		$this->menu_actif = 'film_add';
 		$this->jsfile = 'film_searchAllocine';
 		$this->makeView();
+	}
 
+	public function search() {
+		$film = new \modules\Film\Film();
+		$datas = $film->search($this->request->postData('keyword'));
+		
+		$this->view->with('datas', $datas);
+		$this->view->with('keyword', $this->request->postData('keyword'));
+		
+		$this->titre_page = 'Chercher un film';
+		$this->makeView();
 	}
 
 	public function add() {

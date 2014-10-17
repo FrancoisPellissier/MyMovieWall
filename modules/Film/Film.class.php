@@ -52,4 +52,20 @@ class Film extends \library\BaseModel {
 		}
 		return $last;
 	}
+
+	public function search($keywords) {
+		$datas = array();
+
+		if(str_replace(' ', '', $keywords) != '') {
+			$words = explode(' ', $this->db->escape($keywords));
+			$sql = 'WHERE titrevf LIKE \'%'.implode('%\' OR titrevf LIKE \'%', $words).'%\'';
+			$sql .= ' OR titrevo LIKE \'%'.implode('%\' OR titrevo LIKE \'%', $words).'%\'';
+			$result = $this->db->query('SELECT * FROM movie '.$sql.' ORDER BY titrevf');
+
+			while($cur = $this->db->fetch_assoc($result))
+				$datas[] = $cur;
+		}
+
+		return $datas;
+	}
 }

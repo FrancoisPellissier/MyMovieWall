@@ -3,6 +3,7 @@
 	<route url="/" module="Index" action="index" />
  	
  	<route url="/film" module="Film" action="index" />
+ 	<route url="/film/search" module="Film" action="search" />
  	<route url="/film/add/([0-9]+)" module="Film" action="add" vars="id" />
  	<route url="/film/add" module="Film" action="searchAllocine" />
  	<route url="/film/([0-9]+)" module="Film" action="show" vars="id" />
