@@ -6,6 +6,7 @@
  	<route url="/film/search" module="Film" action="search" />
  	<route url="/film/([0-9]+)" module="Film" action="show" vars="id" />
  	<route url="/film/searchAllocine/(.*)" module="Film" action="searchAllocine" vars="keyword" />
+ 	<route url="/film/searchAllocine" module="Film" action="searchAllocine" />
  	<route url="/film/add/([0-9]+)" module="Film" action="add" vars="id" />
 
  	<route url="/film/lastview" module="Film" action="lastview" />

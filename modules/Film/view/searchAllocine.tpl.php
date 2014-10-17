@@ -1,4 +1,4 @@
-<form role="form form-inline" method="post">
+<form role="form form-inline" method="post" action="film/searchAllocine">
   <div class="form-group">
     <label for="keyword"></label>
     <input type="text" class="form-control" name="keyword" id="keyword" placeholder="Mots-clé" value="<?php echo (isset($keyword) ? str_replace('"', '', $keyword) : ''); ?>">
