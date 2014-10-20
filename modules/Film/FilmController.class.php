@@ -8,9 +8,27 @@ class FilmController extends \library\BaseController {
 		$this->menu_actif = 'film_index';
 
 		$film = new \modules\Film\Film();
-		$last = $film->getFilms();
+		$films = $film->getFilms();
 		
-		$this->view->with('last', $last);
+		$this->view->with('films', $films);
+		$this->makeView();
+	}
+
+		public function filmsGenre() {
+		$this->titre_page = 'Liste des films';
+		$this->menu_actif = 'film_index';
+
+		// On récupère l'ensemble des genres pour les passer dans la vue
+		$genre = new \modules\Genre\Genre();
+		$genres = $genre->all();
+		$this->view->with('genres', $genres);
+
+		$film = new \modules\Film\Film();
+		$genreid = intval($this->request->getData('genreid'));
+		$films = $film->getFilmsGenre($genreid);
+
+		$this->view->with('genreid', $genreid);
+		$this->view->with('films', $films);
 		$this->makeView();
 	}
 

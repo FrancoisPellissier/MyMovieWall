@@ -67,12 +67,23 @@ class Film extends \library\BaseModel {
 	public function getFilms() {
 		$result = $this->db->query('SELECT * FROM '.$this->table.' ORDER BY titrevf');
 
-		$last = array();
+		$films = array();
 		while($cur = $this->db->fetch_assoc($result)) {
-			$last[] = $cur;
+			$films[] = $cur;
 		}
-		return $last;
+		return $films;
 	}
+
+	public function getFilmsGenre($genreid) {
+		$result = $this->db->query('SELECT m.* FROM movie AS m INNER JOIN movie_genre AS mg ON m.movieid = mg.movieid AND mg.genreid = '.$this->db->escape(intval($genreid)).' ORDER BY titrevf');
+
+		$films = array();
+		while($cur = $this->db->fetch_assoc($result)) {
+			$films[] = $cur;
+		}
+		return $films;
+	}
+
 
 	public function search($keywords) {
 		$datas = array();

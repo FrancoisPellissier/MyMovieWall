@@ -9,7 +9,7 @@
     	<p><strong>Genere :</strong> 
         <?php
         foreach($curFiche['genres'] AS $id => $genre) {
-            echo ($id != 0 ? ', ' : '').$genre['genrename']; 
+            echo ($id != 0 ? ', ' : '').'<a href="film/genre/'.$genre['genreid'].'">'.$genre['genrename'].'</a>'; 
             }
         ?></p>
 

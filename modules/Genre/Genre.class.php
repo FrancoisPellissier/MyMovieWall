@@ -18,5 +18,7 @@ class Genre extends \library\BaseModel {
         'genrename' => array('fieldtype' => 'VARCHAR', 'required' => false, 'default' => '', 'publicname' => 'Libellé du genre'),
         'code' => array('fieldtype' => 'INT', 'required' => false, 'default' => 0, 'publicname' => 'Code Allocine')
         );
+
+        $this->order = 'genrename';
     }
 }

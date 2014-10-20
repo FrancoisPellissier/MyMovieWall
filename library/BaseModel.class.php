@@ -12,6 +12,7 @@ abstract class BaseModel {
      *             => 'default'   => '', NULL, 0, ...
      *             => 'publicname' =>
      */
+    public $order;
     public $time;
     public $picture;
     public $pictureurl;
@@ -23,6 +24,23 @@ abstract class BaseModel {
     	global $db;
     	$this->db = $db;
     }
+
+	public function all() {
+		// On génère la liste des champs à récupérer
+		$sql_fields = implode(', ', array_keys($this->schema));
+		if($time)
+			$sql_fields .= ', created_at, updated_at';
+
+		$result = $this->db->query('SELECT '.$sql_fields.' FROM '.$this->table.($this->order != '' ? ' ORDER BY '.$this->order : ''))or error('Impossible tous les éléments de la table "'.$this->table.'"', __FILE__, __LINE__, $this->db->error());
+		
+		$all = array();
+		if($this->db->num_rows($result)) {
+			while($cur = $this->db->fetch_assoc($result)) {
+				$all[$cur[$this->key]] = $cur;
+			}
+		}
+		return $all;
+	}
 
 	public function exists($id, $allocine = false) {
 		global $pun_user;
@@ -58,7 +76,7 @@ abstract class BaseModel {
 		    */
 		}
 		else 
-		    $this->exists = false;
+		   $this->exists = false;
 	}
 
 	public function hydrate($datas) {
