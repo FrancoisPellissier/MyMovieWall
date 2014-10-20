@@ -56,34 +56,10 @@
 	"buffers":
 	[
 		{
-			"file": "modules/Film/Film.class.php",
+			"file": "assets/layouts/menu.php",
 			"settings":
 			{
-				"buffer_size": 2733,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "modules/Film/FilmController.class.php",
-			"settings":
-			{
-				"buffer_size": 4545,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "assets/config/routes.xml",
-			"settings":
-			{
-				"buffer_size": 1034,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "modules/Film/view/searchAllocine.tpl.php",
-			"settings":
-			{
-				"buffer_size": 1134,
+				"buffer_size": 2263,
 				"line_ending": "Windows"
 			}
 		}
@@ -140,28 +116,29 @@
 	},
 	"file_history":
 	[
+		"/C/xampp/htdocs/movie/modules/Film/view/filmsGenre.tpl.php",
+		"/C/xampp/htdocs/movie/modules/Film/Film.class.php",
+		"/C/xampp/htdocs/movie/assets/config/routes.xml",
+		"/C/xampp/htdocs/movie/modules/Film/FilmController.class.php",
+		"/C/xampp/htdocs/movie/modules/Film/view/show.tpl.php",
+		"/C/xampp/htdocs/movie/library/BaseModel.class.php",
+		"/C/xampp/htdocs/movie/modules/Film/view/lastview.tpl.php",
+		"/C/xampp/htdocs/movie/modules/Genre/Genre.class.php",
+		"/C/xampp/htdocs/movie/modules/Film/view/searchAllocine.tpl.php",
 		"/C/xampp/htdocs/movie/assets/layouts/menu.php",
 		"/C/xampp/htdocs/movie/modules/Film/view/search.tpl.php",
-		"/C/xampp/htdocs/movie/modules/Film/view/lastview.tpl.php",
 		"/C/xampp/htdocs/movie/library/Query.class.php",
-		"/C/xampp/htdocs/movie/library/BaseModel.class.php",
-		"/C/xampp/htdocs/movie/modules/Film/view/searchAllocine.tpl.php",
 		"/C/xampp/htdocs/movie/library/BaseController.class.php",
 		"/C/xampp/htdocs/movie/assets/config/config.php",
 		"/C/xampp/htdocs/movie/login.php",
-		"/C/xampp/htdocs/movie/modules/Film/FilmController.class.php",
-		"/C/xampp/htdocs/movie/modules/Film/view/show.tpl.php",
 		"/C/xampp/htdocs/movie/assets/js/functions.js",
-		"/C/xampp/htdocs/movie/assets/config/routes.xml",
 		"/C/xampp/htdocs/movie/modules/User/User.class.php",
 		"/C/xampp/htdocs/distrimontage/trunk/include/ajax/articles_famille.php",
 		"/C/xampp/htdocs/distrimontage/trunk/js/functions.js",
 		"/C/xampp/htdocs/movie/modules/Allocine/Allocine.class.php",
 		"/C/xampp/htdocs/movie/library/Application.class.php",
 		"/C/xampp/htdocs/movie/modules/Person/Person.class.php",
-		"/C/xampp/htdocs/movie/modules/Film/Film.class.php",
 		"/C/xampp/htdocs/movie/library/Image.class.php",
-		"/C/xampp/htdocs/movie/modules/Genre/Genre.class.php",
 		"/C/xampp/htdocs/movie/.gitignore",
 		"/C/xampp/htdocs/movie/modules/Allocine/AlloHelper.class.php",
 		"/C/xampp/htdocs/movie/.htaccess",
@@ -266,8 +243,7 @@
 		"/C/wamp/www/webfantasy_v3/Web/forum/viewtopic.php",
 		"/C/wamp/www/webfantasy_v3/Applications/Modules/Accueil/Views/index.php",
 		"/C/wamp/www/webfantasy_v3/Applications/Modules/News/Views/month.php",
-		"/C/wamp/www/webfantasy_v3/Web/forum/include/common.php",
-		"/C/wamp/www/site_auteurs_v3/actualite.php"
+		"/C/wamp/www/webfantasy_v3/Web/forum/include/common.php"
 	],
 	"find":
 	{
@@ -322,103 +298,23 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "modules/Film/Film.class.php",
+					"file": "assets/layouts/menu.php",
 					"settings":
 					{
-						"buffer_size": 2733,
+						"buffer_size": 2263,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1312,
-								1313
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "modules/Film/FilmController.class.php",
-					"settings":
-					{
-						"buffer_size": 4545,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								966,
-								966
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 90.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "assets/config/routes.xml",
-					"settings":
-					{
-						"buffer_size": 1034,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								316,
-								316
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/XML/XML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "modules/Film/view/searchAllocine.tpl.php",
-					"settings":
-					{
-						"buffer_size": 1134,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								71,
-								71
+								1788,
+								1788
 							]
 						],
 						"settings":
@@ -428,7 +324,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 270.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

@@ -48,16 +48,15 @@ else {
     <?php
   }
   else {
+    echo '<p class="navbar-text navbar-right">'.$user['username'].' <a href="login.php?action=out&amp;id='.$user['id'].'&amp;csrf_token='.pun_hash($user['id'].pun_hash(get_remote_address())).'" title="Se déconnecter"><span class="glyphicon glyphicon-off"></span></a></p>';
     ?>
     <form class="navbar-form navbar-right" role="form" method="post" action="film/search">
       <input type="text" class="form-control" name="keyword" id="keyword" placeholder="Mots-clé" value="<?php echo (isset($keyword) ? str_replace('"', '', $keyword) : ''); ?>">
      <button type="submit" class="btn btn-success">Chercher</button>
     </form>
     <?php
-    echo '<p class="navbar-text navbar-right">'.$user['username'].' <a href="login.php?action=out&amp;id='.$user['id'].'&amp;csrf_token='.pun_hash($user['id'].pun_hash(get_remote_address())).'"><span class="glyphicon glyphicon-off"></span></a></p>';
   }
   ?>
-  
-  </div>
+    </div>
 </div>
 <div class="container">
