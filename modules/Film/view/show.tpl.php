@@ -6,10 +6,28 @@
     	<h1><?php echo $curFiche['titrevf']; ?></h1>
         
         <p><strong>Date de sortie :</strong> <?php echo $curFiche['datesortie']; ?></p>
-    	<p><strong>Réalisateur :</strong> <?php echo $curFiche['realisateur']; ?></p>
-    	<p><strong>Acteurs principaux :</strong> <?php echo $curFiche['acteur']; ?></p>
+    	<p><strong>Genere :</strong> 
+        <?php
+        foreach($curFiche['genres'] AS $id => $genre) {
+            echo ($id != 0 ? ', ' : '').'<a href="film/genre/'.$genre['genreid'].'">'.$genre['genrename'].'</a>'; 
+            }
+        ?></p>
+
+        <p><strong>Réalisateur :</strong> 
+        <?php
+        foreach($curFiche['realisateurs'] AS $id => $real)
+           echo ($id != 0 ? ', ' : '').$real['fullname']; 
+
+        ?></p>
+    	<p><strong>Acteurs :</strong> 
+        <?php
+        foreach($curFiche['acteurs'] AS $id => $acteur) {
+            echo ($id != 0 ? ', ' : '').$acteur['fullname']; 
+            }
+        ?></p>
         <p><strong>Durée :</strong> <?php echo gmdate("G\hi", $curFiche['duree']); ?></p>
     	<p><strong>Synopsis :</strong> <?php echo $curFiche['synopsis']; ?></p>
+
     </div>
     <div class="col-md-2">
         <?php

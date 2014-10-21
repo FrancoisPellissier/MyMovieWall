@@ -28,30 +28,62 @@ class Film extends \library\BaseModel {
 	}
 
 	public function getInfos() {
-		$result = $this->db->query('SELECT p.personid, p.fullname, mp.role FROM movie_person AS mp INNER JOIN person AS p ON mp.personid = p.personid AND mp.movieid = '.$this->infos['movieid'].' AND mp.type = \'1\' ORDER BY mp.roleid');
+		$result = $this->db->query('SELECT p.personid, p.fullname, mp.role, mp.type FROM movie_person AS mp INNER JOIN person AS p ON mp.personid = p.personid AND mp.movieid = '.$this->infos['movieid'].' ORDER BY mp.type, mp.roleid');
 
 		$acteurs = array();
+		$realisateurs = array();
 		
 		while($cur = $this->db->fetch_assoc($result)) {
-			$acteurs[] = array(
-				'personid' => $cur['personid'],
-				'fullname' => $cur['fullname'],
-				'role' => $cur['role'],
-				'folder' => 'img/person/'.intval($cur['personid'] / 100).'/'
-				);
+			if($cur['type'] == '1') {
+				$acteurs[] = array(
+					'personid' => $cur['personid'],
+					'fullname' => $cur['fullname'],
+					'role' => $cur['role'],
+					'folder' => 'img/person/'.intval($cur['personid'] / 100).'/'
+					);
+				}
+			if($cur['type'] == '2') {
+				$realisateurs[] = array(
+					'personid' => $cur['personid'],
+					'fullname' => $cur['fullname'],
+					'role' => '',
+					'folder' => 'img/person/'.intval($cur['personid'] / 100).'/'
+					);
+				}
 		}
 		$this->infos['acteurs'] = $acteurs;
+		$this->infos['realisateurs'] = $realisateurs;
+
+		// Récupération des genres
+		$result = $this->db->query('SELECT g.genreid, g.genrename FROM movie_genre AS mg INNER JOIN genre AS g ON mg.genreid = g.genreid AND mg.movieid = '.$this->infos['movieid']);
+
+		$genres = array();
+		while($cur = $this->db->fetch_assoc($result))
+			$genres[] = array('genreid' => $cur['genreid'], 'genrename' => $cur['genrename']);
+		
+		$this->infos['genres'] = $genres;
 	}
 
 	public function getFilms() {
 		$result = $this->db->query('SELECT * FROM '.$this->table.' ORDER BY titrevf');
 
-		$last = array();
+		$films = array();
 		while($cur = $this->db->fetch_assoc($result)) {
-			$last[] = $cur;
+			$films[] = $cur;
 		}
-		return $last;
+		return $films;
 	}
+
+	public function getFilmsGenre($genreid) {
+		$result = $this->db->query('SELECT m.* FROM movie AS m INNER JOIN movie_genre AS mg ON m.movieid = mg.movieid AND mg.genreid = '.$this->db->escape(intval($genreid)).' ORDER BY titrevf');
+
+		$films = array();
+		while($cur = $this->db->fetch_assoc($result)) {
+			$films[] = $cur;
+		}
+		return $films;
+	}
+
 
 	public function search($keywords) {
 		$datas = array();
