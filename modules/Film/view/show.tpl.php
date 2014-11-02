@@ -71,7 +71,15 @@
 
 <div class="row">
 	<?php
-	foreach($curFiche['acteurs'] AS $acteur)
-		echo "\n\t".'<div class="col-xs-4 col-sm-3 col-md-2"><img src="'.library\Image::getUrl('person', $acteur['personid']).'" title="'.$acteur['fullname'].' - '.$acteur['role'].'" class="img-rounded" /></div>';
+	foreach($curFiche['acteurs'] AS $acteur) {
+		echo "\n\t".'<div class="col-xs-4 col-sm-3 col-md-2">';
+
+        if(file_exists(library\Image::getUrl('person', $acteur['personid'])))
+            echo '<img src="'.library\Image::getUrl('person', $acteur['personid']).'" title="'.$acteur['fullname'].' - '.$acteur['role'].'" class="img-rounded" />';
+        else
+             echo '<img src="img/empty.jpg" title="'.$acteur['fullname'].' - '.$acteur['role'].'" class="img-rounded" />';
+
+        echo '</div>';
+    }
 	?>
 </div>
