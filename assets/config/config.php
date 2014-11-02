@@ -5,7 +5,7 @@ if($_SERVER['SERVER_NAME'] == 'localhost') {
 	}
 else {
     define('PUN_ROOT', '/var/www/movie/forum/');
-    define('WWW_ROOT', 'http://www.webfantasy.fr/movie/');
+    define('WWW_ROOT', 'http://www.richardrahl.fr/');
 }
 
 require PUN_ROOT.'include/common.php';

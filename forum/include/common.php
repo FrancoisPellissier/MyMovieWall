@@ -16,6 +16,9 @@ define('FORUM_DB_REVISION', 20);
 define('FORUM_SI_REVISION', 2);
 define('FORUM_PARSER_REVISION', 2);
 
+if($_SERVER['SERVER_NAME'] == 'localhost')
+	define('PUN_DEBUG', true);
+
 // Block prefetch requests
 if (isset($_SERVER['HTTP_X_MOZ']) && $_SERVER['HTTP_X_MOZ'] == 'prefetch')
 {
