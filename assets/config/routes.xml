@@ -2,7 +2,7 @@
 <routes>
 	<route url="/" module="User" action="showResume" />
  	
- 	<route url="/film" module="Film" action="index" />
+ 	<route url="/film" module="Film" action="filmsGenre" />
  	<route url="/film/genre/([0-9]+)" module="Film" action="filmsGenre" vars="genreid" />
  	<route url="/film/search" module="Film" action="search" />
  	<route url="/film/([0-9]+)" module="Film" action="show" vars="id" />

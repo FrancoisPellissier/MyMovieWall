@@ -14,7 +14,7 @@ class FilmController extends \library\BaseController {
 		$this->makeView();
 	}
 
-		public function filmsGenre() {
+	public function filmsGenre() {
 		$this->titre_page = 'Liste des films';
 		$this->menu_actif = 'film_index';
 
