@@ -1,4 +1,4 @@
-<h3>Dernières sorties cinéma</h3>
+<h3>Films vus récemment au cinéma</h3>
 <div class="row">
 	<?php
 	foreach($lastViewCine AS $cur)
@@ -6,7 +6,7 @@
 	?>
 </div>
 <p><a href="user/<?php echo $user['id']; ?>/lastview/cinema">Voir la liste complète</a></p>
-<h3>Dernières soirées télé</h3>
+<h3>Films vus récemment à la télé</h3>
 <div class="row">
 	<?php
 	foreach($lastViewTele AS $cur)
@@ -14,7 +14,7 @@
 	?>
 </div>
 <p><a href="user/<?php echo $user['id']; ?>/lastview/tele">Voir la liste complète</a></p>
-<h3>Dernières sessions shopping</h3>
+<h3>Dernières ajouts dans la bibliothèque</h3>
 <div class="row">
 	<?php
 	foreach($lastBiblio AS $cur)
