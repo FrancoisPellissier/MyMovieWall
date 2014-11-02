@@ -1,9 +1,9 @@
 </p>
 <?php
 $liens = array();
-$liens[] = array('type' => 'all', 'url' => 'film/lastview', 'title' => 'Tout');
-$liens[] = array('type' => '1', 'url' => 'film/lastview/cinema', 'title' => 'Cinéma');
-$liens[] = array('type' => '2', 'url' => 'film/lastview/tele', 'title' => 'Télé');
+$liens[] = array('type' => 'all', 'url' => 'user/2/lastview', 'title' => 'Tout');
+$liens[] = array('type' => '1', 'url' => 'user/2/lastview/cinema', 'title' => 'Cinéma');
+$liens[] = array('type' => '2', 'url' => 'user/2/lastview/tele', 'title' => 'Télé');
 
 
 foreach($liens AS $lien) {

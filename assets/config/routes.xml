@@ -17,5 +17,9 @@
  	<route url="/film/([0-9]+)/delBiblio/([a-z]+)" module="Film" action="delBiblio" vars="id,type" />
  	<route url="/film/([0-9]+)/addView" module="Film" action="addView" vars="id" />
 
+ 	<route url="/user/([0-9]+)" module="User" action="showResume" vars="id" />
+ 	<route url="/user/([0-9]+)/lastview/([a-z]+)" module="User" action="lastview" vars="id,type" />
+ 	<route url="/user/([0-9]+)/lastview" module="User" action="lastview" vars="id" />
+
  	<route url="/about" module="About" action="index" />
 </routes>
