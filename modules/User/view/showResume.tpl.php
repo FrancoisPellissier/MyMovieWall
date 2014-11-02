@@ -5,7 +5,7 @@
 		echo "\n\t".'<div class="col-xs-4 col-sm-3 col-md-2"><a href="film/'.$cur['movieid'].'"><img src="'.library\Image::getUrl('movie', $cur['movieid']).'" alt="Affiche du film" title="'.$cur['titrevf'].'" class="img-rounded"></a></div>';
 	?>
 </div>
-<p><a href="user/<?php echo $user['id']; ?>/lastview/cinema">Voir la liste complète</a></p>
+<p><a href="user/<?php echo $curUser['id']; ?>/lastview/cinema">Voir la liste complète</a></p>
 <h3>Films vus récemment à la télé</h3>
 <div class="row">
 	<?php
@@ -13,7 +13,7 @@
 		echo "\n\t".'<div class="col-xs-4 col-sm-3 col-md-2"><a href="film/'.$cur['movieid'].'"><img src="'.library\Image::getUrl('movie', $cur['movieid']).'" alt="Affiche du film" title="'.$cur['titrevf'].'" class="img-rounded"></a></div>';
 	?>
 </div>
-<p><a href="user/<?php echo $user['id']; ?>/lastview/tele">Voir la liste complète</a></p>
+<p><a href="user/<?php echo $curUser['id']; ?>/lastview/tele">Voir la liste complète</a></p>
 <h3>Dernières ajouts dans la bibliothèque</h3>
 <div class="row">
 	<?php

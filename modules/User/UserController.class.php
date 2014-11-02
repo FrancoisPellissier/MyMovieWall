@@ -2,20 +2,40 @@
 namespace modules\User;
 
 class UserController extends \library\BaseController {
+	private $curUser;
+
+	public function __construct(\library\HTTPRequest $request, $module, $action) {
+		parent::__construct($request, $module, $action);
+
+		$this->curUser = new User();
+
+		// Un user est passé en paramètre ?
+		if($this->request->getExists('id')) {
+			$id = intval($this->request->getData('id'));
+			
+			$this->curUser->exists($id);
+
+			// Si l'utilisateur n'existe pas on force à 2
+			if(!$this->curUser->exists)
+				$this->curUser->exists(2);
+		}
+		else
+			$this->curUser->exists(2);
+		
+		// On passe l'utilisateur voulu dans le vue
+		$this->view->with('curUser', $this->curUser->infos);
+	}
+
 	public function showResume() {
 		$this->titre_page = 'Résumé';
 
-		$this->view->with('lastViewCine', $this->user->getLastViews('1'));
-		$this->view->with('lastViewTele', $this->user->getLastViews('2'));
-		$this->view->with('lastBiblio', $this->user->getLastBiblio());
+		$this->view->with('lastViewCine', $this->curUser->getLastViews('1'));
+		$this->view->with('lastViewTele', $this->curUser->getLastViews('2'));
+		$this->view->with('lastBiblio', $this->curUser->getLastBiblio());
 		$this->makeView();
 	}
 
 	public function lastview() {
-		// On redirige vers l'accueil si c'est un invité
-		if($this->user->infos['is_guest'])
-			$this->response->redirect('');
-
 		$type = $this->request->getData('type');
 
 		if($type) {
@@ -29,7 +49,7 @@ class UserController extends \library\BaseController {
 
 		$this->titre_page = 'Derniers films vus';
 		$this->menu_actif = 'film_index';
-		$this->view->with('lastView', $this->user->getLastViews($type, false));
+		$this->view->with('lastView', $this->curUser->getLastViews($type, false));
 		$this->view->with('type', $type);
 		$this->makeView();
 	}
