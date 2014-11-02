@@ -2,6 +2,15 @@
 namespace modules\User;
 
 class UserController extends \library\BaseController {
+	public function showResume() {
+		$this->titre_page = 'Résumé';
+
+		$this->view->with('lastViewCine', $this->user->getLastViews('1'));
+		$this->view->with('lastViewTele', $this->user->getLastViews('2'));
+		$this->view->with('lastBiblio', $this->user->getLastBiblio());
+		$this->makeView();
+	}
+
 	public function lastview() {
 		// On redirige vers l'accueil si c'est un invité
 		if($this->user->infos['is_guest'])
