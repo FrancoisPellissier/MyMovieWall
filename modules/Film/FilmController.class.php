@@ -87,6 +87,7 @@ class FilmController extends \library\BaseController {
 		else {
 			$datas = $allocine->getFilm($id);
 			$film->hydrate($datas);
+
 			$id = $film->add();
 
 			// On parcout les genres pour les insérer/associer
@@ -96,11 +97,8 @@ class FilmController extends \library\BaseController {
 			$film->assocPerson($id, $datas);
 		}	
 		ob_end_clean();
+		// On renvoi l'id au code JS
 		echo $id;
-		exit();
-		// On redirige vers la fiche du film
-		// header("Location: /movie/film/".$id);
-	    //exit;
 		
 	}
 
