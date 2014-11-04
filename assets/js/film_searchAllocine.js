@@ -5,7 +5,7 @@ $(function() {
 	  
 	  $.ajax(this.href, {
 	      success: function(data) {
-	        window.location = 'http://localhost/movie/film/'+data;
+	        window.location = 'film/'+data;
 	      }
 	   });
 	});
