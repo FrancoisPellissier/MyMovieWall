@@ -18,5 +18,7 @@
  	<route url="/user/([0-9]+)/lastview/([a-z]+)" module="User" action="lastview" vars="id,type" />
  	<route url="/user/([0-9]+)/lastview" module="User" action="lastview" vars="id" />
 
+ 	<route url="/person/([0-9]+)" module="Person" action="showFilms" vars="id" />
+
  	<route url="/about" module="About" action="index" />
 </routes>

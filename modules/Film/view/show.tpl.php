@@ -16,13 +16,13 @@
         <p><strong>Réalisateur :</strong> 
         <?php
         foreach($curFiche['realisateurs'] AS $id => $real)
-           echo ($id != 0 ? ', ' : '').$real['fullname']; 
+           echo ($id != 0 ? ', ' : '').'<a href="person/'.$real['personid'].'">'.$real['fullname'].'</a>'; 
 
         ?></p>
     	<p><strong>Acteurs :</strong> 
         <?php
         foreach($curFiche['acteurs'] AS $id => $acteur) {
-            echo ($id != 0 ? ', ' : '').$acteur['fullname']; 
+            echo ($id != 0 ? ', ' : '').'<a href="person/'.$acteur['personid'].'">'.$acteur['fullname'].'</a>'; 
             }
         ?></p>
         <p><strong>Durée :</strong> <?php echo gmdate("G\hi", $curFiche['duree']); ?></p>
@@ -75,9 +75,9 @@
 		echo "\n\t".'<div class="col-xs-4 col-sm-3 col-md-2">';
 
         if(file_exists(library\Image::getUrl('person', $acteur['personid'])))
-            echo '<img src="'.library\Image::getUrl('person', $acteur['personid']).'" title="'.$acteur['fullname'].' - '.$acteur['role'].'" class="img-rounded" />';
+            echo '<a href="person/'.$acteur['personid'].'"><img src="'.library\Image::getUrl('person', $acteur['personid']).'" title="'.$acteur['fullname'].' - '.$acteur['role'].'" class="img-rounded" /></a>';
         else
-             echo '<img src="img/empty.jpg" title="'.$acteur['fullname'].' - '.$acteur['role'].'" class="img-rounded" />';
+             echo '<a href="person/'.$acteur['personid'].'"><img src="img/empty.jpg" title="'.$acteur['fullname'].' - '.$acteur['role'].'" class="img-rounded" /></a>';
 
         echo '</div>';
     }
