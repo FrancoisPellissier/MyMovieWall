@@ -84,6 +84,19 @@ class Film extends \library\BaseModel {
 		return $films;
 	}
 
+	public function getLastFilms($limit = 18) {
+		$limit = intval($limit);
+		if($limit < 1 OR $limit > 100)
+			$limit = 18;
+
+		$result = $this->db->query('SELECT * FROM movie ORDER BY created_at DESC LIMIT '.$limit);
+
+		$films = array();
+		while($cur = $this->db->fetch_assoc($result)) {
+			$films[] = $cur;
+		}
+		return $films;
+	}
 
 	public function search($keywords) {
 		$datas = array();

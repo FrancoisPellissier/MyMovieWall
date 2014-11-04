@@ -24,8 +24,17 @@ class FilmController extends \library\BaseController {
 		$this->view->with('genres', $genres);
 
 		$film = new \modules\Film\Film();
-		$genreid = intval($this->request->getData('genreid'));
-		$films = $film->getFilmsGenre($genreid);
+
+		// Un genre est fourni ?
+		if($this->request->getExists('genreid')) {
+			$genreid = intval($this->request->getData('genreid'));
+			$films = $film->getFilmsGenre($genreid);
+			$this->view->with('genreid', $genreid);
+			}
+		else {
+			$films = $film->getLastFilms(18);
+			$this->view->with('genreid', 0);
+		}
 
 		$this->view->with('genreid', $genreid);
 		$this->view->with('films', $films);
