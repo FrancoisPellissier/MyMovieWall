@@ -22,6 +22,7 @@ class PersonController extends \library\BaseController {
 			$person->response->redirect();		
 		
 		$this->titre_page = $person->infos['fullname'];
+		$this->view->with('person', $person->infos);
 		$this->makeView();
 	}
 }
