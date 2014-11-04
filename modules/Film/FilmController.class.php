@@ -109,8 +109,7 @@ class FilmController extends \library\BaseController {
 
 		// Si la fiche n'existe pas, on redirige vers l'accueil du module
 		if(!$film->exists) {
-			header("Location: /movie/film");
-	    	exit;
+			$this->response->redirect('film');
 		}
 		else {
 			$film->getInfos();
@@ -168,7 +167,6 @@ class FilmController extends \library\BaseController {
 		else {
 			$this->user->addView($id, $this->request->postData('type'), $this->request->postData('viewdate'));
 		}
-		header("Location: /movie/film/".$id);
-	    exit;
+		$this->response->redirect('film/'.$id);
 	}
 }
