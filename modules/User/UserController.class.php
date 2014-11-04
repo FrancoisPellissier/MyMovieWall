@@ -15,9 +15,9 @@ class UserController extends \library\BaseController {
 			
 			$this->curUser->exists($id);
 
-			// Si l'utilisateur n'existe pas on force à 2
+			// Si l'utilisateur n'existe pas on redirige vers l'accueil
 			if(!$this->curUser->exists)
-				$this->curUser->exists(2);
+				$this->response->redirect();
 		}
 		else
 			$this->curUser->exists(2);
