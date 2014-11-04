@@ -1,22 +1,18 @@
 <?php
 if($_SERVER['SERVER_NAME'] == 'localhost') {
-    define('PUN_ROOT', 'C:/xampp/htdocs/movie/forum/');
+	define('ROOT', 'C:/xampp/htdocs/movie/');
+    define('PUN_ROOT', ROOT.'forum/');
     define('WWW_ROOT', 'http://localhost/movie/');
 	}
 else {
-    define('PUN_ROOT', '/var/www/movie/forum/');
-    define('WWW_ROOT', 'http://www.richardrahl.fr/');
+	define('ROOT', '/homepages/4/d185183764/htdocs/');
+    define('PUN_ROOT', ROOT.'forum/');
+    define('WWW_ROOT', 'http://s185183776.onlinehome.fr/');
 }
 
 require PUN_ROOT.'include/common.php';
 require PUN_ROOT.'include/parser.php';
 global $pun_user;
-
-/*
-function __autoload($class_name) {
-    include '../site_auteurs_v3/include/class/'.$class_name.'.class.php';
-}
-*/
 
 // Inclusions
 require_once('library/autoload.php');
