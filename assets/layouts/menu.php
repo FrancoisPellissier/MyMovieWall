@@ -31,21 +31,7 @@ else {
 
   <?php
   if($user['is_guest']) {
-    ?>
-    <div class="navbar-collapse collapse">
-    <form class="navbar-form navbar-right" role="form" method="post" action="login.php?action=in">
-      <input type="hidden" name="form_sent" value="1" />
-      <input type="hidden" name="redirect_url" value="<?php echo WWW_ROOT; ?>" />
-     <div class="form-group">
-       <input type="text" placeholder="Email" name="req_username" class="form-control">
-     </div>
-     <div class="form-group">
-       <input type="password" placeholder="Password" name="req_password" class="form-control">
-     </div>
-     <button type="submit" class="btn btn-success">Sign in</button>
-    </form>
-    </div>
-    <?php
+     echo '<p class="navbar-text navbar-right"><a href="login">Connexion <span class="glyphicon glyphicon-off"></span></a></p>';
   }
   else {
     echo '<p class="navbar-text navbar-right"><a href="user/'.$user['id'].'">'.$user['username'].'</a> <a href="login.php?action=out&amp;id='.$user['id'].'&amp;csrf_token='.pun_hash($user['id'].pun_hash(get_remote_address())).'" title="Se déconnecter"><span class="glyphicon glyphicon-off"></span></a></p>';

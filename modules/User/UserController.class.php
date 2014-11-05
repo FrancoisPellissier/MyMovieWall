@@ -53,4 +53,12 @@ class UserController extends \library\BaseController {
 		$this->view->with('type', $type);
 		$this->makeView();
 	}
+
+	public function login() {
+		if(!$this->user->infos['is_guest'])
+			$this->response->redirect();
+		
+		$this->titre_page = 'Connexion';
+		$this->makeView();
+	}
 }
