@@ -73,6 +73,18 @@ class FilmController extends \library\BaseController {
 		$this->view->with('keyword', $this->request->postData('keyword'));
 		
 		$this->titre_page = 'Chercher un film';
+
+		// Si on est connecté, on propose des films de l'API à ajouter
+		if(!$this->user->infos['is_guest']) {
+			$keyword = str_replace('+', ' ', $this->request->postData('keyword'));
+
+			$allocine = new \modules\Allocine\Allocine();
+			$datas = $allocine->search($keyword);
+			$this->view->with('datasAPI', $datas);
+
+			$this->jsfile = 'film_searchAllocine';
+		}
+
 		$this->makeView();
 	}
 
