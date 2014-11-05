@@ -1,6 +1,6 @@
 <div class="container">
 
-  <form class="form-signin" role="form" method="post" action="login.php?action=in">
+  <form class="form-signin" role="form" method="post" action="connexion.php?action=in">
     <h2 class="form-signin-heading">Please sign in</h2>
     <input type="hidden" name="form_sent" value="1" />
     <input type="hidden" name="redirect_url" value="<?php echo WWW_ROOT; ?>" />
