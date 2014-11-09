@@ -2141,3 +2141,15 @@ function dump()
 	echo '</pre>';
 	exit;
 }
+
+
+//
+// Validate an email address
+//
+function isValidEmail($email)
+{
+	if (strlen($email) > 80)
+		return false;
+	else
+		return preg_match('%^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|("[^"]+"))@((\[\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\])|(([a-zA-Z\d\-]+\.)+[a-zA-Z]{2,}))$%', $email);
+}

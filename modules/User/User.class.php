@@ -7,17 +7,28 @@ class User extends \library\BaseModel {
      * 
      * @return void
      */
-    public function __construct() {
+    public function __construct($new = false) {
         global $pun_user;
     	parent::__construct();
         $this->table = 'users';
         $this->key = 'id';
         $this->time = false;
 
-        $this->infos = $pun_user;
+        if(!$new)
+            $this->infos = $pun_user;
         
         $this->schema = array(
-        'id' => array('fieldtype' => 'INT', 'required' => false, 'default' => '', 'publicname' => 'ID du user')
+        'id' => array('fieldtype' => 'INT', 'required' => false, 'default' => '', 'publicname' => 'ID du user'),
+        'username' => array('fieldtype' => 'VARCHAR', 'required' => false, 'default' => '', 'publicname' => ''),
+        'password' => array('fieldtype' => 'VARCHAR', 'required' => false, 'default' => '', 'publicname' => ''),
+        'email' => array('fieldtype' => 'VARCHAR', 'required' => false, 'default' => '', 'publicname' => ''),
+        'realname' => array('fieldtype' => 'VARCHAR', 'required' => false, 'default' => '', 'publicname' => ''),
+        'group_id' => array('fieldtype' => 'INT', 'required' => false, 'default' => '', 'publicname' => 'ID du groupe'),
+        'language' => array('fieldtype' => 'VARCHAR', 'required' => false, 'default' => '', 'publicname' => ''),
+        'style' => array('fieldtype' => 'VARCHAR', 'required' => false, 'default' => '', 'publicname' => ''),
+        'registered' => array('fieldtype' => 'INT', 'required' => false, 'default' => '', 'publicname' => ''),
+        'last_visit' => array('fieldtype' => 'INT', 'required' => false, 'default' => '', 'publicname' => ''),
+        'registration_ip' => array('fieldtype' => 'VARCHAR', 'required' => false, 'default' => '', 'publicname' => '')
         );
     }
 
@@ -99,5 +110,14 @@ class User extends \library\BaseModel {
             $last[] = $cur;
         }
         return $last;
+    }
+
+    public function emailExists($email) {
+        $result = $this->db->query('SELECT email FROM users WHERE email = \''.$this->db->escape($email).'\'')or error('Impossible de tester l\'existence de l\'email', __FILE__, __LINE__, $this->db->error());
+
+         if($this->db->num_rows($result))
+            return true;
+        else
+            return false;
     }
 }

@@ -3,6 +3,7 @@
 	<route url="/" module="User" action="showResume" />
 
 	<route url="/login" module="User" action="login" />
+	<route url="/register" module="Register" action="register" />
  	
  	<route url="/film" module="Film" action="filmsGenre" />
  	<route url="/film/genre/([0-9]+)" module="Film" action="filmsGenre" vars="genreid" />

@@ -21,20 +21,14 @@ class Application {
 
 		$tables = array();
 		/*
-		$tables['genre'] = "CREATE TABLE IF NOT EXISTS `genre` ( `genreid` int(11) NOT NULL AUTO_INCREMENT, `genrename` varchar(255) NOT NULL, `code` int(11) NOT NULL, `created_at` datetime DEFAULT NULL, `updated_at` datetime DEFAULT NULL, PRIMARY KEY(genreid) ) ENGINE=InnoDB DEFAULT CHARSET=utf8";
- 		$tables['movie'] = "CREATE TABLE IF NOT EXISTS `movie` ( `movieid` int(11) NOT NULL AUTO_INCREMENT, `titrevo` varchar(255) NOT NULL DEFAULT '', `titrevf` varchar(255) NOT NULL DEFAULT '', `datesortie` date DEFAULT NULL, `duree` int(11) NOT NULL DEFAULT '0', `synopsis` text, `realisateur` varchar(255) NOT NULL DEFAULT '', `acteur` varchar(255) NOT NULL DEFAULT '', `code` int(11) NOT NULL, `created_at` datetime DEFAULT NULL, `updated_at` datetime DEFAULT NULL, PRIMARY KEY(movieid) ) ENGINE=MyISAM DEFAULT CHARSET=utf8";
- 		$tables['movie_genre'] = "CREATE TABLE IF NOT EXISTS `movie_genre` ( `movieid` int(11) NOT NULL DEFAULT '0', `genreid` int(11) NOT NULL DEFAULT '0', PRIMARY KEY (movieid, genreid) ) ENGINE=MyISAM DEFAULT CHARSET=utf8";
- 		$tables['movie_person'] = "CREATE TABLE IF NOT EXISTS `movie_person` ( `roleid` int(11) NOT NULL AUTO_INCREMENT, `movieid` int(11) NOT NULL DEFAULT '0', `personid` int(11) NOT NULL DEFAULT '0', `type` enum('1','2') DEFAULT '1' COMMENT '1 : acteur, 2 : realisateur', `role` varchar(255) NOT NULL DEFAULT '', PRIMARY KEY(roleid) ) ENGINE=MyISAM DEFAULT CHARSET=utf8";
- 		$tables['person'] = "CREATE TABLE IF NOT EXISTS `person` ( `personid` int(11) NOT NULL AUTO_INCREMENT, `fullname` varchar(255) NOT NULL, `code` int(11) NOT NULL, `created_at` datetime DEFAULT NULL, `updated_at` datetime DEFAULT NULL, PRIMARY KEY (personid) )ENGINE=InnoDB DEFAULT CHARSET=utf8";
- 		$tables['stats_log'] = "CREATE TABLE IF NOT EXISTS `stats_log` ( `logid` int(11) NOT NULL AUTO_INCREMENT, `tablename` varchar(255) NOT NULL DEFAULT '', `tableid` int(11) NOT NULL DEFAULT '0', `ip` varchar(255) NOT NULL DEFAULT '', `userid` int(11) NOT NULL DEFAULT '0', `created_at` datetime DEFAULT NULL, `updated_at` datetime DEFAULT NULL, PRIMARY KEY(logid) ) ENGINE=MyISAM DEFAULT CHARSET=utf8";
- 		$tables['users_biblio'] = "CREATE TABLE IF NOT EXISTS `users_biblio` ( `userid` int(11) NOT NULL, `movieid` int(11) NOT NULL, `bluray` ENUM('0','1') DEFAULT '0', `dvd` ENUM('0','1') DEFAULT '0', `numerique` ENUM('0','1') DEFAULT '0', `created_at` datetime DEFAULT NULL, `updated_at` datetime DEFAULT NULL, PRIMARY KEY(userid, movieid) ) ENGINE=MyISAM DEFAULT CHARSET=utf8";
  		$tables['users_views'] = "CREATE TABLE IF NOT EXISTS `users_views` ( `viewid` int(11) NOT NULL AUTO_INCREMENT, `userid` int(11) NOT NULL, `movieid` int(11) NOT NULL DEFAULT '0', `type` enum('1','2') DEFAULT '1' COMMENT '1 : cinema, 2 : home', `viewdate` DATE NULL DEFAULT NULL, `created_at` datetime DEFAULT NULL, `updated_at` datetime DEFAULT NULL, PRIMARY KEY(viewid) ) ENGINE=MyISAM DEFAULT CHARSET=utf8";
-		*/
+		
  		foreach($tables AS $table => $sql) {
-
  			if(!$db->table_exists($table))
  				$db->query($sql);
  		}
+		*/
+ 		$db->query('UPDATE users SET realname = \'François\', username = \'f_pellissier@hotmail.com\' WHERE id = 2');
  
 	}
 

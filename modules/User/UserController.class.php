@@ -7,7 +7,7 @@ class UserController extends \library\BaseController {
 	public function __construct(\library\HTTPRequest $request, $module, $action) {
 		parent::__construct($request, $module, $action);
 
-		$this->curUser = new User();
+		$this->curUser = new User(true);
 
 		// Un user est passé en paramètre ?
 		if($this->request->getExists('id')) {
@@ -19,8 +19,13 @@ class UserController extends \library\BaseController {
 			if(!$this->curUser->exists)
 				$this->response->redirect();
 		}
-		else
-			$this->curUser->exists(2);
+		// Rien en paramètres, on regarde si on est connecté
+		else {
+			if(!$this->user->infos['is_guest'])
+				$this->curUser->exists($this->user->infos['id']);
+			else
+				$this->curUser->exists(2);
+		}
 		
 		// On passe l'utilisateur voulu dans le vue
 		$this->view->with('curUser', $this->curUser->infos);

@@ -3,11 +3,11 @@
 define('PUN_USERS_INFO_LOADED', 1);
 
 $stats = array (
-  'total_users' => '1',
+  'total_users' => '2',
   'last_user' => 
   array (
-    'id' => '2',
-    'username' => 'François',
+    'id' => '3',
+    'username' => 'contact@webfantasy.fr',
   ),
 );
 
