@@ -23,6 +23,9 @@
  	<route url="/user/([0-9]+)/lastview/([a-z]+)" module="User" action="lastview" vars="id,type" />
  	<route url="/user/([0-9]+)/lastview" module="User" action="lastview" vars="id" />
 
+ 	<route url="/user/([0-9]+)/biblio" module="User" action="showBiblio" vars="id" />
+ 	<route url="/user/([0-9]+)/biblio/genre/([0-9]+)" module="User" action="showBiblio" vars="id,genreid" />
+
  	<route url="/person/([0-9]+)" module="Person" action="showFilms" vars="id" />
 
  	<route url="/about" module="About" action="index" />

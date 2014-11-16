@@ -126,8 +126,8 @@ class User extends \library\BaseModel {
         return $last;
     }
 
-    public function getLastBiblio() {
-        $result = $this->db->query('SELECT m.* FROM movie AS m INNER JOIN users_biblio AS ub ON m.movieid = ub.movieid AND ub.userid = '.$this->infos['id'].' ORDER BY ub.created_at DESC LIMIT 6');
+    public function getLastBiblio($limit = 6) {
+        $result = $this->db->query('SELECT m.* FROM movie AS m INNER JOIN users_biblio AS ub ON m.movieid = ub.movieid AND ub.userid = '.$this->infos['id'].' ORDER BY ub.updated_at DESC LIMIT '.$limit);
 
         $last = array();
         while($cur = $this->db->fetch_assoc($result)) {
@@ -143,5 +143,25 @@ class User extends \library\BaseModel {
             return true;
         else
             return false;
+    }
+
+    public function getGenres() {
+            $result = $this->db->query('SELECT g.* FROM movie AS m INNER JOIN users_biblio AS ub ON m.movieid = ub.movieid AND ub.userid = '.$this->infos['id'].' INNER JOIN movie_genre AS mg ON m.movieid = mg.movieid INNER JOIN genre AS g ON mg.genreid = g.genreid GROUP BY g.genreid ORDER BY genrename');
+
+        $genres = array();
+        while($cur = $this->db->fetch_assoc($result)) {
+            $genres[$cur['genreid']] = $cur;
+        }
+        return $genres;
+    }
+
+    public function getBiblio($genreid) {
+        $result = $this->db->query('SELECT m.* FROM movie AS m INNER JOIN users_biblio AS ub ON m.movieid = ub.movieid AND ub.userid = '.$this->infos['id'].' INNER JOIN movie_genre AS mg ON m.movieid = mg.movieid AND mg.genreid = '.$this->db->escape(intval($genreid)).' ORDER BY titrevf');
+
+        $films = array();
+        while($cur = $this->db->fetch_assoc($result)) {
+            $films[] = $cur;
+        }
+        return $films;
     }
 }

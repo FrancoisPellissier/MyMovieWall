@@ -1,26 +1,26 @@
 <?php
 $navs = array();
-
-$navs[] = array('url' => 'film', 'title' => 'Films', 'item' => 'film_index');
+$navs[] = array('url' => '', 'title' => 'Accueil', 'item' => 'index');
 
 // Cas des visiteurs
-if($user['[is_guest']) {
-  
+if($user['is_guest']) {
+  $navs[] = array('url' => 'user/2/biblio', 'title' => 'Mes films', 'item' => 'biblio');
 
 }
 // Cas des utilisateurs connectés
 else {
-  // $navs = array('Films', 'Ma vidéothèque', 'Mes visionnages', 'Ajouter');
-  // $navs[] = array('url' => 'film/add', 'title' => 'Ajouter', 'item' => 'film_add');
+  $navs[] = array('url' => 'user/'.$user['id'].'/biblio', 'title' => 'Mes films', 'item' => 'biblio');
 }
 
+// Liens globaux
+$navs[] = array('url' => 'film', 'title' => 'Tous les films', 'item' => 'film_index');
 // $navs[] = array('url' => 'about', 'title' => 'A propos', 'item' => 'about');
 
 ?>
 
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
-    <a class="navbar-brand" href="<?php echo WWW_ROOT; ?>">Movie</a>
+    <!--<a class="navbar-brand" href="<?php echo WWW_ROOT; ?>">Movie</a>-->
     <ul class="nav navbar-nav">
     <?php
     foreach ($navs as $id => $value) {

@@ -33,10 +33,35 @@ class UserController extends \library\BaseController {
 
 	public function showResume() {
 		$this->titre_page = 'Résumé';
+		$this->menu_actif = 'index';
 
 		$this->view->with('lastViewCine', $this->curUser->getLastViews('1'));
 		$this->view->with('lastViewTele', $this->curUser->getLastViews('2'));
 		$this->view->with('lastBiblio', $this->curUser->getLastBiblio());
+		$this->makeView();
+	}
+
+	public function showBiblio() {
+		$this->titre_page = 'Liste des films';
+		$this->menu_actif = 'biblio';
+
+		// On récupère l'ensemble des genres pour les passer dans la vue
+		$genres = $this->curUser->getGenres();
+		$this->view->with('genres', $genres);
+
+		// Un genre est fourni ?
+		if($this->request->getExists('genreid')) {
+			$genreid = intval($this->request->getData('genreid'));
+			$films = $this->curUser->getBiblio($genreid);
+			$this->view->with('genreid', $genreid);
+			}
+		else {
+			$films = $this->curUser->getLastBiblio(18);
+			$this->view->with('genreid', 0);
+		}
+
+		$this->view->with('genreid', $genreid);
+		$this->view->with('films', $films);
 		$this->makeView();
 	}
 
