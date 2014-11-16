@@ -17,6 +17,10 @@ class LoginController extends \library\BaseController {
 			// Si tout va bien on redirige vers l'accueil
 			if($valid)
 				$this->response->redirect();
+			else {
+				$this->titre_page = 'Connexion';
+				$this->makeView();
+			}
 		}
 		else {
 			$this->titre_page = 'Connexion';
