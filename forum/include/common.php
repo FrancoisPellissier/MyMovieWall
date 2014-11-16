@@ -18,7 +18,11 @@ define('FORUM_PARSER_REVISION', 2);
 
 if($_SERVER['SERVER_NAME'] == 'localhost') {
 	define('PUN_DEBUG', true);
-	define('PUN_SHOW_QUERIES', true);
+	// define('PUN_SHOW_QUERIES', true);
+}
+else {
+	define('PUN_DEBUG', false);
+	define('PUN_SHOW_QUERIES', false);
 }
 
 // Block prefetch requests
