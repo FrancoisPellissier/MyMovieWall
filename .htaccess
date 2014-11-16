@@ -1,6 +1,6 @@
-RewriteEngine On
-
-# Si le fichier auquel on tente d'accéder existe (si on veut accéder à une image par exemple).
-# Alors on ne réécrit pas l'URL.
+Options -Indexes
+Options +FollowSymLinks
+RewriteEngine on
+RewriteBase /movie/
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(.*)$ index.php [QSA,L]
+RewriteRule ^.*$ index.php [L]
