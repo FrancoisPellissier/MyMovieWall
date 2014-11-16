@@ -19,6 +19,7 @@
  	<route url="/film/([0-9]+)/addView" module="Film" action="addView" vars="id" />
 
  	<route url="/user/([0-9]+)" module="User" action="showResume" vars="id" />
+ 	<route url="/user/([0-9]+)/edit" module="User" action="edit" vars="id" />
  	<route url="/user/([0-9]+)/lastview/([a-z]+)" module="User" action="lastview" vars="id,type" />
  	<route url="/user/([0-9]+)/lastview" module="User" action="lastview" vars="id" />
 

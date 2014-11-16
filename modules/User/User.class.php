@@ -32,6 +32,30 @@ class User extends \library\BaseModel {
         );
     }
 
+    public function changePassword($password1, $password2) {
+        global $pun_config;
+        
+        // On vérifie la présence des mots de passes et leur égalité
+        if(!empty($password1) && !empty($password2) && $password1 == $password2) {
+        $this->db->query(\library\Query::update('users', array('password' => pun_hash($password1)), array('id' => $this->infos['id']), false))or error($this->db->error());
+
+            pun_setcookie($this->infos['id'], pun_hash($password1), time() + $pun_config['o_timeout_visit']);
+            return true;
+        }
+        else
+            return false;
+    }
+
+    public function changeRealname($realname) {
+        
+        if(!empty($realname) && $realname != $this->infos['realname']) {
+           $this->db->query(\library\Query::update('users', array('realname' => $realname), array('id' => $this->infos['id']), false))or error($this->db->error());
+            return true;
+        }
+        else
+            return false;
+    }
+
     public function addBiblio($movieid, $type, $value = 1) {
         // Le film existe ?
         $film = new \modules\Film\Film();

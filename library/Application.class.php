@@ -28,8 +28,6 @@ class Application {
  				$db->query($sql);
  		}
 		*/
- 		$db->query('UPDATE users SET realname = \'François\', username = \'f_pellissier@hotmail.com\' WHERE id = 2');
- 
 	}
 
 	public function getController() {

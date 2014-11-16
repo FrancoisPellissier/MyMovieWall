@@ -58,4 +58,31 @@ class UserController extends \library\BaseController {
 		$this->view->with('type', $type);
 		$this->makeView();
 	}
+
+	public function edit() {
+		// On redirige vers l\'accueil si ce n'est pas notre profil
+		if($this->user->infos['id'] != $this->curUser->infos['id'])
+			$this->response->redirect();
+
+		$modifyRealname = false;
+		$modifyPassword = false;
+
+		// Le formulaire a été validé ?
+		if($this->request->postExists('realname')) {
+
+			$realname = pun_trim($this->request->postData('realname'));
+			$password1 = pun_trim($this->request->postData('password1'));
+			$password2 = pun_trim($this->request->postData('password2'));
+
+			$modifyRealname = $this->user->changeRealname($realname);
+			$modifyPassword = $this->user->changePassword($password1, $password2);
+
+			$this->response->redirect('user/'.$this->user->infos['id'].'/edit');
+		}
+
+		$this->titre_page = 'Profil';
+		$this->view->with('modifRealname', $modifRealname);
+		$this->view->with('modifyPassword', $modifyPassword);
+		$this->makeView();
+	}
 }
