@@ -19,3 +19,6 @@ require_once('library/autoload.php');
 
 // Constantes
 define('FOLDER_IMAGES', 'img');
+
+// Timezone to date
+date_default_timezone_set('Europe/Paris');
