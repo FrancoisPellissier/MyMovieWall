@@ -59,7 +59,7 @@
         <form action="film/<?php echo $curFiche['movieid']; ?>/addView" method="post">
             <p>
                 <label><input type="radio" name="type" value="1" />Cinéma</label> <label><input type="radio" name="type" value="2" /> Télé</label>
-                <br /><input type="date" name="viewdate" id="viewdate" />
+                <br /><input type="text" name="viewdate" id="viewdate"  class="datepicker" data-provide="datepicker" />
                 <br /><input type="submit" name="addView" value="Enregistrer" /></p>
         </form>
         <?php
