@@ -103,7 +103,7 @@ class User extends \library\BaseModel {
     }
 
     public function hasViewFilm($movieid) {
-        $result = $this->db->query('SELECT type, viewdate FROM users_views WHERE userid = '.$this->infos['id'].' AND movieid = '.intval($movieid).' ORDER BY viewdate DESC');
+        $result = $this->db->query('SELECT viewid, type, viewdate FROM users_views WHERE userid = '.$this->infos['id'].' AND movieid = '.intval($movieid).' ORDER BY viewdate DESC');
 
         $this->infos['hasViewFilm'] = array();
 
@@ -163,5 +163,12 @@ class User extends \library\BaseModel {
             $films[] = $cur;
         }
         return $films;
+    }
+
+    public function delView($movieid, $viewid) {
+        $result = $this->db->query('SELECT viewid FROM users_views WHERE userid = '.$this->infos['id'].' AND movieid = '.intval($movieid).' AND viewid = '.$viewid.' ORDER BY viewdate DESC')or error('Impossible de tester le visionnage', __FILE__, __LINE__, $this->db->error());
+
+        if($this->db->num_rows($result))
+            $this->db->query('DELETE FROM users_views WHERE viewid ='.$viewid)or error('Impossible de supprimer le visionnage', __FILE__, __LINE__, $this->db->error());
     }
 }

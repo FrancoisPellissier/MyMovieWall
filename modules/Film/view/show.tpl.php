@@ -50,7 +50,7 @@
             echo "\n\t\t".'<p>Vous l\'avez vu :';
 
             foreach($user['hasViewFilm'] AS $id => $vue) {
-                echo '<br />- le '.\library\Date::formatDate($vue['viewdate'], 'J mois annee').($vue['type'] == '1' ? ' au cinéma' : ' à la télé');
+                echo '<br />- le '.\library\Date::formatDate($vue['viewdate'], 'J mois annee').($vue['type'] == '1' ? ' au cinéma' : ' à la télé'). ' <a href="film/'.$curFiche['movieid'].'/delView/'.$vue['viewid'].'" title="Supprimer"><span class="glyphicon glyphicon-remove"></span></a>';
             }
             echo '</p>';
         }

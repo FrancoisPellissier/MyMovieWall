@@ -190,4 +190,18 @@ class FilmController extends \library\BaseController {
 		}
 		$this->response->redirect('film/'.$id);
 	}
+
+	public function delView() {
+		// On redirige vers l'accueil si c'est un invité
+		if($this->user->infos['is_guest'])
+			$this->response->redirect('');
+
+		// On supprime la vue si user et film sont OK
+		$movieid = intval($this->request->getData('id'));
+		$viewid = intval($this->request->getData('viewid'));
+
+		$this->user->delView($movieid, $viewid);
+
+		$this->response->redirect('film/'.$movieid);
+	}
 }
