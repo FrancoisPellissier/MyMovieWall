@@ -198,4 +198,17 @@ class User extends \library\BaseModel {
         else
             $this->infos['wishFilm'] = array('view' => '0', 'buy' => '0');
     }
+
+    public function getWishlist($type = 'buy') {
+        if(!in_array($type, array('buy', 'view')))
+            $type = 'buy';
+
+        $result = $this->db->query('SELECT m.* FROM movie AS m INNER JOIN users_wish AS uw ON m.movieid = uw.movieid AND uw.userid = '.$this->infos['id'].' AND uw.'.$type.' = \'1\' ORDER BY titrevf, titrevo');
+
+        $wish = array();
+        while($cur = $this->db->fetch_assoc($result)) {
+            $wish[] = $cur;
+        }
+        return $wish;
+    }
 }

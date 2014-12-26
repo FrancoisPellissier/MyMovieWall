@@ -49,7 +49,7 @@ $(function() {
 		return false;
 	});
 
-	$('.delBiblio').click(function(event) {
+	$('.delWish').click(function(event) {
 		event.preventDefault();
 		
 		$.ajax(this.href);

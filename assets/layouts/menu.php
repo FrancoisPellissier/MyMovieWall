@@ -10,6 +10,7 @@ if($user['is_guest']) {
 // Cas des utilisateurs connectés
 else {
   $navs[] = array('url' => 'user/'.$user['id'].'/biblio', 'title' => 'Mes films', 'item' => 'biblio');
+  $navs[] = array('url' => 'user/'.$user['id'].'/wishlist', 'title' => 'Wishlist', 'item' => 'wishlist');
 }
 
 // Liens globaux

@@ -110,4 +110,11 @@ class UserController extends \library\BaseController {
 		$this->view->with('modifyPassword', $modifyPassword);
 		$this->makeView();
 	}
+
+	public function wishlist() {
+		$this->titre_page = 'Wishlist';
+		$this->menu_actif = 'wishlist';
+		$this->view->with('wishlist', $this->curUser->getWishlist('buy'));
+		$this->makeView();
+	}
 }
