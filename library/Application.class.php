@@ -21,13 +21,14 @@ class Application {
 
 		$tables = array();
 		/*
- 		$tables['users_views'] = "CREATE TABLE IF NOT EXISTS `users_views` ( `viewid` int(11) NOT NULL AUTO_INCREMENT, `userid` int(11) NOT NULL, `movieid` int(11) NOT NULL DEFAULT '0', `type` enum('1','2') DEFAULT '1' COMMENT '1 : cinema, 2 : home', `viewdate` DATE NULL DEFAULT NULL, `created_at` datetime DEFAULT NULL, `updated_at` datetime DEFAULT NULL, PRIMARY KEY(viewid) ) ENGINE=MyISAM DEFAULT CHARSET=utf8";
+		$tables['users_wish'] = "CREATE TABLE `users_wish` (`wishid` int(11) NOT NULL AUTO_INCREMENT, `userid` int(11) NOT NULL, `movieid` int(11) NOT NULL DEFAULT '0', `view` enum('0','1') NOT NULL DEFAULT '1', `buy` enum('1','0') NOT NULL DEFAULT '1', 
+  `created_at` datetime DEFAULT NULL, `updated_at` datetime DEFAULT NULL, PRIMARY KEY (`wishid`)) ENGINE=MyISAM DEFAULT CHARSET=utf8;";
 		
  		foreach($tables AS $table => $sql) {
  			if(!$db->table_exists($table))
  				$db->query($sql);
  		}
-		*/
+ 		*/
 	}
 
 	public function getController() {
