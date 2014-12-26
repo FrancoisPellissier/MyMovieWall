@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row film_show">
     <div class="col-xs-4 col-sm-4 col-md-3">
     	<?php echo '<img src="'.library\Image::getUrl('movie', $curFiche['movieid']).'" alt="Affiche du film" title="'.$curFiche['titrevf'].'" class="img-rounded" />'; ?>
     </div>
