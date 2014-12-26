@@ -171,4 +171,31 @@ class User extends \library\BaseModel {
         if($this->db->num_rows($result))
             $this->db->query('DELETE FROM users_views WHERE viewid ='.$viewid)or error('Impossible de supprimer le visionnage', __FILE__, __LINE__, $this->db->error());
     }
+
+    public function addWish($movieid, $type, $value = 1) {
+        // Le film existe ?
+        $film = new \modules\Film\Film();
+        $film->exists($movieid);
+
+        if($film->exists && in_array($type, array('view', 'buy'))) {
+            $datas = array(
+                'userid' => $this->infos['id'],
+                'movieid' => $movieid,
+                $type => $value
+                );
+            
+            $this->db->query(\library\Query::insertORupdate('users_wish', $datas, array($type), true))or error($this->db->error());
+            // On supprime la ligne s'il ne reste plus aucune possession
+            $this->db->query('DELETE FROM users_wish WHERE movieid = '.$movieid.' AND userid = '.$this->infos['id'].' AND buy = \'0\' AND view = \'0\'');
+        }
+    }
+
+    public function wishFilm($movieid) {
+        $result = $this->db->query('SELECT view, buy FROM users_wish WHERE userid = '.$this->infos['id'].' AND movieid = '.intval($movieid));
+
+        if($this->db->num_rows($result))
+            $this->infos['wishFilm'] = $this->db->fetch_assoc($result);
+        else
+            $this->infos['wishFilm'] = array('view' => '0', 'buy' => '0');
+    }
 }

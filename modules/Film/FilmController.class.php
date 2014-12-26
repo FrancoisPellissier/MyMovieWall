@@ -139,6 +139,7 @@ class FilmController extends \library\BaseController {
 
 			$this->user->hasFilm($id);
 			$this->user->hasViewFilm($id);
+			$this->user->wishFilm($id);
 			$this->jsfile = 'film_show';
 
 			$this->view->with('curFiche', $film->infos);
@@ -203,5 +204,31 @@ class FilmController extends \library\BaseController {
 		$this->user->delView($movieid, $viewid);
 
 		$this->response->redirect('film/'.$movieid);
+	}
+
+	public function addWish() {
+		ob_start();
+		$id = intval($this->request->getData('id'));
+		$film = new \modules\Film\Film();
+		$film->exists($id);
+
+		// Si la fiche n'existe pas, on redirige vers l'accueil du module
+		if($film->exists) {
+			$this->user->addWish($id, $this->request->getData('type'));
+		}
+		ob_end_clean();
+	}
+
+	public function delWish() {
+		ob_start();
+		$id = intval($this->request->getData('id'));
+		$film = new \modules\Film\Film();
+		$film->exists($id);
+
+		// Si la fiche n'existe pas, on redirige vers l'accueil du module
+		if($film->exists) {
+			$this->user->addWish($id, $this->request->getData('type'), '0');
+		}
+		ob_end_clean();
 	}
 }

@@ -21,8 +21,7 @@ class Application {
 
 		$tables = array();
 		/*
-		$tables['users_wish'] = "CREATE TABLE `users_wish` (`wishid` int(11) NOT NULL AUTO_INCREMENT, `userid` int(11) NOT NULL, `movieid` int(11) NOT NULL DEFAULT '0', `view` enum('0','1') NOT NULL DEFAULT '1', `buy` enum('1','0') NOT NULL DEFAULT '1', 
-  `created_at` datetime DEFAULT NULL, `updated_at` datetime DEFAULT NULL, PRIMARY KEY (`wishid`)) ENGINE=MyISAM DEFAULT CHARSET=utf8;";
+		$tables['users_wish'] = "CREATE TABLE `users_wish` (`userid` int(11) NOT NULL, `movieid` int(11) NOT NULL DEFAULT '0', `view` enum('0','1') NOT NULL DEFAULT '0', `buy` enum('1','0') NOT NULL DEFAULT '0', `created_at` datetime DEFAULT NULL, `updated_at` datetime DEFAULT NULL, PRIMARY KEY (`userid`,`movieid`)) ENGINE=MyISAM DEFAULT CHARSET=utf8;";
 		
  		foreach($tables AS $table => $sql) {
  			if(!$db->table_exists($table))

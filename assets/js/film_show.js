@@ -37,4 +37,26 @@ $(function() {
 		
 		return false;
 	});
+
+	$('.addWish').click(function(event) {
+		event.preventDefault();
+		
+		$.ajax(this.href);
+		$(this).children().removeClass('btn-default').addClass('btn-success');
+		$(this).removeClass('addWish').addClass('delWish');
+		$(this).attr("href", this.href.replace('addWish', 'delWish'))
+		
+		return false;
+	});
+
+	$('.delBiblio').click(function(event) {
+		event.preventDefault();
+		
+		$.ajax(this.href);
+		$(this).children().removeClass('btn-success').addClass('btn-default');
+		$(this).removeClass('delWish').addClass('addWish');
+		$(this).attr("href", this.href.replace('delWish', 'addWish'))
+		
+		return false;
+	});
 });
