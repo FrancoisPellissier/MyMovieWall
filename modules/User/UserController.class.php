@@ -106,6 +106,7 @@ class UserController extends \library\BaseController {
 		}
 
 		$this->titre_page = 'Profil';
+		$this->menu_actif = 'user_edit';
 		$this->view->with('modifRealname', $modifRealname);
 		$this->view->with('modifyPassword', $modifyPassword);
 		$this->makeView();

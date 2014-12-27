@@ -1,14 +1,7 @@
 <?php
-// ID à utiliser en fonction du visiteur
-$userid = ($user['is_guest'] ? 2 : $user['id']);
-
 // Initialisation des items de menu
 $navs = array();
 $navs[] = array('guest' => true, 'url' => '', 'title' => 'Accueil', 'item' => 'index');
-$navs[] = array('guest' => true, 'url' => 'user/'.$userid.'/biblio', 'title' => 'Mes films', 'item' => 'biblio');
-$navs[] = array('guest' => false, 'url' => 'user/'.$userid.'/towatchlist', 'title' => 'A voir', 'item' => 'towatchlist');
-$navs[] = array('guest' => true, 'url' => 'user/'.$userid.'/lastview/cinema', 'title' => 'Vus récemment', 'item' => 'lastview');
-$navs[] = array('guest' => false, 'url' => 'user/'.$userid.'/wishlist', 'title' => 'Wishlist', 'item' => 'wishlist');
 $navs[] = array('guest' => true, 'url' => 'film', 'title' => 'Tous les films', 'item' => 'film_index');
 ?>
 
@@ -38,4 +31,6 @@ $navs[] = array('guest' => true, 'url' => 'film', 'title' => 'Tous les films', '
     </form>
     </div>
 </div>
+<!--
 <div class="container">
+-->
