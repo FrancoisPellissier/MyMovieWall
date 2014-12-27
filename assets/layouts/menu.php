@@ -1,25 +1,15 @@
 <?php
+// ID à utiliser en fonction du visiteur
+$userid = ($user['is_guest'] ? 2 : $user['id']);
+
+// Initialisation des items de menu
 $navs = array();
-$navs[] = array('url' => '', 'title' => 'Accueil', 'item' => 'index');
-
-// Cas des visiteurs
-if($user['is_guest']) {
-  $navs[] = array('url' => 'user/2/biblio', 'title' => 'Mes films', 'item' => 'biblio');
-  $navs[] = array('url' => 'user/2/lastview/cinema', 'title' => 'Vus récemment', 'item' => 'lastview');
-
-}
-// Cas des utilisateurs connectés
-else {
-  $navs[] = array('url' => 'user/'.$user['id'].'/biblio', 'title' => 'Mes films', 'item' => 'biblio');
-  $navs[] = array('url' => 'user/'.$user['id'].'/towatchlist', 'title' => 'A voir', 'item' => 'towatchlist');
-  $navs[] = array('url' => 'user/'.$user['id'].'/lastview/cinema', 'title' => 'Vus récemment', 'item' => 'lastview');
-  $navs[] = array('url' => 'user/'.$user['id'].'/wishlist', 'title' => 'Wishlist', 'item' => 'wishlist');
-}
-
-// Liens globaux
-$navs[] = array('url' => 'film', 'title' => 'Tous les films', 'item' => 'film_index');
-// $navs[] = array('url' => 'about', 'title' => 'A propos', 'item' => 'about');
-
+$navs[] = array('guest' => true, 'url' => '', 'title' => 'Accueil', 'item' => 'index');
+$navs[] = array('guest' => true, 'url' => 'user/'.$userid.'/biblio', 'title' => 'Mes films', 'item' => 'biblio');
+$navs[] = array('guest' => false, 'url' => 'user/'.$userid.'/towatchlist', 'title' => 'A voir', 'item' => 'towatchlist');
+$navs[] = array('guest' => true, 'url' => 'user/'.$userid.'/lastview/cinema', 'title' => 'Vus récemment', 'item' => 'lastview');
+$navs[] = array('guest' => false, 'url' => 'user/'.$userid.'/wishlist', 'title' => 'Wishlist', 'item' => 'wishlist');
+$navs[] = array('guest' => true, 'url' => 'film', 'title' => 'Tous les films', 'item' => 'film_index');
 ?>
 
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -28,7 +18,8 @@ $navs[] = array('url' => 'film', 'title' => 'Tous les films', 'item' => 'film_in
     <ul class="nav navbar-nav">
     <?php
     foreach ($navs as $id => $value) {
-      echo "\n\t\t".'<li'.($value['item'] == $menu_actif ? ' class="active"' : '').'><a href="'.WWW_ROOT.$value['url'].'">'.$value['title'].'</a></li>';
+      if(!$user['is_guest'] OR $value['guest'])
+        echo "\n\t\t".'<li'.($value['item'] == $menu_actif ? ' class="active"' : '').'><a href="'.WWW_ROOT.$value['url'].'">'.$value['title'].'</a></li>';
     }
     ?>
   </ul>
