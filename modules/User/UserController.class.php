@@ -113,6 +113,10 @@ class UserController extends \library\BaseController {
 	}
 
 	public function wishlist() {
+		// On redirige vers l\'accueil si ce n'est pas notre profil
+		if($this->user->infos['is_guest'])
+			$this->response->redirect();
+
 		$this->titre_page = 'Wishlist';
 		$this->menu_actif = 'wishlist';
 		$this->view->with('wishlist', $this->curUser->getWishlist());
