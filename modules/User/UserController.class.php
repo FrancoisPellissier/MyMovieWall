@@ -78,7 +78,7 @@ class UserController extends \library\BaseController {
 			$type = 'all';
 
 		$this->titre_page = 'Derniers films vus';
-		$this->menu_actif = 'film_index';
+		$this->menu_actif = 'lastview';
 		$this->view->with('lastView', $this->curUser->getLastViews($type, false));
 		$this->view->with('type', $type);
 		$this->makeView();
@@ -114,7 +114,14 @@ class UserController extends \library\BaseController {
 	public function wishlist() {
 		$this->titre_page = 'Wishlist';
 		$this->menu_actif = 'wishlist';
-		$this->view->with('wishlist', $this->curUser->getWishlist('buy'));
+		$this->view->with('wishlist', $this->curUser->getWishlist());
+		$this->makeView();
+	}
+
+	public function towatchlist() {
+		$this->titre_page = 'To Watch List';
+		$this->menu_actif = 'towatchlist';
+		$this->view->with('films', $this->curUser->getToWatchList());
 		$this->makeView();
 	}
 }

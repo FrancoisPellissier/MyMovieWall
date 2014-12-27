@@ -5,11 +5,14 @@ $navs[] = array('url' => '', 'title' => 'Accueil', 'item' => 'index');
 // Cas des visiteurs
 if($user['is_guest']) {
   $navs[] = array('url' => 'user/2/biblio', 'title' => 'Mes films', 'item' => 'biblio');
+  $navs[] = array('url' => 'user/2/lastview/cinema', 'title' => 'Vus récemment', 'item' => 'lastview');
 
 }
 // Cas des utilisateurs connectés
 else {
   $navs[] = array('url' => 'user/'.$user['id'].'/biblio', 'title' => 'Mes films', 'item' => 'biblio');
+  $navs[] = array('url' => 'user/'.$user['id'].'/towatchlist', 'title' => 'A voir', 'item' => 'towatchlist');
+  $navs[] = array('url' => 'user/'.$user['id'].'/lastview/cinema', 'title' => 'Vus récemment', 'item' => 'lastview');
   $navs[] = array('url' => 'user/'.$user['id'].'/wishlist', 'title' => 'Wishlist', 'item' => 'wishlist');
 }
 
