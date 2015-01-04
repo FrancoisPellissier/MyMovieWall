@@ -10,7 +10,7 @@ class Query {
      * @param Boolean $time
      * @return SQL_INSERT
      */
-    public static function insert($table, $datas, $time = NULL) {
+    public static function insert($table, $datas, $time = NULL, $ignore = false) {
         global $db;
         
         // Query FIELDS
@@ -30,7 +30,7 @@ class Query {
             $sql_values[] = 'NOW()';
         }
         
-        return 'INSERT INTO '.$table.' ('.implode(', ', $sql_fields).') VALUES ('.implode(', ', $sql_values).')';
+        return 'INSERT'.($ignore ? ' IGNORE' : '').' INTO '.$table.' ('.implode(', ', $sql_fields).') VALUES ('.implode(', ', $sql_values).')';
     }
     
     /**

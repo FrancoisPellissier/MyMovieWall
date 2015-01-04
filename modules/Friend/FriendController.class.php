@@ -21,4 +21,53 @@ class FriendController extends \library\BaseController {
 		$this->view->with('infos', $friend->getFriendsInfos());
 		$this->makeView();
 	}
+
+	public function search() {
+		$this->titre_page = 'Amis - Recherche';
+		$this->menu_actif = 'friend';
+
+		$friend = new Friend($this->user->infos);
+		$this->view->with('friends', $friend->getFriends());
+		$this->view->with('users', $friend->getAll());
+		$this->view->with('infos', $friend->getFriendsInfos());
+		$this->makeView();		
+	}
+
+	public function add() {
+		// On redirige vers l'accueil si c'est un invité
+		if($this->user->infos['is_guest'])
+			$this->response->redirect('');
+
+		// ob_start();
+		// Est-ce que l'ami existe
+		$userid = intval($this->request->getData('id'));
+		$user = new \modules\User\User();
+		$user->exists($userid);
+
+		if($user->exists) {
+			$friend = new Friend($this->user->infos);
+			$friend->addFriend($userid);
+		}
+		// ob_end_clean();
+		$this->response->redirect('friend/search');
+	}
+
+		public function del() {
+		// On redirige vers l'accueil si c'est un invité
+		if($this->user->infos['is_guest'])
+			$this->response->redirect('');
+
+		// ob_start();
+		// Est-ce que l'ami existe
+		$userid = intval($this->request->getData('id'));
+		$user = new \modules\User\User();
+		$user->exists($userid);
+
+		if($user->exists) {
+			$friend = new Friend($this->user->infos);
+			$friend->delFriend($userid);
+		}
+		// ob_end_clean();
+		$this->response->redirect('friend/search');
+	}
 }

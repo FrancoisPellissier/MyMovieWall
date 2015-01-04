@@ -21,7 +21,7 @@ class Friend extends \library\BaseModel {
         $friends = array();
         if($this->db->num_rows($result)) {
             while($cur = $this->db->fetch_assoc($result))
-                $friends[] = $cur;
+                $friends[$cur['id']] = $cur;
         }
         return $friends;
     }
@@ -32,7 +32,7 @@ class Friend extends \library\BaseModel {
         $friends = array();
         if($this->db->num_rows($result)) {
             while($cur = $this->db->fetch_assoc($result))
-                $friends[] = $cur;
+                $friends[$cur['id']] = $cur;
         }
         return $friends;
     }
@@ -55,7 +55,26 @@ class Friend extends \library\BaseModel {
         return $infos;
     }
 
+    public function getAll() {
+        $result = $this->db->query('SELECT id, realname FROM users WHERE id != 1 ORDER BY realname')or error('Impossible de récupérer la liste des utilisateurs', __FILE__, __LINE__, $this->db->error());
+
+        $users = array();
+        if($this->db->num_rows($result)) {
+            while($cur = $this->db->fetch_assoc($result))
+                $users[] = $cur;
+        }
+        return $users;
+    }
+
     public function addFriend($userid) {
+        $userid = intval($userid);
+
+        $datas = array('userid' => $this->user['id'], 'friend_userid' => $userid);
+        $this->db->query(\library\Query::insert('users_friend', $datas, true, true))or error($this->db->error());
+    }
+
+    public function delFriend($userid) {
+        $this->db->query('DELETE FROM users_friend WHERE userid = '.$this->user['id'].' AND friend_userid = '.intval($userid))or error('Impossible de supprimer le lien', __FILE__, __LINE__, $this->db->error());
 
     }
 

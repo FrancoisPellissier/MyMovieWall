@@ -31,6 +31,9 @@
  	<route url="/user/([0-9]+)/biblio/genre/([0-9]+)" module="User" action="showBiblio" vars="id,genreid" />
 
  	<route url="/friend" module="Friend" action="index" />
+ 	<route url="/friend/search" module="Friend" action="search" />
+ 	<route url="/friend/add/([0-9]+)" module="Friend" action="add" vars="id" />
+ 	<route url="/friend/del/([0-9]+)" module="Friend" action="del" vars="id" />
 
  	<route url="/person/([0-9]+)" module="Person" action="showFilms" vars="id" />
 

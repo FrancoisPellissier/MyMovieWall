@@ -5,7 +5,7 @@
  	array('title' => 'Ami de', 'array' => $isfriend)
  	);
 
-foreach($boucle AS $iteration) {
+foreach($boucle AS $id => $iteration) {
 	echo "\n\t".'<div class="col-sm-12 col-md-6">';
     echo "\n\t\t".'<h3>'.$iteration['title'].'</h3>';
 
@@ -27,6 +27,9 @@ foreach($boucle AS $iteration) {
 		echo "\n\t\t".'</tbody>';
 		echo "\n\t\t".'</table>';
 		}
+
+		if($id == 0)
+			echo "\n\t\t".'<p><a href="friend/search">Rechercher un utilisateur</a></p>';	
     echo "\n\t".'</div>';
 	}
 ?>
