@@ -14,6 +14,7 @@ $navs[] = array('guest' => true, 'url' => 'user/'.$userid.'/biblio', 'title' => 
 $navs[] = array('guest' => true, 'url' => 'user/'.$userid.'/towatchlist', 'title' => 'Films à voir', 'item' => 'towatchlist');
 $navs[] = array('guest' => true, 'url' => 'user/'.$userid.'/lastview/cinema', 'title' => 'Derniers vus', 'item' => 'lastview');
 $navs[] = array('guest' => false, 'url' => 'user/'.$userid.'/wishlist', 'title' => 'Wishlist', 'item' => 'wishlist');
+// $navs[] = array('guest' => false, 'url' => 'friend', 'title' => 'Amis', 'item' => 'friend');
 ?>
 
 <div class="container-fluid">
@@ -34,6 +35,10 @@ $navs[] = array('guest' => false, 'url' => 'user/'.$userid.'/wishlist', 'title' 
           if(!$user['is_guest'] OR $value['guest'])
             echo "\n\t\t".'<li'.($value['item'] == $menu_actif ? ' class="active"' : '').'><a href="'.WWW_ROOT.$value['url'].'">'.$value['title'].'</a></li>';
         }
+
+        if(isset($curUser) && !$user['is_guest'] && $user['id'] == $curUser['id'])
+          echo "\n\t\t".'<li'.($menu_actif == 'friend' ? ' class="active"' : '').'><a href="'.WWW_ROOT.'friend">Amis</a></li>';
+
         ?>
       </ul>
       <?php
