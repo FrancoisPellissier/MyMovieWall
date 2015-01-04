@@ -13,7 +13,7 @@ $navs = array();
 $navs[] = array('guest' => true, 'url' => 'user/'.$userid.'/biblio', 'title' => 'Mes films', 'item' => 'biblio');
 $navs[] = array('guest' => true, 'url' => 'user/'.$userid.'/towatchlist', 'title' => 'Films à voir', 'item' => 'towatchlist');
 $navs[] = array('guest' => true, 'url' => 'user/'.$userid.'/lastview/cinema', 'title' => 'Derniers vus', 'item' => 'lastview');
-$navs[] = array('guest' => false, 'url' => 'user/'.$userid.'/wishlist', 'title' => 'Wishlist', 'item' => 'wishlist');
+// $navs[] = array('guest' => false, 'url' => 'user/'.$userid.'/wishlist', 'title' => 'Wishlist', 'item' => 'wishlist');
 // $navs[] = array('guest' => false, 'url' => 'friend', 'title' => 'Amis', 'item' => 'friend');
 ?>
 
@@ -36,8 +36,10 @@ $navs[] = array('guest' => false, 'url' => 'user/'.$userid.'/wishlist', 'title' 
             echo "\n\t\t".'<li'.($value['item'] == $menu_actif ? ' class="active"' : '').'><a href="'.WWW_ROOT.$value['url'].'">'.$value['title'].'</a></li>';
         }
 
-        if(isset($curUser) && !$user['is_guest'] && $user['id'] == $curUser['id'])
+        if(isset($curUser) && !$user['is_guest'] && $user['id'] == $curUser['id']) {
           echo "\n\t\t".'<li'.($menu_actif == 'friend' ? ' class="active"' : '').'><a href="'.WWW_ROOT.'friend">Amis</a></li>';
+          echo "\n\t\t".'<li'.($menu_actif == 'wishlist' ? ' class="active"' : '').'><a href="'.WWW_ROOT.'user/'.$userid.'/wishlist">Wishlist</a></li>';
+        }
 
         ?>
       </ul>
