@@ -4,8 +4,10 @@
 if(isset($curUser))
   $userid = $curUser['id'];
 // Sinon, est-on visiteur non connecté ?
-else if($user['is_guest'])
+else if($user['is_guest']) {
   $curUser = array('id' => 2, 'realname' => 'François');
+  $userid = $curUser['id'];
+}
 // Cas normal, c'est nous
 else
   $userid = $user['id'];
