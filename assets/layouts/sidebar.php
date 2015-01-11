@@ -1,11 +1,14 @@
 <?php
-// ID à utiliser en fonction du visiteur
-// dump($curUser['id']);
-if(!isset($curUser)) {
+// ID à utiliser en fonction du visiteur / page
+// On visite le profile de quelqu'un ?
+if(isset($curUser))
+  $userid = $curUser['id'];
+// Sinon, est-on visiteur non connecté ?
+else if($user['is_guest'])
   $curUser = array('id' => 2, 'realname' => 'François');
-}
-
-$userid = $curUser['id'];
+// Cas normal, c'est nous
+else
+  $userid = $user['id'];
 
 // Initialisation des items de menu
 $navs = array();
