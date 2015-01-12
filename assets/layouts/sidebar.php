@@ -9,9 +9,10 @@ else if($user['is_guest']) {
   $userid = $curUser['id'];
 }
 // Cas normal, c'est nous
-else
+else {
+  $curUser = $user;
   $userid = $user['id'];
-
+}
 // Initialisation des items de menu
 $navs = array();
 // $navs[] = array('guest' => false, 'url' => 'user/'.$userid.'/edit', 'title' => 'Profil', 'item' => 'user_edit');
