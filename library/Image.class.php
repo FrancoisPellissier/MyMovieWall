@@ -103,6 +103,10 @@ class Image {
 	}
 
 	public static function getUrl($type, $id) {
-		return 'img/'.$type.'/'.intval($id / 100).'/'.$id.'.jpg';
+		$url = 'img/'.$type.'/'.intval($id / 100).'/'.$id.'.jpg';
+		if(file_exists($url))
+			return $url;
+		else
+			return 'img/empty.jpg';
 	}
 }
