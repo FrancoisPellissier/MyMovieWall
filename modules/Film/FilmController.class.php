@@ -231,4 +231,31 @@ class FilmController extends \library\BaseController {
 		}
 		ob_end_clean();
 	}
+
+	public function majAffiche() {
+		// On redirige vers l'accueil si c'est un invité
+		if($this->user->infos['is_guest'])
+			$this->response->redirect('');
+		
+		$id = intval($this->request->getData('id'));
+		$film = new \modules\Film\Film();
+		$film->exists($id);
+
+		// Si la fiche n'existe pas, on redirige vers l'accueil du module
+		if($film->exists) {
+			// On récupère les informations allocine
+			$allocine = new \modules\Allocine\Allocine();
+			$datas = $allocine->getFilm($film->infos['code']);
+			// dump($datas);
+
+			if($datas['affiche'] != '') {
+				$film->pictureurl = $datas['affiche'];
+				$film->getPoster($id);
+
+			}
+	    	$this->response->redirect('film/'.$id);		
+		}
+		else
+			$this->response->redirect('');		
+	}
 }

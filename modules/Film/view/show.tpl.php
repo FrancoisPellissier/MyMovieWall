@@ -2,8 +2,10 @@
     <div class="col-xs-4 col-sm-4 col-md-3">
     <?php
         echo '<img src="'.library\Image::getUrl('movie', $curFiche['movieid']).'" alt="Affiche du film" title="'.$curFiche['titrevf'].'" class="img-rounded" />';
-    ?>
 
+        if(!$user['is_guest'])
+            echo '<p><a href="film/'.$curFiche['movieid'].'/maj/affiche">Mettre à jour l\'image</a></p>';
+    ?>
     </div>
     <div class="col-xs-8 col-sm-8 col-md-7 filminfos">
     	<h1><?php echo $curFiche['titrevf']; ?></h1>
