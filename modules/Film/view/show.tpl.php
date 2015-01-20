@@ -32,7 +32,10 @@
         ?></p>
         <p><strong>Durée :</strong> <?php echo gmdate("G\hi", $curFiche['duree']); ?></p>
     	<p><strong>Synopsis :</strong> <?php echo $curFiche['synopsis']; ?></p>
-
+        <?php
+        if(!$user['is_guest'])
+            echo '<p><a href="film/'.$curFiche['movieid'].'/maj">Mettre à jour la fiche</a></p>';
+        ?>
     </div>
     <div class="col-md-2">
         <?php

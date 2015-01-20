@@ -45,14 +45,14 @@ class Query {
     public static function update($table, $datas, $where, $time = NULL) {
         global $db;
         
-        if($time)
-            $datas['updated_at'] = 'NOW()';
-        
         // Query SET
         $sql_set = array();
         foreach($datas AS $field => $value)
             $sql_set[] = $field.' = '.($value == 'NULL' && strlen($value) == 4 ? 'NULL' : '\''.$db->escape($value).'\'');
         
+        if($time)
+            $sql_set[] = 'updated_at = NOW()';
+
         // Clause WHERE
         $sql_where = array();
         foreach($where AS $field => $value)

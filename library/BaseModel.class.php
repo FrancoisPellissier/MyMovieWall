@@ -140,6 +140,8 @@ abstract class BaseModel {
 	                    $data[$field] = intval($post[$field]);
 	                else if($fieldinfo['fieldtype'] == 'DATE')
 	                    $data[$field] = $post[$field];
+	                else if($fieldinfo['fieldtype'] == 'TEXT')
+		                $data[$field] = pun_trim(isset($post[$field]) ? $post[$field] : $fieldinfo['default']);
 	            }
 	        }     
 	    }
@@ -182,10 +184,10 @@ abstract class BaseModel {
 	 * @param array $get
 	 * @return array $error
 	 */
-	public function edit($post, $get) {
+	public function edit($post, $get = array()) {
 	    // On vérifie les données, les remplaçant par la valeur par défaut si besoin
 	    $datas = $this->checkData('update', $post, $error);
-	            
+	    
 	    // On enregistre les modifications en base
 	    $this->db->query(Query::update($this->table, $datas, array($this->key => $this->infos[$this->key]), $this->time))or error('Impossible de modifier la fiche '.$this->infos[$this->key].' dans la table : '.$this->table, __FILE__, __LINE__, $this->db->error());
 	}
@@ -224,8 +226,14 @@ abstract class BaseModel {
 						);
 					$personid = $person->add();
 				}
-				else
+				else {
 					$personid = $person->infos['personid'];
+					// On met tout de même l'image à jour
+	    			if($data['picture'] != '') {
+	    				$person->pictureurl = $data['picture'];
+	    				$person->getPoster($personid);
+	    			}
+				}
 
 				// On insère le lien film / person / type
 				$data_insert = array(
