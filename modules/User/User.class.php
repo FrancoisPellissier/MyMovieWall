@@ -209,8 +209,13 @@ class User extends \library\BaseModel {
         return $wish;
     }
 
-    public function getToWatchlist() {
-        $result = $this->db->query('SELECT m.* FROM movie AS m INNER JOIN users_wish AS uw ON m.movieid = uw.movieid AND uw.userid = '.$this->infos['id'].' AND uw.view = \'1\' ORDER BY datesortie');
+    public function getToWatchlist($type = '1') {
+        if($type == 2)
+            $sql = ' AND m.datesortie < ADDDATE(CURDATE(), INTERVAL -1 MONTH) ORDER BY titrevf';
+        else
+            $sql = ' AND m.datesortie >= ADDDATE(CURDATE(), INTERVAL -1 MONTH) ORDER BY datesortie, titrevf';
+
+        $result = $this->db->query('SELECT m.* FROM movie AS m INNER JOIN users_wish AS uw ON m.movieid = uw.movieid AND uw.userid = '.$this->infos['id'].' AND uw.view = \'1\''.$sql);
 
         $wish = array();
         while($cur = $this->db->fetch_assoc($result)) {

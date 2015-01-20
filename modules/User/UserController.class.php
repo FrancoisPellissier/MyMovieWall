@@ -124,9 +124,21 @@ class UserController extends \library\BaseController {
 	}
 
 	public function towatchlist() {
+		$type = $this->request->getData('type');
+
+		if(!$type)
+			$type = '1';
+		else {
+			if($type == 'cinema')
+				$type = '1';
+			else
+				$type = '2';
+		}
+
 		$this->titre_page = 'To Watch List';
 		$this->menu_actif = 'towatchlist';
-		$this->view->with('films', $this->curUser->getToWatchList());
+		$this->view->with('films', $this->curUser->getToWatchList($type));
+		$this->view->with('type', $type);
 		$this->makeView();
 	}
 }

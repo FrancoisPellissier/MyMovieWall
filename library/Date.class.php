@@ -60,6 +60,8 @@ class Date {
             return $jour.' '.$list_mois[$mois].' '.$annee;
         else if($format == 'mois annee')
             return $list_mois[$mois].' '.$annee;
+        if($format == 'JJ/MM/AAAA')
+            return $jour.'/'.$mois.'/'.$annee;
         else
             return $date;
     }
