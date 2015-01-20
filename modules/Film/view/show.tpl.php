@@ -10,7 +10,7 @@
     <div class="col-xs-8 col-sm-8 col-md-7 filminfos">
     	<h1><?php echo $curFiche['titrevf']; ?></h1>
         
-        <p><strong>Date de sortie :</strong> <?php echo $curFiche['datesortie']; ?></p>
+        <p><strong>Date de sortie :</strong> <?php echo library\Date::formatDate($curFiche['datesortie'], 'J mois annee'); ?></p>
     	<p><strong>Genere :</strong> 
         <?php
         foreach($curFiche['genres'] AS $id => $genre) {
