@@ -4,7 +4,7 @@
         echo '<img src="'.library\Image::getUrl('movie', $curFiche['movieid']).'" alt="Affiche du film" title="'.$curFiche['titrevf'].'" class="img-rounded" />';
 
         if(!$user['is_guest'])
-            echo '<p><a href="film/'.$curFiche['movieid'].'/maj/affiche">Mettre à jour l\'image</a></p>';
+            echo '<p><a href="film/'.$curFiche['movieid'].'/maj">Mettre à jour la fiche</a></p>';
     ?>
     </div>
     <div class="col-xs-8 col-sm-8 col-md-7 filminfos">
@@ -32,10 +32,6 @@
         ?></p>
         <p><strong>Durée :</strong> <?php echo gmdate("G\hi", $curFiche['duree']); ?></p>
     	<p><strong>Synopsis :</strong> <?php echo $curFiche['synopsis']; ?></p>
-        <?php
-        if(!$user['is_guest'])
-            echo '<p><a href="film/'.$curFiche['movieid'].'/maj">Mettre à jour la fiche</a></p>';
-        ?>
     </div>
     <div class="col-md-2">
         <?php
