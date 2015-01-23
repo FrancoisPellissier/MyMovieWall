@@ -40,8 +40,17 @@ $navs[] = array('guest' => false, 'url' => 'user/'.$userid.'/wishlist', 'title' 
         ?>
       </ul>
       <?php
-      if(isset($curUser) && !$user['is_guest'] && $user['id'] != $curUser['id'])
+      if(isset($curUser) && !$user['is_guest'] && $user['id'] != $curUser['id']) {
         echo "\n\t\t".'<p><a href="'.WWW_ROOT.'user/'.$user['id'].'">'.$user['realname'].'</a></p>';
+        ?>
+        <ul class="nav nav-sidebar">
+        <?php
+        foreach ($navs as $id => $value)
+            echo "\n\t\t".'<li><a href="'.WWW_ROOT.str_replace('user/'.$userid, 'user/'.$user['id'], $value['url']).'">'.$value['title'].'</a></li>';
+        ?>
+        </ul>
+        <?php
+      }
       ?>
     </div>
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
