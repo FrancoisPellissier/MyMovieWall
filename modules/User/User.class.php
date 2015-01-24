@@ -223,4 +223,18 @@ class User extends \library\BaseModel {
         }
         return $wish;
     }
+
+    public function getNbViewsMonth($type = 'all') {
+        $where = '';
+        if($type == 1 OR $type == 2)
+            $where = ' AND `type` = \''.$type.'\'';
+        
+        $stats = array();
+        $result = $this->db->query('SELECT YEAR(viewdate) AS annee, MONTH(viewdate) AS mois, COUNT(*) AS nb FROM `users_views` WHERE userid = '.$this->infos['id'].$where.' GROUP BY annee, mois');
+
+        while($cur = $this->db->fetch_assoc($result)){
+            $stats[$cur['annee']][$cur['mois']] = $cur['nb'];
+        }
+        return $stats;
+    }
 }

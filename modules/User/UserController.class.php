@@ -141,4 +141,23 @@ class UserController extends \library\BaseController {
 		$this->view->with('type', $type);
 		$this->makeView();
 	}
+
+	public function showStats() {
+		$type = $this->request->getData('type');
+
+		if(!$type)
+			$type = 'all';
+		else {
+			if($type == 'cinema')
+				$type = '1';
+			else
+				$type = '2';
+		}
+
+		$this->titre_page = 'Statistiques';
+		$this->menu_actif = 'stats';
+		$this->view->with('stats', $this->curUser->getNbViewsMonth($type));
+		$this->view->with('type', $type);
+		$this->makeView();
+	}
 }

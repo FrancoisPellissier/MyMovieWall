@@ -32,6 +32,8 @@
  	<route url="/user/([0-9]+)/towatchlist/([a-z]+)" module="User" action="towatchlist" vars="id,type" />
  	<route url="/user/([0-9]+)/biblio" module="User" action="showBiblio" vars="id" />
  	<route url="/user/([0-9]+)/biblio/genre/([0-9]+)" module="User" action="showBiblio" vars="id,genreid" />
+ 	<route url="/user/([0-9]+)/stats" module="User" action="showStats" vars="id" />
+ 	<route url="/user/([0-9]+)/stats/([a-z]+)" module="User" action="showStats" vars="id,type" />
 
  	<route url="/friend" module="Friend" action="index" />
  	<route url="/friend/search" module="Friend" action="search" />

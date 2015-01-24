@@ -19,6 +19,7 @@ $navs[] = array('guest' => true, 'url' => 'user/'.$userid.'/biblio', 'title' => 
 $navs[] = array('guest' => true, 'url' => 'user/'.$userid.'/towatchlist', 'title' => 'Films à voir', 'item' => 'towatchlist');
 $navs[] = array('guest' => true, 'url' => 'user/'.$userid.'/lastview/cinema', 'title' => 'Derniers vus', 'item' => 'lastview');
 $navs[] = array('guest' => false, 'url' => 'user/'.$userid.'/wishlist', 'title' => 'Wishlist', 'item' => 'wishlist');
+$navs[] = array('guest' => false, 'url' => 'user/'.$userid.'/stats', 'title' => 'Statistiques', 'item' => 'stats');
 
 ?>
 
