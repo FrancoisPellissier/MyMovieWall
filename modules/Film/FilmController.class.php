@@ -188,6 +188,7 @@ class FilmController extends \library\BaseController {
 		}
 		else {
 			$this->user->addView($id, $this->request->postData('type'), $this->request->postData('viewdate'));
+			$this->user->addWish($id, 'view', '0');
 		}
 		$this->response->redirect('film/'.$id);
 	}

@@ -99,9 +99,6 @@ class User extends \library\BaseModel {
                 $datas['viewdate'] = $date;
 
             $this->db->query(\library\Query::insert('users_views', $datas, true))or error($this->db->error());
-
-            // On supprime l'éventuel Wishlist associée
-            $this->db->query('DELETE FROM users_wish WHERE userid = '.$this->infos['id'].' AND movieid ='.$movieid);
         }
     }
 
