@@ -22,7 +22,7 @@ $navs[] = array('guest' => true, 'url' => 'film', 'title' => 'Tous les films', '
      echo '<p class="navbar-text navbar-right"><a href="login">Connexion <span class="glyphicon glyphicon-off"></span></a></p>';
   }
   else {
-    echo '<p class="navbar-text navbar-right"><a href="user/'.$user['id'].'/edit" title="Profil">'.$user['realname'].'</a>&nbsp;&nbsp;&nbsp;<a href="friend" title="Amis"><span class="glyphicon glyphicon-user"></span></a>&nbsp;&nbsp;&nbsp;<a href="logout/'.$user['id'].'/'.pun_hash($user['id'].pun_hash(get_remote_address())).'" title="Se déconnecter"><span class="glyphicon glyphicon-off"></span></a></p>';
+    echo '<p class="navbar-text navbar-right"><a href="logout/'.$user['id'].'/'.pun_hash($user['id'].pun_hash(get_remote_address())).'" title="Se déconnecter"><span class="glyphicon glyphicon-off"></span></a>&nbsp;&nbsp;&nbsp;<a href="user/'.$user['id'].'/edit" title="Profil"><span class="glyphicon glyphicon-cog"></span> '.$user['realname'].'</a>&nbsp;&nbsp;&nbsp;<a href="friend" title="Amis"><img src="img/icons/friend.png" with="21" height="14" /></a>&nbsp;&nbsp;&nbsp;</p>';
   }
     ?>
     <form class="navbar-form navbar-right" role="form" method="post" action="film/search">
