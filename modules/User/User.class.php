@@ -237,4 +237,13 @@ class User extends \library\BaseModel {
         }
         return $stats;
     }
+
+    public function friendHasFilm($movieid) {
+        $result = $this->db->query('SELECT b.userid, u.realname, b.bluray, b.dvd, b.numerique FROM users_friend AS f INNER JOIN users_biblio AS b ON f.friend_userid = b.userid AND f.userid = '.$this->infos['id'].' AND b.movieid = '.intval($movieid).' INNER JOIN users AS u ON f.friend_userid = u.id ORDER BY u.realname');
+
+        $this->infos['friendHasFilm'] = array();
+
+        while($cur = $this->db->fetch_assoc($result))
+            $this->infos['friendHasFilm'][] = $cur;
+    }
 }

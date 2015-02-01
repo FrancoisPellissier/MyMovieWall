@@ -79,6 +79,20 @@
         </form>
         <?php
             }
+        if(!empty($user['friendHasFilm'])) {
+            echo "\n\t\t".'<p>Ces amis le possèdent :<br />';            
+            foreach($user['friendHasFilm'] AS $friend) {
+                echo "\n\t\t".'- <a href="user/'.$friend['id'].'">'.$friend['realname'].'</a> (';
+
+                $types = array();
+                foreach(array('bluray' => 'Blu-Ray', 'dvd' => 'DVD', 'numerique' => 'Numérique') AS $type => $typename) {
+                    if($friend[$type] == '1')
+                        $types[] = $typename;
+                }
+                echo implode(' / ', $types);
+            }
+            echo ')'."\n\t\t".'</p>';
+        }
         ?>
     </div>
 

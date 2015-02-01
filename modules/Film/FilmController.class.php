@@ -140,6 +140,7 @@ class FilmController extends \library\BaseController {
 			$this->user->hasFilm($id);
 			$this->user->hasViewFilm($id);
 			$this->user->wishFilm($id);
+			$this->user->FriendhasFilm($id);
 			$this->jsfile = 'film_show';
 
 			$this->view->with('curFiche', $film->infos);
