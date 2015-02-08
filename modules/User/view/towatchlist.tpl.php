@@ -1,4 +1,4 @@
-<h3>Films à voir : 
+<h3>
 <?php
 $liens = array();
 $liens[] = array('type' => '1', 'url' => 'user/'.$curUser['id'].'/towatchlist/cinema', 'title' => 'Cinéma');
