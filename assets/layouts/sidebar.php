@@ -35,7 +35,8 @@ $navs[] = array('guest' => false, 'me' => false, 'url' => 'user/'.$userid.'/stat
       <ul class="nav nav-sidebar">
         <?php
         foreach ($navs as $id => $value) {
-          if((!$user['is_guest'] && $value['me']) OR $value['guest'])
+          // Invite : test guest / Ami : tout / Moi / me
+          if((!$user['is_guest'] OR $value['guest']) AND ($curUser['id'] != $user['id'] OR $value['me']))
             echo "\n\t\t".'<li'.($value['item'] == $menu_actif ? ' class="active"' : '').'><a href="'.WWW_ROOT.$value['url'].'">'.$value['title'].'</a></li>';
         }
         ?>
@@ -46,8 +47,10 @@ $navs[] = array('guest' => false, 'me' => false, 'url' => 'user/'.$userid.'/stat
         ?>
         <ul class="nav nav-sidebar">
         <?php
-        foreach ($navs as $id => $value)
+        foreach ($navs as $id => $value) {
+            if($value['me'])
             echo "\n\t\t".'<li><a href="'.WWW_ROOT.str_replace('user/'.$userid, 'user/'.$user['id'], $value['url']).'">'.$value['title'].'</a></li>';
+          }
         ?>
         </ul>
         <?php
