@@ -15,11 +15,11 @@ else {
 }
 // Initialisation des items de menu
 $navs = array();
-$navs[] = array('guest' => true, 'url' => 'user/'.$userid.'/biblio', 'title' => 'Mes films', 'item' => 'biblio');
-$navs[] = array('guest' => true, 'url' => 'user/'.$userid.'/towatchlist', 'title' => 'Films à voir', 'item' => 'towatchlist');
-$navs[] = array('guest' => true, 'url' => 'user/'.$userid.'/lastview/cinema', 'title' => 'Derniers vus', 'item' => 'lastview');
-$navs[] = array('guest' => false, 'url' => 'user/'.$userid.'/wishlist', 'title' => 'Wishlist', 'item' => 'wishlist');
-$navs[] = array('guest' => false, 'url' => 'user/'.$userid.'/stats', 'title' => 'Statistiques', 'item' => 'stats');
+$navs[] = array('guest' => true, 'me' => true, 'url' => 'user/'.$userid.'/biblio', 'title' => 'Mes films', 'item' => 'biblio');
+$navs[] = array('guest' => true, 'me' => true, 'url' => 'user/'.$userid.'/towatchlist', 'title' => 'Films à voir', 'item' => 'towatchlist');
+$navs[] = array('guest' => true, 'me' => true, 'url' => 'user/'.$userid.'/lastview/cinema', 'title' => 'Derniers vus', 'item' => 'lastview');
+$navs[] = array('guest' => false, 'me' => false, 'url' => 'user/'.$userid.'/wishlist', 'title' => 'Wishlist', 'item' => 'wishlist');
+$navs[] = array('guest' => false, 'me' => false, 'url' => 'user/'.$userid.'/stats', 'title' => 'Statistiques', 'item' => 'stats');
 
 ?>
 
@@ -35,7 +35,7 @@ $navs[] = array('guest' => false, 'url' => 'user/'.$userid.'/stats', 'title' => 
       <ul class="nav nav-sidebar">
         <?php
         foreach ($navs as $id => $value) {
-          if(!$user['is_guest'] OR $value['guest'])
+          if((!$user['is_guest'] && $value['me']) OR $value['guest'])
             echo "\n\t\t".'<li'.($value['item'] == $menu_actif ? ' class="active"' : '').'><a href="'.WWW_ROOT.$value['url'].'">'.$value['title'].'</a></li>';
         }
         ?>

@@ -1,7 +1,7 @@
 <?php
 // Initialisation des items de menu
 $navs = array();
-$navs[] = array('guest' => true, 'url' => '', 'title' => 'Accueil', 'item' => 'index');
+$navs[] = array('guest' => true, 'url' => '', 'title' => '<span class="glyphicon glyphicon-home"></span> Accueil', 'item' => 'index');
 $navs[] = array('guest' => true, 'url' => 'film', 'title' => 'Tous les films', 'item' => 'film_index');
 ?>
 
@@ -22,7 +22,18 @@ $navs[] = array('guest' => true, 'url' => 'film', 'title' => 'Tous les films', '
      echo '<p class="navbar-text navbar-right"><a href="login">Connexion <span class="glyphicon glyphicon-off"></span></a></p>';
   }
   else {
-    echo '<p class="navbar-text navbar-right"><a href="logout/'.$user['id'].'/'.pun_hash($user['id'].pun_hash(get_remote_address())).'" title="Se déconnecter"><span class="glyphicon glyphicon-off"></span></a>&nbsp;&nbsp;&nbsp;<a href="user/'.$user['id'].'/edit" title="Profil"><span class="glyphicon glyphicon-cog"></span> '.$user['realname'].'</a>&nbsp;&nbsp;&nbsp;<a href="friend" title="Amis"><img src="img/icons/friend.png" with="21" height="14" /></a>&nbsp;&nbsp;&nbsp;</p>';
+    $icons = array();
+    $icons[] = array('url' => 'logout/'.$user['id'].'/'.pun_hash($user['id'].pun_hash(get_remote_address())), 'title' => 'Se déconnecter', 'texte' => '<span class="glyphicon glyphicon-off"></span> '.$user['realname']);
+    $icons[] = array('url' => 'friend', 'title' => 'Amis', 'texte' => '<img src="img/icons/friend.png" with="21" height="14" />');
+    $icons[] = array('url' => 'user/'.$user['id'].'/wishlist', 'title' => 'Whislist', 'texte' => '<span class="glyphicon glyphicon glyphicon-gift"></span>');
+    $icons[] = array('url' => 'user/'.$user['id'].'/stats', 'title' => 'Statistiques', 'texte' => '<span class="glyphicon glyphicon glyphicon-tasks"></span>');
+    $icons[] = array('url' => 'user/'.$user['id'].'/edit', 'title' => 'Profil', 'texte' => '<span class="glyphicon glyphicon-cog"></span>');
+
+    echo '<p id="navbar-icons" class="navbar-text navbar-right">';
+    foreach($icons AS $icon) {
+      echo "\n\t\t".'<span class="icon"><a href="'.$icon['url'].'" title="'.$icon['title'].'">'.$icon['texte'].'</a></span>';
+    }
+    echo '</p>';
   }
     ?>
     <form class="navbar-form navbar-right" role="form" method="post" action="film/search">

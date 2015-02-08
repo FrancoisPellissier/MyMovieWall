@@ -120,6 +120,12 @@ h1 {
   text-decoration: none;
 }
 
+/* Menu */
+#navbar-icons .icon {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
 /*
  * Main content
  */
