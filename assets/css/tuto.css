@@ -142,3 +142,34 @@ h1 {
 .main .page-header {
   margin-top: 0;
 }
+
+
+/* Button */
+.button {
+display: inline-block;
+padding: 8px 12px;
+margin-bottom: 3px;
+font-size: 14px;
+font-weight: normal;
+line-height: 1.42857143;
+text-align: center;
+white-space: nowrap;
+vertical-align: middle;
+cursor: pointer;
+-webkit-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+background-image: none;
+border: 0px solid transparent;
+}
+
+.button-primary {
+  background-color: #000000;
+  color: #FFFFFF;
+}
+
+.button-success {
+  background-color: #428bca;
+  color: #FFFFFF;
+}

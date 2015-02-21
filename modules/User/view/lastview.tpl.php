@@ -7,7 +7,7 @@ $liens[] = array('type' => '2', 'url' => 'user/'.$curUser['id'].'/lastview/tele'
 
 
 foreach($liens AS $lien) {
-	echo "\n\t".'<a href="'.$lien['url'].'"><button type="button" class="btn '.($lien['type'] == $type ? 'btn-success' : 'btn-primary').'">'.$lien['title'].'</button></a> ';
+	echo "\n\t".'<a href="'.$lien['url'].'"><button type="button" class="button '.($lien['type'] == $type ? 'button-success' : 'button-primary').'">'.$lien['title'].'</button></a> ';
 }
 ?>
 <p>
