@@ -39,7 +39,7 @@ class Image {
 		if(!file_exists(FOLDER_IMAGES.'/'.$fichetype.'/'.$folder.'/index.html'))
 		{
 		    // Création du dossier de la fiche, avec les parents, s'il n'existe pas encore
-		    mkdir(FOLDER_IMAGES.'/'.$fichetype.'/'.$folder, '0777', true);
+		    mkdir(FOLDER_IMAGES.'/'.$fichetype.'/'.$folder, 0777, true);
 
 		    // Ajout des fichiers index.htm
 		    $this->copyIndex(FOLDER_IMAGES.'/'.$fichetype);
