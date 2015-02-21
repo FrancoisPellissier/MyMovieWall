@@ -1,4 +1,4 @@
-</p>
+<p>
 <?php
 $liens = array();
 $liens[] = array('type' => 'all', 'url' => 'user/'.$curUser['id'].'/lastview', 'title' => 'Tout');
@@ -10,7 +10,7 @@ foreach($liens AS $lien) {
 	echo "\n\t".'<a href="'.$lien['url'].'"><button type="button" class="button '.($lien['type'] == $type ? 'button-success' : 'button-primary').'">'.$lien['title'].'</button></a> ';
 }
 ?>
-<p>
+</p>
 <?php
 $mois = '';
 

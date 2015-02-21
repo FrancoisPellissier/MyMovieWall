@@ -1,4 +1,4 @@
-<h3>
+<p>
 <?php
 $liens = array();
 $liens[] = array('type' => '1', 'url' => 'user/'.$curUser['id'].'/towatchlist/cinema', 'title' => 'Cinéma');
@@ -7,7 +7,7 @@ $liens[] = array('type' => '2', 'url' => 'user/'.$curUser['id'].'/towatchlist/te
 foreach($liens AS $lien)
 	echo "\n\t".'<a href="'.$lien['url'].'"><button type="button" class="button '.($lien['type'] == $type ? 'button-success' : 'button-primary').'">'.$lien['title'].'</button></a> ';
 ?>
-</h3>
+</p>
 <?php
 
 // Affichage normal pour les films à voir à la télé

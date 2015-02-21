@@ -1,4 +1,4 @@
-</p>
+<p>
 <?php
 foreach($genres AS $genre) {
 	// echo "\n\t".'<a href="film/genre/'.$genre['genreid'].'"><button type="button" class="btn '.($genre['genreid'] == $genreid ? 'btn-success' : 'btn-primary').'">'.$genre['genrename'].'</button></a> ';
@@ -6,7 +6,7 @@ foreach($genres AS $genre) {
 	echo "\n\t".'<a href="film/genre/'.$genre['genreid'].'"><button type="button" class="button '.($genre['genreid'] == $genreid ? 'button-success' : 'button-primary').'">'.$genre['genrename'].'</button></a> ';
 }
 ?>
-<p>
+</p>
 <div class="row">
 	<?php
 	foreach($films AS $cur)
