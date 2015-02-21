@@ -103,6 +103,13 @@ class Film extends \library\BaseModel {
 
 		if(str_replace(' ', '', $keywords) != '') {
 			$words = explode(' ', $this->db->escape($keywords));
+
+			// On parcourt les mots clés pour supprimer les articles
+			foreach($words AS $id => $word) {
+				if(in_array($word, array('le', 'la', 'les', 'un', 'une', 'des', 'de', 'à', 'the', 'of', 'and', 'a')))
+					unset($words[$id]);
+			}
+
 			$sql = 'WHERE titrevf LIKE \'%'.implode('%\' OR titrevf LIKE \'%', $words).'%\'';
 			$sql .= ' OR titrevo LIKE \'%'.implode('%\' OR titrevo LIKE \'%', $words).'%\'';
 			$result = $this->db->query('SELECT * FROM movie '.$sql.' ORDER BY titrevf');
