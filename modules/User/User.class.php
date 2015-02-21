@@ -246,4 +246,21 @@ class User extends \library\BaseModel {
         while($cur = $this->db->fetch_assoc($result))
             $this->infos['friendHasFilm'][] = $cur;
     }
+
+    public function getStatsNb($type = 'genre') {
+        if($type == 'acteur')
+            $sql = 'SELECT p.personid AS id, p.fullname AS libelle, COUNT(*) AS nb FROM users_views AS uv INNER JOIN movie_person AS mp ON uv.movieid = mp.movieid AND userid = '.$this->infos['id'].' AND mp.`type` = \'1\' INNER JOIN person AS p ON mp.personid = p.personid GROUP BY id ORDER BY nb DESC LIMIT 10';
+        else if($type == 'realisateur')
+            $sql = 'SELECT p.personid AS id, p.fullname AS libelle, COUNT(*) AS nb FROM users_views AS uv INNER JOIN movie_person AS mp ON uv.movieid = mp.movieid AND userid = '.$this->infos['id'].' AND mp.`type` = \'2\' INNER JOIN person AS p ON mp.personid = p.personid GROUP BY id ORDER BY nb DESC LIMIT 10';
+        else
+            $sql = 'SELECT g.genreid AS id, g.genrename AS libelle, COUNT(*) AS nb FROM users_views AS uv INNER JOIN movie_genre AS mg ON uv.movieid = mg.movieid AND userid = '.$this->infos['id'].' INNER JOIN genre AS g ON mg.genreid = g.genreid GROUP BY id ORDER BY nb DESC LIMIT 10';
+
+        $result = $this->db->query($sql)or error('Impossible de récupérer les statistiques par '.$type, __FILE__, __LINE__, $this->db->error());
+
+        $nb = array();
+        while($cur = $this->db->fetch_assoc($result))
+            $nb[] = $cur;
+
+        return $nb;
+    }
 }

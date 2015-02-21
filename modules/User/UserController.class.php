@@ -158,6 +158,11 @@ class UserController extends \library\BaseController {
 		$this->menu_actif = 'stats';
 		$this->view->with('stats', $this->curUser->getNbViewsMonth($type));
 		$this->view->with('type', $type);
+
+		$this->view->with('statsGenre', $this->curUser->getStatsNb('genre'));
+		$this->view->with('statsActeur', $this->curUser->getStatsNb('acteur'));
+		$this->view->with('statsRealisateur', $this->curUser->getStatsNb('realisateur'));
+
 		$this->makeView();
 	}
 }

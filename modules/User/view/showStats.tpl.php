@@ -47,3 +47,40 @@ foreach($stats AS $annee => $stat) {
 ?>
 </tbody>
 </table>
+
+
+<div class="row">
+<?php
+$liste = array(
+	array('titre' => 'Genre', 'array' => 'statsGenre', 'url' => 'film/genre/'),
+	array('titre' => 'Acteurs', 'array' => 'statsActeur', 'url' => 'person/'),
+	array('titre' => 'Réalisateurs', 'array' => 'statsRealisateur', 'url' => 'person/')
+	);
+foreach($liste AS $infos) {
+?>
+	<div class="col-xs-12 col-sm-4 col-md-4">
+		<h3><?php echo $infos['titre']; ?></h3>
+		<table class="table table-striped">
+		<thead>
+			<tr>
+				<th><?php echo $infos['titre']; ?></th>
+				<th>Nb vus</th>
+			</tr>
+		</thead>
+		<tbody>
+		<?php
+		foreach(${$infos['array']} AS $stat) {
+			echo "\n\t\t\t".'<tr>';
+			echo "\n\t\t\t\t".'<td><a href="'.WWW_ROOT.$infos['url'].$stat['id'].'">'.$stat['libelle'].'</a></td>';
+			echo "\n\t\t\t\t".'<td>'.$stat['nb'].'</td>';
+			echo "\n\t\t\t".'</tr>';
+		}
+		?>
+		</tbody>
+		</table>
+
+	</div>
+<?php
+}
+?>
+</div>
