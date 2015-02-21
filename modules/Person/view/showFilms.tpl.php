@@ -15,7 +15,7 @@ if(!empty($filmActeur)) {
 		echo "\n\t".'<div class="col-xs-4 col-sm-3 col-md-2">'.$img.'</div>';
 
 	foreach($filmActeur AS $cur)
-		echo "\n\t".'<div class="col-xs-4 col-sm-3 col-md-2"><a href="film/'.$cur['movieid'].'"><img src="'.library\Image::getUrl('movie', $cur['movieid']).'" alt="Affiche du film" title="'.$cur['titrevf'].'" class="img-rounded"></a></div>';
+		echo "\n\t".'<div class="col-xs-4 col-sm-3 col-md-2"><a href="film/'.$cur['movieid'].'"><img src="'.library\Image::getUrl('movie', $cur['movieid']).'" alt="Affiche du film" title="'.$cur['titrevf'].' - '.$cur['role'].'" class="img-rounded"></a></div>';
 	?>
 </div>
 <?php
@@ -30,7 +30,7 @@ if(!empty($filmReal)) {
 		echo "\n\t".'<div class="col-xs-4 col-sm-3 col-md-2">'.$img.'</div>';
 
 	foreach($filmReal AS $cur)
-		echo "\n\t".'<div class="col-xs-4 col-sm-3 col-md-2"><a href="film/'.$cur['movieid'].'"><img src="'.library\Image::getUrl('movie', $cur['movieid']).'" alt="Affiche du film" title="'.$cur['titrevf'].'" class="img-rounded"></a></div>';
+		echo "\n\t".'<div class="col-xs-4 col-sm-3 col-md-2"><a href="film/'.$cur['movieid'].'"><img src="'.library\Image::getUrl('movie', $cur['movieid']).'" alt="Affiche du film" title="'.$cur['titrevf'].' - '.$cur['role'].'" class="img-rounded"></a></div>';
 	?>
 </div>
 <?php

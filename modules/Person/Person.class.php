@@ -26,7 +26,7 @@ class Person extends \library\BaseModel {
         if(!in_array($type, array(1, 2)))
             $type = 1;
 
-        $result = $this->db->query('SELECT m.* FROM movie AS m INNER JOIN movie_person AS mp ON m.movieid = mp.movieid AND mp.personid = '.$this->db->escape(intval($id)).' AND mp.type = \''.$type.'\' ORDER BY datesortie DESC');
+        $result = $this->db->query('SELECT m.*, mp.role FROM movie AS m INNER JOIN movie_person AS mp ON m.movieid = mp.movieid AND mp.personid = '.$this->db->escape(intval($id)).' AND mp.type = \''.$type.'\' ORDER BY datesortie DESC');
 
         $films = array();
         while($cur = $this->db->fetch_assoc($result)) {
