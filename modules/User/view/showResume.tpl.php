@@ -2,7 +2,7 @@
 <div class="row">
 	<?php
 	foreach($lastViewCine AS $cur)
-		echo "\n\t".'<div class="col-xs-4 col-sm-3 col-md-2"><a href="film/'.$cur['movieid'].'"><img src="'.library\Image::getUrl('movie', $cur['movieid']).'" alt="Affiche du film" title="'.$cur['titrevf'].'" class="img-rounded"></a></div>';
+		echo "\n\t".'<div class="col-xs-4 col-sm-3 col-md-2"><a href="film/'.$cur['movieid'].'"><img src="'.library\Image::getUrl('movie', $cur['movieid']).'" alt="Affiche du film" title="'.$cur['titrevf'].'" class="img-rounded"></a><br />'.$cur['rate'].'</div>';
 	?>
 </div>
 <p><a href="user/<?php echo $curUser['id']; ?>/lastview/cinema">Voir la liste complète</a></p>
@@ -10,7 +10,7 @@
 <div class="row">
 	<?php
 	foreach($lastViewTele AS $cur)
-		echo "\n\t".'<div class="col-xs-4 col-sm-3 col-md-2"><a href="film/'.$cur['movieid'].'"><img src="'.library\Image::getUrl('movie', $cur['movieid']).'" alt="Affiche du film" title="'.$cur['titrevf'].'" class="img-rounded"></a></div>';
+		echo "\n\t".'<div class="col-xs-4 col-sm-3 col-md-2"><a href="film/'.$cur['movieid'].'"><img src="'.library\Image::getUrl('movie', $cur['movieid']).'" alt="Affiche du film" title="'.$cur['titrevf'].'" class="img-rounded"></a><br />'.$cur['rate'].'</div>';
 	?>
 </div>
 <p><a href="user/<?php echo $curUser['id']; ?>/lastview/tele">Voir la liste complète</a></p>

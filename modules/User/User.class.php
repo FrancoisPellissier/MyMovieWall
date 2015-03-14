@@ -117,10 +117,11 @@ class User extends \library\BaseModel {
         if(!in_array($type, array('1', '2')))
             $type = 'all';
 
-        $result = $this->db->query('SELECT m.*, uv.type, uv.viewdate FROM movie AS m INNER JOIN users_views AS uv ON m.movieid = uv.movieid AND uv.userid = '.$this->infos['id'].($type == 'all' ? '' : ' AND uv.type = \''.$type.'\'').' ORDER BY viewdate DESC, created_at DESC'.($index ? ' LIMIT 6' : ''));
+        $result = $this->db->query('SELECT m.*, uv.type, uv.viewdate, ur.rate FROM movie AS m INNER JOIN users_views AS uv ON m.movieid = uv.movieid AND uv.userid = '.$this->infos['id'].($type == 'all' ? '' : ' AND uv.type = \''.$type.'\'').' LEFT JOIN users_rate AS ur ON uv.userid = ur.userid AND uv.movieid = ur.movieid ORDER BY viewdate DESC, created_at DESC'.($index ? ' LIMIT 6' : ''));
 
         $last = array();
         while($cur = $this->db->fetch_assoc($result)) {
+            $cur['rate'] = $this->displayRate($cur['rate']);
             $last[] = $cur;
         }
         return $last;
@@ -293,5 +294,23 @@ class User extends \library\BaseModel {
             $this->infos['rateFilm'] = $this->db->fetch_assoc($result)['rate'];
         else
             $this->infos['rateFilm'] = 0;
+    }
+
+    public function displayRate($note) {
+        $rate = '';
+        $note = intval($note);
+
+        if($note <= 0 OR $note > 5)
+            return '&nbsp;';
+        else {
+            for($i=1;$i<=5;$i++) {
+                if($i > $note)
+                    $rate .= '<span class="glyphicon glyphicon-star-empty"></span>';
+                else
+                    $rate .= '<span class="glyphicon glyphicon-star"></span>';
+            }
+
+            return $rate;
+        }
     }
 }
