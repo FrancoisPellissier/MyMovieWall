@@ -26,7 +26,7 @@ $navs[] = array('guest' => true, 'url' => 'film', 'title' => 'Tous les films', '
     $icons[] = array('url' => 'logout/'.$user['id'].'/'.pun_hash($user['id'].pun_hash(get_remote_address())), 'title' => 'Se déconnecter', 'texte' => '<span class="glyphicon glyphicon-off"></span> '.$user['realname']);
     $icons[] = array('url' => 'friend', 'title' => 'Amis', 'texte' => '<img src="img/icons/friend.png" with="21" height="14" />');
     $icons[] = array('url' => 'user/'.$user['id'].'/wishlist', 'title' => 'Whislist', 'texte' => '<span class="glyphicon glyphicon glyphicon-gift"></span>');
-    $icons[] = array('url' => 'user/'.$user['id'].'/stats', 'title' => 'Statistiques', 'texte' => '<span class="glyphicon glyphicon glyphicon-tasks"></span>');
+    $icons[] = array('url' => 'user/'.$user['id'].'/stats', 'title' => 'Statistiques', 'texte' => '<span class="glyphicon glyphicon glyphicon-signal"></span>');
     $icons[] = array('url' => 'user/'.$user['id'].'/edit', 'title' => 'Profil', 'texte' => '<span class="glyphicon glyphicon-cog"></span>');
 
     echo '<p id="navbar-icons" class="navbar-text navbar-right">';

@@ -141,6 +141,7 @@ class FilmController extends \library\BaseController {
 			$this->user->hasViewFilm($id);
 			$this->user->wishFilm($id);
 			$this->user->FriendhasFilm($id);
+			$this->user->getRate($id);
 			$this->jsfile = 'film_show';
 
 			$this->view->with('curFiche', $film->infos);
@@ -290,5 +291,18 @@ class FilmController extends \library\BaseController {
 		}
 		else
 			$this->response->redirect('');		
+	}
+
+	public function rate() {
+		$id = intval($this->request->getData('id'));
+		$film = new \modules\Film\Film();
+		$film->exists($id);
+
+		if($film->exists) {
+			$this->user->rateFilm($id, $this->request->getData('rate'));
+			$this->response->redirect('film/'.$id);	
+		}
+		else
+			$this->response->redirect('');
 	}
 }

@@ -21,7 +21,7 @@ class Application {
 
 		$tables = array();
 		
-		$tables['users_rate'] = "CREATE TABLE `users_rate` (`userid` int(11) NOT NULL, `movieid` int(11) NOT NULL DEFAULT '0', `rate` TINYINT NOT NULL DEFAULT 0, `created_at` datetime DEFAULT NULL, `updated_at` datetime DEFAULT NULL, PRIMARY KEY (`userid`,`moveidid`)) ENGINE=MyISAM DEFAULT CHARSET=utf8;";
+		$tables['users_rate'] = "CREATE TABLE `users_rate` (`userid` int(11) NOT NULL, `movieid` int(11) NOT NULL DEFAULT '0', `rate` TINYINT NOT NULL DEFAULT 0, `created_at` datetime DEFAULT NULL, `updated_at` datetime DEFAULT NULL, PRIMARY KEY (`userid`,`movieid`)) ENGINE=MyISAM DEFAULT CHARSET=utf8;";
 		
  		foreach($tables AS $table => $sql) {
  			if(!$db->table_exists($table))

@@ -186,7 +186,7 @@ class User extends \library\BaseModel {
             
             $this->db->query(\library\Query::insertORupdate('users_wish', $datas, array($type), true))or error($this->db->error());
             // On supprime la ligne s'il ne reste plus aucune possession
-            $this->db->query('DELETE FROM users_wish WHERE movieid = '.$movieid.' AND userid = '.$this->infos['id'].' AND buy = \'0\' AND view = \'0\'');
+            $this->db->query('DELETE FROM users_wish WHERE buy = \'0\' AND view = \'0\'');
         }
     }
 
@@ -262,5 +262,36 @@ class User extends \library\BaseModel {
             $nb[] = $cur;
 
         return $nb;
+    }
+
+    public function rateFilm($movieid, $rate) {
+        // Le film existe ?
+        $film = new \modules\Film\Film();
+        $film->exists($movieid);
+
+        $rate = intval($rate);
+        if($rate < 0 OR $rate > 5)
+            $rate = 0;
+
+        if($film->exists) {
+            $datas = array(
+                'userid' => $this->infos['id'],
+                'movieid' => $movieid,
+                'rate' => intval($rate)
+                );
+            
+            $this->db->query(\library\Query::insertORupdate('users_rate', $datas, array('rate'), true))or error($this->db->error());
+            // On supprime les lignes dont la note est 0
+            $this->db->query('DELETE FROM users_rate WHERE rate = 0');
+        }
+    }
+
+    public function getRate($movieid) {
+        $result = $this->db->query('SELECT rate FROM users_rate WHERE userid = '.$this->infos['id'].' AND movieid = '.intval($movieid));
+
+        if($this->db->num_rows($result))
+            $this->infos['rateFilm'] = $this->db->fetch_assoc($result)['rate'];
+        else
+            $this->infos['rateFilm'] = 0;
     }
 }

@@ -22,6 +22,7 @@
  	<route url="/film/([0-9]+)/delView/([0-9]+)" module="Film" action="delView" vars="id,viewid" />
  	<route url="/film/([0-9]+)/addWish/([a-z]+)" module="Film" action="addWish" vars="id,type" />
  	<route url="/film/([0-9]+)/delWish/([a-z]+)" module="Film" action="delWish" vars="id,type" />
+	<route url="/film/([0-9]+)/rate/([0-9]+)" module="Film" action="rate" vars="id,rate" />
 
  	<route url="/user/([0-9]+)" module="User" action="showResume" vars="id" />
  	<route url="/user/([0-9]+)/edit" module="User" action="edit" vars="id" />

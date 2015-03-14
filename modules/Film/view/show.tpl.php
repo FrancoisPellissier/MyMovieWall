@@ -59,6 +59,20 @@
             ?>
         </p>
         <?php
+        // Espace de notation
+        echo "\n\t".'<p>Note : ';
+        for($i=1;$i<=5;$i++) {
+            
+            echo '<a href="film/'.$curFiche['movieid'].'/rate/'.$i.'" title="Noter '.$i.'/5">';
+            if($i > $user['rateFilm'])
+                echo '<span class="glyphicon glyphicon-star-empty"></span>';
+            else
+                echo '<span class="glyphicon glyphicon-star"></span>';
+            echo '</a>';
+        }
+        echo '<p>';
+
+        // Visionnages
         if(empty($user['hasViewFilm']))
             echo '<p>Vous ne l\'avez jamais vu</p>';
         else {
@@ -68,8 +82,7 @@
                 echo '<br />- le '.\library\Date::formatDate($vue['viewdate'], 'J mois annee').($vue['type'] == '1' ? ' au cinéma' : ' à la télé'). ' <a href="film/'.$curFiche['movieid'].'/delView/'.$vue['viewid'].'" title="Supprimer"><span class="glyphicon glyphicon-remove"></span></a>';
             }
             echo '</p>';
-        }
-        
+        } 
         ?>
         <form action="film/<?php echo $curFiche['movieid']; ?>/addView" method="post">
             <p>
