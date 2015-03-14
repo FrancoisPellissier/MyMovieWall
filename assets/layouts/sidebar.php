@@ -15,11 +15,11 @@ else {
 }
 // Initialisation des items de menu
 $navs = array();
-$navs[] = array('guest' => true, 'me' => true, 'url' => 'user/'.$userid.'/biblio', 'title' => 'Mes films', 'item' => 'biblio');
-$navs[] = array('guest' => true, 'me' => true, 'url' => 'user/'.$userid.'/towatchlist', 'title' => 'Films à voir', 'item' => 'towatchlist');
-$navs[] = array('guest' => true, 'me' => true, 'url' => 'user/'.$userid.'/lastview/cinema', 'title' => 'Derniers vus', 'item' => 'lastview');
-$navs[] = array('guest' => false, 'me' => false, 'url' => 'user/'.$userid.'/wishlist', 'title' => 'Wishlist', 'item' => 'wishlist');
-$navs[] = array('guest' => false, 'me' => false, 'url' => 'user/'.$userid.'/stats', 'title' => 'Statistiques', 'item' => 'stats');
+$navs[] = array('guest' => true, 'me' => true, 'url' => 'user/'.$userid.'/biblio', 'title' => '<span class="glyphicon glyphicon-film"></span> Mes films', 'item' => 'biblio');
+$navs[] = array('guest' => true, 'me' => true, 'url' => 'user/'.$userid.'/towatchlist', 'title' => '<span class="glyphicon glyphicon-eye-open"></span>  Films à voir', 'item' => 'towatchlist');
+$navs[] = array('guest' => true, 'me' => true, 'url' => 'user/'.$userid.'/lastview/cinema', 'title' => '<span class="glyphicon glyphicon-play"></span> Derniers vus', 'item' => 'lastview');
+$navs[] = array('guest' => false, 'me' => false, 'url' => 'user/'.$userid.'/wishlist', 'title' => '<span class="glyphicon glyphicon glyphicon-gift"></span> Wishlist', 'item' => 'wishlist');
+$navs[] = array('guest' => false, 'me' => false, 'url' => 'user/'.$userid.'/stats', 'title' => '<span class="glyphicon glyphicon glyphicon-signal"></span> Statistiques', 'item' => 'stats');
 
 ?>
 
