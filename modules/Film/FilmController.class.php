@@ -158,6 +158,7 @@ class FilmController extends \library\BaseController {
 		// Si la fiche n'existe pas, on redirige vers l'accueil du module
 		if($film->exists) {
 			$this->user->addBiblio($id, $this->request->getData('type'));
+			$this->user->addWish($id, 'buy', '0');
 		}
 		ob_end_clean();
 	}
