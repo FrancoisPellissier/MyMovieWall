@@ -43,6 +43,14 @@
 
  	<route url="/person/([0-9]+)" module="Person" action="showFilms" vars="id" />
 
+	<route url="/ticket" module="Ticket" action="showList" />
+	<route url="/ticket/add" module="Ticket" action="addTicket" />
+	<route url="/ticket/add/post" module="Ticket" action="addTicketPost" />
+	<route url="/ticket/([0-9]+)" module="Ticket" action="showTicket" vars="id" />
+	<route url="/ticket/([0-9]+)/status" module="Ticket" action="editStatus" vars="id" />
+
+	<route url="/ticket/([0-9]+)/comment" module="Comment" action="addComment" vars="id" />
+	<route url="/ticket/([0-9]+)/comment/([0-9]+)/edit" module="Comment" action="editComment" vars="tid,id" />
 
  	<route url="/about" module="About" action="index" />
 </routes>

@@ -1,7 +1,7 @@
 <?php
 namespace library;
 
-class Date {
+class Datetime {
     public static function formatDateTime($datetime, $dateformat, $timeformat) {
         /* 
         Un rappel des formats accessibles
