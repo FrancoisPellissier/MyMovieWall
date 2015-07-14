@@ -47,4 +47,22 @@ abstract class BaseController {
 		$this->view->with('jsfile', $this->jsfile);
 		$this->view->make();
 	}
+
+	public function exists($redirect = 'film') {
+		$id = intval($this->request->getData('id'));
+
+		$modelClass = '\modules\\'.$this->module.'\\'.$this->module;
+
+		$model = new $modelClass();
+		$model->exists($id);
+		
+		// S'il n'existe pas, on redirige vers l'adresse fournie
+		if(!$model->exists)
+			$this->response->redirect($redirect);
+		// S'il existe, on le passe dans la vue et on le renvoit
+		else {
+			$this->view->with('model', $model->infos);
+			return $model;
+		}
+	}
 }
