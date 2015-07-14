@@ -148,6 +148,7 @@ class FilmController extends \library\BaseController {
 
 			// Génération des Meta OG
 			$meta = array();
+			$meta['type'] = "video.movie";
 			$meta['url'] = WWW_ROOT.'film/'.$id;
 			$meta['title'] = $film->infos['titrevf'];
 			$meta['description'] = $film->infos['synopsis'];
