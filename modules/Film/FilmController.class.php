@@ -145,6 +145,15 @@ class FilmController extends \library\BaseController {
 			$this->jsfile = 'film_show';
 
 			$this->view->with('curFiche', $film->infos);
+
+			// Génération des Meta OG
+			$meta = array();
+			$meta['url'] = WWW_ROOT.'film/'.$id;
+			$meta['title'] = $film->infos['titrevf'];
+			$meta['description'] = $film->infos['synopsis'];
+			$meta['image'] = WWW_ROOT.\library\Image::getUrl('movie', $film->infos['movieid']);
+			$this->view->with('meta', $meta);
+
 			$this->makeView();
 		}
 	}

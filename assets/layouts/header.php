@@ -18,6 +18,13 @@
 		<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 		-->
 		<?php
+		// Meta OG
+		if(isset($meta)) {
+			foreach($meta AS $key=>$value)
+				echo "\n\t\t".'<meta property="og:'.$key.'" content="'.$value.'" />';
+		}
+
+		// Fichier JS
 		if($jsfile != '')
 			echo "\n\t".'<script type="text/javascript" src="assets/js/'.$jsfile.'.js"></script>';
 		?>
