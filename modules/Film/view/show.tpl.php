@@ -3,8 +3,10 @@
     <?php
         echo '<img src="'.library\Image::getUrl('movie', $curFiche['movieid']).'" alt="Affiche du film" title="'.$curFiche['titrevf'].'" class="img-rounded" />';
 
-        if(!$user['is_guest'])
+        if(!$user['is_guest']) {
             echo '<p><a href="film/'.$curFiche['movieid'].'/maj">Mettre à jour la fiche</a></p>';
+            echo '<div class="fb-share-button" data-href="'.WWW_ROOT.'film/'.$curFiche['movieid'].'" data-layout="button"></div>';
+        }
     ?>
     </div>
     <div class="col-xs-8 col-sm-8 col-md-7 filminfos">
