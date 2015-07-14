@@ -4,7 +4,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<base href="<?php echo WWW_ROOT; ?>" />
 		<link href="assets/css/bootstrap.css" rel="stylesheet">
-		<link href="assets/css/tuto.css" rel="stylesheet">
+		<link href="assets/css/style.css" rel="stylesheet">
 		<title><?php echo $titre_page; ?> - Movie</title>
 
 		<link rel="stylesheet" href="assets/js/jquery/jquery-ui-1.11.2/jquery-ui.css">
