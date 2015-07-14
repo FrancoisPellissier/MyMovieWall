@@ -11,7 +11,7 @@
     	<h1><?php echo $curFiche['titrevf']; ?></h1>
         <p><strong>Titre original :</strong> <?php echo $curFiche['titrevo']; ?></p>
         <p><strong>Date de sortie :</strong> <?php echo library\Date::formatDate($curFiche['datesortie'], 'J mois annee'); ?></p>
-    	<p><strong>Genere :</strong> 
+    	<p><strong>Genre :</strong> 
         <?php
         foreach($curFiche['genres'] AS $id => $genre) {
             echo ($id != 0 ? ', ' : '').'<a href="film/genre/'.$genre['genreid'].'">'.$genre['genrename'].'</a>'; 
