@@ -11,17 +11,11 @@
 		<script src="assets/js/jquery/jquery-1.11.0.min.js"></script>
 		<script src="assets/js/jquery/jquery-migrate-1.2.1.min.js"></script>
 		<script src="assets/js/jquery/jquery-ui-1.11.2/jquery-ui.js"></script>
-		<!--
-		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
-		<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-		<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-		<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-		-->
 		<?php
 		// Meta OG
 		if(isset($meta)) {
 			foreach($meta AS $key=>$value)
-				echo "\n\t\t".'<meta property="og:'.$key.'" content="'.$value.'" />';
+				echo "\n\t\t".'<meta property="og:'.$key.'" content="'.str_replace('"', '', $value).'" />';
 		}
 
 		// Fichier JS
