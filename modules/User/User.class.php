@@ -248,6 +248,15 @@ class User extends \library\BaseModel {
             $this->infos['friendHasFilm'][] = $cur;
     }
 
+    public function FriendToWtach($movieid) {
+        $result = $this->db->query('SELECT w.userid, u.realname FROM users_friend AS f INNER JOIN users_wish AS w ON f.friend_userid = w.userid AND f.userid = '.$this->infos['id'].' AND w.movieid = '.intval($movieid).' AND w.view = \'1\' INNER JOIN users AS u ON f.friend_userid = u.id ORDER BY u.realname');
+
+        $this->infos['friendToWtach'] = array();
+
+        while($cur = $this->db->fetch_assoc($result))
+            $this->infos['friendToWtach'][] = $cur;
+    }
+
     public function getStatsNb($type = 'genre') {
         if($type == 'acteur')
             $sql = 'SELECT p.personid AS id, p.fullname AS libelle, COUNT(*) AS nb FROM users_views AS uv INNER JOIN movie_person AS mp ON uv.movieid = mp.movieid AND userid = '.$this->infos['id'].' AND mp.`type` = \'1\' INNER JOIN person AS p ON mp.personid = p.personid GROUP BY id ORDER BY nb DESC LIMIT 10';

@@ -94,10 +94,18 @@
         </form>
         <?php
             }
+        if(!empty($user['friendToWtach'])) {
+            echo "\n\t\t".'<p>Ces amis veulent le voir :';            
+            foreach($user['friendToWtach'] AS $friend) {
+                echo "\n\t\t".'<br />- <a href="user/'.$friend['userid'].'">'.$friend['realname'].'</a>';
+            }
+            echo "\n\t\t".'</p>';
+        }
+
         if(!empty($user['friendHasFilm'])) {
-            echo "\n\t\t".'<p>Ces amis le possèdent :<br />';            
+            echo "\n\t\t".'<p>Ces amis le possèdent :';            
             foreach($user['friendHasFilm'] AS $friend) {
-                echo "\n\t\t".'- <a href="user/'.$friend['userid'].'">'.$friend['realname'].'</a> (';
+                echo "\n\t\t".'<br />- <a href="user/'.$friend['userid'].'">'.$friend['realname'].'</a> (';
 
                 $types = array();
                 foreach(array('bluray' => 'Blu-Ray', 'dvd' => 'DVD', 'numerique' => 'Numérique') AS $type => $typename) {

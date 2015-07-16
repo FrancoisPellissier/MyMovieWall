@@ -141,6 +141,7 @@ class FilmController extends \library\BaseController {
 			$this->user->hasViewFilm($id);
 			$this->user->wishFilm($id);
 			$this->user->FriendhasFilm($id);
+			$this->user->FriendToWtach($id);
 			$this->user->getRate($id);
 			$this->jsfile = 'film_show';
 
