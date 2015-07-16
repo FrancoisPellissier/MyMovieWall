@@ -37,6 +37,7 @@ class CommentController extends \library\BaseController {
 
 			$comment->hydrate($datas);
 			$new_id = $comment->add();
+
 			$ticket->edit(array());
 
 			$this->response->redirect('ticket/'.$id.'#'.$new_id);
@@ -76,7 +77,16 @@ class CommentController extends \library\BaseController {
 				'message' => trim($this->request->postData('message'))
 				);
 			$comment->edit($datas);
-			$ticket->edit(array());
+
+			// On regarde si le titre est modifié
+			$tdata = array();
+			if($ticket->infos['firstcommentid'] == $comment->infos['commentid'] && $this->request->postExists('ticketname')) {
+				$ticketname = trim($this->request->postData('ticketname'));
+
+				if($ticketname != '')
+					$tdata['ticketname'] = $ticketname;
+			}
+			$ticket->edit($tdata);
 
 			$this->response->redirect('ticket/'.$tid.'#'.$id);
 		}
