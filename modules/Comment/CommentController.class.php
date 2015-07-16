@@ -3,6 +3,10 @@ namespace modules\Comment;
 
 class CommentController extends \library\BaseController {
 	public function addComment() {
+		// On redirige vers l'accueil si c'est un invité
+		if($this->user->infos['is_guest'])
+			$this->response->redirect('ticket');
+
 		$id = intval($this->request->getData('id'));
 		$ticket = new \modules\Ticket\Ticket();
 		$ticket->exists($id);
@@ -40,6 +44,10 @@ class CommentController extends \library\BaseController {
 	}
 
 	public function editComment() {
+		// On redirige vers l'accueil si c'est un invité
+		if($this->user->infos['is_guest'])
+			$this->response->redirect('ticket');
+		
 		// On teste le ticket
 		$tid = intval($this->request->getData('tid'));
 		$ticket = new \modules\Ticket\Ticket();

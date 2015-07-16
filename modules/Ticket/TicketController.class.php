@@ -12,6 +12,10 @@ class TicketController extends \library\BaseController {
 	}
 
 	public function addTicket() {
+		// On redirige vers l'accueil si c'est un invité
+		if($this->user->infos['is_guest'])
+			$this->response->redirect('ticket');
+
 		$this->titre_page = 'Ouvrir un ticket';
 		$this->menu_actif = 'ticket_index';
 
@@ -21,6 +25,10 @@ class TicketController extends \library\BaseController {
 	}
 
 	public function addTicketPost() {
+		// On redirige vers l'accueil si c'est un invité
+		if($this->user->infos['is_guest'])
+			$this->response->redirect('ticket');
+		
 		// Un message a-t-il bien été envoyé ?
 		if(!$this->request->postExists('message'))
 			$this->response->redirect('ticket');

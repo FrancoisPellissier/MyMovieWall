@@ -36,6 +36,7 @@ foreach($comments AS $comment) {
 </div>
 <?php
 }
+if(!$user['is_guest']) {
 ?>
 <div class="row">
 	<div class="col-xs-8 col-sm-8 col-md-8">
@@ -51,3 +52,6 @@ foreach($comments AS $comment) {
 		</div>
 	</div>
 </div>
+<?php
+}
+?>

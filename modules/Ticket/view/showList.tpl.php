@@ -1,6 +1,10 @@
 <div class="alert alert-info" role="alert">Cette page vous donne accès à l'ensemble des propositions d'évolution et rapports de bug soumis par les membres du site.</div>
 
-<p><a class="btn btn-primary" href="ticket/add" role="button"><span class="glyphicon glyphicon-plus"></span> Ouvrir un ticket</a></p>
+<?php
+if(!$user['is_guest']) {
+	echo "\n\t".'<p><a class="btn btn-primary" href="ticket/add" role="button"><span class="glyphicon glyphicon-plus"></span> Ouvrir un ticket</a></p>';
+}
+?>
 
 <table class="table table-striped">
 <thead>
