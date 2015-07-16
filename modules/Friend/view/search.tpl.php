@@ -10,7 +10,7 @@
 <tbody>
 <?php
 foreach($users AS $id => $cur) {
-	if($user['id'] != $id) {
+	if($user['id'] != $cur['id']) {
 		echo "\n\t\t\t".'<tr>';
 		echo "\n\t\t\t\t".'<td><a href="'.WWW_ROOT.'user/'.$cur['id'].'">'.$cur['realname'].'</a></td>';	
 		echo "\n\t\t\t\t".'<td>'.(isset($infos[$cur['id']]['biblio']) ? $infos[$cur['id']]['biblio'] : 0).'</td>';
