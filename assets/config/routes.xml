@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <routes>
-	<route url="/" module="User" action="showResume" />
+	<route url="/" module="Index" action="showIndex" />
 
 	<route url="/login" module="Login" action="login" />
 	<route url="/logout/([0-9]+)/([a-z0-9]+)" module="Login" action="logout" vars="id,csrf_token" />
