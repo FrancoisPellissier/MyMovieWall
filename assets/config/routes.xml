@@ -52,5 +52,7 @@
 	<route url="/ticket/([0-9]+)/comment" module="Comment" action="addComment" vars="id" />
 	<route url="/ticket/([0-9]+)/comment/([0-9]+)/edit" module="Comment" action="editComment" vars="tid,id" />
 
+	<route url="/agenda" module="Agenda" action="showAgenda" />
+
  	<route url="/about" module="About" action="index" />
 </routes>
