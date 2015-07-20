@@ -21,8 +21,15 @@ if(!empty($lastView)) {
 			if($mois != '')
 				echo "\n\t".'</div>';
 
-			echo '<h3>'.ucwords(library\Date::formatDate($film['viewdate'], 'mois annee')).'</h3>';
-			$mois = substr($film['viewdate'], 0, 7);
+			if($film['viewdate'] == null) {
+				echo '<h3>Non datés</h3>';
+				$mois = substr($film['viewdate'], 0, 7);
+			}
+			else {
+				echo '<h3>'.ucwords(library\Date::formatDate($film['viewdate'], 'mois annee')).'</h3>';
+				$mois = substr($film['viewdate'], 0, 7);
+			}
+			
 
 			echo "\n\t".'<div class="row">';
 		}
