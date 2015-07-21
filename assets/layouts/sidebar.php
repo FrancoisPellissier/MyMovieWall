@@ -16,7 +16,7 @@ if($menu_actif == 'ticket_index') {
           foreach ($navs as $id => $value) {
             // Invite : test guest / Ami : tout / Moi / me
             if((!$user['is_guest'] OR $value['guest']) AND ($curUser['id'] != $user['id'] OR $value['me']))
-              echo "\n\t\t".'<li'.($value['item'] == $menu_actif ? ' class="active"' : '').'><a href="'.WWW_ROOT.$value['url'].'">'.$value['title'].'</a></li>';
+              echo "\n\t\t".'<li'.($value['item'] == $item_actif ? ' class="active"' : '').'><a href="'.WWW_ROOT.$value['url'].'">'.$value['title'].'</a></li>';
           }
           ?>
         </ul>

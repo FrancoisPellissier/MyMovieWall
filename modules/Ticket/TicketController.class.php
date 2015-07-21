@@ -5,6 +5,7 @@ class TicketController extends \library\BaseController {
 	public function showLastActivites() {
 		$this->titre_page = 'Tickets';
 		$this->menu_actif = 'ticket_index';
+		$this->item_actif = 'recent';
 
 		$ticket = new \modules\Ticket\Ticket();
 		$this->view->with('activites', $ticket->getLastActivites());
@@ -14,6 +15,7 @@ class TicketController extends \library\BaseController {
 	public function showList() {
 		$this->titre_page = 'Tickets';
 		$this->menu_actif = 'ticket_index';
+		$this->item_actif = 'all';
 
 		$ticket = new \modules\Ticket\Ticket();
 		$this->view->with('tickets', $ticket->getList());

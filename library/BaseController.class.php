@@ -9,6 +9,7 @@ abstract class BaseController {
 	protected $response;
 	protected $titre_page;
 	protected $menu_actif;
+	protected $item_actif;
 	protected $user;
 	protected $jsfile;
 
@@ -43,6 +44,7 @@ abstract class BaseController {
 	public function makeView() {	    
 		$this->view->with('titre_page', $this->titre_page);
 		$this->view->with('menu_actif', $this->menu_actif);
+		$this->view->with('item_actif', $this->item_actif);
 		$this->view->with('user', $this->user->infos);
 		$this->view->with('jsfile', $this->jsfile);
 		$this->view->make();
