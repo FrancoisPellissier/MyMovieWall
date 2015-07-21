@@ -43,7 +43,8 @@
 
  	<route url="/person/([0-9]+)" module="Person" action="showFilms" vars="id" />
 
-	<route url="/ticket" module="Ticket" action="showList" />
+	<route url="/ticket" module="Ticket" action="showLastActivites" />
+	<route url="/ticket/list" module="Ticket" action="showList" />
 	<route url="/ticket/add" module="Ticket" action="addTicket" />
 	<route url="/ticket/add/post" module="Ticket" action="addTicketPost" />
 	<route url="/ticket/([0-9]+)" module="Ticket" action="showTicket" vars="id" />

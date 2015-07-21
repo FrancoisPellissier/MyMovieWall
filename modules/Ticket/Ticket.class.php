@@ -42,6 +42,31 @@ class Ticket extends \library\BaseModel {
 		return $tickets;
 	}
 
+	// Récupérer la liste des dernières activités
+	public function getLastActivites() {
+		$result = $this->db->query('SELECT
+				c.commentid,
+				c.userid,
+				u.realname,
+				c.message,
+				c.created_at,
+				c.updated_at,
+				t.ticketid,
+				t.ticketname,
+				t.firstcommentid
+			FROM ticket_comment AS c
+			INNER JOIN users AS u ON c.userid = u.id
+			INNER JOIN ticket AS t ON c.ticketid = t.ticketid
+			ORDER BY commentid DESC
+			LIMIT 10')or error('Impossible de récupérer la liste des dernières activités', __FILE__, __LINE__, $this->db->error());
+
+		$comments = array();
+		while($cur = $this->db->fetch_assoc($result))
+			$comments[] = $cur;
+
+		return $comments;
+	}
+
 	// Récupération des commentaires d'un ticket
 	public function getComment() {
 		$result = $this->db->query('SELECT

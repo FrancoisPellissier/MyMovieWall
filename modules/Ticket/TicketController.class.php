@@ -2,6 +2,15 @@
 namespace modules\Ticket;
 
 class TicketController extends \library\BaseController {
+	public function showLastActivites() {
+		$this->titre_page = 'Tickets';
+		$this->menu_actif = 'ticket_index';
+
+		$ticket = new \modules\Ticket\Ticket();
+		$this->view->with('activites', $ticket->getLastActivites());
+		$this->makeView();
+	}
+
 	public function showList() {
 		$this->titre_page = 'Tickets';
 		$this->menu_actif = 'ticket_index';
