@@ -28,7 +28,7 @@ abstract class BaseModel {
 	public function all() {
 		// On génère la liste des champs à récupérer
 		$sql_fields = implode(', ', array_keys($this->schema));
-		if($time)
+		if($this->time)
 			$sql_fields .= ', created_at, updated_at';
 
 		$result = $this->db->query('SELECT '.$sql_fields.' FROM '.$this->table.($this->order != '' ? ' ORDER BY '.$this->order : ''))or error('Impossible tous les éléments de la table "'.$this->table.'"', __FILE__, __LINE__, $this->db->error());
@@ -46,7 +46,7 @@ abstract class BaseModel {
 		global $pun_user;
 		// On génère la liste des champs à récupérer
 		$sql_fields = implode(', ', array_keys($this->schema));
-		if($time)
+		if($this->time)
 			$sql_fields .= ', created_at, updated_at';
 
 		// Génération de la clause WHERE
