@@ -9,7 +9,10 @@
  	<route url="/film" module="Film" action="filmsGenre" />
  	<route url="/film/genre/([0-9]+)" module="Film" action="filmsGenre" vars="genreid" />
  	<route url="/film/search" module="Film" action="search" />
- 	<route url="/film/([0-9]+)" module="Film" action="show" vars="id" />
+ 	<route url="/film/([0-9]+)" module="Film" action="showCasting" vars="id" />
+ 	<route url="/film/([0-9]+)/casting" module="Film" action="Casting" vars="id" />
+ 	<route url="/film/([0-9]+)/trailer" module="Film" action="showTrailer" vars="id" />
+
  	<route url="/film/searchAllocine/(.*)" module="Film" action="searchAllocine" vars="keyword" />
  	<route url="/film/searchAllocine" module="Film" action="searchAllocine" />
  	<route url="/film/add/([0-9]+)" module="Film" action="add" vars="id" />

@@ -155,9 +155,19 @@ class FilmController extends \library\BaseController {
 			$meta['description'] = $film->infos['synopsis'];
 			$meta['image'] = WWW_ROOT.\library\Image::getUrl('movie', $film->infos['movieid']);
 			$this->view->with('meta', $meta);
-
-			$this->makeView();
 		}
+	}
+
+	public function showCasting() {
+		$this->show();
+		$this->view->with('vue', 'casting');
+		$this->makeView();
+	}
+
+	public function showTrailer() {
+		$this->show();
+		$this->view->with('vue', 'trailer');
+		$this->makeView();
 	}
 
 	public function addBiblio() {
