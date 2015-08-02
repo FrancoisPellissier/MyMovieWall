@@ -47,7 +47,7 @@ class Allocine {
 		$allohelper = new AlloHelper();
     
     	try {
-	        $return = $allohelper->movie(intval($id), 'large');
+	        $return = $allohelper->movie(intval($id), 'medium');
 
             if($return == 'Erreur 5: No result')
             	echo "<p>Impossible de trouver la fiche film</p>";
