@@ -60,3 +60,8 @@ $(function() {
 		return false;
 	});
 });
+
+
+function changeTrailer(url) {
+	$('#trailer').html(url);
+}

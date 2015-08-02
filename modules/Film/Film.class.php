@@ -23,7 +23,8 @@ class Film extends \library\BaseModel {
 	    'synopsis' => array('fieldtype' => 'TEXT', 'required' => false, 'default' => NULL, 'publicname' => 'Résumé'),
 	    'realisateur' => array('fieldtype' => 'VARCHAR', 'required' => false, 'default' => '', 'publicname' => 'Réalisateur'),
 	    'acteur' => array('fieldtype' => 'VARCHAR', 'required' => false, 'default' => '', 'publicname' => 'Acteurs principaux'),
-		'code' => array('fieldtype' => 'INT', 'required' => false, 'default' => 0, 'publicname' => 'Code Allocine')
+		'code' => array('fieldtype' => 'INT', 'required' => false, 'default' => 0, 'publicname' => 'Code Allocine'),
+		'trailerdate' => array('fieldtype' => 'DATE', 'required' => false, 'default' => 0, 'publicname' => 'Date de mise à jour des bande-annonces'),
 	    );
 	}
 
@@ -119,5 +120,24 @@ class Film extends \library\BaseModel {
 		}
 
 		return $datas;
+	}
+
+	public function getTrailers() {
+		$this->infos['trailer'] = array();
+		// On teste la dernière mise à jour des trailers pour les mettre à jour si plus de 2 jours
+		$date = new \Datetime($this->infos['trailerdate']);
+		$date->add(new \DateInterval('P2D'));
+
+		if($date->format('Y-m-d H:i:s') <= date('Y-m-d H:i:s') || $this->infos['trailerdate'] == null) {
+			$allocine = new \modules\Allocine\Allocine();
+			$trailers = $allocine->getFilmTrailer($this->infos['code']);
+			$this->assocTrailer($this->infos['movieid'], $trailers);
+			
+			// On indique la date de mise à jour des trailers
+			$this->edit(array('trailerdate' => date('Y-m-d H:i:s')));
+		}
+		
+		$trailers = new \modules\Trailer\Trailer();
+		$this->infos['trailers'] = $trailers->getTrailersMovie($this->infos['movieid']);
 	}
 }

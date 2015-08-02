@@ -47,12 +47,14 @@ class Allocine {
 		$allohelper = new AlloHelper();
     
     	try {
-	        $return = $allohelper->movie(intval($id));
+	        $return = $allohelper->movie(intval($id), 'large');
 
             if($return == 'Erreur 5: No result')
             	echo "<p>Impossible de trouver la fiche film</p>";
             else {
             	$film = $return;
+                dump($film);
+
             	$data = array();
             	
             	$data['code'] = $this->getVar($film['code']);
@@ -102,4 +104,38 @@ class Allocine {
 
 	    }
 	}
+
+    public function getFilmTrailer($id) {
+        
+        $allohelper = new AlloHelper();
+    
+        try {
+            $return = $allohelper->movie(intval($id), 'large');
+
+            if($return == 'Erreur 5: No result')
+                echo "<p>Impossible de trouver la fiche film</p>";
+            else {
+                $film = $return;
+                $data = array();
+                
+                // Genres
+                foreach($film['media'] AS $media) {
+                    if($media['class'] == 'video' && ($media['type']['code'] == '31003' || $media['type']['code'] == '31016'))
+                    {
+                        $trailer = array();
+                        $trailer['code'] = $this->getVar($media['code']);
+                        $trailer['titre'] = $this->getVar($media['title']);
+                        $trailer['img'] = $this->getVar($media['thumbnail']['href']);
+                        $trailer['video'] = $this->getVar($media['trailerEmbed']);
+                        
+                        $data[] = $trailer;
+                    }
+                }
+                return $data;
+            }
+        }
+        catch ( ErrorException $e ) {
+
+        }
+    }
 }

@@ -277,4 +277,27 @@ abstract class BaseModel {
 			}
 		}
 	}
+
+	public function assocTrailer($movieid, $datas) {
+		if(!empty($datas)) {
+			// On parcourt les trailers
+			foreach($datas AS $data) {
+				$data['movieid'] = $movieid;
+
+				// On regarde s'il existe
+				$trailer = new \modules\Trailer\Trailer();
+				$trailer->exists($data['code'], true);
+
+				// S'il n'existe pas on le créé
+				if(!$trailer->exists) {
+					
+					$trailer->hydrate($data);
+					$trailerid = $trailer->add();
+				}
+				else {
+					$trailer->edit($data);
+				}
+			}
+		}
+	}
 }
