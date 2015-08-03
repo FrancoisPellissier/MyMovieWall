@@ -231,7 +231,14 @@ namespace modules\Allocine;
                 'partner' => $this->partner,
             ));
             $params = $this->getPresets();
-            $params['filter'] = implode(",", $params['filter']);
+
+            if(!empty($params['filter']))
+                $params['filter'] = implode(",", $params['filter']);
+            
+            if(!empty($params['theaters'])) {
+                $params['theaters'] = implode(",", $params['theaters']);
+            }
+
             
             $queryURL = $this->APIUrl . '/' . $type;
                   $searchQuery = str_replace('%2B', '+', http_build_query($params)) . '&sed=' . date('Ymd');

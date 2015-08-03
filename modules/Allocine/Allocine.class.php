@@ -18,7 +18,8 @@ class Allocine {
 
         try {
             // Envoi de la requête avec les paramètres, et enregistrement des résultats dans $donnees.
-            $donnees = $allohelper->search( $keywords, 1);
+            // $donnees = $allohelper->search( $keywords, 1);
+            $donnees = $allohelper->search($keywords, 1, 20, false, array('movie'));
             
             // Pas de résultat ?
             if (count( $donnees['movie'] ) >= 1) {
@@ -53,7 +54,6 @@ class Allocine {
             	echo "<p>Impossible de trouver la fiche film</p>";
             else {
             	$film = $return;
-                dump($film);
 
             	$data = array();
             	
@@ -138,4 +138,61 @@ class Allocine {
 
         }
     }
-}
+
+    public function searchTheater($keyword) {
+        $allohelper = new AlloHelper();
+
+        $datas = array();
+
+        try {
+            // Envoi de la requête avec les paramètres, et enregistrement des résultats dans $donnees.
+            $donnees = $allohelper->search($keyword, 1, 20, false, array('theater'));
+            
+            // Des résultats ?
+            if (count( $donnees['theater'] ) >= 1) {
+                // Pour chaque résultat de film.
+                foreach ($donnees['theater'] as $theater) {
+                    $data = array();
+                    $data['theatername'] = $theater['name'];
+                    $data['code'] = $theater['code'];
+                    $data['adress'] = $theater['address'];
+                    $data['zipcode'] = $theater['postalCode'];
+                    $data['city'] = $theater['city'];
+
+                    $datas[] = $data;
+                }
+            }
+        }
+        // En cas d'erreur.
+        catch ( ErrorException $e ) {
+            
+        }
+        return $datas;  
+    }
+
+    public function getTheater($code) {
+        $allohelper = new AlloHelper();
+    
+        try {
+            $code = array($code);
+            $return = $allohelper->showtimesByTheaters($code);
+
+            if(isset($return['feed']['theaterShowtimes'][0]['place']['theater'])) {
+                $theater = $return['feed']['theaterShowtimes'][0]['place']['theater'];
+                $data = array();
+                $data['theatername'] = $theater['name'];
+                $data['code'] = $theater['code'];
+                $data['adress'] = $theater['address'];
+                $data['zipcode'] = $theater['postalCode'];
+                $data['city'] = $theater['city'];
+                return $data;
+                
+            }
+            else
+                return false;
+        }
+        catch ( ErrorException $e ) {
+
+        }
+    }
+};
