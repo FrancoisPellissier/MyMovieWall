@@ -64,4 +64,5 @@ $(function() {
 
 function changeTrailer(url) {
 	$('#trailer').html(url);
+	event.preventDefault();
 }
