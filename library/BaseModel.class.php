@@ -51,7 +51,7 @@ abstract class BaseModel {
 
 		// Génération de la clause WHERE
 		if($allocine && isset($this->schema['code']))
-			$where = 'WHERE code = '.intval($id);
+			$where = 'WHERE code = \''.$this->db->escape($id).'\'';
 		else
 			$where = 'WHERE '.$this->key.' = '.intval($id);
 
