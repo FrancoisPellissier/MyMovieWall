@@ -176,6 +176,10 @@ class FilmController extends \library\BaseController {
 
 	public function showSeance() {
 		$film = $this->show();
+
+		if($this->user->infos['is_guest'])
+			$this->response->redirect('film/'.$film->infos['movieid']);
+
 		$this->user->getTheaters();
 		$film->getSeances($this->user->infos['theaters']);
 		
