@@ -322,4 +322,13 @@ class User extends \library\BaseModel {
             return $rate;
         }
     }
+
+    public function getTheaters() {
+       $result = $this->db->query('SELECT ut.theaterid, t.theatername, t.code, t.adress, t.zipcode, t.city FROM users_theater AS ut INNER JOIN theater AS t ON ut.theaterid = t.theaterid AND ut.userid = '.$this->infos['id'].' ORDER BY zipcode, theatername')or error('Impossible de récupérer les cinéames de l\'utilisateur', __FILE__, __LINE__, $this->db->error());
+
+       $this->infos['theaters'] = array();
+
+       while($cur = $this->db->fetch_assoc($result))
+            $this->infos['theaters'][$cur['code']] = $cur;
+    }
 }

@@ -58,5 +58,11 @@
 
 	<route url="/agenda" module="Agenda" action="showAgenda" />
 
+	<route url="/theater" module="Theater" action="myTheaters" />
+	<route url="/theater/search" module="Theater" action="search" />
+	<route url="/theater/search/post" module="Theater" action="searchPost" />
+	<route url="/theater/add/([A-Za-z0-9]+)" module="Theater" action="addToUser" vars="code" />
+	<route url="/theater/del/([0-9]+)" module="Theater" action="delFromUser" vars="id" />
+
  	<route url="/about" module="About" action="index" />
 </routes>
