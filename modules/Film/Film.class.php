@@ -140,4 +140,16 @@ class Film extends \library\BaseModel {
 		$trailers = new \modules\Trailer\Trailer();
 		$this->infos['trailers'] = $trailers->getTrailersMovie($this->infos['movieid']);
 	}
+
+	public function getSeances($theaters) {
+		$seances =  array();
+
+		if(!empty($theaters)) {
+			$list = array_keys($theaters);
+
+			$allocine = new \modules\Allocine\Allocine();
+			$seances = $allocine->getSeances($this->infos['code'], $list);
+		}
+		$this->infos['seances'] = $seances;
+	}
 }

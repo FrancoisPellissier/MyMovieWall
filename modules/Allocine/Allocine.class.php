@@ -195,4 +195,59 @@ class Allocine {
 
         }
     }
+
+    public function getSeances($code, $theaters) {
+        $allohelper = new AlloHelper();
+    
+        try {
+            $datas = array();
+            $return = $allohelper->showtimesByTheaters($theaters, null, $code);
+            
+            // Est-ce que l'on a un résultat ?
+            if(isset($return['feed']['theaterShowtimes'])) {
+                // Si oui, on boucle sur les cinémas
+                foreach($return['feed']['theaterShowtimes'] AS $place) {
+                    $data = array();
+                    $data['theater'] = array(
+                            'theatername' => $place['place']['theater']['name']
+                        );
+                
+                    $hours = array();
+                    // Il y a des séances ?
+                    if(isset($place['movieShowtimes'])) {
+                        // On parcourt les version (VO/VF/...)
+                        foreach($place['movieShowtimes'] AS $version) {
+                            $infos = array();
+                            $infos['version'] = $version['version']['$'];
+                            $infos['format'] = $version['screenFormat']['$'];
+                            $infos['display'] = $version['display'];
+                            $infos['date'] = array();
+
+                            // On parcourt les dates
+                            foreach($version['scr'] AS $scr) {
+                                $info[$scr['d']] = array();
+
+                                // On parcourt les horaires
+                                foreach($scr['t'] AS $t) {
+                                    $info[$scr['d']][] = $t['$'];
+                                }
+
+                                $infos['date'] = $info;                                
+                            }
+                            $hours[] = $infos;
+                        }
+                    }
+                    $data['horaires'] =$hours;
+                    $datas[] = $data;
+                }
+                return $datas;
+            } 
+            else
+                return false;
+            
+        }
+        catch ( ErrorException $e ) {
+
+        }
+    }
 };

@@ -174,6 +174,16 @@ class FilmController extends \library\BaseController {
 		$this->makeView();
 	}
 
+	public function showSeance() {
+		$film = $this->show();
+		$this->user->getTheaters();
+		$film->getSeances($this->user->infos['theaters']);
+		
+		$this->view->with('seances', $film->infos['seances']);
+		$this->view->with('vue', 'seance');
+		$this->makeView();
+	}
+
 	public function addBiblio() {
 		ob_start();
 		$id = intval($this->request->getData('id'));
