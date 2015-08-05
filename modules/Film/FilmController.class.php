@@ -162,7 +162,7 @@ class FilmController extends \library\BaseController {
 
 	public function showCasting() {
 		$film = $this->show();
-		$this->view->with('vue', 'casting');
+		$this->view->with('vueActif', 'casting');
 		$this->makeView();
 	}
 
@@ -170,7 +170,7 @@ class FilmController extends \library\BaseController {
 		$film = $this->show();
 		$film->getTrailers();
 		$this->view->with('trailers', $film->infos['trailers']);
-		$this->view->with('vue', 'trailer');
+		$this->view->with('vueActif', 'trailer');
 		$this->makeView();
 	}
 
@@ -184,7 +184,7 @@ class FilmController extends \library\BaseController {
 		$film->getSeances($this->user->infos['theaters']);
 		
 		$this->view->with('seances', $film->infos['seances']);
-		$this->view->with('vue', 'seance');
+		$this->view->with('vueActif', 'seance');
 		$this->makeView();
 	}
 

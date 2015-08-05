@@ -137,6 +137,6 @@ if(!$user['is_guest'])
 
 echo "\n".'<ul class="nav nav-tabs">';
 foreach($views AS $view) {
-    echo "\n\t".'<li role="presentation"'.($view['url'] == $vue ? ' class="active"' : '').'><a href="'.WWW_ROOT.'film/'.$curFiche['movieid'].'/'.$view['url'].'">'.$view['titre'].'</a></li>';
+    echo "\n\t".'<li role="presentation"'.($view['url'] == $vueActif ? ' class="active"' : '').'><a href="'.WWW_ROOT.'film/'.$curFiche['movieid'].'/'.$view['url'].'">'.$view['titre'].'</a></li>';
     }
 echo "\n".'</ul>';
