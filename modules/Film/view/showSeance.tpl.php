@@ -39,5 +39,5 @@ if(!empty($seances)) {
     }
 }
 else {
-    echo "\n\t".'<br /><p class="alert alert-info">Ce film ne propose aucune séance dans vos cinémas. Assurez-vous qu\'il soit toujours diffusé ou ajoutez de nouveaux cinémas à votre profil.</p>';
+    echo "\n\t".'<br /><p class="alert alert-info">Vous devez avoir sélectionné au moins un cinéma pour accéder à ses horaires : <a href="theater">ajouter un cinéma</a>.</p>';
 }
