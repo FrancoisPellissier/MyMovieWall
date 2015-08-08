@@ -5,14 +5,12 @@ $navs[] = array('guest' => true, 'url' => '', 'title' => 'Accueil', 'texte' => '
 $navs[] = array('guest' => true, 'url' => 'film', 'title' => 'Tous les films', 'texte' => 'Tous les films', 'item' => 'film_index');
 $navs[] = array('guest' => true, 'url' => 'agenda', 'title' => 'Agenda', 'texte' => '<span class="glyphicon glyphicon-calendar"></span>', 'item' => 'agenda_index');
 $navs[] = array('guest' => false, 'url' => 'ticket', 'title' => 'Tickets', 'texte' => '<span class="glyphicon glyphicon-list-alt"></span>', 'item' => 'ticket_index');
-$navs[] = array('guest' => false, 'url' => 'theater', 'title' => 'Cinémas', 'texte' => '<span class="glyphicon glyphicon-picture"></span>', 'item' => 'ticket_index');
 
 $navs = array();
 $navs[] = array('guest' => true, 'url' => '', 'title' => 'Accueil', 'texte' => '<span class="glyphicon glyphicon-home"></span> Accueil', 'item' => 'index');
 $navs[] = array('guest' => true, 'url' => 'film', 'title' => 'Tous les films', 'texte' => 'Tous les films', 'item' => 'film_index');
 $navs[] = array('guest' => true, 'url' => 'agenda', 'title' => 'Agenda', 'texte' => 'Agenda', 'item' => 'agenda_index');
 $navs[] = array('guest' => false, 'url' => 'ticket', 'title' => 'Tickets', 'texte' => 'Tickets', 'item' => 'ticket_index');
-$navs[] = array('guest' => false, 'url' => 'theater', 'title' => 'Cinémas', 'texte' => 'Cinémas', 'item' => 'theater_index');
 
 ?>
 
@@ -35,6 +33,7 @@ $navs[] = array('guest' => false, 'url' => 'theater', 'title' => 'Cinémas', 'te
   else {
     $icons = array();
     $icons[] = array('url' => 'logout/'.$user['id'].'/'.pun_hash($user['id'].pun_hash(get_remote_address())), 'title' => 'Se déconnecter', 'texte' => '<span class="glyphicon glyphicon-off"></span> '.$user['realname']);
+    $icons[] = array('url' => 'theater', 'title' => 'Mes Cinémas', 'texte' => '<span class="glyphicon glyphicon glyphicon-facetime-video"></span>');
     $icons[] = array('url' => 'friend', 'title' => 'Amis', 'texte' => '<img src="img/icons/friend.png" with="21" height="14" />');
     $icons[] = array('url' => 'user/'.$user['id'].'/wishlist', 'title' => 'Whislist', 'texte' => '<span class="glyphicon glyphicon glyphicon-gift"></span>');
     $icons[] = array('url' => 'user/'.$user['id'].'/stats', 'title' => 'Statistiques', 'texte' => '<span class="glyphicon glyphicon glyphicon-signal"></span>');
