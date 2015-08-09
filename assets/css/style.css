@@ -210,3 +210,16 @@ border: 0px solid transparent;
   font-size: 1.2em;
   margin-top: 20px
 }
+
+footer {
+  position: absolute;
+  bottom: 0;
+  color: grey;
+  font-size: 0.9em;
+}
+
+footer a, footer a:hover, footer a:active {
+  color: grey;
+  text-decoration: none;
+}
+

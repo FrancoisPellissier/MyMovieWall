@@ -46,7 +46,8 @@ if(!$user['is_guest']) {
 			<div class="panel-body">
 				<form method="post" action="ticket/<?php echo $ticket['ticketid'] ?>/comment">
 					<textarea name="message" class="form-control" rows="8"></textarea>
-					<p><br /><input class="btn btn-primary" type="submit" value="Poster" /></p>
+					<p>Vous pouvez mettre en forme votre ticket en utilisant le Markdown : <a href='syntaxe'>Syntaxe</a>.</p>
+					<p><input class="btn btn-primary" type="submit" value="Poster" /></p>
 				</form>
 			</div>
 		</div>

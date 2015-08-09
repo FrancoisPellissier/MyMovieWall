@@ -1,12 +1,3 @@
 # A propos
-
 ## Présentation
-
-## Fonctionnalité
-
-### ?
-
-### Noter un film
-
-### Gérer votre bibliothèque
-
+Ce site a pour vocation de de vous permettre de suivre votre activité filmographique en prévoyant et répertoriant vos sorties cinémas ainsi que votre vidéothèque.

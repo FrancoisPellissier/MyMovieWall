@@ -81,6 +81,10 @@ else {
           <?php
         }
         ?>
+
+        <footer>
+          <p><a href="about">A propos</a> - <a href="mentions">Mentions légales</a></p>
+        </footer>
       </div>
     <?php
   }
