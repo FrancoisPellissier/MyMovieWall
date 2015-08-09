@@ -12,7 +12,7 @@ if(!empty($films)) {
 			echo "\n\t".'<div class="row">';
 		}
 
-		echo "\n\t".'<div class="col-xs-4 col-sm-3 col-md-2"><a href="film/'.$film['movieid'].'"><img src="'.library\Image::getUrl('movie', $film['movieid']).'" alt="Affiche du film" title="'.$film['titrevf'].'" class="img-rounded"></a><br />'.$film['rate'].'</div>';
+		echo "\n\t".'<div class="col-xs-4 col-sm-3 col-md-2"><a href="film/'.$film['movieid'].'"><img src="'.library\Image::getUrl('movie', $film['movieid']).'" alt="Affiche du film" title="'.$film['titrevf'].'" class="img-rounded"></a>'.(isset($towatch[$film['movieid']]) ? '<img src="img/icons/play.png" class="toview" />' : '').'</div>';
 	}
 }
 ?>

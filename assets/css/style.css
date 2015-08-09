@@ -173,3 +173,12 @@ border: 0px solid transparent;
   background-color: #428bca;
   color: #FFFFFF;
 }
+
+.toview {
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  left:145px;
+  top: -4px;
+  z-index: 10;
+}

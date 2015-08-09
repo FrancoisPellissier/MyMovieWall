@@ -220,7 +220,7 @@ class User extends \library\BaseModel {
 
         $wish = array();
         while($cur = $this->db->fetch_assoc($result)) {
-            $wish[] = $cur;
+            $wish[$cur['movieid']] = $cur;
         }
         return $wish;
     }

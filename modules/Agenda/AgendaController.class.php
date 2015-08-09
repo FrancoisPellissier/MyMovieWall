@@ -10,6 +10,7 @@ class AgendaController extends \library\BaseController {
 		// On récupère les sorties à venir
 		$agenda = new Agenda();
 		$this->view->with('films', $agenda->getFilms());
+		$this->view->with('towatch', $this->user->getToWatchList(1));
 		
 		$this->makeView();
 	}
