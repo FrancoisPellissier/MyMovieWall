@@ -5,7 +5,7 @@
 BP 70109  
 57201 Sarreguemines Cedex  
 
-[www.1and1.fr](www.1and1.fr)  
+[www.1and1.fr](http://www.1and1.fr)  
 RCS Sarreguemines B 431 303 775  
 SIRET 431 303 775 000 16  
 APE 642 B
