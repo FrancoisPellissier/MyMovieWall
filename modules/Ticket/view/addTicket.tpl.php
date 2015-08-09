@@ -14,7 +14,8 @@
 						</select></p>
 					
 					<textarea name="message" class="form-control" rows="8" placeholder="Votre message ici"></textarea>
-					<p><br /><input class="btn btn-primary" type="submit" value="Créer" /></p>
+					<p>Vous pouvez mettre en forme votre ticket en utilisant le Markdown : <a href='syntaxe'>Syntaxe</a>.</p>
+					<p><input class="btn btn-primary" type="submit" value="Créer" /></p>
 				</form>
 			</div>
 		</div>

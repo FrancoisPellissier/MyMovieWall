@@ -1,0 +1,45 @@
+# Syntaxe Markdown
+Vous trouverez ci-dessous la syntaxe a utiliser pour mettre en forme vos messages dans la section "Ticket".
+
+## Retour à la ligne
+Un simple retour à la ligne ne suffit pas pour réaliser un retour à la ligne, vous devez soit :
+* Faire deux sauts de lignes pour générer un nouveau paragraphe
+* Finir votre ligne par deux espaces pour obtenir un simple saut de ligne
+
+## Syle
+Vous avez la possibilité de mettre votre texte *italique* ou en **gras** en entourant le segment de phrase avec le caractère \*.
+```
+Utilisez 1 seul * pour mettre en *italique*
+
+Utilisez 2 * pour mettre en **gras**
+```
+
+## Liens
+La création d'un lien s'effectue en deux parties :
+1. Indiquer le texte du lien entre crochets [Texte]
+2. Indiquer l'url du lien entre parenthèse (url)
+
+Ce qui nous donne [Texte](url)
+
+## Listes
+### Non ordonnées
+Vous pouvez créer une liste d'éléments en utilisant le tiret (\-) ou l'étoile (\*). Ainsi :
+```
+* Element 1
+* Element 2
+```
+Donne :
+* Element 1
+* Element 2
+
+### Ordonnées
+Pour créer une liste numérotées, il faut préfixer chaque élément de la liste par 1.
+```
+1. Element 1
+1. Element 2
+1. Element 3
+```
+Donne :
+1. Element 1
+1. Element 2
+1. Element 3

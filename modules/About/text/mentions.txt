@@ -1,0 +1,21 @@
+
+## Hébergeur
+1&1 Internet SARL  
+7, place de la Gare, BP 70109, 57201 Sarreguemines Cedex  
+0825 080 020 (appel facturé 0,15 €/min depuis un poste fixe en France métropolitaine).  
+support [at] 1and1.fr.  
+[www.1and1.fr](www.1and1.fr)  
+SARL au capital de 100 000 EUR  
+RCS Sarreguemines B 431 303 775  
+SIRET 431 303 775 000 16  
+APE 642 B
+
+## Données personnelles
+Conformément à la loi Informatique et Libertés du 6 Janvier 1978, et compte tenu de la loi du 21 juin 2004, intitulée loi pour la confiance dans l'économie numérique, vous disposez d'un droit d'accès, de rectification, de modification et de suppression des données personnelles que vous nous avez communiquées. Pour ce faire, vous pouvez nous envoyer un email à l'adresse : f_pellissier [at] hotmail.com.
+
+## Cookies
+Certaines pages peuvent contenir un marqueur témoin («  cookie  »). Un cookie est un fichier de taille réduite stocké sur votre ordinateur, utilisé à la fois pour faciliter votre navigation sur le site ainsi que dans un but statistique. Ces données sont principalement le nombre de pages vues, de visiteurs, de visites ainsi que l'activité des visiteurs sur notre site et leur fréquence de retour. Ces données ne sont donc pas recueillies pour nous permettre d'identifier l'identité des personnes naviguant sur le site.
+Vous êtes informé que vous pouvez vous opposer à l'enregistrement de ces "cookies" en configurant votre ordinateur selon les modalités détaillées sur le site de la CNIL : (http://www.cnil.fr/index.php?id=131)
+
+## Données
+L'alimentation du site se base exclusivement sur les données disponibles sur Allocine, récupérées en utilisant l'[API Allocine Helper](https://github.com/etienne-gauvin/api-allocine-helper).
