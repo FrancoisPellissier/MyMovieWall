@@ -23,7 +23,7 @@
 			}
 			?>
 			<textarea name="message" class="form-control" rows="8"><?php echo pun_htmlspecialchars($comment['message']); ?></textarea>
-			<p>Vous pouvez mettre en forme votre ticket en utilisant le Markdown : <a href='syntaxe'>Syntaxe</a>.</p>
+			<p>Vous pouvez mettre en forme votre ticket en utilisant le Markdown : <a href="syntaxe" onclick="window.open(this.href); return false;">Syntaxe</a>.</p>
 			<p><input class="btn btn-primary" type="submit" value="Modifier" /></p>
 		</form>
 	</div>
