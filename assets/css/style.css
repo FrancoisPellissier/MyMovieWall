@@ -178,7 +178,7 @@ border: 0px solid transparent;
   width: 35px;
   height: 35px;
   position: absolute;
-  left:145px;
+  right:10px;
   top: -4px;
   z-index: 10;
 }
