@@ -12,7 +12,15 @@ if(!empty($films)) {
 			echo "\n\t".'<div class="row">';
 		}
 
-		echo "\n\t".'<div class="col-xs-4 col-sm-3 col-md-2"><a href="film/'.$film['movieid'].'"><img src="'.library\Image::getUrl('movie', $film['movieid']).'" alt="Affiche du film" title="'.$film['titrevf'].'" class="img-rounded"></a>'.(isset($towatch[$film['movieid']]) ? '<img src="img/icons/play.png" class="toview" />' : '').'</div>';
+		echo "\n\t".'<div class="col-xs-4 col-sm-3 col-md-2"><a href="film/'.$film['movieid'].'"><img src="'.library\Image::getUrl('movie', $film['movieid']).'" alt="Affiche du film" title="'.$film['titrevf'].'" class="img-rounded"></a>';
+
+		if(!$user['is_guest']) {
+			if(isset($towatch[$film['movieid']]))
+				echo '<img src="img/icons/play.png" class="toview" />';
+			else
+				echo '<a title="Indiquer comme à voir" href="film/'.$film['movieid'].'/addWish/view" class="addWish"><img src="img/icons/add.png" class="toview" /></a>';
+			}
+		echo '</div>';
 	}
 }
 ?>
