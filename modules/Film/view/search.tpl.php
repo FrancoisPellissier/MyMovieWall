@@ -13,7 +13,7 @@ if(isset($datas)) {
 }
 
 if(!$user['is_guest'] && !empty($datasAPI)) {
-
+	echo '<div id="results">';
 	echo '<p>Vous ne trouvez pas le film que vous cherchez ? Ajoutez le :</p>';
 	foreach($datasAPI AS $data) {
 
@@ -29,6 +29,7 @@ if(!$user['is_guest'] && !empty($datasAPI)) {
 	  <?php
 	  echo '</div>';
 	}
+	echo "\n\t".'</div>';
 	echo "\n\t".'</div>';
 }
 ?>
