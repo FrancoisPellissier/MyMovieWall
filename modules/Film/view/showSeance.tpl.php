@@ -39,5 +39,5 @@ if(!empty($seances)) {
     }
 }
 else {
-    echo "\n\t".'<br /><p class="alert alert-info">Vous devez avoir sélectionné au moins un cinéma pour accéder à ses horaires : <a href="theater">ajouter un cinéma</a>.</p>';
+    echo "\n\t".'<br /><p class="alert alert-info">Vous devez avoir sélectionné au moins un cinéma dans votre profil pour accéder à ses horaires : <a href="theater">ajouter un cinéma</a>.</p>';
 }

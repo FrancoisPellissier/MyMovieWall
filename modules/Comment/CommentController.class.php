@@ -92,6 +92,7 @@ class CommentController extends \library\BaseController {
 		}
 		else {
 			$this->menu_actif = 'ticket_index';
+			$this->side_section = 'ticket';
 			$this->titre_page = 'Modifier le commentaire';
 			
 			$this->view->with('ticket', $ticket->infos);

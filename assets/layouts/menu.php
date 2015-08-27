@@ -19,19 +19,14 @@ $navs[] = array('guest' => false, 'url' => 'ticket', 'title' => 'Tickets', 'text
     }
     ?>
   </ul>
-
   <?php
   if($user['is_guest']) {
      echo '<p class="navbar-text navbar-right"><a href="login">Connexion <span class="glyphicon glyphicon-off"></span></a></p>';
   }
   else {
     $icons = array();
-    $icons[] = array('url' => 'logout/'.$user['id'].'/'.pun_hash($user['id'].pun_hash(get_remote_address())), 'title' => 'Se déconnecter', 'texte' => '<span class="glyphicon glyphicon-off"></span> '.$user['realname']);
-    $icons[] = array('url' => 'theater', 'title' => 'Mes Cinémas', 'texte' => '<span class="glyphicon glyphicon glyphicon-facetime-video"></span>');
-    $icons[] = array('url' => 'friend', 'title' => 'Amis', 'texte' => '<img src="img/icons/friend.png" with="21" height="14" />');
-    $icons[] = array('url' => 'user/'.$user['id'].'/wishlist', 'title' => 'Whislist', 'texte' => '<span class="glyphicon glyphicon glyphicon-gift"></span>');
-    $icons[] = array('url' => 'user/'.$user['id'].'/stats', 'title' => 'Statistiques', 'texte' => '<span class="glyphicon glyphicon glyphicon-signal"></span>');
-    $icons[] = array('url' => 'user/'.$user['id'].'/edit', 'title' => 'Profil', 'texte' => '<span class="glyphicon glyphicon-cog"></span>');
+    $icons[] = array('url' => 'logout/'.$user['id'].'/'.pun_hash($user['id'].pun_hash(get_remote_address())), 'title' => 'Se déconnecter', 'texte' => '<span class="glyphicon glyphicon-off"></span>');
+    $icons[] = array('url' => 'user/'.$user['id'].'/edit', 'title' => 'Profil', 'texte' => '<span class="glyphicon glyphicon-cog"></span> '.$user['realname']);
 
     echo '<p id="navbar-icons" class="navbar-text navbar-right">';
     foreach($icons AS $icon) {

@@ -10,6 +10,8 @@ abstract class BaseController {
 	protected $titre_page;
 	protected $menu_actif;
 	protected $item_actif;
+	protected $side_section;
+	protected $site_item;
 	protected $user;
 	protected $jsfile;
 
@@ -45,6 +47,10 @@ abstract class BaseController {
 		$this->view->with('titre_page', $this->titre_page);
 		$this->view->with('menu_actif', $this->menu_actif);
 		$this->view->with('item_actif', $this->item_actif);
+
+		$this->view->with('side_section', $this->side_section);
+		$this->view->with('side_item', $this->side_item);
+
 		$this->view->with('user', $this->user->infos);
 		$this->view->with('jsfile', $this->jsfile);
 		$this->view->make();

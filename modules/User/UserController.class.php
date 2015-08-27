@@ -33,7 +33,8 @@ class UserController extends \library\BaseController {
 
 	public function showResume() {
 		$this->titre_page = 'Résumé';
-		$this->menu_actif = 'index';
+		$this->side_section = 'site';
+		$this->side_item = '';
 
 		$this->view->with('lastViewCine', $this->curUser->getLastViews('1'));
 		$this->view->with('lastViewTele', $this->curUser->getLastViews('2'));
@@ -43,7 +44,8 @@ class UserController extends \library\BaseController {
 
 	public function showBiblio() {
 		$this->titre_page = 'Liste des films';
-		$this->menu_actif = 'biblio';
+		$this->side_section = 'site';
+		$this->side_item = 'biblio';
 
 		// On récupère l'ensemble des genres pour les passer dans la vue
 		$genres = $this->curUser->getGenres();
@@ -78,7 +80,8 @@ class UserController extends \library\BaseController {
 			$type = 'all';
 
 		$this->titre_page = 'Derniers films vus';
-		$this->menu_actif = 'lastview';
+		$this->side_section = 'site';
+		$this->side_item = 'lastview';
 		$this->view->with('lastView', $this->curUser->getLastViews($type, false));
 		$this->view->with('type', $type);
 		$this->makeView();
@@ -106,7 +109,8 @@ class UserController extends \library\BaseController {
 		}
 
 		$this->titre_page = 'Profil';
-		$this->menu_actif = 'user_edit';
+		$this->side_section = 'profil';
+		$this->side_item = 'general';
 		$this->view->with('modifRealname', $modifRealname);
 		$this->view->with('modifyPassword', $modifyPassword);
 		$this->makeView();
@@ -118,7 +122,8 @@ class UserController extends \library\BaseController {
 			$this->response->redirect('user/'.$this->curUser->infos['id']);
 
 		$this->titre_page = 'Wishlist';
-		$this->menu_actif = 'wishlist';
+		$this->side_section = 'site';
+		$this->side_item = 'wishlist';
 		$this->view->with('wishlist', $this->curUser->getWishlist());
 		$this->makeView();
 	}
@@ -136,7 +141,8 @@ class UserController extends \library\BaseController {
 		}
 
 		$this->titre_page = 'To Watch List';
-		$this->menu_actif = 'towatchlist';
+		$this->side_section = 'site';
+		$this->side_item = 'towatchlist';
 		$this->view->with('films', $this->curUser->getToWatchList($type));
 		$this->view->with('type', $type);
 		$this->makeView();
@@ -155,7 +161,8 @@ class UserController extends \library\BaseController {
 		}
 
 		$this->titre_page = 'Statistiques';
-		$this->menu_actif = 'stats';
+		$this->side_section = 'site';
+		$this->side_item = 'stats';
 		$this->view->with('stats', $this->curUser->getNbViewsMonth($type));
 		$this->view->with('type', $type);
 

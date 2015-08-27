@@ -5,6 +5,7 @@ class IndexController extends \library\BaseController {
 	public function showIndex() {
 		$this->titre_page = 'Accueil';
 		$this->menu_actif = 'index';
+		$this->side_section = 'site';
 
 		$index = new Index();
 

@@ -5,7 +5,8 @@ class TicketController extends \library\BaseController {
 	public function showLastActivites() {
 		$this->titre_page = 'Tickets';
 		$this->menu_actif = 'ticket_index';
-		$this->item_actif = 'recent';
+		$this->side_section = 'ticket';
+		$this->side_item = 'recent';
 
 		$ticket = new \modules\Ticket\Ticket();
 		$this->view->with('activites', $ticket->getLastActivites());
@@ -15,7 +16,8 @@ class TicketController extends \library\BaseController {
 	public function showList() {
 		$this->titre_page = 'Tickets';
 		$this->menu_actif = 'ticket_index';
-		$this->item_actif = 'all';
+		$this->side_section = 'ticket';
+		$this->side_item = 'all';
 
 		$ticket = new \modules\Ticket\Ticket();
 		$this->view->with('tickets', $ticket->getList());
@@ -29,6 +31,7 @@ class TicketController extends \library\BaseController {
 
 		$this->titre_page = 'Ouvrir un ticket';
 		$this->menu_actif = 'ticket_index';
+		$this->side_section = 'ticket';
 
 		$ticket = new \modules\Ticket\Ticket();
 		$this->view->with('type', $ticket->getType());
@@ -102,6 +105,7 @@ class TicketController extends \library\BaseController {
 		}
 		else {
 			$this->menu_actif = 'ticket_index';
+			$this->side_section = 'ticket';
 			$this->titre_page = pun_htmlspecialchars($ticket->infos['ticketname']);
 			
 			$this->view->with('ticket', $ticket->infos);
@@ -151,6 +155,7 @@ class TicketController extends \library\BaseController {
 		}
 		else {
 			$this->menu_actif = 'ticket_index';
+			$this->side_section = 'ticket';
 			$this->titre_page = 'Modifier le statut du ticket';
 			
 			$this->view->with('ticket', $ticket->infos);

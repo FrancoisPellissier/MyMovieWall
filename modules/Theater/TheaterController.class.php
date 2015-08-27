@@ -13,7 +13,8 @@ class TheaterController extends \library\BaseController {
 	// Afficher mes cinémas
 	public function myTheaters() {
 		$this->titre_page = 'Mes cinémas';
-		$this->menu_actif = 'theater_index';
+		$this->side_section = 'profil';
+		$this->side_item = 'theater';
 		
 		$this->user->getTheaters();
 		$this->view->with('theaters', $this->user->infos['theaters']);
@@ -23,7 +24,8 @@ class TheaterController extends \library\BaseController {
 	// Chercher un cinéma par code postal
 	public function search() {
 		$this->titre_page = 'Chercher un cinéma';
-		$this->menu_actif = 'theater_index';
+		$this->side_section = 'profil';
+		$this->side_item = 'theater';
 		$this->makeView();
 	}
 
@@ -42,7 +44,8 @@ class TheaterController extends \library\BaseController {
 		$return = $allocine->searchTheater($keyword);
 
 		$this->titre_page = 'Chercher un cinéma';
-		$this->menu_actif = 'theater_index';
+		$this->side_section = 'profil';
+		$this->side_item = 'theater';
 		$this->jsfile = 'theater';
 		$this->view->with('theaters', $return);
 		$this->view->with('keywords', $keyword);

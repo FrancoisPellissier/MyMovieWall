@@ -6,6 +6,7 @@ class FilmController extends \library\BaseController {
 	public function index() {
 		$this->titre_page = 'Liste des films';
 		$this->menu_actif = 'film_index';
+		$this->side_section = 'site';
 
 		$film = new \modules\Film\Film();
 		$films = $film->getFilms();
@@ -17,6 +18,7 @@ class FilmController extends \library\BaseController {
 	public function filmsGenre() {
 		$this->titre_page = 'Liste des films';
 		$this->menu_actif = 'film_index';
+		$this->side_section = 'site';
 
 		// On récupère l'ensemble des genres pour les passer dans la vue
 		$genre = new \modules\Genre\Genre();
@@ -61,6 +63,7 @@ class FilmController extends \library\BaseController {
 			$this->view->with('keyword', $keyword);
 		}
 		$this->titre_page = 'Ajouter un film';
+		$this->side_section = 'site';
 		$this->jsfile = 'film_searchAllocine';
 		$this->makeView();
 	}
@@ -73,6 +76,7 @@ class FilmController extends \library\BaseController {
 		$this->view->with('keyword', $this->request->postData('keyword'));
 		
 		$this->titre_page = 'Chercher un film';
+		$this->side_section = 'site';
 
 		// Si on est connecté, on propose des films de l'API à ajouter
 		if(!$this->user->infos['is_guest']) {
@@ -136,6 +140,7 @@ class FilmController extends \library\BaseController {
 			$film->getInfos();
 			$this->titre_page = $film->infos['titrevf'];
 			$this->menu_actif = 'film_index';
+			$this->side_section = 'site';
 
 			$this->user->hasFilm($id);
 			$this->user->hasViewFilm($id);

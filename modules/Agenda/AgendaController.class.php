@@ -6,6 +6,7 @@ class AgendaController extends \library\BaseController {
 	public function showAgenda() {
 		$this->titre_page = 'Agenda';
 		$this->menu_actif = 'agenda_index';
+		$this->side_section = 'site';
 		$this->jsfile = 'agenda';
 
 		// On récupère les sorties à venir

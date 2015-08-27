@@ -13,6 +13,8 @@ class FriendController extends \library\BaseController {
 	public function index() {
 		$this->titre_page = 'Amis';
 		$this->menu_actif = 'friend';
+		$this->side_section = 'site';
+		$this->side_item = 'friend';
 
 		$friend = new Friend($this->user->infos);
 
@@ -25,6 +27,8 @@ class FriendController extends \library\BaseController {
 	public function search() {
 		$this->titre_page = 'Amis - Recherche';
 		$this->menu_actif = 'friend';
+		$this->side_section = 'site';
+		$this->side_item = 'friend';
 
 		$friend = new Friend($this->user->infos);
 		$this->view->with('friends', $friend->getFriends());
