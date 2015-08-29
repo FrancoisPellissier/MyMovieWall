@@ -23,6 +23,7 @@ class PersonController extends \library\BaseController {
 		
 		$this->titre_page = $person->infos['fullname'];
 		$this->view->with('person', $person->infos);
+		$this->side_section = 'site';
 		$this->makeView();
 	}
 }
