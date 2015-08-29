@@ -11,30 +11,11 @@ foreach($liens AS $lien) {
 }
 ?>
 </p>
+<div class="row">
 <?php
-$mois = '';
-
 if(!empty($lastView)) {
 	foreach($lastView AS $film) {
-		if($mois != substr($film['viewdate'], 0, 7)) {
-
-			if($mois != '')
-				echo "\n\t".'</div>';
-
-			if($film['viewdate'] == null) {
-				echo '<h3>Non datés</h3>';
-				$mois = substr($film['viewdate'], 0, 7);
-			}
-			else {
-				echo '<h3>'.ucwords(library\Date::formatDate($film['viewdate'], 'mois annee')).'</h3>';
-				$mois = substr($film['viewdate'], 0, 7);
-			}
-			
-
-			echo "\n\t".'<div class="row">';
-		}
-
-		echo "\n\t".'<div class="col-xs-4 col-sm-3 col-md-2"><a href="film/'.$film['movieid'].'"><img src="'.library\Image::getUrl('movie', $film['movieid']).'" alt="Affiche du film" title="'.$film['titrevf'].'" class="img-rounded"></a><br />'.$film['rate'].'</div>';
+		echo "\n\t".'<div class="col-xs-4 col-sm-3 col-md-2"><a href="film/'.$film['movieid'].'"><img src="'.library\Image::getUrl('movie', $film['movieid']).'" alt="Affiche du film" title="'.$film['titrevf'].($film['viewdate'] != null ? ' - '.\library\Date::UStoFr($film['viewdate']) : '').'" class="img-rounded"></a><br />'.$film['rate'].'</div>';
 	}
 }
 ?>
