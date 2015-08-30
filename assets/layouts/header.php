@@ -5,7 +5,7 @@
 		<base href="<?php echo WWW_ROOT; ?>" />
 		<link href="assets/css/bootstrap.css" rel="stylesheet">
 		<link href="assets/css/style.css" rel="stylesheet">
-		<title><?php echo $titre_page; ?> - Movie</title>
+		<title><?php echo $titre_page; ?> - My Movie Wall</title>
 
 		<link rel="stylesheet" href="assets/js/jquery/jquery-ui-1.11.2/jquery-ui.css">
 		<script src="assets/js/jquery/jquery-1.11.0.min.js"></script>
@@ -26,8 +26,8 @@
 <body>
 <?php
 
-// if(!$user['is_guest']) {
-if($user['id'] == 2) {
+// if($user['id'] == 2) {
+if(!$user['is_guest']) {
 	?>
 	<div id="fb-root"></div>
 	<script>(function(d, s, id) {
