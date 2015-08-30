@@ -21,7 +21,7 @@ $side = array();
 $nav = array();
 $nav[] = array('guest' => false, 'me' => true, 'url' => 'user/'.$user['id'].'/edit', 'title' => '<span class="glyphicon glyphicon-cog"></span> Général', 'item' => 'general');
 $nav[] = array('guest' => false, 'me' => true, 'url' => 'theater', 'title' => '<span class="glyphicon glyphicon glyphicon-facetime-video"></span> Cinémas', 'item' => 'theater');
-// $nav[] = array('guest' => false, 'me' => true, 'url' => 'user/'.$user['id'].'/notification', 'title' => '<span class="glyphicon glyphicon-envelope"></span> Notifications', 'item' => 'notification');
+$nav[] = array('guest' => false, 'me' => true, 'url' => 'user/'.$user['id'].'/notification', 'title' => '<span class="glyphicon glyphicon-envelope"></span> Notifications', 'item' => 'notification');
 $titre = $user['realname'];
 $url = 'user/'.$user['id'].'/edit';
 $side['profil'] = array('url' => $url,'titre' => $titre, 'navs' => $nav);
@@ -30,6 +30,7 @@ $side['profil'] = array('url' => $url,'titre' => $titre, 'navs' => $nav);
 $nav = array();
 $nav[] = array('guest' => true, 'me' => true, 'url' => 'ticket', 'title' => 'Activité récente', 'item' => 'recent');
 $nav[] = array('guest' => true, 'me' => true, 'url' => 'ticket/list', 'title' => 'Tous les tickets', 'item' => 'all');
+
 $titre = 'Ticket';
 $url = 'ticket';
 $side['ticket'] = array('url' => $url, 'titre' => $titre, 'navs' => $nav);
@@ -89,3 +90,8 @@ if(isset($side[$side_section])) {
 }
 ?>
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+<?php
+  if($_SERVER['SERVER_NAME'] != 'mymoviewall.com') {
+    echo "\n\t".'<div class="alert alert-info" role="alert">Le site a changé d\'adresse, vous pouvez y accéder via <a href="http://www.mymoviewall.com">www.MyMovieWall.com</a>. Si vous voyez ce message, c\'est qu\'il est temps de mettre à jour vos favoris !</div>';
+  }
