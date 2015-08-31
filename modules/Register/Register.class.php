@@ -87,12 +87,12 @@ class Register extends \modules\User\User {
         $mail_subject = trim(substr($mail_tpl, 8, $first_crlf-8));
         $mail_message = trim(substr($mail_tpl, $first_crlf));
 
-        $mail_subject = str_replace('<board_title>', 'Movie List', $mail_subject);
+        $mail_subject = str_replace('<board_title>', 'My Movie Wall', $mail_subject);
         $mail_message = str_replace('<base_url>', WWW_ROOT, $mail_message);
         $mail_message = str_replace('<username>', $username, $mail_message);
         $mail_message = str_replace('<password>', $password, $mail_message);
         $mail_message = str_replace('<login_url>', WWW_ROOT.'login', $mail_message);
-        $mail_message = str_replace('<board_mailer>', 'Movie List', $mail_message);
+        $mail_message = str_replace('<board_mailer>', 'My Movie Wall', $mail_message);
 
         pun_mail($email, $mail_subject, $mail_message);
     }
