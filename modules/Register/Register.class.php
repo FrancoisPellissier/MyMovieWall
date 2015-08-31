@@ -12,7 +12,7 @@ class Register extends \modules\User\User {
         $errors = array();
 
         // Flood registration sur une adresse IP (1 heure)
-        $result = $this->db->query('SELECT 1 FROM '.$this->table.' WHERE registration_ip=\''.$this->db->escape(get_remote_address()).'\' AND registered>'.(time() - 3600)) or error('Impossible de tester la précédente inscription sur cette adresse IP', __FILE__, __LINE__, $db->error());
+        $result = $this->db->query('SELECT 1 FROM '.$this->table.' WHERE registration_ip=\''.$this->db->escape(get_remote_address()).'\' AND registered>'.(time() - 3600)) or error('Impossible de tester la précédente inscription sur cette adresse IP', __FILE__, __LINE__, $this->db->error());
 
         if ($this->db->num_rows($result))
             $errors['ip'] = 4;

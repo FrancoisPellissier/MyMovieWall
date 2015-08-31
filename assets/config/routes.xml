@@ -39,6 +39,7 @@
  	<route url="/user/([0-9]+)/biblio/genre/([0-9]+)" module="User" action="showBiblio" vars="id,genreid" />
  	<route url="/user/([0-9]+)/stats" module="User" action="showStats" vars="id" />
  	<route url="/user/([0-9]+)/stats/([a-z]+)" module="User" action="showStats" vars="id,type" />
+ 	<route url="/user/([0-9]+)/notification" module="User" action="notification" vars="id" />
 
  	<route url="/friend" module="Friend" action="index" />
  	<route url="/friend/search" module="Friend" action="search" />
@@ -53,6 +54,9 @@
 	<route url="/ticket/add/post" module="Ticket" action="addTicketPost" />
 	<route url="/ticket/([0-9]+)" module="Ticket" action="showTicket" vars="id" />
 	<route url="/ticket/([0-9]+)/status" module="Ticket" action="editStatus" vars="id" />
+
+	<route url="/ticket/([0-9]+)/sub" module="Ticket" action="subscribe" vars="id" />
+	<route url="/ticket/([0-9]+)/unsub" module="Ticket" action="unsubscribe" vars="id" />
 
 	<route url="/ticket/([0-9]+)/comment" module="Comment" action="addComment" vars="id" />
 	<route url="/ticket/([0-9]+)/comment/([0-9]+)/edit" module="Comment" action="editComment" vars="tid,id" />

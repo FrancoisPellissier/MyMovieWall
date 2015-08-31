@@ -15,6 +15,9 @@
 					
 					<textarea name="message" class="form-control" rows="8" placeholder="Votre message ici"></textarea>
 					<p>Vous pouvez mettre en forme votre ticket en utilisant le Markdown : <a href="syntaxe" onclick="window.open(this.href); return false;">Syntaxe</a>.</p>
+					<div class="checkbox">
+					   <label><input type="checkbox" name="subscribe"<?php echo ($user['notif_ticket'] ? ' checked' : ''); ?>> Être prévenu par email des mises à jour du ticket.</label>
+					 </div>
 					<p><input class="btn btn-primary" type="submit" value="Créer" /></p>
 				</form>
 			</div>

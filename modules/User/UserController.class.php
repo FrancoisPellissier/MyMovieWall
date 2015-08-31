@@ -172,4 +172,35 @@ class UserController extends \library\BaseController {
 
 		$this->makeView();
 	}
+
+	public function notification() {
+		// On redirige vers l\'accueil si ce n'est pas notre profil
+		if($this->user->infos['id'] != $this->curUser->infos['id'])
+			$this->response->redirect();
+
+		// Le formulaire a été validé ?
+		if($this->request->postExists('form_sent')) {
+
+			$values = array(
+				'notif_ticket' => 0
+				);
+
+			foreach($values AS $key=>$value) {
+				if($this->request->postExists($key)) {
+					$values[$key] = 1;
+					$this->user->infos[$key] = 1;
+				}
+				else {
+					$this->user->infos[$key] = 0;
+				}
+			}
+
+			$this->user->changeNotification($values);			
+			$this->view->with('valid', true);
+		}
+		$this->titre_page = 'Notifications';
+		$this->side_section = 'profil';
+		$this->side_item = 'notification';
+		$this->makeView();
+	}
 }

@@ -91,6 +91,12 @@ class TicketController extends \library\BaseController {
 		$ticket->hydrate(array('ticketid' => $id));
 		$ticket->edit(array('firstcommentid' => $new_id));
 
+		// Gestion de l'inscription/désinscription
+		if($this->request->postExists('subscribe'))
+			$ticket->subscribe($this->user->infos['id'], true);
+		else
+			$ticket->subscribe($this->user->infos['id'], false);
+
 		$this->response->redirect('ticket/'.$id);
 	}
 
@@ -112,6 +118,7 @@ class TicketController extends \library\BaseController {
 			$this->view->with('comments', $ticket->getComment());
 			$this->view->with('status', $ticket->getStatus());
 			$this->view->with('type', $ticket->getType());
+			$this->view->with('isSubscribe', $this->user->isSubscribe($id));
 
 			$this->makeView();
 		}
@@ -163,4 +170,30 @@ class TicketController extends \library\BaseController {
 			$this->makeView();
 		}
 	}
+
+	public function subscribe() {
+		$id = intval($this->request->getData('id'));
+		$ticket = new \modules\Ticket\Ticket();
+		$ticket->exists($id);
+		if(!$ticket->exists) {
+			$this->response->redirect('ticket');
+		}
+		else {
+			$ticket->subscribe($this->user->infos['id'], true);
+			$this->response->redirect('ticket/'.$id);
+		}
+	}
+
+	public function unsubscribe() {
+		$id = intval($this->request->getData('id'));
+		$ticket = new \modules\Ticket\Ticket();
+		$ticket->exists($id);
+		if(!$ticket->exists) {
+			$this->response->redirect('ticket');
+		}
+		else {
+			$ticket->subscribe($this->user->infos['id'], true);
+			$this->response->redirect('ticket/'.$id);
+		}
+	}	
 }

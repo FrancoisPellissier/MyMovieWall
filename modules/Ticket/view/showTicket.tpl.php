@@ -37,6 +37,13 @@ foreach($comments AS $comment) {
 <?php
 }
 if(!$user['is_guest']) {
+
+	// L'utilisateur est-il abonné ?
+	if($isSubscribe)
+		echo "\n\t".'<p><a href="ticket/'.$ticket['ticketid'].'/unsub">Se désabonner du ticket pour ne plus recevoir les mises à jour par email</a></p>';
+	else
+		echo "\n\t".'<p><a href="ticket/'.$ticket['ticketid'].'/sub">S\'abonner au ticket pour recevoir les mises à jour par email</a></p>';
+
 ?>
 <div class="row">
 	<div class="col-xs-8 col-sm-8 col-md-8">
@@ -47,6 +54,9 @@ if(!$user['is_guest']) {
 				<form method="post" action="ticket/<?php echo $ticket['ticketid'] ?>/comment">
 					<textarea name="message" class="form-control" rows="8"></textarea>
 					<p>Vous pouvez mettre en forme votre ticket en utilisant le Markdown : <a href="syntaxe" onclick="window.open(this.href); return false;">Syntaxe</a>.</p>
+					<div class="checkbox">
+					   <label><input type="checkbox" name="subscribe"<?php echo ($isSubscribe || $user['notif_ticket'] ? ' checked' : ''); ?>> Être prévenu par email des mises à jour du ticket.</label>
+					 </div>
 					<p><input class="btn btn-primary" type="submit" value="Poster" /></p>
 				</form>
 			</div>

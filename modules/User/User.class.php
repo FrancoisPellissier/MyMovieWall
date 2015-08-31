@@ -56,6 +56,10 @@ class User extends \library\BaseModel {
             return false;
     }
 
+    public function changeNotification($values) {
+        $this->db->query(\library\Query::update('users', $values, array('id' => $this->infos['id']), false))or error($this->db->error());
+    }
+
     public function addBiblio($movieid, $type, $value = 1) {
         // Le film existe ?
         $film = new \modules\Film\Film();
@@ -330,5 +334,11 @@ class User extends \library\BaseModel {
 
        while($cur = $this->db->fetch_assoc($result))
             $this->infos['theaters'][$cur['code']] = $cur;
+    }
+
+    public function isSubscribe($ticketid) {
+        $result = $this->db->query('SELECT ticketid, userid FROM ticket_subscribe WHERE userid ='.intval($this->infos['id']).' AND ticketid = '.intval($ticketid))or error('Impossible de récupérer l\'abonnement au ticket', __FILE__, __LINE__, $this->db->error());
+
+        return ($this->db->num_rows($result) ? true : false);
     }
 }

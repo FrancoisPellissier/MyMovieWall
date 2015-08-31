@@ -37,8 +37,18 @@ class CommentController extends \library\BaseController {
 
 			$comment->hydrate($datas);
 			$new_id = $comment->add();
+			$comment->hydrate(array('commentid' => $new_id));
 
 			$ticket->edit(array());
+
+			// On envoi un email aux inscrits
+			$comment->sendComment($ticket, $this->user->infos['id']);
+
+			// Gestion de l'inscription/désinscription
+			if($this->request->postExists('subscribe'))
+				$ticket->subscribe($this->user->infos['id'], true);
+			else
+				$ticket->subscribe($this->user->infos['id'], false);
 
 			$this->response->redirect('ticket/'.$id.'#'.$new_id);
 		}

@@ -108,4 +108,14 @@ class Ticket extends \library\BaseModel {
 
 		return $return;
 	}
+
+	public function subscribe($userid, $type = true) {
+		if($type) {
+			$this->db->query('INSERT IGNORE INTO ticket_subscribe (userid, ticketid) VALUES('.intval($userid).','.$this->infos['ticketid'].')')or error('Impossible de supprimer l\'abonnement au ticket.', __FILE__, __LINE__, $this->db->error());
+		}
+
+		else {
+			$this->db->query('DELETE FROM ticket_subscribe WHERE userid = '.intval($userid).' AND ticketid = '.$this->infos['ticketid'])or error('Impossible de supprimer l\'abonnement au ticket.', __FILE__, __LINE__, $this->db->error());
+		}
+	}
 }
