@@ -83,7 +83,13 @@ if(isset($side[$side_section])) {
       }
       ?>
       <footer>
-        <p><a href="about">A propos</a> - <a href="mentions">Mentions légales</a></p>
+        <p>
+        <?php
+        if(!$user['is_guest'])
+          echo '<a href="ticket">Bugs / Suggestions</a><br />';
+        ?>
+          <a href="about" title="A propros">A propos</a> - <a href="mentions" title="Mentions légales">Mentions légales</a>
+        </p>
       </footer>
     </div>
   <?php

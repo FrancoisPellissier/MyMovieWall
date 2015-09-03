@@ -4,7 +4,7 @@ $navs = array();
 $navs[] = array('guest' => true, 'url' => '', 'title' => 'Accueil', 'texte' => '<span class="glyphicon glyphicon-home"></span> Accueil', 'item' => 'index');
 $navs[] = array('guest' => true, 'url' => 'film', 'title' => 'Tous les films', 'texte' => 'Tous les films', 'item' => 'film_index');
 $navs[] = array('guest' => true, 'url' => 'agenda', 'title' => 'Agenda', 'texte' => 'Agenda', 'item' => 'agenda_index');
-$navs[] = array('guest' => false, 'url' => 'ticket', 'title' => 'Tickets', 'texte' => 'Tickets', 'item' => 'ticket_index');
+// $navs[] = array('guest' => false, 'url' => 'ticket', 'title' => 'Tickets', 'texte' => 'Tickets', 'item' => 'ticket_index');
 
 ?>
 
