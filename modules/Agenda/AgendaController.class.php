@@ -13,6 +13,7 @@ class AgendaController extends \library\BaseController {
 		$agenda = new Agenda();
 		$this->view->with('films', $agenda->getFilms());
 		$this->view->with('towatch', $this->user->getToWatchList(1));
+		$this->view->with('viewed', $this->user->getViewedList());
 		
 		$this->makeView();
 	}

@@ -17,6 +17,8 @@ if(!empty($films)) {
 		if(!$user['is_guest']) {
 			if(isset($towatch[$film['movieid']]))
 				echo '<img src="img/icons/play.png" class="toview" title="Film à voir" />';
+			else if(isset($viewed[$film['movieid']]))
+				echo '<img src="img/icons/view.png" class="viewed" title="Vu" />';
 			else
 				echo '<a title="Indiquer comme à voir" href="film/'.$film['movieid'].'/addWish/view" class="addWish"><img src="img/icons/add.png" class="toview" /></a>';
 			}

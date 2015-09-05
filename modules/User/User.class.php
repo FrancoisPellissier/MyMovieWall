@@ -229,6 +229,16 @@ class User extends \library\BaseModel {
         return $wish;
     }
 
+    public function getViewedList() {
+        $result = $this->db->query('SELECT m.movieid FROM movie AS m INNER JOIN users_views AS uw ON m.movieid = uw.movieid AND uw.userid = '.$this->infos['id'].' GROUP BY m.movieid');
+
+        $wish = array();
+        while($cur = $this->db->fetch_assoc($result)) {
+            $wish[$cur['movieid']] = $cur;
+        }
+        return $wish;
+    }
+
     public function getNbViewsMonth($type = 'all') {
         $where = '';
         if($type == 1 OR $type == 2)
