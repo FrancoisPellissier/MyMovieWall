@@ -43,7 +43,7 @@ class UserController extends \library\BaseController {
 	}
 
 	public function showBiblio() {
-		$this->titre_page = 'Liste des films';
+		$this->titre_page = 'Mes films';
 		$this->side_section = 'site';
 		$this->side_item = 'biblio';
 
@@ -51,19 +51,25 @@ class UserController extends \library\BaseController {
 		$genres = $this->curUser->getGenres();
 		$this->view->with('genres', $genres);
 
-		// Un genre est fourni ?
-		if($this->request->getExists('genreid')) {
-			$genreid = intval($this->request->getData('genreid'));
-			$films = $this->curUser->getBiblio($genreid);
-			$this->view->with('genreid', $genreid);
-			}
+		$search = new \modules\Search\Search();
+
+		// Est-ce que le formulaire a été validé ?
+		if($this->request->postExists('search')) {
+
+			$params = $search->cleanPost($_POST);
+			$params['biblio'] = true;
+			$films = $search->search($params, $this->curUser->infos['id']);
+		}
+		// Sinon on récupère les derniers films ajoutés
 		else {
 			$films = $this->curUser->getLastBiblio(18);
-			$this->view->with('genreid', 0);
+			$params = $search->defaultParams();
+			$params['biblio'] = true;
 		}
 
-		$this->view->with('genreid', $genreid);
+		$this->view->with('params', $params);
 		$this->view->with('films', $films);
+		$this->view->with('force_biblio', true);
 		$this->makeView();
 	}
 

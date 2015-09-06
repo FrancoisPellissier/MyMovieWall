@@ -1,12 +1,13 @@
-</p>
 <?php
-foreach($genres AS $genre) {
-	echo "\n\t".'<a href="user/'.$curUser['id'].'/biblio/genre/'.$genre['genreid'].'"><button type="button" class="button '.($genre['genreid'] == $genreid ? 'button-success' : 'button-primary').'">'.$genre['genrename'].'</button></a> ';
-}
+include('modules/Search/view/searchForm.tpl.php');
+
+if(isset($films))
+	echo "\n".'<p>Il y a '.count($films).' résultat(s) à votre recherche.<p>';
 ?>
-<p>
 <div class="row">
 	<?php
-	foreach($films AS $cur)echo "\n\t".'<div class="col-xs-4 col-sm-3 col-md-2"><a href="film/'.$cur['movieid'].'"><img src="'.library\Image::getUrl('movie', $cur['movieid']).'" alt="Affiche du film" title="'.$cur['titrevf'].'" class="img-rounded"></a></div>';
+	foreach($films AS $cur) {
+		echo "\n\t".'<div class="col-xs-4 col-sm-3 col-md-2"><a href="film/'.$cur['movieid'].'"><img src="'.library\Image::getUrl('movie', $cur['movieid']).'" alt="Affiche du film" title="'.$cur['titrevf'].'" class="img-rounded"></a></div>';
+	}
 	?>
 </div>
