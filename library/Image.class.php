@@ -70,11 +70,11 @@ class Image {
 		    
 		    // On vérifie l'extension
 		    if(substr($url, -3) == 'jpg' OR substr($url, -4) == 'jpeg') {
-		    // Téléchargement de l'image dans le dossier temp
-		    copy($url, FOLDER_IMAGES.'/temp/'.$ficheid.'.jpg');
+			    // Téléchargement de l'image dans le dossier temp
+			    copy($url, FOLDER_IMAGES.'/temp/'.$ficheid.'.jpg');
 
-		    // On redimensionne l'image pour qu'elle respecte les bonnes proportions
-		    $this->imageResize(FOLDER_IMAGES.'/temp/'.$ficheid.'.jpg', FOLDER_IMAGES.'/'.$fichetype.'/'.$this->folder($ficheid), $ficheid, 350, 480);
+			    // On redimensionne l'image pour qu'elle respecte les bonnes proportions
+			    $this->imageResize(FOLDER_IMAGES.'/temp/'.$ficheid.'.jpg', FOLDER_IMAGES.'/'.$fichetype.'/'.$this->folder($ficheid), $ficheid, 350, 480);
 			}
 		}
 	}
@@ -96,6 +96,7 @@ class Image {
 
 		$image = imagecreatetruecolor($largeur, $hauteur);
 		imagecopyresampled($image, $source, 0, 0, 0, 0, $largeur, $hauteur, $largeur_source, $hauteur_source);
+		
 
 		// On supprime l'image de destination si elle existe
 		if(file_exists($folder.'/'.$nom.'.jpg'))
