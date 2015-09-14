@@ -64,11 +64,18 @@ class Image {
 		    
 		    if(file_exists(FOLDER_IMAGES.'/temp/'.$ficheid.'.jpg'))
 		    	unlink(FOLDER_IMAGES.'/temp/'.$ficheid.'.jpg');
+
+		    if(file_exists(FOLDER_IMAGES.'/'.$fichetype.'/'.$this->folder($ficheid).'/'.$ficheid.'.jpg'))
+		    	unlink(FOLDER_IMAGES.'/'.$fichetype.'/'.$this->folder($ficheid).'/'.$ficheid.'.jpg');
+		    
+		    // On vérifie l'extension
+		    if(substr($url, -3) == 'jpg' OR substr($url, -4) == 'jpeg') {
 		    // Téléchargement de l'image dans le dossier temp
 		    copy($url, FOLDER_IMAGES.'/temp/'.$ficheid.'.jpg');
 
 		    // On redimensionne l'image pour qu'elle respecte les bonnes proportions
 		    $this->imageResize(FOLDER_IMAGES.'/temp/'.$ficheid.'.jpg', FOLDER_IMAGES.'/'.$fichetype.'/'.$this->folder($ficheid), $ficheid, 350, 480);
+			}
 		}
 	}
 
