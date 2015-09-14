@@ -1,7 +1,7 @@
 <?php
 // Initialisation des items de menu
 $navs = array();
-$navs[] = array('guest' => true, 'url' => '', 'title' => 'Accueil', 'texte' => '<span class="glyphicon glyphicon-home"></span> Accueil', 'item' => 'index');
+// $navs[] = array('guest' => true, 'url' => '', 'title' => 'Accueil', 'texte' => '<span class="glyphicon glyphicon-home"></span> Accueil', 'item' => 'index');
 $navs[] = array('guest' => true, 'url' => 'film', 'title' => 'Tous les films', 'texte' => 'Tous les films', 'item' => 'film_index');
 $navs[] = array('guest' => true, 'url' => 'agenda', 'title' => 'Agenda', 'texte' => 'Agenda', 'item' => 'agenda_index');
 // $navs[] = array('guest' => false, 'url' => 'ticket', 'title' => 'Tickets', 'texte' => 'Tickets', 'item' => 'ticket_index');
@@ -10,7 +10,6 @@ $navs[] = array('guest' => true, 'url' => 'agenda', 'title' => 'Agenda', 'texte'
 
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
-    <!--<a class="navbar-brand" href="<?php echo WWW_ROOT; ?>">Movie</a>-->
     <ul class="nav navbar-nav">
     <?php
     foreach ($navs as $id => $value) {

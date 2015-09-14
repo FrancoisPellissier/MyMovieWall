@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="icon" type="image/png" href="favicon.png" />
 		<base href="<?php echo WWW_ROOT; ?>" />
 		<link href="assets/css/bootstrap.css" rel="stylesheet">
 		<link href="assets/css/style.css" rel="stylesheet">

@@ -29,7 +29,7 @@ class Search extends \library\BaseModel {
         $params['biblio'] = isset($_POST['biblio']) ? true : false;
         $params['genre'] = intval($this->test($post, 'genre'));
         $params['ordre'] = intval($this->test($post, 'ordre'));
-
+        
         return $params;
     }
 
@@ -57,8 +57,20 @@ class Search extends \library\BaseModel {
             $sql_join[] = 'INNER JOIN users_biblio AS ub ON m.movieid = ub.movieid AND ub.userid = '.intval($userid);
         }
 
+        // Cé de tri
+        $sort = array();
+        $sort[1] = 'm.titrevf';
+        $sort[2] = 'm.datesortie DESC';
+
+        // Création de la requête
+        $sql = 'SELECT m.movieid, m.titrevf, m.titrevo FROM movie AS m ';
+        $sql .= implode(' ', $sql_join);
+        $sql .= (!empty($sql_where) ? ' WHERE '.implode(' AND ', $sql_where) : '');
+        $sql .= ' GROUP BY m.movieid';
+        $sql .= ' ORDER BY '.(isset($sort[$post['ordre']]) ? $sort[$post['ordre']] : 'm.titrevf');
+
         // Lancer la recherche
-        $result = $this->db->query('SELECT m.movieid, m.titrevf, m.titrevo FROM movie AS m '.implode(' ', $sql_join).(!empty($sql_where) ? ' WHERE '.implode(' AND ', $sql_where) : '').' GROUP BY m.movieid ORDER BY m.titrevf')or error('Impossible de rechercher les films', __FILE__, __LINE__, $this->db->error());
+        $result = $this->db->query($sql)or error('Impossible de rechercher les films', __FILE__, __LINE__, $this->db->error());
 
         $films = array();
 

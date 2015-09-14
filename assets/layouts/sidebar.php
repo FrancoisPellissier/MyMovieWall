@@ -54,6 +54,9 @@ if(isset($side[$side_section])) {
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-3 col-md-2 sidebar">
+      <div id="brand">
+        <a href=""><img src="img/header.jpg" alt="Header" title="My Movie Wall" /></a>
+      </div>
       <p><a href="<?php echo $side[$side_section]['url'] ?>"><?php echo $side[$side_section]['titre'] ?></a></p>
       <ul class="nav nav-sidebar">
         <?php
@@ -98,6 +101,6 @@ if(isset($side[$side_section])) {
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
 <?php
-  if($_SERVER['SERVER_NAME'] != 'mymoviewall.com') {
+  if($_SERVER['SERVER_NAME'] != 'mymoviewall.com' && $_SERVER['SERVER_NAME'] != 'localhost') {
     echo "\n\t".'<div class="alert alert-info" role="alert">Le site a changé d\'adresse, vous pouvez y accéder via <a href="http://www.mymoviewall.com">www.MyMovieWall.com</a>. Si vous voyez ce message, c\'est qu\'il est temps de mettre à jour vos favoris !</div>';
   }

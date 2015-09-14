@@ -78,6 +78,11 @@ class FilmController extends \library\BaseController {
 		$this->titre_page = 'Chercher un film';
 		$this->side_section = 'site';
 
+		// On récupère l'ensemble des genres pour les passer dans la vue
+		$genre = new \modules\Genre\Genre();
+		$genres = $genre->all();
+		$this->view->with('genres', $genres);
+
 		// Si on est connecté, on propose des films de l'API à ajouter
 		if(!$this->user->infos['is_guest']) {
 			$keyword = str_replace('+', ' ', $this->request->postData('keyword'));

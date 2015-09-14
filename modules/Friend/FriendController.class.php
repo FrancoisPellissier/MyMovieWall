@@ -51,6 +51,7 @@ class FriendController extends \library\BaseController {
 		if($user->exists) {
 			$friend = new Friend($this->user->infos);
 			$friend->addFriend($userid);
+			$friend->sendEmail();
 		}
 		// ob_end_clean();
 		$this->response->redirect('friend/search');

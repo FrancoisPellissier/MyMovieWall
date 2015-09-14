@@ -81,4 +81,27 @@ class Friend extends \library\BaseModel {
     public function editRight() {
 
     }
+
+    public function sendEmail($ticket, $userid) {
+        require PUN_ROOT.'include/email.php';
+
+        // Déjà ami ?
+        if(true)
+            $mail_tpl = trim(file_get_contents(ROOT.'assets/mail_template/friend_added_friend.tpl'));
+        else
+            $mail_tpl = trim(file_get_contents(ROOT.'assets/mail_template/friend_added_notfriend.tpl'));
+
+        // The first row contains the subject
+        $first_crlf = strpos($mail_tpl, "\n");
+        $mail_subject = trim(substr($mail_tpl, 8, $first_crlf-8));
+        $mail_subject = str_replace('<user_name>', , $mail_subject);
+
+        $mail_message = trim(substr($mail_tpl, $first_crlf));
+        $mail_message = str_replace('user_name>', , $mail_message);
+        $mail_message = str_replace('<user_url>', WWW_ROOT.'user/', $mail_message);
+        $mail_message = str_replace('<addfriend_url>', WWW_ROOT.'friend/add/', $mail_message);
+        $mail_message = str_replace('<board_mailer>', 'My Movie Wall', $mail_message);
+
+        pun_mail($cur['email'], $mail_subject, $mail_message);
+    }
 }
