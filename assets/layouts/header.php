@@ -14,6 +14,13 @@
 		<script src="assets/js/jquery/jquery-ui-1.11.2/jquery-ui.js"></script>
 		<?php
 		// Meta OG
+		if(!isset($meta)) {
+			$meta['title'] = 'My Movie Wall';
+			$meta['url'] = 'http://www.'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
+			$meta['description'] = '';
+			$meta['image'] = WWW_ROOT.'img/share.jpg';
+			$meta['type'] = 'video.movie';
+		}
 		if(isset($meta)) {
 			foreach($meta AS $key=>$value)
 				echo "\n\t\t".'<meta property="og:'.$key.'" content="'.str_replace('"', '', $value).'" />';
