@@ -16,7 +16,7 @@
 		// Meta OG
 		if(!isset($meta)) {
 			$meta['title'] = 'My Movie Wall';
-			$meta['url'] = 'http://www.'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
+			$meta['url'] = WWW_ROOT.$_SERVER['REQUEST_URI'];
 			$meta['description'] = '';
 			$meta['image'] = WWW_ROOT.'img/share.jpg';
 			$meta['type'] = 'video.movie';
