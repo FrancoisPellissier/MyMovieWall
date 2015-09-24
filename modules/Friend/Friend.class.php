@@ -82,11 +82,19 @@ class Friend extends \library\BaseModel {
 
     }
 
-    public function sendEmail($ticket, $userid) {
+    public function isFriendToMe($friendid) {
+        $result = $this->db->query('SELECT userid FROM users_friend WHERE userid = '.intval($friendid).' AND friend_userid = '.$this->user['id'])or error('Impossible de tester le lien', __FILE__, __LINE__, $this->db->error());
+
+        if($this->db->num_rows($result))
+            return true;
+        else
+            return false;
+    }
+
+    public function sendEmail($user) {
         require PUN_ROOT.'include/email.php';
 
-        // Déjà ami ?
-        if(true)
+        if($this->isFriendToMe($user->infos['id']))
             $mail_tpl = trim(file_get_contents(ROOT.'assets/mail_template/friend_added_friend.tpl'));
         else
             $mail_tpl = trim(file_get_contents(ROOT.'assets/mail_template/friend_added_notfriend.tpl'));
@@ -94,14 +102,14 @@ class Friend extends \library\BaseModel {
         // The first row contains the subject
         $first_crlf = strpos($mail_tpl, "\n");
         $mail_subject = trim(substr($mail_tpl, 8, $first_crlf-8));
-        $mail_subject = str_replace('<user_name>', , $mail_subject);
+        $mail_subject = str_replace('<user_name>', $this->user['realname'], $mail_subject);
 
         $mail_message = trim(substr($mail_tpl, $first_crlf));
-        $mail_message = str_replace('user_name>', , $mail_message);
-        $mail_message = str_replace('<user_url>', WWW_ROOT.'user/', $mail_message);
-        $mail_message = str_replace('<addfriend_url>', WWW_ROOT.'friend/add/', $mail_message);
+        $mail_message = str_replace('<user_name>', $this->user['realname'], $mail_message);
+        $mail_message = str_replace('<user_url>', WWW_ROOT.'user/'.$this->user['id'], $mail_message);
+        $mail_message = str_replace('<addfriend_url>', WWW_ROOT.'friend/add/'.$this->user['id'], $mail_message);
         $mail_message = str_replace('<board_mailer>', 'My Movie Wall', $mail_message);
 
-        pun_mail($cur['email'], $mail_subject, $mail_message);
+        pun_mail($user->infos['email'], $mail_subject, $mail_message); 
     }
 }

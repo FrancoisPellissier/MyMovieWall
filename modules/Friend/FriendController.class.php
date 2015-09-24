@@ -42,7 +42,6 @@ class FriendController extends \library\BaseController {
 		if($this->user->infos['is_guest'])
 			$this->response->redirect('');
 
-		// ob_start();
 		// Est-ce que l'ami existe
 		$userid = intval($this->request->getData('id'));
 		$user = new \modules\User\User();
@@ -51,9 +50,11 @@ class FriendController extends \library\BaseController {
 		if($user->exists) {
 			$friend = new Friend($this->user->infos);
 			$friend->addFriend($userid);
-			$friend->sendEmail();
+
+			// Envoyer une notification au nouvel ami ?
+			if($user->infos['notif_friend'])
+				$friend->sendEmail($user);
 		}
-		// ob_end_clean();
 		$this->response->redirect('friend/search');
 	}
 

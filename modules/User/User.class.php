@@ -28,7 +28,10 @@ class User extends \library\BaseModel {
         'style' => array('fieldtype' => 'VARCHAR', 'required' => false, 'default' => '', 'publicname' => ''),
         'registered' => array('fieldtype' => 'INT', 'required' => false, 'default' => '', 'publicname' => ''),
         'last_visit' => array('fieldtype' => 'INT', 'required' => false, 'default' => '', 'publicname' => ''),
-        'registration_ip' => array('fieldtype' => 'VARCHAR', 'required' => false, 'default' => '', 'publicname' => '')
+        'registration_ip' => array('fieldtype' => 'VARCHAR', 'required' => false, 'default' => '', 'publicname' => ''),
+        'notif_sortie' => array('fieldtype' => 'INT', 'required' => false, 'default' => '', 'publicname' => ''),
+        'notif_ticket' => array('fieldtype' => 'INT', 'required' => false, 'default' => '', 'publicname' => ''),
+        'notif_friend' => array('fieldtype' => 'INT', 'required' => false, 'default' => '', 'publicname' => '')
         );
     }
 
