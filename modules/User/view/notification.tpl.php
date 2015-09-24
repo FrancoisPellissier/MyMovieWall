@@ -9,6 +9,13 @@ if(isset($valid))
 	<div class="form-group">
 		<div class="checkbox">
 		  <label>
+		    <input name="notif_friend" type="checkbox"<?php echo($user['notif_friend'] ? ' checked' : ''); ?>> Être prévenu quand on m'ajoute à une liste d'amis
+		  </label>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="checkbox">
+		  <label>
 		    <input name="notif_ticket" type="checkbox"<?php echo($user['notif_ticket'] ? ' checked' : ''); ?>> S'abonner automatiquement aux tickets que je créé et commente
 		  </label>
 		</div>

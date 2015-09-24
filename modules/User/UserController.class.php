@@ -188,7 +188,8 @@ class UserController extends \library\BaseController {
 		if($this->request->postExists('form_sent')) {
 
 			$values = array(
-				'notif_ticket' => 0
+				'notif_ticket' => 0,
+				'notif_friend' => 0
 				);
 
 			foreach($values AS $key=>$value) {
