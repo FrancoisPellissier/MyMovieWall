@@ -2,11 +2,40 @@
 namespace modules\Film;
 
 class FilmController extends \library\BaseController {
+	public function searchFilm() {
+		$this->titre_page = 'Tous les films';
+		$this->side_section = 'site';
+		$this->side_item = 'film_index';
+
+		// On récupère l'ensemble des genres pour les passer dans la vue
+		$genre = new \modules\Genre\Genre();
+		$genres = $genre->all();
+		$this->view->with('genres', $genres);
+
+		$search = new \modules\Search\Search();
+
+		// Est-ce que le formulaire a été validé ?
+		if($this->request->postExists('search')) {
+			$params = $search->cleanPost($_POST);
+			$films = $search->search($params, $this->user->infos['id']);
+		}
+		// Sinon on récupère les derniers films ajoutés
+		else {
+			$film = new \modules\Film\Film();
+			$films = $film->getLastFilms(18);
+			$params = $search->defaultParams();
+		}
+
+		$this->view->with('params', $params);
+		$this->view->with('films', $films);
+		$this->makeView();
+	}
 	
 	public function index() {
 		$this->titre_page = 'Liste des films';
 		$this->menu_actif = 'film_index';
 		$this->side_section = 'site';
+		$this->side_item = 'film_index';
 
 		$film = new \modules\Film\Film();
 		$films = $film->getFilms();
@@ -19,6 +48,7 @@ class FilmController extends \library\BaseController {
 		$this->titre_page = 'Liste des films';
 		$this->menu_actif = 'film_index';
 		$this->side_section = 'site';
+		$this->side_item = 'film_index';
 
 		// On récupère l'ensemble des genres pour les passer dans la vue
 		$genre = new \modules\Genre\Genre();

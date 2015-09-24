@@ -6,7 +6,7 @@
 	<route url="/logout/([0-9]+)/([a-z0-9]+)" module="Login" action="logout" vars="id,csrf_token" />
 	<route url="/register" module="Register" action="register" />
  	
- 	<route url="/film" module="Film" action="filmsGenre" />
+ 	<route url="/film" module="Film" action="searchFilm" />
  	<route url="/film/genre/([0-9]+)" module="Film" action="filmsGenre" vars="genreid" />
  	<route url="/film/search" module="Film" action="search" />
  	<route url="/film/([0-9]+)" module="Film" action="showCasting" vars="id" />
