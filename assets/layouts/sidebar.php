@@ -37,7 +37,7 @@ $side['ticket'] = array('url' => $url, 'titre' => $titre, 'navs' => $nav);
 
 // Reste du site
 $nav = array();
-$nav[] = array('guest' => true, 'me' => true, 'url' => 'user/'.$userid.'/biblio', 'title' => '<span class="glyphicon glyphicon-film"></span> Vidéothèque', 'item' => 'biblio');
+$nav[] = array('guest' => false, 'me' => true, 'url' => 'user/'.$userid.'/biblio', 'title' => '<span class="glyphicon glyphicon-film"></span> Vidéothèque', 'item' => 'biblio');
 $nav[] = array('guest' => true, 'me' => true, 'url' => 'user/'.$userid.'/towatchlist', 'title' => '<span class="glyphicon glyphicon-play"></span>  Films à voir', 'item' => 'towatchlist');
 $nav[] = array('guest' => true, 'me' => true, 'url' => 'user/'.$userid.'/lastview/cinema', 'title' => '<span class="glyphicon glyphicon-eye-open"></span> Derniers vus', 'item' => 'lastview');
 $nav[] = array('guest' => false, 'me' => true, 'url' => 'user/'.$userid.'/wishlist', 'title' => '<span class="glyphicon glyphicon glyphicon-gift"></span> Wishlist', 'item' => 'wishlist');
