@@ -4,6 +4,7 @@ namespace modules\Film;
 class FilmController extends \library\BaseController {
 	public function searchFilm() {
 		$this->titre_page = 'Tous les films';
+		$this->menu_actif = 'film_index';
 		$this->side_section = 'site';
 		$this->side_item = 'film_index';
 
