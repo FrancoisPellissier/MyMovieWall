@@ -95,7 +95,7 @@
             <p>
                 <label><input type="radio" name="type" value="1" checked />Cinéma</label> <label><input type="radio" name="type" value="2" /> Télé</label>
                 <br /><input type="text" name="viewdate" id="viewdate"  class="datepicker" data-provide="datepicker" />
-                <br /><input type="submit" name="addView" value="Enregistrer" /></p>
+                <br /><input type="submit" name="addView" value="Ajouter le visionnage" /></p>
         </form>
         <?php
             }
