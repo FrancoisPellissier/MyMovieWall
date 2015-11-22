@@ -152,4 +152,19 @@ class Film extends \library\BaseModel {
 		}
 		$this->infos['seances'] = $seances;
 	}
+
+	public function getToUpdate() {
+
+		$sql = 'SELECT * FROM movie WHERE (datesortie >= CURDATE() OR datesortie = \'0000-00-00\') AND updated_at <= ADDDATE(NOW(), INTERVAL -1 DAY) ORDER BY updated_at LIMIT 1';
+
+		$result = $this->db->query($sql)or error('Impossible récupérer le prochain film a updater', __FILE__, __LINE__, $this->db->error());;
+
+		if(!$this->db->num_rows($result)) {
+			return 0;
+			}
+		else {
+			$cur = $this->db->fetch_assoc($result);
+			return $cur['movieid'];
+		}
+	}
 }

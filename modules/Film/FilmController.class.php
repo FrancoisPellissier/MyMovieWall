@@ -371,7 +371,43 @@ class FilmController extends \library\BaseController {
 	    	$this->response->redirect('film/'.$id);		
 		}
 		else
-			$this->response->redirect('');		
+			$this->response->redirect('');
+	}
+
+	public function majFiches() {
+		// On redirige vers l'accueil si c'est un invité
+		if($this->user->infos['is_guest'])
+			$this->response->redirect('');
+		
+		$id = intval($this->request->getData('id'));
+		$film = new \modules\Film\Film();
+		$id = $film->getToUpdate();
+
+		if($id == 0)
+			$this->response->redirect('');
+	
+		$film->exists($id);
+
+		// Si la fiche n'existe pas, on redirige vers l'accueil du module
+		if($film->exists) {
+			// On récupère les informations allocine
+			$allocine = new \modules\Allocine\Allocine();
+			$datas = $allocine->getFilm($film->infos['code']);
+
+			$film->hydrate($datas);
+			$film->edit($film->infos);
+			// Mise à jour des genres
+			$film->assocGenre($id, $datas['genre']);
+			// Mise à jour du casting
+			$film->assocPerson($id, $datas);
+			// Mise à jour de l'affiche
+			if($film->pictureurl != '')
+				$film->getPoster($id);
+
+	    	$this->response->redirect('film/cron/update/'.$id);		
+		}
+		else
+			$this->response->redirect('');
 	}
 
 	public function rate() {

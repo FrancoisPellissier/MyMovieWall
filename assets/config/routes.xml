@@ -18,7 +18,10 @@
  	<route url="/film/searchAllocine" module="Film" action="searchAllocine" />
  	<route url="/film/add/([0-9]+)" module="Film" action="add" vars="id" />
  	<route url="/film/([0-9]+)/maj/affiche" module="Film" action="majAffiche" vars="id" />
- 	<route url="/film/([0-9]+)/maj" module="Film" action="majFiche" vars="id" />
+ 	
+
+ 	<route url="/film/cron/update" module="Film" action="majFiches" />
+ 	<route url="/film/cron/update/([0-9]+)" module="Film" action="majFiches" />
 
  	<route url="/film/([0-9]+)/addBiblio/([a-z]+)" module="Film" action="addBiblio" vars="id,type" />
  	<route url="/film/([0-9]+)/delBiblio/([a-z]+)" module="Film" action="delBiblio" vars="id,type" />
