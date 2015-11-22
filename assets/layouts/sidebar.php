@@ -44,6 +44,7 @@ $nav[] = array('guest' => false, 'me' => true, 'url' => 'user/'.$userid.'/wishli
 // $nav[] = array('guest' => false, 'me' => false, 'url' => 'friend', 'title' => '<img src="img/icons/friend.png" height="12" /> Amis', 'item' => 'friend');
 $nav[] = array('guest' => false, 'me' => false, 'url' => 'friend', 'title' => '<span class="glyphicon glyphicon-user"></span> Amis', 'item' => 'friend');
 $nav[] = array('guest' => false, 'me' => true, 'url' => 'user/'.$userid.'/stats', 'title' => '<span class="glyphicon glyphicon-signal"></span> Statistiques', 'item' => 'stats');
+
 $titre = (isset($curUser) ? $curUser['realname'] : $curUser['realname']);
 $url = 'user/'.$userid;
 $side['site'] = array('url' => $url, 'titre' => $titre, 'navs' => $nav);
@@ -63,6 +64,8 @@ if(isset($side[$side_section])) {
           if((!$user['is_guest'] OR $value['guest']) AND ($curUser['id'] == $user['id'] OR $value['me']))
             echo "\n\t\t".'<li'.($value['item'] == $side_item ? ' class="active"' : '').'><a href="'.WWW_ROOT.$value['url'].'">'.$value['title'].'</a></li>';
         }
+          if($user['id'] == 2 && $curUser['id'] == 2)
+            echo "\n\t\t".'<li><a href="'.WWW_ROOT.'film/cron/update"><span class="glyphicon glyphicon-refresh"></span> Mise à jour (Admin)</a></li>';
         ?>
       </ul>
       <?php
