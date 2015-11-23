@@ -18,6 +18,9 @@ class UserController extends \library\BaseController {
 			// Si l'utilisateur n'existe pas on redirige vers l'accueil
 			if(!$this->curUser->exists)
 				$this->response->redirect();
+
+			// On récupère les droits de l'utilisateur
+			$this->curUser->getRights();
 		}
 		// Rien en paramètres, on regarde si on est connecté
 		else {
@@ -208,6 +211,46 @@ class UserController extends \library\BaseController {
 		$this->titre_page = 'Notifications';
 		$this->side_section = 'profil';
 		$this->side_item = 'notification';
+		$this->makeView();
+	}
+
+	public function right() {
+		// On redirige vers l\'accueil si ce n'est pas notre profil
+		if($this->user->infos['id'] != $this->curUser->infos['id'])
+			$this->response->redirect();
+
+		// Le formulaire a été validé ?
+		if($this->request->postExists('form_sent')) {
+			// Initialisation des valeurs vides
+			$right = array();
+        	$right['biblio'] = array('guest' => '0', 'member' => '0', 'friend' => '0');
+        	$right['towatchlist'] = array('guest' => '0', 'member' => '0', 'friend' => '0');
+        	$right['lastview'] = array('guest' => '0', 'member' => '0', 'friend' => '0');
+	        $right['wishlist'] = array('guest' => '0', 'member' => '0', 'friend' => '0');
+        	$right['stats'] = array('guest' => '0', 'member' => '0', 'friend' => '0');
+
+        	// On parcourt les actions et les droits
+        	foreach($right AS $action => $values) {
+        		$droits = array('guest', 'member', 'friend');
+
+        		foreach($droits AS $droit) {
+        			if(isset($_POST['right'][$action][$droit])) {
+        				$right[$action][$droit] = '1';
+        				$this->user->infos['right'][$action][$droit] = '1';
+        			}
+        			else {
+        				$this->user->infos['right'][$action][$droit] = '0';
+        				$right[$action][$droit] = '0';
+        			}
+        		}
+        		// On sauvegarde les modifications
+        		$this->user->updateRight($right[$action], $action);
+        	}
+
+		}
+		$this->titre_page = 'Droits';
+		$this->side_section = 'profil';
+		$this->side_item = 'right';
 		$this->makeView();
 	}
 }

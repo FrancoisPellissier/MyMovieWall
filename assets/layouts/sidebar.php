@@ -22,6 +22,7 @@ $nav = array();
 $nav[] = array('guest' => false, 'me' => true, 'url' => 'user/'.$user['id'].'/edit', 'title' => '<span class="glyphicon glyphicon-cog"></span> Général', 'item' => 'general');
 $nav[] = array('guest' => false, 'me' => true, 'url' => 'theater', 'title' => '<span class="glyphicon glyphicon glyphicon-facetime-video"></span> Cinémas', 'item' => 'theater');
 $nav[] = array('guest' => false, 'me' => true, 'url' => 'user/'.$user['id'].'/notification', 'title' => '<span class="glyphicon glyphicon-envelope"></span> Notifications', 'item' => 'notification');
+$nav[] = array('guest' => false, 'me' => true, 'url' => 'user/'.$user['id'].'/right', 'title' => '<span class="glyphicon glyphicon-eye-close"></span> Droits', 'item' => 'right');
 $titre = $user['realname'];
 $url = 'user/'.$user['id'].'/edit';
 $side['profil'] = array('url' => $url,'titre' => $titre, 'navs' => $nav);

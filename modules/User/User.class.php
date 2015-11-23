@@ -14,8 +14,10 @@ class User extends \library\BaseModel {
         $this->key = 'id';
         $this->time = false;
 
-        if(!$new)
+        if(!$new) {
             $this->infos = $pun_user;
+            $this->getRights();   
+        }
         
         $this->schema = array(
         'id' => array('fieldtype' => 'INT', 'required' => false, 'default' => '', 'publicname' => 'ID du user'),
@@ -341,7 +343,7 @@ class User extends \library\BaseModel {
     }
 
     public function getTheaters() {
-       $result = $this->db->query('SELECT ut.theaterid, t.theatername, t.code, t.adress, t.zipcode, t.city FROM users_theater AS ut INNER JOIN theater AS t ON ut.theaterid = t.theaterid AND ut.userid = '.$this->infos['id'].' ORDER BY zipcode, theatername')or error('Impossible de récupérer les cinéames de l\'utilisateur', __FILE__, __LINE__, $this->db->error());
+       $result = $this->db->query('SELECT ut.theaterid, t.theatername, t.code, t.adress, t.zipcode, t.city FROM users_theater AS ut INNER JOIN theater AS t ON ut.theaterid = t.theaterid AND ut.userid = '.$this->infos['id'].' ORDER BY zipcode, theatername')or error('Impossible de récupérer les cinémas de l\'utilisateur', __FILE__, __LINE__, $this->db->error());
 
        $this->infos['theaters'] = array();
 
@@ -353,5 +355,26 @@ class User extends \library\BaseModel {
         $result = $this->db->query('SELECT ticketid, userid FROM ticket_subscribe WHERE userid ='.intval($this->infos['id']).' AND ticketid = '.intval($ticketid))or error('Impossible de récupérer l\'abonnement au ticket', __FILE__, __LINE__, $this->db->error());
 
         return ($this->db->num_rows($result) ? true : false);
+    }
+
+    public function getRights() {
+        $result = $this->db->query('SELECT action, guest, member, friend FROM users_right WHERE userid = '.$this->infos['id'])or error('Impossible de récupérer les droits de l\'utilisateur '.$this->infos['id'].'.', __FILE__, __LINE__, $this->db->error());
+
+        $right = array();
+        $right['biblio'] = array('guest' => '0', 'member' => '0', 'friend' => '0');
+        $right['towatchlist'] = array('guest' => '0', 'member' => '0', 'friend' => '0');
+        $right['lastview'] = array('guest' => '0', 'member' => '0', 'friend' => '0');
+        $right['whishlist'] = array('guest' => '0', 'member' => '0', 'friend' => '0');
+        $right['stats'] = array('guest' => '0', 'member' => '0', 'friend' => '0');
+
+        while($cur = $this->db->fetch_assoc($result)) {
+            $right[$cur['action']] = $cur;
+        }
+
+        $this->infos['right'] = $right;
+    }
+
+    public function updateRight($rights, $action) {
+        $this->db->query(\library\Query::Update('users_right', $rights, array('userid' => $this->infos['id'], 'action' => $action) , false))or error('Impossible de modifier les droits '.$action.' de l\'utilisateur '.$this->infos['id'].'.', __FILE__, __LINE__, $this->db->error());
     }
 }

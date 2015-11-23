@@ -70,6 +70,18 @@ class Register extends \modules\User\User {
             // Création du nouveau compte
             $id = $this->add();
 
+            // Insertion des lignes de droits dans la table users_right
+            $sections = array(
+                'biblio' => 'Vidéothèque',
+                'towatchlist' => 'Films à voir',
+                'lastview' => 'Derniers vus',
+                'wishlist' => 'Whishlist',
+                'stats' => 'Statistiques');
+
+            foreach($sections AS $key => $name) {
+            $this->db->query(Query::Insert('users_right', array('userid' => $id, 'action' => $key, 'guest' => '0', 'membre' => '1', 'friend' => '1'), false, false));
+            }
+
             // On envoie l'email avec le mot de passe
             $this->sendRegister($email, $password_clean, $email);
         }
