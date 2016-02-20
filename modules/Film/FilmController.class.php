@@ -229,6 +229,12 @@ class FilmController extends \library\BaseController {
 		$this->makeView();
 	}
 
+	public function showAvis() {
+		$film = $this->show();
+		$this->view->with('vueActif', 'avis');
+		$this->makeView();
+	}
+
 	public function addBiblio() {
 		ob_start();
 		$id = intval($this->request->getData('id'));

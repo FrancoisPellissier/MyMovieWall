@@ -135,6 +135,8 @@ $views = array(
 if(!$user['is_guest'])
     $views[] = array('url' => 'seance', 'titre' => 'Séances');
 
+$views[] = array('url' => 'avis', 'titre' => 'Avis ('.count($curFiche['avis']).')');
+
 echo "\n".'<ul class="nav nav-tabs">';
 foreach($views AS $view) {
     echo "\n\t".'<li role="presentation"'.($view['url'] == $vueActif ? ' class="active"' : '').'><a href="'.WWW_ROOT.'film/'.$curFiche['movieid'].'/'.$view['url'].'">'.$view['titre'].'</a></li>';

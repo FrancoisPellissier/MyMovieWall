@@ -63,6 +63,10 @@ class Film extends \library\BaseModel {
 			$genres[] = array('genreid' => $cur['genreid'], 'genrename' => $cur['genrename']);
 		
 		$this->infos['genres'] = $genres;
+
+		// Récupération des avis
+		$avis = new \modules\Avis\Avis();
+		$this->infos['avis'] = $avis->getFilmAvis($this->infos['movieid']);
 	}
 
 	public function getFilms() {
