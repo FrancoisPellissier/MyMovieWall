@@ -371,8 +371,10 @@ class FilmController extends \library\BaseController {
 			// Mise à jour du casting
 			$film->assocPerson($id, $datas);
 			// Mise à jour de l'affiche
-			if($film->pictureurl != '')
+			if($film->pictureurl != '') {
 				$film->getPoster($id);
+				\library\Image::generateAffiche($film->infos['folder'].$film->infos['movieid'].'.jpg', $film->infos['titrevf']);
+			}
 
 	    	$this->response->redirect('film/'.$id);		
 		}
@@ -407,8 +409,10 @@ class FilmController extends \library\BaseController {
 			// Mise à jour du casting
 			$film->assocPerson($id, $datas);
 			// Mise à jour de l'affiche
-			if($film->pictureurl != '')
+			if($film->pictureurl != '') {
 				$film->getPoster($id);
+				\library\Image::generateAffiche($film->infos['folder'].$film->infos['movieid'].'.jpg', $film->infos['titrevf']);
+			}
 
 	    	$this->response->redirect('film/cron/update/'.$id);		
 		}

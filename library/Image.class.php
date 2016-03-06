@@ -126,4 +126,12 @@ class Image {
 		else
 			return 'img/empty.jpg';
 	}
+
+	public static function generateAffiche($url, $titre) {
+		if(!file_exists($url)) {
+			$image = imagecreatefromjpeg('img/empty.jpg');
+			imagestring($image, 5, 10, 360, $titre, imagecolorallocate($image, 255, 255, 255));
+			imagejpeg($image, $url);
+		}
+	}
 }
