@@ -111,7 +111,7 @@ class Film extends \library\BaseModel {
 
 			// On parcourt les mots clés pour supprimer les articles
 			foreach($words AS $id => $word) {
-				if(in_array(strtolower($word), array('le', 'la', 'les', 'un', 'une', 'des', 'de', 'à', 'the', 'of', 'and', 'a', 'du')))
+				if(in_array(strtolower($word), array('le', 'la', 'les', 'un', 'une', 'des', 'de', 'à', 'the', 'of', 'and', 'a', 'du', '')))
 					unset($words[$id]);
 			}
 
