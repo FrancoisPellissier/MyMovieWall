@@ -253,4 +253,13 @@ class UserController extends \library\BaseController {
 		$this->side_item = 'right';
 		$this->makeView();
 	}
+
+	public function showAvis() {
+		$this->titre_page = 'Mes avis';
+		$this->side_section = 'site';
+		$this->side_item = 'avis';
+		$this->view->with('avis', $this->curUser->getAvis());
+
+		$this->makeView();
+	}
 }

@@ -377,4 +377,16 @@ class User extends \library\BaseModel {
     public function updateRight($rights, $action) {
         $this->db->query(\library\Query::Update('users_right', $rights, array('userid' => $this->infos['id'], 'action' => $action) , false))or error('Impossible de modifier les droits '.$action.' de l\'utilisateur '.$this->infos['id'].'.', __FILE__, __LINE__, $this->db->error());
     }
+
+    public function getAvis() {
+        $sql = 'SELECT a.avisid, a.movieid, a.message, a.created_at, m.titrevf FROM avis AS a INNER JOIN movie AS m ON a.movieid = m.movieid AND a.userid = '.$this->infos['id'].' ORDER BY a.created_at DESC';
+
+        $result = $this->db->query($sql)or error('Impossible de récupérer les avis pour cet utilisateur', __FILE__, __LINE__, $this->db->error());
+
+        $avis = array();
+        while($cur = $this->db->fetch_assoc($result))
+            $avis[] = $cur;
+
+        return $avis;
+    }
 }

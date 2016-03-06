@@ -1,5 +1,5 @@
 <?php
-echo "\n".'<h2>Donnez vos avis sur "'.$film['titrevf'].'"</h2>';
+echo "\n".'<h2>Donnez votre avis sur "'.$film['titrevf'].'"</h2>';
 ?>
 
 <div class="row">
