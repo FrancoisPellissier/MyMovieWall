@@ -91,7 +91,6 @@ class Image {
 	  */
 	 public function imageResize($url, $folder, $nom, $largeur, $hauteur) {
 		if(filesize($url) < 1100000) {
-			echo '<p>'.$nom.' : OK '.filesize($url).'</p>';
 			$source = imagecreatefromjpeg($url); // La photo est la source
 			$largeur_source = imagesx($source);
 			$hauteur_source = imagesy($source);
@@ -113,6 +112,10 @@ class Image {
 				unlink($url);
 
 			imagedestroy($image);
+
+			// On vérifie la taille de l'image de sortie
+			if(filesize($folder.'/'.$nom.'.jpg') < 4000)
+				unlink($folder.'/'.$nom.'.jpg');
 		}
 	}
 
