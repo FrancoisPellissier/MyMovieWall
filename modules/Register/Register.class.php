@@ -79,7 +79,7 @@ class Register extends \modules\User\User {
                 'stats' => 'Statistiques');
 
             foreach($sections AS $key => $name) {
-            $this->db->query(Query::Insert('users_right', array('userid' => $id, 'action' => $key, 'guest' => '0', 'membre' => '1', 'friend' => '1'), false, false));
+            $this->db->query(\library\Query::Insert('users_right', array('userid' => $id, 'action' => $key, 'guest' => '0', 'membre' => '1', 'friend' => '1'), false, false));
             }
 
             // On envoie l'email avec le mot de passe
