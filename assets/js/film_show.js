@@ -15,54 +15,64 @@ $(function() {
 	    dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
 	    weekHeader: 'Sem.',
 	});
-
-	$('.addBiblio').click(function(event) {
-		event.preventDefault();
-		
-		$.ajax(this.href);
-		$(this).children().removeClass('btn-default').addClass('btn-success');
-		$(this).removeClass('addBiblio').addClass('delBiblio');
-		$(this).attr("href", this.href.replace('addBiblio', 'delBiblio'))
-		
-		return false;
-	});
-
-	$('.delBiblio').click(function(event) {
-		event.preventDefault();
-		
-		$.ajax(this.href);
-		$(this).children().removeClass('btn-success').addClass('btn-default');
-		$(this).removeClass('delBiblio').addClass('addBiblio');
-		$(this).attr("href", this.href.replace('delBiblio', 'addBiblio'))
-		
-		return false;
-	});
-
-	$('.addWish').click(function(event) {
-		event.preventDefault();
-		
-		$.ajax(this.href);
-		$(this).children().removeClass('btn-default').addClass('btn-success');
-		$(this).removeClass('addWish').addClass('delWish');
-		$(this).attr("href", this.href.replace('addWish', 'delWish'))
-		
-		return false;
-	});
-
-	$('.delWish').click(function(event) {
-		event.preventDefault();
-		
-		$.ajax(this.href);
-		$(this).children().removeClass('btn-success').addClass('btn-default');
-		$(this).removeClass('delWish').addClass('addWish');
-		$(this).attr("href", this.href.replace('delWish', 'addWish'))
-		
-		return false;
-	});
 });
 
 
 function changeTrailer(url) {
 	$('#trailer').html(url);
 	event.preventDefault();
+}
+
+function addWish(movieid, type) {
+	  $.ajax({
+	     url : 'film/'+movieid+'/addWish/'+type,
+	  }).done(function() {
+
+	  	$('#'+type).attr('onClick', 'delWish('+movieid+', \''+type+'\')');
+	  	$('#'+type).removeClass('btn-default').addClass('btn-success');
+	  	});
+	}
+
+function delWish(movieid, type) {
+	  $.ajax({
+	     url : 'film/'+movieid+'/delWish/'+type,
+	  }).done(function() {
+
+	  	$('#'+type).attr('onClick', 'addWish('+movieid+', \''+type+'\')');
+	  	$('#'+type).removeClass('btn-success').addClass('btn-default');
+	  	});
+	}
+	
+function addBiblio(movieid, type) {
+	$.ajax({
+		url : 'film/'+movieid+'/addBiblio/'+type,
+	}).done(function() {
+		$('#'+type).attr('onClick', 'delBiblio('+movieid+', \''+type+'\')');
+		$('#'+type).removeClass('btn-default').addClass('btn-success');
+	});
+}
+
+function delBiblio(movieid, type) {
+	$.ajax({
+		url : 'film/'+movieid+'/delBiblio/'+type,
+	}).done(function() {
+		$('#'+type).attr('onClick', 'addBiblio('+movieid+', \''+type+'\')');
+		$('#'+type).removeClass('btn-success').addClass('btn-default');
+	});
+}
+
+function rate(movieid, rate) {
+	$.ajax({
+		url : 'film/'+movieid+'/rate/'+rate,
+	}).done(function() {
+		var text = 'Note : ';
+		for(var i = 1; i <= 5; i++) {
+
+		    if(i > rate)
+		        text += '<span class="glyphicon glyphicon-star-empty" onClick="rate('+movieid+', '+i+')" title="Noter '+i+'/5"></span>';
+		    else
+		        text += '<span class="glyphicon glyphicon-star" onClick="rate('+movieid+', '+i+')" title="Noter '+i+'/5"></span>';
+		}
+		$('#rateFilm').html(text);
+	});
 }

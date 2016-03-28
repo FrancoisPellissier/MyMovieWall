@@ -43,9 +43,9 @@
             <?php
             foreach(array('view' => 'Le voir', 'buy' => 'L\'acheter') AS $type => $typename) {
                 if($user['wishFilm'][$type] == 0)
-                    echo "\n\t\t\t".'<a title="'.$type.'" href="film/'.$curFiche['movieid'].'/addWish/'.$type.'" class="addWish"><button type="button" class="btn btn-default" id="'.$type.'">'.$typename.'</button></a>';
+                    echo "\n\t\t\t".'<button type="button" class="btn btn-default" id="'.$type.'" onClick="addWish('.$curFiche['movieid'].', \''.$type.'\')">'.$typename.'</button>';
                 else
-                    echo "\n\t\t\t".'<a title="'.$type.'" href="film/'.$curFiche['movieid'].'/delWish/'.$type.'" class="delWish"><button type="button" class="btn btn-success" id="'.$type.'">'.$typename.'</button></a>';
+                    echo "\n\t\t\t".'<button type="button" class="btn btn-success" id="'.$type.'" onClick="delWish('.$curFiche['movieid'].', \''.$type.'\')">'.$typename.'</button>';
             }
             ?>
         </p>
@@ -54,23 +54,23 @@
             <?php
             foreach(array('bluray' => 'Blu-Ray', 'dvd' => 'DVD', 'numerique' => 'Numérique') AS $type => $typename) {
                 if($user['hasFilm'][$type] == 0)
-                    echo "\n\t\t\t".'<a title="'.$type.'" href="film/'.$curFiche['movieid'].'/addBiblio/'.$type.'" class="addBiblio"><button type="button" class="btn btn-default" id="'.$type.'">'.$typename.'</button></a>';
+                    echo "\n\t\t\t".'<button type="button" class="btn btn-default" id="'.$type.'" onClick="addBiblio('.$curFiche['movieid'].', \''.$type.'\')">'.$typename.'</button>';
                 else
-                    echo "\n\t\t\t".'<a title="'.$type.'" href="film/'.$curFiche['movieid'].'/delBiblio/'.$type.'" class="delBiblio"><button type="button" class="btn btn-success" id="'.$type.'">'.$typename.'</button></a>';
+                    echo "\n\t\t\t".'<button type="button" class="btn btn-success" id="'.$type.'" onClick="delBiblio('.$curFiche['movieid'].', \''.$type.'\')>'.$typename.'</button>';
             }
             ?>
         </p>
         <?php
         // Espace de notation
-        echo "\n\t".'<p>Note : ';
+        echo "\n\t".'<p id="rateFilm">Note : ';
         for($i=1;$i<=5;$i++) {
             
-            echo '<a href="film/'.$curFiche['movieid'].'/rate/'.$i.'" title="Noter '.$i.'/5">';
+            // echo '<a href="film/'.$curFiche['movieid'].'/rate/'.$i.'" title="Noter '.$i.'/5">';
             if($i > $user['rateFilm'])
-                echo '<span class="glyphicon glyphicon-star-empty"></span>';
+                echo '<span class="glyphicon glyphicon-star-empty" onClick="rate('.$curFiche['movieid'].', '.$i.')" title="Noter '.$i.'/5"></span>';
             else
-                echo '<span class="glyphicon glyphicon-star"></span>';
-            echo '</a>';
+                echo '<span class="glyphicon glyphicon-star" onClick="rate('.$curFiche['movieid'].', '.$i.')" title="Noter '.$i.'/5"></span>';
+            // echo '</a>';
         }
         echo '<p>';
 

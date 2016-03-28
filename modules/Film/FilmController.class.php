@@ -424,15 +424,14 @@ class FilmController extends \library\BaseController {
 	}
 
 	public function rate() {
+		ob_start();
 		$id = intval($this->request->getData('id'));
 		$film = new \modules\Film\Film();
 		$film->exists($id);
 
 		if($film->exists) {
 			$this->user->rateFilm($id, $this->request->getData('rate'));
-			$this->response->redirect('film/'.$id);	
 		}
-		else
-			$this->response->redirect('');
+		ob_end_clean();
 	}
 }
