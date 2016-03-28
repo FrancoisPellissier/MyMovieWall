@@ -3,31 +3,24 @@ include('show.tpl.php');
 
 if(!empty($seances)) {
     // On parcourt les cinémas
-    foreach($seances AS $cine) {
-        echo "\n\t".'<h2>'.$cine['theater']['theatername'].'</h2>';
+    foreach($seances AS $cine => $versions) {
+        echo "\n\t".'<h2>'.$cine.'</h2>';
 
-        if(empty($cine['horaires'])) {
+        if(empty($versions)) {
             echo "\n\t".'<p>Pas de séances dans ce cinéma.</p>';
         }
         else {
-
+            ksort($versions);
             // On parcourt les langues
-            foreach($cine['horaires'] AS $version) {
-                echo "\n\t".'<h4>'.$version['version'].' - '.$version['format'].'</h4>';
+            foreach($versions AS $version => $dates) {
+                echo "\n\t".'<h4>'.$version.'</h4>';
 
                 ?>
         <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Jour</th>
-                <th>Horaires</th>        
-            </tr>
-        </thead>
         <tbody>
                 <?php
-
                 // On parcourt les jours
-                foreach($version['date'] AS $jour => $heures) {            
+                foreach($dates AS $jour => $heures) {            
                     echo "\n\t".'<tr><td>'.library\Datetime::formatDateTime($jour, 'jour j mois', '').'</td><td>'.implode($heures, ' | ').'</td></tr>';
                 }
                 ?>
@@ -39,5 +32,5 @@ if(!empty($seances)) {
     }
 }
 else {
-    echo "\n\t".'<br /><p class="alert alert-info">Vous devez avoir sélectionné au moins un cinéma dans votre profil pour accéder à ses horaires : <a href="theater">ajouter un cinéma</a>.</p>';
+    echo "\n\t".'<br /><p class="alert alert-info">Il n\'y a aucune séance prévue pour ce film dans les cinémas que vous avez sélectionnés et pour la période en cours.<br /><br />Vous devez avoir sélectionné au moins un cinéma dans votre profil pour accéder à ses horaires : <a href="theater">ajouter un cinéma</a>.</p>';
 }
