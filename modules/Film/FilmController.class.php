@@ -156,6 +156,9 @@ class FilmController extends \library\BaseController {
 
 			// On parcourt les acteurs/réalisateurs pour les insérer/associer
 			$film->assocPerson($id, $datas);
+
+			// Ajout de l'affiche textuelle si pas d'image
+			\library\Image::generateAffiche('img/movie/'.intval($id / 100).'/'.$id.'.jpg', $film->infos['titrevf']);
 		}	
 		ob_end_clean();
 		// On renvoi l'id au code JS
