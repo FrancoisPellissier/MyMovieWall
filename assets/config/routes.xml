@@ -4,6 +4,7 @@
 
 	<route url="/login" module="Login" action="login" />
 	<route url="/logout/([0-9]+)/([a-z0-9]+)" module="Login" action="logout" vars="id,csrf_token" />
+	<route url="/login/forget" module="Login" action="forget" />
 	<route url="/register" module="Register" action="register" />
  	
  	<route url="/film" module="Film" action="searchFilm" />

@@ -40,4 +40,38 @@ class LoginController extends \library\BaseController {
 
 		$this->response->redirect();
 	}
+
+	public function forget() {
+		if(!$this->user->infos['is_guest'])
+			$this->response->redirect();
+
+		// Le formulaire a été validé ?
+		if($this->request->postExists('form_sent')) {
+			$username = pun_trim($this->request->postData('email'));
+
+			$user = new \modules\User\User();
+			$user->exists($username, false, true);
+
+			if($user->exists) {
+				// Génération d'un mot de passe aléatoire
+        		$password = random_pass(8);
+        		$user->changePassword($password, $password, false);
+
+        		// Envoi du nouveau mot de passe
+        		$login = new Login(true);
+        		$login->sendChangePassword($username, $password, $username);
+        		}
+        	else {
+				$this->view->with('error', true);
+        	}
+
+			$this->view->with('complete', true);
+			$this->titre_page = 'Mot de passe oublié';
+			$this->makeView();
+		}
+		else {
+			$this->titre_page = 'Mot de passe oublié';
+			$this->makeView();
+		}
+	}
 }

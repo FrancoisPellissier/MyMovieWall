@@ -39,4 +39,25 @@ class Login extends \modules\User\User {
 
 		pun_setcookie(1, pun_hash(uniqid(rand(), true)), time() + 31536000);
 	}
+
+	public function sendChangePassword($username, $password, $email) {
+        require PUN_ROOT.'include/email.php';
+
+        // Load the "welcome" template
+        $mail_tpl = trim(file_get_contents(ROOT.'assets/mail_template/change_password.tpl'));
+
+        // The first row contains the subject
+        $first_crlf = strpos($mail_tpl, "\n");
+        $mail_subject = trim(substr($mail_tpl, 8, $first_crlf-8));
+        $mail_message = trim(substr($mail_tpl, $first_crlf));
+
+        $mail_subject = str_replace('<board_title>', 'My Movie Wall', $mail_subject);
+        $mail_message = str_replace('<base_url>', WWW_ROOT, $mail_message);
+        $mail_message = str_replace('<username>', $username, $mail_message);
+        $mail_message = str_replace('<password>', $password, $mail_message);
+        $mail_message = str_replace('<login_url>', WWW_ROOT.'login', $mail_message);
+        $mail_message = str_replace('<board_mailer>', 'My Movie Wall', $mail_message);
+
+        pun_mail($email, $mail_subject, $mail_message);
+    }
 }

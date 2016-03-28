@@ -37,14 +37,16 @@ class User extends \library\BaseModel {
         );
     }
 
-    public function changePassword($password1, $password2) {
+    public function changePassword($password1, $password2, $cookie = true) {
         global $pun_config;
         
         // On vérifie la présence des mots de passes et leur égalité
         if(!empty($password1) && !empty($password2) && $password1 == $password2) {
-        $this->db->query(\library\Query::update('users', array('password' => pun_hash($password1)), array('id' => $this->infos['id']), false))or error($this->db->error());
+            $this->db->query(\library\Query::update('users', array('password' => pun_hash($password1)), array('id' => $this->infos['id']), false))or error($this->db->error());
 
-            pun_setcookie($this->infos['id'], pun_hash($password1), time() + $pun_config['o_timeout_visit']);
+            if($cookie)
+                pun_setcookie($this->infos['id'], pun_hash($password1), time() + $pun_config['o_timeout_visit']);
+    
             return true;
         }
         else

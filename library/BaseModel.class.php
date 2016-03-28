@@ -42,7 +42,7 @@ abstract class BaseModel {
 		return $all;
 	}
 
-	public function exists($id, $allocine = false) {
+	public function exists($id, $allocine = false, $email = false) {
 		global $pun_user;
 		// On génère la liste des champs à récupérer
 		$sql_fields = implode(', ', array_keys($this->schema));
@@ -52,6 +52,8 @@ abstract class BaseModel {
 		// Génération de la clause WHERE
 		if($allocine && isset($this->schema['code']))
 			$where = 'WHERE code = \''.$this->db->escape($id).'\'';
+		else if($email && isset($this->schema['email']))
+			$where = 'WHERE email = \''.$this->db->escape($id).'\'';
 		else
 			$where = 'WHERE '.$this->key.' = '.intval($id);
 
