@@ -2,75 +2,75 @@
 namespace library;
 
 abstract class BaseController {
-	protected $action = '';
-	protected $module = '';
-	protected $view = '';
-	protected $request;
-	protected $response;
-	protected $titre_page;
-	protected $menu_actif;
-	protected $item_actif;
-	protected $side_section;
-	protected $site_item;
-	protected $user;
-	protected $jsfile;
+    protected $action = '';
+    protected $module = '';
+    protected $view = '';
+    protected $request;
+    protected $response;
+    protected $titre_page;
+    protected $menu_actif;
+    protected $item_actif;
+    protected $side_section;
+    protected $site_item;
+    protected $user;
+    protected $jsfile;
 
-	public function __construct(\library\HTTPRequest $request, $module, $action) {
-		$this->setModule($module);
-		$this->setAction($action);
-		$this->request = $request;
-		$this->response = new \library\HTTPResponse();
+    public function __construct(\library\HTTPRequest $request, $module, $action) {
+        $this->setModule($module);
+        $this->setAction($action);
+        $this->request = $request;
+        $this->response = new \library\HTTPResponse();
 
-		$this->user = new \modules\User\User();
-		$this->view = new \library\View($module, $action);
-	}
+        $this->user = new \modules\User\User();
+        $this->view = new \library\View($module, $action);
+    }
 
-	public function execute() {
-		$method = $this->action;
-		 
-		if (!is_callable(array($this, $method))) {
-			throw new \RuntimeException('L\'action "'.$this->action.'" n\'est pas définie sur ce module');
-		}
-		
-		$this->$method($this->request);
-	}
+    public function execute() {
+        $method = $this->action;
+         
+        if (!is_callable(array($this, $method))) {
+            throw new \RuntimeException('L\'action "'.$this->action.'" n\'est pas définie sur ce module');
+        }
+        
+        $this->$method($this->request);
+    }
 
-	public function setModule($module) {
-		$this->module = $module;
-	}
-	 
-	public function setAction($action) {
-		$this->action = $action;
-	}
+    public function setModule($module) {
+        $this->module = $module;
+    }
+     
+    public function setAction($action) {
+        $this->action = $action;
+    }
 
-	public function makeView() {	    
-		$this->view->with('titre_page', $this->titre_page);
-		$this->view->with('menu_actif', $this->menu_actif);
-		$this->view->with('item_actif', $this->item_actif);
+    public function makeView() {        
+        $this->view->with('titre_page', $this->titre_page);
+        $this->view->with('menu_actif', $this->menu_actif);
+        $this->view->with('item_actif', $this->item_actif);
 
-		$this->view->with('side_section', $this->side_section);
-		$this->view->with('side_item', $this->side_item);
+        $this->view->with('side_section', $this->side_section);
+        $this->view->with('side_item', $this->side_item);
 
-		$this->view->with('user', $this->user->infos);
-		$this->view->with('jsfile', $this->jsfile);
-		$this->view->make();
-	}
+        $this->view->with('user', $this->user->infos);
+        $this->view->with('jsfile', $this->jsfile);
+        $this->view->make();
+    }
 
-	public function exists($redirect = 'film') {
-		$id = intval($this->request->getData('id'));
+    public function exists($redirect = 'film') {
+        $id = intval($this->request->getData('id'));
 
-		$modelClass = '\modules\\'.$this->module.'\\'.$this->module;
+        $modelClass = '\modules\\'.$this->module.'\\'.$this->module;
 
-		$model = new $modelClass();
-		$model->exists($id);
-		
-		// S'il n'existe pas, on redirige vers l'adresse fournie
-		if(!$model->exists)
-			$this->response->redirect($redirect);
-		// S'il existe, on le passe dans la vue et on le renvoit
-		else {
-			$this->view->with('model', $model->infos);
-			return $model;
-		}
-	}
+        $model = new $modelClass();
+        $model->exists($id);
+        
+        // S'il n'existe pas, on redirige vers l'adresse fournie
+        if(!$model->exists)
+            $this->response->redirect($redirect);
+        // S'il existe, on le passe dans la vue et on le renvoit
+        else {
+            $this->view->with('model', $model->infos);
+            return $model;
+        }
+    }
 }
