@@ -56,7 +56,7 @@
                 if($user['hasFilm'][$type] == 0)
                     echo "\n\t\t\t".'<button type="button" class="btn btn-default" id="'.$type.'" onClick="addBiblio('.$curFiche['movieid'].', \''.$type.'\')">'.$typename.'</button>';
                 else
-                    echo "\n\t\t\t".'<button type="button" class="btn btn-success" id="'.$type.'" onClick="delBiblio('.$curFiche['movieid'].', \''.$type.'\')>'.$typename.'</button>';
+                    echo "\n\t\t\t".'<button type="button" class="btn btn-success" id="'.$type.'" onClick="delBiblio('.$curFiche['movieid'].', \''.$type.'\')">'.$typename.'</button>';
             }
             ?>
         </p>
