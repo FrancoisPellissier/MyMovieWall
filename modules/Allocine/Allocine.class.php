@@ -2,14 +2,14 @@
 namespace modules\Allocine;
 
 class Allocine {
-	
-	public function __construct() {
-		require_once 'api-allocine-helper.php';
-	}
+    
+    public function __construct() {
+        require_once 'api-allocine-helper.php';
+    }
 
-	private function getVar($var) {
-		return (isset($var) ? $var : '');
-	}
+    private function getVar($var) {
+        return (isset($var) ? $var : '');
+    }
 
     public function clean($keyword) {
         $normalizeChars = array(
@@ -30,95 +30,94 @@ class Allocine {
         $allohelper = new AlloHelper();
 
         $datas = array();
+        $keywords = $this->clean($keywords);
 
-        try {
-            $keywords = $this->clean($keywords);
-            // Envoi de la requête avec les paramètres, et enregistrement des résultats dans $donnees.
-            $donnees = $allohelper->search($keywords, 1, 20, false, array('movie'));
-            
-            // Pas de résultat ?
-            if (count( $donnees['movie'] ) >= 1) {
-                // Pour chaque résultat de film.
-                foreach ($donnees['movie'] as $film) {
-                    $data = array();
-                    $data['titre'] = $film['title'];
-                    $data['code'] = $film['code'];
-                    $data['affiche'] = str_replace('http://images.allocine.fr', 'http://images.allocine.fr/r_160_240/b_1_d6d6d6', $film['poster']);
-                    $data['realisateur'] = $film['castingShort']['directors'];
-                    $data['acteur'] = $film['castingShort']['actors'];
+        if(!empty($keywords)) {
+            try {  
+                $donnees = $allohelper->search($keywords, 1, 20, false, array('movie'));
+                
+                if (count( $donnees['movie'] ) >= 1) {
+                    foreach ($donnees['movie'] as $film) {
+                        $data = array();
+                        $data['titre'] = $film['title'];
+                        $data['code'] = $film['code'];
+                        $data['affiche'] = str_replace('http://images.allocine.fr', 'http://images.allocine.fr/r_160_240/b_1_d6d6d6', $film['poster']);
+                        $data['realisateur'] = $film['castingShort']['directors'];
+                        $data['acteur'] = $film['castingShort']['actors'];
 
-                    $datas[] = $data;
+                        $datas[] = $data;
+                    }
                 }
             }
-        }
-        // En cas d'erreur.
-        catch ( ErrorException $e ) {
-            
+            // En cas d'erreur.
+            catch ( ErrorException $e ) {
+
+            }
         }
         return $datas;   
     }
 
-	public function getFilm($id) {
-		
-		$allohelper = new AlloHelper();
+    public function getFilm($id) {
+        
+        $allohelper = new AlloHelper();
     
-    	try {
-	        $return = $allohelper->movie(intval($id), 'medium');
+        try {
+            $return = $allohelper->movie(intval($id), 'medium');
 
             if($return == 'Erreur 5: No result')
-            	echo "<p>Impossible de trouver la fiche film</p>";
+                echo "<p>Impossible de trouver la fiche film</p>";
             else {
-            	$film = $return;
+                $film = $return;
 
-            	$data = array();
-            	
-            	$data['code'] = $this->getVar($film['code']);
-            	$data['titrevo'] = $this->getVar($film['originalTitle']);
-            	$data['titrevf'] = $this->getVar($film['title']);
+                $data = array();
+                
+                $data['code'] = $this->getVar($film['code']);
+                $data['titrevo'] = $this->getVar($film['originalTitle']);
+                $data['titrevf'] = $this->getVar($film['title']);
 
-            	$data['datesortie'] = $this->getVar($film['release']['releaseDate']);
-            	$data['duree'] = $this->getVar($film['runtime']);
-            	$data['duree_texte'] = gmdate("G\hi", intval($data['duree']));
+                $data['datesortie'] = $this->getVar($film['release']['releaseDate']);
+                $data['duree'] = $this->getVar($film['runtime']);
+                $data['duree_texte'] = gmdate("G\hi", intval($data['duree']));
 
-            	$data['synopsis'] = $this->getVar($film['synopsis']);
-            	$data['realisateur'] = $this->getVar($film['castingShort']['directors']);
+                $data['synopsis'] = $this->getVar($film['synopsis']);
+                $data['realisateur'] = $this->getVar($film['castingShort']['directors']);
                 $data['acteur'] = $this->getVar($film['castingShort']['actors']);
 
-            	$data['affiche'] = $this->getVar($film['poster']->url());
+                $data['affiche'] = $this->getVar($film['poster']->url());
 
-            	// Genres
-            	foreach($film['genre'] AS $genre)
-            		$data['genre'][$genre['code']] = $this->getVar($genre['$']);
+                // Genres
+                foreach($film['genre'] AS $genre)
+                    $data['genre'][$genre['code']] = $this->getVar($genre['$']);
 
-            	// Casting
-            	if(!empty($film['castMember'])) {
-            		foreach($film['castMember'] AS $cast) {
-        				// Acteur
-        				if($cast['activity']['code'] == '8001') {
-        					$data['acteurs'][] = array(
-        						'code'	=> $this->getVar($cast['person']['code']),
-        						'nom'	=> $this->getVar($cast['person']['name']),
+                // Casting
+                if(!empty($film['castMember'])) {
+                    foreach($film['castMember'] AS $cast) {
+                        // Acteur
+                        if($cast['activity']['code'] == '8001') {
+                            $data['acteurs'][] = array(
+                                'code'  => $this->getVar($cast['person']['code']),
+                                'nom'   => $this->getVar($cast['person']['name']),
                                 'picture'   => $this->getVar($cast['picture']['href']),
-        						'role'	=> $this->getVar($cast['role'])
-        						);
-        				}
-        				// Réalisateur
-        				else if($cast['activity']['code'] == '8002') {
-        					$data['realisateurs'][] = array(
-        						'code'	=> $this->getVar($cast['person']['code']),
+                                'role'  => $this->getVar($cast['role'])
+                                );
+                        }
+                        // Réalisateur
+                        else if($cast['activity']['code'] == '8002') {
+                            $data['realisateurs'][] = array(
+                                'code'  => $this->getVar($cast['person']['code']),
                                 'picture'   => $this->getVar($cast['picture']['href']),
-        						'nom'	=> $this->getVar($cast['person']['name'])
-        						);
-        				}
-            		}
-            	}
+                                'nom'   => $this->getVar($cast['person']['name'])
+                                );
+                        }
+                    }
+                }
                 return $data;
             }
-	    }
-	    catch ( ErrorException $e ) {
+        }
+        catch ( ErrorException $e ) {
 
-	    }
-	}
+        }
+    }
 
     public function getFilmTrailer($id) {
         
