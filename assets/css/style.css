@@ -6,17 +6,6 @@ body {
   text-align: center;
 }
 
-#brand {
-  margin-left: -20px;
-  margin-top: -20px;
-  margin-right: -20px;
-  margin-bottom: 10px;
-}
-
-#brand img {
-  width: 100%;
-}
-
 .container {
   padding-right: 15px;
   padding-left: 15px;
@@ -245,4 +234,8 @@ footer {
 footer a, footer a:hover, footer a:active {
   color: grey;
   text-decoration: none;
+}
+
+.table_width {
+  width: auto;
 }

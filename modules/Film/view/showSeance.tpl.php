@@ -16,7 +16,7 @@ if(!empty($seances)) {
                 echo "\n\t".'<h4>'.$version.'</h4>';
 
                 ?>
-        <table class="table table-striped">
+        <table class="table table-striped table_width">
         <tbody>
                 <?php
                 // Tri des dates
