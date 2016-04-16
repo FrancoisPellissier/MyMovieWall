@@ -19,6 +19,8 @@ if(!empty($seances)) {
         <table class="table table-striped">
         <tbody>
                 <?php
+                // Tri des dates
+                ksort($dates);
                 // On parcourt les jours
                 foreach($dates AS $jour => $heures) {            
                     echo "\n\t".'<tr><td>'.library\Datetime::formatDateTime($jour, 'jour j mois', '').'</td><td>'.implode($heures, ' | ').'</td></tr>';
