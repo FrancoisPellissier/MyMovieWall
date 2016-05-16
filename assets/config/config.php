@@ -5,14 +5,14 @@ if($_SERVER['SERVER_NAME'] == 'localhost') {
     define('WWW_ROOT', 'http://localhost/movie/');
 	}
 else if($_SERVER['SERVER_NAME'] == 'mymoviewall.com') {
-	define('ROOT', '/homepages/4/d185183764/htdocs/');
+	define('ROOT', '/home/mymoviewall/www');
     define('PUN_ROOT', ROOT.'forum/');
     define('WWW_ROOT', 'http://www.mymoviewall.com/');
 }
 else {
-	define('ROOT', '/homepages/4/d185183764/htdocs/');
+	define('ROOT', '/home/mymoviewall/www');
     define('PUN_ROOT', ROOT.'forum/');
-    define('WWW_ROOT', 'http://s185183776.onlinehome.fr/');
+    define('WWW_ROOT', 'http://www.mymoviewall.com/');
 }
 
 require PUN_ROOT.'include/common.php';
