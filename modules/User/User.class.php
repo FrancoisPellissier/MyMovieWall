@@ -320,8 +320,10 @@ class User extends \library\BaseModel {
     public function getRate($movieid) {
         $result = $this->db->query('SELECT rate FROM users_rate WHERE userid = '.$this->infos['id'].' AND movieid = '.intval($movieid));
 
-        if($this->db->num_rows($result))
-            $this->infos['rateFilm'] = $this->db->fetch_assoc($result)['rate'];
+        if($this->db->num_rows($result)) {
+            $cur = $this->db->fetch_assoc($result);
+            $this->infos['rateFilm'] = $cur['rate'];
+        }
         else
             $this->infos['rateFilm'] = 0;
     }
