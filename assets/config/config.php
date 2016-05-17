@@ -3,16 +3,19 @@ if($_SERVER['SERVER_NAME'] == 'localhost') {
 	define('ROOT', 'C:/xampp/htdocs/movie/');
     define('PUN_ROOT', ROOT.'forum/');
     define('WWW_ROOT', 'http://localhost/movie/');
+    define('MAINTENANCE_MOD', false);
 	}
 else if($_SERVER['SERVER_NAME'] == 'mymoviewall.com') {
 	define('ROOT', '/home/mymoviewall/www');
     define('PUN_ROOT', ROOT.'forum/');
     define('WWW_ROOT', 'http://www.mymoviewall.com/');
+    define('MAINTENANCE_MOD', false);
 }
 else {
 	define('ROOT', '/home/mymoviewall/www');
     define('PUN_ROOT', ROOT.'forum/');
     define('WWW_ROOT', 'http://www.mymoviewall.com/');
+    define('MAINTENANCE_MOD', false);
 }
 
 require PUN_ROOT.'include/common.php';

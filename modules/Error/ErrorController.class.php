@@ -8,4 +8,9 @@ class ErrorController extends \library\BaseController {
 		$this->view->addHeader('HTTP/1.0 404 Not Found');
 		$this->makeView();
 	}
+
+	public function maintenance() {
+		$this->titre_page = 'Maintenance';
+		$this->makeView();
+	}
 }
