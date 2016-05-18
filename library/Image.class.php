@@ -89,7 +89,7 @@ class Image {
       * @return void
       */
      public function imageResize($url, $folder, $nom, $largeur, $hauteur) {
-        if(filesize($url) < 1100000) {
+        // if(filesize($url) < 1100000) {
             $source = imagecreatefromjpeg($url); // La photo est la source
             $largeur_source = imagesx($source);
             $hauteur_source = imagesy($source);
@@ -115,7 +115,7 @@ class Image {
             // On vérifie la taille de l'image de sortie
             if(filesize($folder.'/'.$nom.'.jpg') < 4000)
                 unlink($folder.'/'.$nom.'.jpg');
-        }
+        // }
     }
 
     public static function getUrl($type, $id) {
