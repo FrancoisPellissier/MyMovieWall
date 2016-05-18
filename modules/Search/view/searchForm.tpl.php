@@ -21,6 +21,26 @@
 			</select>
 			</label>
 		</div>
+	</div>
+	<div class="row">
+		<?php
+		if(!$user['is_guest']) {
+		?>
+		<div class="col-md-3">
+			<label for="own">Format
+				<select class="form-control" id="own" name="own">
+				<?php
+				$ordres = array('' => 'Format', 'dvd' => 'DVD', 'bluray' => 'Blu-Ray', 'numerique' => 'Numérique');
+	  			foreach($ordres AS $ordreid => $ordre) {
+	  				echo "\n\t\t\t\t".'<option value="'.$ordreid.'"'.($params['own'] == $ordreid ? ' selected="selected"' : '').'>'.$ordre.'</option>';
+	  			}
+	  			?>
+			</select>
+			</label>
+		</div>
+		<?php
+		}
+		?>
 		<div class="col-md-3">
 			<label for="ordre">Trier par
 				<select class="form-control" id="ordre" name="ordre">
@@ -35,7 +55,7 @@
 		</div>
 	 </div>
 	 <?php
-	 if(!$force_biblio) {
+	 if(!$force_biblio && !$user['is_guest']) {
 	 ?>
 	 <div class="row">
 		<div class="col-md-4 checkbox">

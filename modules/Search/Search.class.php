@@ -27,6 +27,7 @@ class Search extends \library\BaseModel {
         $params['acteur'] = $this->test($post, 'acteur');
 
         $params['biblio'] = isset($_POST['biblio']) ? true : false;
+        $params['own'] = isset($_POST['own']) ? $_POST['own'] : '';
         $params['genre'] = intval($this->test($post, 'genre'));
         $params['ordre'] = intval($this->test($post, 'ordre'));
         
@@ -53,8 +54,13 @@ class Search extends \library\BaseModel {
         }
 
         // Filtre par bibliothèque
-        if($post['biblio']) {
-            $sql_join[] = 'INNER JOIN users_biblio AS ub ON m.movieid = ub.movieid AND ub.userid = '.intval($userid);
+        if($post['biblio'] || $post['own'] != '') {
+            $sql_temp = 'INNER JOIN users_biblio AS ub ON m.movieid = ub.movieid AND ub.userid = '.intval($userid);
+
+            if($post['own'] != '')
+                $sql_temp .= ' AND '.$post['own'].' = \'1\'';
+
+            $sql_join[] = $sql_temp;
         }
 
         // Cé de tri
