@@ -4,7 +4,7 @@ namespace modules\Login;
 class LoginController extends \library\BaseController {
 	public function login() {
 		if(!$this->user->infos['is_guest'])
-			$this->response->redirect();
+			$this->response->redirect('');
 
 		// Le formulaire a été validé ?
 		if($this->request->postExists('form_sent')) {
@@ -30,15 +30,15 @@ class LoginController extends \library\BaseController {
 
 	public function logout() {
 		if($this->user->infos['is_guest'])
-			$this->response->redirect();
+			$this->response->redirect('');
 
 		if ($pun_user['is_guest'] || !isset($_GET['id']) || $_GET['id'] != $this->user->infos['id'] || !isset($_GET['csrf_token']) || $_GET['csrf_token'] != pun_hash($this->user->infos['id'].pun_hash(get_remote_address())))
-			$this->response->redirect();
+			$this->response->redirect('');
 
 		$login = new Login(true);
 		$login->logout($this->user->infos);
 
-		$this->response->redirect();
+		$this->response->redirect('');
 	}
 
 	public function forget() {
