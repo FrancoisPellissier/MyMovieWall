@@ -16,7 +16,7 @@ class LoginController extends \library\BaseController {
 
 			// Si tout va bien on redirige vers l'accueil
 			if($valid)
-				$this->response->redirect();
+				$this->response->redirect('');
 			else {
 				$this->titre_page = 'Connexion';
 				$this->makeView();
@@ -43,7 +43,7 @@ class LoginController extends \library\BaseController {
 
 	public function forget() {
 		if(!$this->user->infos['is_guest'])
-			$this->response->redirect();
+			$this->response->redirect('');
 
 		// Le formulaire a été validé ?
 		if($this->request->postExists('form_sent')) {
