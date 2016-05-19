@@ -63,13 +63,17 @@ class Search extends \library\BaseModel {
             $sql_join[] = $sql_temp;
         }
 
+        // Récupération des notes
+        $sql_join[] = 'LEFT JOIN users_rate AS ur ON m.movieid = ur.movieid AND ur.userid = '.intval($userid);
+
         // Cé de tri
         $sort = array();
         $sort[1] = 'm.titrevf';
         $sort[2] = 'm.datesortie DESC';
+        $sort[3] = 'ur.rate DESC, m.titrevf';
 
         // Création de la requête
-        $sql = 'SELECT m.movieid, m.titrevf, m.titrevo FROM movie AS m ';
+        $sql = 'SELECT m.movieid, m.titrevf, m.titrevo, ur.rate FROM movie AS m ';
         $sql .= implode(' ', $sql_join);
         $sql .= (!empty($sql_where) ? ' WHERE '.implode(' AND ', $sql_where) : '');
         $sql .= ' GROUP BY m.movieid';
@@ -80,8 +84,10 @@ class Search extends \library\BaseModel {
 
         $films = array();
 
-        while($cur = $this->db->fetch_assoc($result))
+        while($cur = $this->db->fetch_assoc($result)) {
+            $cur['rate'] = $this->displayRate($cur['rate']);
             $films[] = $cur;
+        }
 
         return $films;
     }
