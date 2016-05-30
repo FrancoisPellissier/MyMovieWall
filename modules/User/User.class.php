@@ -328,24 +328,6 @@ class User extends \library\BaseModel {
             $this->infos['rateFilm'] = 0;
     }
 
-    public function displayRate($note) {
-        $rate = '';
-        $note = intval($note);
-
-        if($note <= 0 OR $note > 5)
-            return '&nbsp;';
-        else {
-            for($i=1;$i<=5;$i++) {
-                if($i > $note)
-                    $rate .= '<span class="glyphicon glyphicon-star-empty"></span>';
-                else
-                    $rate .= '<span class="glyphicon glyphicon-star"></span>';
-            }
-
-            return $rate;
-        }
-    }
-
     public function getTheaters() {
        $result = $this->db->query('SELECT ut.theaterid, t.theatername, t.code, t.adress, t.zipcode, t.city FROM users_theater AS ut INNER JOIN theater AS t ON ut.theaterid = t.theaterid AND ut.userid = '.$this->infos['id'].' ORDER BY zipcode, theatername')or error('Impossible de récupérer les cinémas de l\'utilisateur', __FILE__, __LINE__, $this->db->error());
 

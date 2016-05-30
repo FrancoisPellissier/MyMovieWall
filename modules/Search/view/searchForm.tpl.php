@@ -45,7 +45,7 @@
 			<label for="ordre">Trier par
 				<select class="form-control" id="ordre" name="ordre">
 				<?php
-				$ordres = array('1' => 'Titre', '2' => 'Date de sortie');
+				$ordres = array('1' => 'Titre', '2' => 'Date de sortie', '3' => 'Mes notes');
 	  			foreach($ordres AS $ordreid => $ordre) {
 	  				echo "\n\t\t\t\t".'<option value="'.$ordreid.'"'.($params['ordre'] == $ordreid ? ' selected="selected"' : '').'>'.$ordre.'</option>';
 	  			}

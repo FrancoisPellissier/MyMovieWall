@@ -289,4 +289,22 @@ abstract class BaseModel {
             }
         }
     }
+
+    public function displayRate($note) {
+        $rate = '';
+        $note = intval($note);
+
+        if($note <= 0 OR $note > 5)
+            return '&nbsp;';
+        else {
+            for($i=1;$i<=5;$i++) {
+                if($i > $note)
+                    $rate .= '<span class="glyphicon glyphicon-star-empty"></span>';
+                else
+                    $rate .= '<span class="glyphicon glyphicon-star"></span>';
+            }
+
+            return $rate;
+        }
+    }
 }
