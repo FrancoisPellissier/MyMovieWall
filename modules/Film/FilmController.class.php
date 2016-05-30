@@ -159,6 +159,10 @@ class FilmController extends \library\BaseController {
 
 			// Ajout de l'affiche textuelle si pas d'image
 			\library\Image::generateAffiche('img/movie/'.intval($id / 100).'/'.$id.'.jpg', $film->infos['titrevf']);
+
+			// On track l'ajout du film
+			$this->track('movie_add', $id);
+
 		}	
 		ob_end_clean();
 		// On renvoi l'id au code JS
