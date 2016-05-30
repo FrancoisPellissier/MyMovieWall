@@ -73,4 +73,10 @@ abstract class BaseController {
             return $model;
         }
     }
+
+    public function track($action, $movieid, $specificid = 0) {
+        $timeline = new \modules\Timeline\Timeline();
+        $timeline->track($this->user->infos['id'], $action, $movieid, $specificid);
+    }
+
 }
