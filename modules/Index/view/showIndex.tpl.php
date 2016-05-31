@@ -14,7 +14,7 @@
 	?>
 </div>
 
-<h3>Dernières ajouts</h3>
+<h3>Derniers ajouts</h3>
 <div class="row">
 	<?php
 	foreach($lastCreated AS $cur)

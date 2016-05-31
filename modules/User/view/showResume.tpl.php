@@ -14,7 +14,7 @@
 	?>
 </div>
 <p><a href="user/<?php echo $curUser['id']; ?>/lastview/tele">Voir la liste complète</a></p>
-<h3>Dernières ajouts dans la bibliothèque</h3>
+<h3>Derniers ajouts dans la bibliothèque</h3>
 <div class="row">
 	<?php
 	foreach($lastBiblio AS $cur)
