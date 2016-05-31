@@ -252,6 +252,9 @@ class FilmController extends \library\BaseController {
 		if($film->exists) {
 			$this->user->addBiblio($id, $this->request->getData('type'));
 			$this->user->addWish($id, 'buy', '0');
+
+			// On track l'ajout du film dans la biblio
+			$this->track('biblio_add', $id);
 		}
 		ob_end_clean();
 	}
@@ -265,6 +268,9 @@ class FilmController extends \library\BaseController {
 		// Si la fiche n'existe pas, on redirige vers l'accueil du module
 		if($film->exists) {
 			$this->user->addBiblio($id, $this->request->getData('type'), '0');
+
+			// On track la suppression du film dans la biblio
+			$this->track('biblio_del', $id);
 		}
 		ob_end_clean();
 	}
@@ -285,6 +291,9 @@ class FilmController extends \library\BaseController {
 		else {
 			$this->user->addView($id, $this->request->postData('type'), $this->request->postData('viewdate'));
 			$this->user->addWish($id, 'view', '0');
+
+			// On track la vue du film
+			$this->track('view_add', $id);
 		}
 		$this->response->redirect('film/'.$id);
 	}
@@ -312,6 +321,15 @@ class FilmController extends \library\BaseController {
 		// Si la fiche n'existe pas, on redirige vers l'accueil du module
 		if($film->exists) {
 			$this->user->addWish($id, $this->request->getData('type'));
+
+			// On track l'ajout du film dans la wishlist
+			if($this->request->getData('type') == 'buy') {
+				$this->track('whish_add', $id);
+			}
+			else {
+				$this->track('towatchlist_add', $id);
+			}
+
 		}
 		ob_end_clean();
 	}
@@ -325,6 +343,14 @@ class FilmController extends \library\BaseController {
 		// Si la fiche n'existe pas, on redirige vers l'accueil du module
 		if($film->exists) {
 			$this->user->addWish($id, $this->request->getData('type'), '0');
+
+			// On track l'ajout du film dans la wishlist
+			if($this->request->getData('type') == 'buy') {
+				$this->track('whish_del', $id);
+			}
+			else {
+				$this->track('towatchlist_del', $id);
+			}
 		}
 		ob_end_clean();
 	}
@@ -435,6 +461,9 @@ class FilmController extends \library\BaseController {
 
 		if($film->exists) {
 			$this->user->rateFilm($id, $this->request->getData('rate'));
+
+			// On track la notation du film
+			$this->track('rate_add', $id);
 		}
 		ob_end_clean();
 	}
