@@ -324,10 +324,10 @@ class FilmController extends \library\BaseController {
 
 			// On track l'ajout du film dans la wishlist
 			if($this->request->getData('type') == 'buy') {
-				$this->track('whish_add', $id);
+				$this->track('wish_add', $id);
 			}
 			else {
-				$this->track('towatchlist_add', $id);
+				$this->track('towatch_add', $id);
 			}
 
 		}
@@ -346,10 +346,10 @@ class FilmController extends \library\BaseController {
 
 			// On track l'ajout du film dans la wishlist
 			if($this->request->getData('type') == 'buy') {
-				$this->track('whish_del', $id);
+				$this->track('wish_del', $id);
 			}
 			else {
-				$this->track('towatchlist_del', $id);
+				$this->track('towatch_del', $id);
 			}
 		}
 		ob_end_clean();
