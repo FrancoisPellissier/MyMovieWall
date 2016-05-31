@@ -29,4 +29,30 @@ class Timeline extends \library\BaseModel {
         $this->hydrate($datas);
         $new_id = $this->add();
     }
+
+    public function getLast($nb = 32) {
+        $sql = 'SELECT
+            timeline.timelineid,
+            timeline.action,
+            users.realname,
+            movie.movieid,
+            movie.titrevo,
+            movie.titrevf,
+            timeline.created_at
+            FROM timeline
+            INNER JOIN movie
+                ON timeline.movieid = movie.movieid
+            INNER JOIN users
+                ON timeline.userid = users.id
+            ORDER BY timeline.timelineid DESC
+            LIMIT '.intval($nb);
+
+        $result = $this->db->query($sql)or error('Impossible de récupérer la timeline"', __FILE__, __LINE__, $this->db->error());
+
+        $all = array();
+        while($cur = $this->db->fetch_assoc($result)) {
+                $all[$cur[$this->key]] = $cur;
+            }
+        return $all;
+    }
 }

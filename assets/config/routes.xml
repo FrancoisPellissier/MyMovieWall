@@ -80,6 +80,8 @@
 	<route url="/theater/add/([A-Za-z0-9]+)" module="Theater" action="addToUser" vars="code" />
 	<route url="/theater/del/([0-9]+)" module="Theater" action="delFromUser" vars="id" />
 
+	<route url="/timeline" module="Timeline" action="showLast" />
+
  	<route url="/about" module="About" action="about" />
  	<route url="/mentions" module="About" action="mentions" />
  	<route url="/syntaxe" module="About" action="syntaxe" />
