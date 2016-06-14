@@ -54,8 +54,11 @@
  	<route url="/friend" module="Friend" action="index" />
  	<route url="/friend/search" module="Friend" action="search" />
  	<route url="/friend/ask/([0-9]+)" module="Friend" action="ask" vars="id" />
- 	<route url="/friend/del/([0-9]+)" module="Friend" action="delete" vars="id" />
- 	<route url="/friend/del/([0-9]+)/validate" module="Friend" action="delete" vars="id" />
+ 	<route url="/friend/validate/([0-9]+)" module="Friend" action="validate" vars="id" />
+ 	<route url="/friend/decline/([0-9]+)" module="Friend" action="decline" vars="id" />
+ 	<route url="/friend/decline/([0-9]+)/(validate)" module="Friend" action="decline" vars="id,validate" />
+ 	<route url="/friend/delete/([0-9]+)" module="Friend" action="delete" vars="id" />
+ 	<route url="/friend/delete/([0-9]+)/(validate)" module="Friend" action="delete" vars="id,validate" />
 
  	<route url="/person/([0-9]+)" module="Person" action="showFilms" vars="id" />
 
