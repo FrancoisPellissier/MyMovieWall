@@ -118,10 +118,17 @@ class Image {
         // }
     }
 
-    public static function getUrl($type, $id) {
+    public static function getUrl($type, $id, $suffixe = '') {
         $url = 'img/'.$type.'/'.intval($id / 100).'/'.$id.'.jpg';
-        if(file_exists($url))
+        if(file_exists($url)) {
+            if($suffixe != '') {
+                $search = array(':', ' ', '-');
+                $replace = array('', '', '');
+
+                $url .= '?m='.str_replace($search, $replace, $suffixe);
+            }
             return $url;
+        }
         else
             return 'img/empty.jpg';
     }

@@ -1,7 +1,8 @@
 <div class="row film_show">
     <div class="col-xs-4 col-sm-4 col-md-3">
     <?php
-        echo '<img src="'.library\Image::getUrl('movie', $curFiche['movieid']).'" alt="Affiche du film" title="'.$curFiche['titrevf'].'" class="img-rounded" />';
+    // dump($curFiche);
+        echo '<img src="'.library\Image::getUrl('movie', $curFiche['movieid'], $curFiche['updated_at']).'" alt="Affiche du film" title="'.$curFiche['titrevf'].'" class="img-rounded" />';
 
         if(!$user['is_guest']) {
             echo '<p><a href="film/'.$curFiche['movieid'].'/maj">Mettre à jour la fiche</a></p>';
