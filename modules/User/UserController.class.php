@@ -88,11 +88,18 @@ class UserController extends \library\BaseController {
 		else
 			$type = 'all';
 
+		// Voir un mois en particulier
+		$annee = intval($this->request->getData('annee'));
+		$mois = intval($this->request->getData('mois'));
+		
 		$this->titre_page = 'Derniers films vus';
 		$this->side_section = 'site';
 		$this->side_item = 'lastview';
-		$this->view->with('lastView', $this->curUser->getLastViews($type, false));
+		$this->view->with('lastView', $this->curUser->getLastViews($type, false, $annee, $mois));
 		$this->view->with('type', $type);
+		$this->view->with('annee', $annee);
+		$this->view->with('mois', $mois);
+
 		$this->makeView();
 	}
 

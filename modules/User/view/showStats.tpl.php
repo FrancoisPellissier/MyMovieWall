@@ -1,9 +1,9 @@
 </p>
 <?php
 $liens = array();
-$liens[] = array('type' => 'all', 'url' => 'user/'.$curUser['id'].'/stats', 'title' => 'Tout');
-$liens[] = array('type' => '1', 'url' => 'user/'.$curUser['id'].'/stats/cinema', 'title' => 'Cinéma');
-$liens[] = array('type' => '2', 'url' => 'user/'.$curUser['id'].'/stats/tele', 'title' => 'Télé');
+$liens['all'] = array('type' => 'all', 'url' => 'user/'.$curUser['id'].'/stats', 'title' => 'Tout');
+$liens['1'] = array('type' => '1', 'url' => 'user/'.$curUser['id'].'/stats/cinema', 'title' => 'Cinéma', 'value' => 'cinema');
+$liens['2'] = array('type' => '2', 'url' => 'user/'.$curUser['id'].'/stats/tele', 'title' => 'Télé', 'value' => 'tele');
 
 foreach($liens AS $lien) {
 	echo "\n\t".'<a href="'.$lien['url'].'"><button type="button" class="button '.($lien['type'] == $type ? 'button-success' : 'button-primary').'">'.$lien['title'].'</button></a> ';
@@ -38,7 +38,13 @@ foreach($stats AS $annee => $stat) {
 	echo "\n\t".'<td>'.$annee.'</td>';
 	
 	for($i=1;$i<=12;$i++) {
-		echo "\n\t".'<td>'.(isset($stat[$i]) ? $stat[$i] : '-').'</td>';
+		if($type == 'all') {
+			$link = 'user/'.$curUser['id'].'/lastview/'.$annee.'/'.$i;
+		}
+		else {
+			$link = 'user/'.$curUser['id'].'/lastview/'.$liens[$type]['value'].'/'.$annee.'/'.$i;	
+		}
+		echo "\n\t".'<td>'.(isset($stat[$i]) ? '<a href="'.$link.'">'.$stat[$i].'</a>' : '-').'</td>';
 	$tot += isset($stat[$i]) ? $stat[$i] : 0;
 	}
 	echo "\n\t".'<td>'.$tot.'</td>';

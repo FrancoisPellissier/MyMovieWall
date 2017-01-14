@@ -39,7 +39,9 @@
  	<route url="/user/([0-9]+)" module="User" action="showResume" vars="id" />
  	<route url="/user/([0-9]+)/edit" module="User" action="edit" vars="id" />
   	<route url="/user/([0-9]+)/lastview/([a-z]+)" module="User" action="lastview" vars="id,type" />
+  	<route url="/user/([0-9]+)/lastview/([a-z]+)/([0-9]+)/([0-9]+)" module="User" action="lastview" vars="id,type,annee,mois" />
  	<route url="/user/([0-9]+)/lastview" module="User" action="lastview" vars="id" />	
+ 	<route url="/user/([0-9]+)/lastview/([0-9]+)/([0-9]+)" module="User" action="lastview" vars="id,annee,mois" />	
  	<route url="/user/([0-9]+)/wishlist" module="User" action="wishlist" vars="id" />
  	<route url="/user/([0-9]+)/towatchlist" module="User" action="towatchlist" vars="id" />
  	<route url="/user/([0-9]+)/towatchlist/([a-z]+)" module="User" action="towatchlist" vars="id,type" />

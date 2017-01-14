@@ -124,11 +124,11 @@ class User extends \library\BaseModel {
         }
     }
 
-    public function getLastViews($type = 'all', $index = true) {
+    public function getLastViews($type = 'all', $index = true, $annee = 0, $mois = 0) {
         if(!in_array($type, array('1', '2')))
             $type = 'all';
 
-        $result = $this->db->query('SELECT m.*, uv.type, uv.viewdate, ur.rate FROM movie AS m INNER JOIN users_views AS uv ON m.movieid = uv.movieid AND uv.userid = '.$this->infos['id'].($type == 'all' ? '' : ' AND uv.type = \''.$type.'\'').' LEFT JOIN users_rate AS ur ON uv.userid = ur.userid AND uv.movieid = ur.movieid ORDER BY viewdate DESC, uv.created_at DESC'.($index ? ' LIMIT 6' : ''));
+        $result = $this->db->query('SELECT m.*, uv.type, uv.viewdate, ur.rate FROM movie AS m INNER JOIN users_views AS uv ON m.movieid = uv.movieid AND uv.userid = '.$this->infos['id'].($type == 'all' ? '' : ' AND uv.type = \''.$type.'\'').($annee != 0 && $mois != 0 ? ' AND YEAR(viewdate) = '.$annee.' AND MONTH(viewdate) = '.$mois : '').' LEFT JOIN users_rate AS ur ON uv.userid = ur.userid AND uv.movieid = ur.movieid ORDER BY viewdate DESC, uv.created_at DESC'.($index ? ' LIMIT 6' : ''));
 
         $last = array();
         while($cur = $this->db->fetch_assoc($result)) {
