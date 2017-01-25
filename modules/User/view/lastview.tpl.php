@@ -18,13 +18,24 @@ if($annee != 0 && $mois != 0) {
 }
 ?>
 </p>
-
-<div class="row">
 <?php
 if(!empty($lastView)) {
+    $last = '';
+    // Parcourt des films
 	foreach($lastView AS $film) {
+        // Nouveau mois ?
+        if($last != \library\Datetime::formatDateTime($film['viewdate'], 'm-Y', '')) {
+            // 1er mois ?
+            if($last != '') {
+                echo "\n".'</div>';
+            }
+            $last = \library\Datetime::formatDateTime($film['viewdate'], 'm-Y', '');
+            echo "\n".'<h3>'.ucwords(\library\Datetime::formatDateTime($film['viewdate'], 'mois Y', '')).'</h3>';
+            echo "\n".'<div class="row">';
+        }
 		echo "\n\t".'<div class="col-xs-4 col-sm-3 col-md-2"><a href="film/'.$film['movieid'].'"><img src="'.library\Image::getUrl('movie', $film['movieid']).'" alt="Affiche du film" title="'.$film['titrevf'].($film['viewdate'] != null ? ' - '.\library\Date::UStoFr($film['viewdate']) : '').'" class="img-rounded"></a><br />'.$film['rate'].'</div>';
 	}
+    echo "\n".'</div>';
 }
 ?>
 </div>
