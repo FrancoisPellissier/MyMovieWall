@@ -116,7 +116,7 @@ abstract class BaseModel {
                     else if($fieldinfo['fieldtype'] == 'TEXT')
                         $data[$field] = pun_trim(isset($post[$field]) ? $post[$field] : $fieldinfo['default']);
                     else if($fieldinfo['fieldtype'] == 'DATE' || $fieldinfo['fieldtype'] == 'DATETIME') {
-                        if(isset($post[$field]))
+                        if(isset($post[$field]) && $post[$field] != '' && $post[$field] != null && strlen($post[$field]) == 10)
                             $data[$field] = $post[$field];
                         else
                             unset($this->schema[$field]);
@@ -132,10 +132,18 @@ abstract class BaseModel {
                         $data[$field] = pun_trim($post[$field]);
                     else if($fieldinfo['fieldtype'] == 'INT')
                         $data[$field] = intval($post[$field]);
-                    else if($fieldinfo['fieldtype'] == 'DATE')
-                        $data[$field] = $post[$field];
-                    else if($fieldinfo['fieldtype'] == 'DATETIME')
-                        $data[$field] = $post[$field];
+                    else if($fieldinfo['fieldtype'] == 'DATE') {
+                        if($post[$field] == '' || $post[$field] == null || strlen($post[$field]) != 10)
+                            unset($this->schema[$field]);
+                        else
+                            $data[$field] = $post[$field];
+                    }
+                    else if($fieldinfo['fieldtype'] == 'DATETIME') {
+                        if($post[$field] == '' || $post[$field] == null)
+                            unset($this->schema[$field]);
+                        else
+                            $data[$field] = $post[$field];
+                    }
                     else if($fieldinfo['fieldtype'] == 'TEXT')
                         $data[$field] = pun_trim(isset($post[$field]) ? $post[$field] : $fieldinfo['default']);
                 }
@@ -185,6 +193,7 @@ abstract class BaseModel {
         $datas = $this->checkData('update', $post, $error);
         
         // On enregistre les modifications en base
+        // dump(Query::update($this->table, $datas, array($this->key => $this->infos[$this->key]), $this->time));
         $this->db->query(Query::update($this->table, $datas, array($this->key => $this->infos[$this->key]), $this->time))or error('Impossible de modifier la fiche '.$this->infos[$this->key].' dans la table : '.$this->table, __FILE__, __LINE__, $this->db->error());
     }
 
