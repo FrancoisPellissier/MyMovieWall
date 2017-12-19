@@ -73,7 +73,7 @@ class Image {
             copy($url, FOLDER_IMAGES.'/temp/'.$ficheid.'.jpg');
 
             // On redimensionne l'image pour qu'elle respecte les bonnes proportions
-            $this->imageResize(FOLDER_IMAGES.'/temp/'.$ficheid.'.jpg', FOLDER_IMAGES.'/'.$fichetype.'/'.$this->folder($ficheid), $ficheid, 350, 480);
+            $this->imageResize(FOLDER_IMAGES.'/temp/'.$ficheid.'.jpg', FOLDER_IMAGES.'/'.$fichetype.'/'.$this->folder($ficheid), $ficheid, 500, 686);
             }
         }
     }

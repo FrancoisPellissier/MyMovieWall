@@ -1,20 +1,20 @@
 <?php
 if($_SERVER['SERVER_NAME'] == 'localhost') {
-	define('ROOT', 'C:/xampp/htdocs/movie/');
+	define('ROOT', 'C:/xampp/htdocs/MyMovieWall/');
     define('PUN_ROOT', ROOT.'forum/');
-    define('WWW_ROOT', 'http://localhost/movie/');
+    define('WWW_ROOT', 'http://localhost/MyMovieWall/');
     define('MAINTENANCE_MOD', false);
 	}
 else if($_SERVER['SERVER_NAME'] == 'www.mymoviewall.com') {
-    define('ROOT', '/home/mymoviewall/www/');
+    define('ROOT', '/srv/data/web/vhosts/www.mymoviewall.com/htdocs/');
     define('PUN_ROOT', ROOT.'forum/');
-    define('WWW_ROOT', 'http://www.mymoviewall.com/');
+    define('WWW_ROOT', 'https://www.mymoviewall.com/');
     define('MAINTENANCE_MOD', false);
 }
 else {
-    define('ROOT', '/home/mymoviewall/www/');
+    define('ROOT', '/srv/data/web/vhosts/www.mymoviewall.com/htdocs/');
     define('PUN_ROOT', ROOT.'forum/');
-    define('WWW_ROOT', 'http://www.mymoviewall.com/');
+    define('WWW_ROOT', 'https://www.mymoviewall.com/');
     define('MAINTENANCE_MOD', false);
 }
 

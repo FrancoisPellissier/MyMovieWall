@@ -103,6 +103,6 @@ if(isset($side[$side_section])) {
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
 <?php
-  if($_SERVER['SERVER_NAME'] != 'mymoviewall.com' && $_SERVER['SERVER_NAME'] != 'localhost') {
+  if($_SERVER['SERVER_NAME'] != 'mymoviewall.com' && $_SERVER['SERVER_NAME'] != 'www.mymoviewall.com' && $_SERVER['SERVER_NAME'] != 'localhost') {
     echo "\n\t".'<div class="alert alert-info" role="alert">Le site a changé d\'adresse, vous pouvez y accéder via <a href="http://www.mymoviewall.com">www.MyMovieWall.com</a>. Si vous voyez ce message, c\'est qu\'il est temps de mettre à jour vos favoris !</div>';
   }

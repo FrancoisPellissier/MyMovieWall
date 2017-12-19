@@ -14,7 +14,16 @@ class View {
      * @return void
      */
     public function __construct($module, $view) {
+        
         $this->view = 'modules/'.ucwords($module).'/view/'.$view.'.tpl.php';
+
+        /*
+        if(!file_exists($this->view))
+        {
+            header('Location: index.php');
+            exit;
+        } 
+        */   
         $this->layout();
     }
          
@@ -24,7 +33,7 @@ class View {
      * @return void
      */
     private function layout() {
-        $this->layout = 'assets/layouts/layout.tpl.php';    
+            $this->layout = 'assets/layouts/layout.tpl.php';    
     }
     
     /**

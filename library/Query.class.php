@@ -22,7 +22,8 @@ class Query {
             $sql_values[] = ($value == 'NULL' && strlen($value) == 4 ? 'NULL' : '\''.$db->escape($value).'\'');
         }
         
-        if($time) {
+        if($time)
+        {
             $sql_fields[] = 'created_at';
             $sql_fields[] = 'updated_at';
             $sql_values[] = 'NOW()';
@@ -85,7 +86,8 @@ class Query {
                 $sql_set[] = $field.' = '.($value == 'NULL' && strlen($value) == 4 ? 'NULL' : '\''.$db->escape($value).'\'');
         }
         
-        if($time) {
+        if($time)
+        {
             $sql_fields[] = 'created_at';
             $sql_fields[] = 'updated_at';
             $sql_values[] = 'NOW()';

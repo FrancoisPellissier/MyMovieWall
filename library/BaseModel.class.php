@@ -115,8 +115,12 @@ abstract class BaseModel {
                         $data[$field] = intval(isset($post[$field]) ? $post[$field] : $fieldinfo['default']);
                     else if($fieldinfo['fieldtype'] == 'TEXT')
                         $data[$field] = pun_trim(isset($post[$field]) ? $post[$field] : $fieldinfo['default']);
-                    else if($fieldinfo['fieldtype'] == 'DATE')
-                        $data[$field] = pun_trim(isset($post[$field]) ? $post[$field] : $fieldinfo['default']);
+                    else if($fieldinfo['fieldtype'] == 'DATE' || $fieldinfo['fieldtype'] == 'DATETIME') {
+                        if(isset($post[$field]))
+                            $data[$field] = $post[$field];
+                        else
+                            unset($this->schema[$field]);
+                    }
                 }
             }
         }
@@ -129,6 +133,8 @@ abstract class BaseModel {
                     else if($fieldinfo['fieldtype'] == 'INT')
                         $data[$field] = intval($post[$field]);
                     else if($fieldinfo['fieldtype'] == 'DATE')
+                        $data[$field] = $post[$field];
+                    else if($fieldinfo['fieldtype'] == 'DATETIME')
                         $data[$field] = $post[$field];
                     else if($fieldinfo['fieldtype'] == 'TEXT')
                         $data[$field] = pun_trim(isset($post[$field]) ? $post[$field] : $fieldinfo['default']);

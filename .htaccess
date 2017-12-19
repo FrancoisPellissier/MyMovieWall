@@ -1,6 +1,5 @@
 Options -Indexes
 Options +FollowSymLinks
 RewriteEngine on
-RewriteBase /movie/
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^.*$ index.php [L]

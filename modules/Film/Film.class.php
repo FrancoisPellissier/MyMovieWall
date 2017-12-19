@@ -24,7 +24,7 @@ class Film extends \library\BaseModel {
 	    'realisateur' => array('fieldtype' => 'VARCHAR', 'required' => false, 'default' => '', 'publicname' => 'Réalisateur'),
 	    'acteur' => array('fieldtype' => 'VARCHAR', 'required' => false, 'default' => '', 'publicname' => 'Acteurs principaux'),
 		'code' => array('fieldtype' => 'INT', 'required' => false, 'default' => 0, 'publicname' => 'Code Allocine'),
-		'trailerdate' => array('fieldtype' => 'DATE', 'required' => false, 'default' => 0, 'publicname' => 'Date de mise à jour des bande-annonces'),
+		'trailerdate' => array('fieldtype' => 'DATETIME', 'required' => false, 'default' => 'NULL', 'publicname' => 'Date de mise à jour des bande-annonces'),
 	    );
 	}
 
