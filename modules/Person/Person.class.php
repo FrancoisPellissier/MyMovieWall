@@ -37,10 +37,6 @@ class Person extends \library\BaseModel {
     }
 
     public function getFilmsIds($id) {
-        $type = intval($type);
-        if(!in_array($type, array(1, 2)))
-            $type = 1;
-
         $result = $this->db->query('SELECT DISTINCT m.tmdbid FROM movie AS m INNER JOIN movie_person AS mp ON m.movieid = mp.movieid AND mp.personid = '.$this->db->escape(intval($id)).' ORDER BY m.tmdbid');
 
         $films = array();

@@ -190,6 +190,7 @@ abstract class BaseModel {
      */
     public function edit($post, $get = array()) {
         // On vérifie les données, les remplaçant par la valeur par défaut si besoin
+        $error = array();
         $datas = $this->checkData('update', $post, $error);
         
         // On enregistre les modifications en base

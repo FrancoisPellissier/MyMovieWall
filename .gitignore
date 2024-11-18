@@ -1,6 +1,5 @@
 img/
 assets/js/jquery
-MyMovieWall.sublime-project
-MyMovieWall.sublime-workspace
 forum/config.php
 archives/
+.DS_Store

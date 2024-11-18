@@ -11,7 +11,7 @@ abstract class BaseController {
     protected $menu_actif;
     protected $item_actif;
     protected $side_section;
-    protected $site_item;
+    protected $side_item;
     protected $user;
     protected $jsfile;
 

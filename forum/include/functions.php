@@ -1690,7 +1690,7 @@ function forum_list_styles()
 	$d = dir(PUN_ROOT.'style');
 	while (($entry = $d->read()) !== false)
 	{
-		if ($entry{0} == '.')
+		if ($entry[0] == '.')
 			continue;
 
 		if (substr($entry, -4) == '.css')
@@ -1714,7 +1714,7 @@ function forum_list_langs()
 	$d = dir(PUN_ROOT.'lang');
 	while (($entry = $d->read()) !== false)
 	{
-		if ($entry{0} == '.')
+		if ($entry[0] == '.')
 			continue;
 
 		if (is_dir(PUN_ROOT.'lang/'.$entry) && file_exists(PUN_ROOT.'lang/'.$entry.'/common.php'))
@@ -1759,7 +1759,7 @@ function forum_list_plugins($is_admin)
 	$d = dir(PUN_ROOT.'plugins');
 	while (($entry = $d->read()) !== false)
 	{
-		if ($entry{0} == '.')
+		if ($entry[0] == '.')
 			continue;
 
 		$prefix = substr($entry, 0, strpos($entry, '_'));
@@ -1945,7 +1945,7 @@ function url_valid($url)
 		return FALSE;	// Unrecognised URI scheme. Default to FALSE.
 	}
 	// Validate host name conforms to DNS "dot-separated-parts".
-	if ($m{'regname'}) // If host regname specified, check for DNS conformance.
+	if ($m['regname']) // If host regname specified, check for DNS conformance.
 	{
 		if (!preg_match('/# HTTP DNS host name.
 			^					   # Anchor to beginning of string.

@@ -31,12 +31,12 @@ unset($UTF8_ar);
 // Put the current directory in this constant
 if (!defined('UTF8'))
 	define('UTF8', dirname(__FILE__));
-
+/*
 if (extension_loaded('mbstring') && !defined('UTF8_USE_MBSTRING') && !defined('UTF8_USE_NATIVE'))
 	define('UTF8_USE_MBSTRING', true);
 else if (!defined('UTF8_USE_NATIVE'))
 	define('UTF8_USE_NATIVE', true);
-
+*/
 // utf8_strpos() and utf8_strrpos() need utf8_bad_strip() to strip invalid
 // characters. Mbstring doesn't do this while the Native implementation does.
 require UTF8.'/utils/bad.php';
