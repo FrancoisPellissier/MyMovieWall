@@ -1,12 +1,15 @@
 <div class="row film_show">
     <div class="col-xs-4 col-sm-4 col-md-3">
     <?php
-    // dump($curFiche);
         echo '<img src="'.library\Image::getUrl('movie', $curFiche['movieid'], $curFiche['updated_at']).'" alt="Affiche du film" title="'.$curFiche['titrevf'].'" class="img-rounded" />';
 
         if(!$user['is_guest']) {
+            if($curFiche['tmdbid'] != 0) {
             echo '<p><a href="film/'.$curFiche['movieid'].'/maj">Mettre à jour la fiche</a></p>';
-            echo '<div class="fb-share-button" data-href="'.WWW_ROOT.'film/'.$curFiche['movieid'].'" data-layout="button"></div>';
+            }
+            else if($user['id'] == 2) {
+                echo '<p><a href="film/'.$curFiche['movieid'].'/associate">Associer la fiche</a></p>';
+            }
         }
     ?>
     </div>
@@ -127,6 +130,7 @@
 
 </div>
 <?php
+/*
 // Gestion des onglets : acteurs, bandes-annonces
 $views = array(
     array('url' => 'casting', 'titre' => 'Casting'),
@@ -136,10 +140,11 @@ $views = array(
 if(!$user['is_guest'])
     $views[] = array('url' => 'seance', 'titre' => 'Séances');
 
-$views[] = array('url' => 'avis', 'titre' => 'Avis ('.count($curFiche['avis']).')');
+// $views[] = array('url' => 'avis', 'titre' => 'Avis ('.count($curFiche['avis']).')');
 
 echo "\n".'<ul class="nav nav-tabs">';
 foreach($views AS $view) {
     echo "\n\t".'<li role="presentation"'.($view['url'] == $vueActif ? ' class="active"' : '').'><a href="'.WWW_ROOT.'film/'.$curFiche['movieid'].'/'.$view['url'].'">'.$view['titre'].'</a></li>';
     }
 echo "\n".'</ul>';
+*/

@@ -239,7 +239,9 @@ namespace modules\Allocine;
                 $params['theaters'] = implode(",", $params['theaters']);
             }
 
+			$params['sed'] = date('Ymd');
             
+			/*
             $queryURL = $this->APIUrl . '/' . $type;
                   $searchQuery = str_replace('%2B', '+', http_build_query($params)) . '&sed=' . date('Ymd');
                   $toEncrypt = $this->allocineSecretKey . $searchQuery;
@@ -247,6 +249,11 @@ namespace modules\Allocine;
                   $queryURL .= '?' . $searchQuery . '&sig=' . $sig;
             
                   return $queryURL;
+			*/	  
+			$sig = base64_encode(sha1(basename($type) . http_build_query($params) . $this->allocineSecretKey, true));
+            $params['sig'] = $sig;
+
+            return $this->APIUrl . '/' . $type . '?' . http_build_query($params);
         }
         
         
@@ -357,20 +364,18 @@ namespace modules\Allocine;
                   'presets' => $this->getPresets(),
                   'rawData' => $data
                 );
-            }
-            
+            }          
             else
             {
                 $this->error("The extension php_curl must be installed with PHP and enabled.", 1);
                 return false;
             }
-            
+
             if (empty($data))
             {
                 $this->error("An cURL error occurred while retrieving the data: $curlError." , 2);
                 return false;
-            }
-            
+            }            
             $data = @json_decode($data, true);
             
             if (empty($data) or !is_array($data) or json_last_error())
@@ -763,7 +768,7 @@ namespace modules\Allocine;
             {
                 if (empty($data['error']))
                 {
-                    $data = $data['movie'];
+					$data = $data['movie'];
                     
                     // Remplacer "title" par "originalTitle" (si il n'existe pas)
                     if (empty($data['title']))

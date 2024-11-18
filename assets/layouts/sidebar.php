@@ -20,7 +20,7 @@ $side = array();
 // Gestion du profil
 $nav = array();
 $nav[] = array('guest' => false, 'me' => true, 'url' => 'user/'.$user['id'].'/edit', 'title' => '<span class="glyphicon glyphicon-cog"></span> Général', 'item' => 'general');
-$nav[] = array('guest' => false, 'me' => true, 'url' => 'theater', 'title' => '<span class="glyphicon glyphicon glyphicon-facetime-video"></span> Cinémas', 'item' => 'theater');
+// $nav[] = array('guest' => false, 'me' => true, 'url' => 'theater', 'title' => '<span class="glyphicon glyphicon glyphicon-facetime-video"></span> Cinémas', 'item' => 'theater');
 $nav[] = array('guest' => false, 'me' => true, 'url' => 'user/'.$user['id'].'/notification', 'title' => '<span class="glyphicon glyphicon-envelope"></span> Notifications', 'item' => 'notification');
 // $nav[] = array('guest' => false, 'me' => true, 'url' => 'user/'.$user['id'].'/right', 'title' => '<span class="glyphicon glyphicon-eye-close"></span> Droits', 'item' => 'right');
 $titre = $user['realname'];
@@ -45,7 +45,7 @@ $nav[] = array('guest' => false, 'me' => true, 'url' => 'user/'.$userid.'/wishli
 // $nav[] = array('guest' => false, 'me' => false, 'url' => 'friend', 'title' => '<img src="img/icons/friend.png" height="12" /> Amis', 'item' => 'friend');
 $nav[] = array('guest' => false, 'me' => false, 'url' => 'friend', 'title' => '<span class="glyphicon glyphicon-user"></span> Amis', 'item' => 'friend');
 $nav[] = array('guest' => false, 'me' => true, 'url' => 'user/'.$userid.'/stats', 'title' => '<span class="glyphicon glyphicon-signal"></span> Statistiques', 'item' => 'stats');
-$nav[] = array('guest' => false, 'me' => true, 'url' => 'user/'.$userid.'/avis', 'title' => '<span class="glyphicon glyphicon glyphicon-comment"></span> Mes avis', 'item' => 'avis');
+// $nav[] = array('guest' => false, 'me' => true, 'url' => 'user/'.$userid.'/avis', 'title' => '<span class="glyphicon glyphicon glyphicon-comment"></span> Mes avis', 'item' => 'avis');
 
 $titre = (isset($curUser) ? $curUser['realname'] : $curUser['realname']);
 $url = 'user/'.$userid;

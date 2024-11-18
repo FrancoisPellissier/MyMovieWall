@@ -35,4 +35,7 @@ if(!empty($filmReal)) {
 </div>
 <?php
 }
+if(!$user['is_guest']) {
+	echo '<p>Vous ne trouvez pas le film que vous cherchez ? <a href="person/'.$person['personid'].'/more">Plus de film de/avec cette personne</a></p>';
+}
 ?>

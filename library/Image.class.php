@@ -68,12 +68,20 @@ class Image {
                 unlink(FOLDER_IMAGES.'/'.$fichetype.'/'.$this->folder($ficheid).'/'.$ficheid.'.jpg');
             
             // On vérifie l'extension
+            $ext = "";
             if(substr($url, -3) == 'jpg' OR substr($url, -4) == 'jpeg') {
-            // Téléchargement de l'image dans le dossier temp
-            copy($url, FOLDER_IMAGES.'/temp/'.$ficheid.'.jpg');
+                $ext = "jpg";
+            }
+            else if(substr($url, -3) == 'png') {
+                $ext = "png";
+            }
 
-            // On redimensionne l'image pour qu'elle respecte les bonnes proportions
-            $this->imageResize(FOLDER_IMAGES.'/temp/'.$ficheid.'.jpg', FOLDER_IMAGES.'/'.$fichetype.'/'.$this->folder($ficheid), $ficheid, 500, 686);
+            if($ext != "") {
+                // Téléchargement de l'image dans le dossier temp
+                copy($url, FOLDER_IMAGES.'/temp/'.$ficheid.'.jpg');
+
+                // On redimensionne l'image pour qu'elle respecte les bonnes proportions
+                $this->imageResize(FOLDER_IMAGES.'/temp/'.$ficheid.'.jpg', FOLDER_IMAGES.'/'.$fichetype.'/'.$this->folder($ficheid), $ficheid, 500, 686, $ext);
             }
         }
     }
@@ -88,9 +96,13 @@ class Image {
       * @param int $hauteur
       * @return void
       */
-     public function imageResize($url, $folder, $nom, $largeur, $hauteur) {
+     public function imageResize($url, $folder, $nom, $largeur, $hauteur, $ext) {
         // if(filesize($url) < 1100000) {
-            $source = imagecreatefromjpeg($url); // La photo est la source
+            if($ext == "jpg")
+                $source = imagecreatefromjpeg($url); // La photo est la source
+            else
+                $source = imagecreatefrompng($url); // La photo est la source
+            
             $largeur_source = imagesx($source);
             $hauteur_source = imagesy($source);
 
@@ -114,7 +126,7 @@ class Image {
 
             // On vérifie la taille de l'image de sortie
             if(filesize($folder.'/'.$nom.'.jpg') < 4000)
-                unlink($folder.'/'.$nom.'.jpg');
+               unlink($folder.'/'.$nom.'.jpg');
         // }
     }
 

@@ -18,4 +18,4 @@ Certaines pages peuvent contenir un marqueur témoin («  cookie  »). Un cookie
 Vous êtes informé que vous pouvez vous opposer à l'enregistrement de ces "cookies" en configurant votre ordinateur selon les modalités détaillées sur le site de la CNIL : (http://www.cnil.fr/index.php?id=131)
 
 ## Données
-L'alimentation du site se base exclusivement sur les données disponibles sur Allocine, récupérées en utilisant l'[API Allocine Helper](https://github.com/etienne-gauvin/api-allocine-helper).
+This product uses the TMDB API but is not endorsed or certified by TMDB.

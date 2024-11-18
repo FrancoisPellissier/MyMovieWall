@@ -128,7 +128,7 @@ class User extends \library\BaseModel {
         if(!in_array($type, array('1', '2')))
             $type = 'all';
 
-        $result = $this->db->query('SELECT m.*, uv.type, uv.viewdate, ur.rate FROM movie AS m INNER JOIN users_views AS uv ON m.movieid = uv.movieid AND uv.userid = '.$this->infos['id'].($type == 'all' ? '' : ' AND uv.type = \''.$type.'\'').($annee != 0 && $mois != 0 ? ' AND YEAR(viewdate) = '.$annee.' AND MONTH(viewdate) = '.$mois : '').' LEFT JOIN users_rate AS ur ON uv.userid = ur.userid AND uv.movieid = ur.movieid ORDER BY viewdate DESC, uv.created_at DESC'.($index ? ' LIMIT 6' : ''));
+        $result = $this->db->query('SELECT m.*, uv.type, uv.viewdate, ur.rate FROM movie AS m INNER JOIN users_views AS uv ON m.movieid = uv.movieid AND uv.userid = '.$this->infos['id'].($type == 'all' ? '' : ' AND uv.type = \''.$type.'\'').($annee != 0 ? ' AND YEAR(viewdate) = '.$annee : '').($mois != 0 ? ' AND MONTH(viewdate) = '.$mois : '' ).' LEFT JOIN users_rate AS ur ON uv.userid = ur.userid AND uv.movieid = ur.movieid ORDER BY viewdate DESC, uv.created_at DESC'.($index ? ' LIMIT 6' : ''));
 
         $last = array();
         while($cur = $this->db->fetch_assoc($result)) {
@@ -252,7 +252,7 @@ class User extends \library\BaseModel {
             $where = ' AND `type` = \''.$type.'\'';
         
         $stats = array();
-        $result = $this->db->query('SELECT YEAR(viewdate) AS annee, MONTH(viewdate) AS mois, COUNT(*) AS nb FROM `users_views` WHERE userid = '.$this->infos['id'].$where.' GROUP BY annee, mois');
+        $result = $this->db->query('SELECT YEAR(viewdate) AS annee, MONTH(viewdate) AS mois, COUNT(*) AS nb FROM `users_views` WHERE userid = '.$this->infos['id'].$where.' GROUP BY annee, mois ORDER BY annee DESC, mois');
 
         while($cur = $this->db->fetch_assoc($result)){
             $stats[$cur['annee']][$cur['mois']] = $cur['nb'];
@@ -280,11 +280,11 @@ class User extends \library\BaseModel {
 
     public function getStatsNb($type = 'genre') {
         if($type == 'acteur')
-            $sql = 'SELECT p.personid AS id, p.fullname AS libelle, COUNT(*) AS nb FROM users_views AS uv INNER JOIN movie_person AS mp ON uv.movieid = mp.movieid AND userid = '.$this->infos['id'].' AND mp.`type` = \'1\' INNER JOIN person AS p ON mp.personid = p.personid GROUP BY id ORDER BY nb DESC LIMIT 10';
+            $sql = 'SELECT p.personid AS id, p.fullname AS libelle, COUNT(*) AS nb FROM users_views AS uv INNER JOIN movie_person AS mp ON uv.movieid = mp.movieid AND userid = '.$this->infos['id'].' AND mp.`type` = \'1\' AND uv.viewdate >= ADDDATE(NOW(), INTERVAL -3 YEAR) INNER JOIN person AS p ON mp.personid = p.personid GROUP BY id ORDER BY nb DESC LIMIT 10';
         else if($type == 'realisateur')
-            $sql = 'SELECT p.personid AS id, p.fullname AS libelle, COUNT(*) AS nb FROM users_views AS uv INNER JOIN movie_person AS mp ON uv.movieid = mp.movieid AND userid = '.$this->infos['id'].' AND mp.`type` = \'2\' INNER JOIN person AS p ON mp.personid = p.personid GROUP BY id ORDER BY nb DESC LIMIT 10';
+            $sql = 'SELECT p.personid AS id, p.fullname AS libelle, COUNT(*) AS nb FROM users_views AS uv INNER JOIN movie_person AS mp ON uv.movieid = mp.movieid AND userid = '.$this->infos['id'].' AND mp.`type` = \'2\' AND uv.viewdate >= ADDDATE(NOW(), INTERVAL -3 YEAR) INNER JOIN person AS p ON mp.personid = p.personid GROUP BY id ORDER BY nb DESC LIMIT 10';
         else
-            $sql = 'SELECT g.genreid AS id, g.genrename AS libelle, COUNT(*) AS nb FROM users_views AS uv INNER JOIN movie_genre AS mg ON uv.movieid = mg.movieid AND userid = '.$this->infos['id'].' INNER JOIN genre AS g ON mg.genreid = g.genreid GROUP BY id ORDER BY nb DESC LIMIT 10';
+            $sql = 'SELECT g.genreid AS id, g.genrename AS libelle, COUNT(*) AS nb FROM users_views AS uv INNER JOIN movie_genre AS mg ON uv.movieid = mg.movieid AND userid = '.$this->infos['id'].' AND uv.viewdate >= ADDDATE(NOW(), INTERVAL -3 YEAR) INNER JOIN genre AS g ON mg.genreid = g.genreid GROUP BY id ORDER BY nb DESC LIMIT 10';
 
         $result = $this->db->query($sql)or error('Impossible de récupérer les statistiques par '.$type, __FILE__, __LINE__, $this->db->error());
 

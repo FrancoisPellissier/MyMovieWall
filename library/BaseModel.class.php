@@ -42,7 +42,7 @@ abstract class BaseModel {
         return $all;
     }
 
-    public function exists($id, $allocine = false, $email = false) {
+    public function exists($id, $tmdb = false, $email = false) {
         global $pun_user;
         // On génère la liste des champs à récupérer
         $sql_fields = implode(', ', array_keys($this->schema));
@@ -50,8 +50,8 @@ abstract class BaseModel {
             $sql_fields .= ', created_at, updated_at';
 
         // Génération de la clause WHERE
-        if($allocine && isset($this->schema['code']))
-            $where = 'WHERE code = \''.$this->db->escape($id).'\'';
+        if($tmdb && isset($this->schema['tmdbid']))
+            $where = 'WHERE tmdbid = \''.$this->db->escape($id).'\'';
         else if($email && isset($this->schema['email']))
             $where = 'WHERE email = \''.$this->db->escape($id).'\'';
         else
@@ -65,7 +65,7 @@ abstract class BaseModel {
             $this->exists = true;
             
             // On génère le chemin pour l'image
-            if($this->picture != '' && !$allocine)
+            if($this->picture != '' && !$tmdb)
                 $cur['folder'] = 'img/'.$this->table.'/'.intval($cur[$this->key] / 100).'/';
 
             $this->infos = $cur;
@@ -219,14 +219,14 @@ abstract class BaseModel {
             foreach($datas[$typename] AS $data) {
                 // On regarde si elles existent
                 $person = new \modules\Person\Person();
-                $person->exists($data['code'], true);
+                $person->exists($data['tmdbid'], true);
 
                 // On les créé si elles n'existent pas
                 if(!$person->exists) {
                     $person->hydrate(array(
                         'fullname' => $data['nom'],
                         'picture' => $data['picture'],
-                        'code' => $data['code'])
+                        'tmdbid' => $data['tmdbid'])
                         );
                     $personid = $person->add();
                 }
@@ -258,14 +258,14 @@ abstract class BaseModel {
 
         if(!empty($datas)) {
             // On parcourt les genres
-            foreach($datas AS $code => $name) {
+            foreach($datas AS $tmdbid => $name) {
                 // On regarde s'il existe
                 $genre = new \modules\Genre\Genre();
-                $genre->exists($code, true);
+                $genre->exists($tmdbid, true);
 
                 // S'il n'existe pas on le créé
                 if(!$genre->exists) {
-                    $genre->hydrate(array('genrename' => $name, 'code' => $code));
+                    $genre->hydrate(array('genrename' => $name, 'tmdbid' => $tmdbid));
                     $genreid = $genre->add();
                 }
                 else

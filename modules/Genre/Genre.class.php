@@ -16,7 +16,8 @@ class Genre extends \library\BaseModel {
         $this->schema = array(
         'genreid' => array('fieldtype' => 'INT', 'required' => false, 'default' => '', 'publicname' => 'ID du genre'),
         'genrename' => array('fieldtype' => 'VARCHAR', 'required' => false, 'default' => '', 'publicname' => 'Libellé du genre'),
-        'code' => array('fieldtype' => 'INT', 'required' => false, 'default' => 0, 'publicname' => 'Code Allocine')
+        'code' => array('fieldtype' => 'INT', 'required' => false, 'default' => 0, 'publicname' => 'Code Allocine'),
+        'tmdbid' => array('fieldtype' => 'INT', 'required' => false, 'default' => 0, 'publicname' => 'Code TMDB')
         );
 
         $this->order = 'genrename';

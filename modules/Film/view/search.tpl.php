@@ -14,16 +14,17 @@ if(isset($datas)) {
 
 if(!$user['is_guest'] && !empty($datasAPI)) {
 	echo '<div id="results">';
+	
 	echo '<p>Vous ne trouvez pas le film que vous cherchez ? Ajoutez le :</p>';
 	foreach($datasAPI AS $data) {
 
 	  echo "\n\t".'<div class="col-xs-12 col-sm-6 col-md-4">';
 	  ?>
 	    <div class="row">
-	      <div class="col-md-4"><?php echo '<img src="'.$data['affiche'].'"" width="160" height="240" alt="Affiche" title="'.$data['titre'].'" class="img-rounded" />'; ?></div>
+	      <div class="col-md-4"><?php echo '<img src="'.$data['affiche'].'" width="160" height="240" alt="Affiche" title="'.$data['titre'].'" class="img-rounded" />'; ?></div>
 	      <div class="col-md-8">
-	        <?php echo '<p>'.$data['titre'].'</p><p>'.$data['realisateur'].'</p><p>'.$data['acteur'].'</p>'; ?>
-	        <p><a href="film/add/<?php echo $data['code']; ?>" class="addFilm"><button type="button" class="btn btn-primary">Ajouter</button></a></p>
+	        <?php echo '<p>'.$data['titre'].'</p><p>'.$data['datesortie'].'</p><p>'.substr($data['pitch'], 0, 200).'</p>'; ?>
+	        <p><a href="film/add/<?php echo $data['tmdbid']; ?>" class="addFilm"><button type="button" class="btn btn-primary">Ajouter</button></a></p>
 	    </div>
 	    </div>
 	  <?php

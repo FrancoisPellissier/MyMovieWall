@@ -45,6 +45,19 @@ class FilmController extends \library\BaseController {
 		$this->makeView();
 	}
 
+	public function showFilmsToAssociate() {
+		$this->titre_page = 'Films à associer';
+		$this->menu_actif = 'film_index';
+		$this->side_section = 'site';
+		$this->side_item = 'film_index';
+
+		$film = new \modules\Film\Film();
+		$films = $film->getFilmToAssociate();
+		
+		$this->view->with('films', $films);
+		$this->makeView();
+	}
+
 	public function filmsGenre() {
 		$this->titre_page = 'Liste des films';
 		$this->menu_actif = 'film_index';
@@ -86,12 +99,18 @@ class FilmController extends \library\BaseController {
 			$keyword = $this->request->postData('keyword');
 
 		if(isset($keyword)) {
-			$keyword = str_replace('+', ' ', $keyword);
+			$tmdb = new \modules\Tmdb\Tmdb();
+			$datas = $tmdb->searchFilm($keyword);
+			$this->view->with('datas', $datas);
+			$this->view->with('keyword', $keyword);
 
+			/*
+			$keyword = str_replace('+', ' ', $keyword);
 			$allocine = new \modules\Allocine\Allocine();
 			$datas = $allocine->search($keyword);
 			$this->view->with('datas', $datas);
 			$this->view->with('keyword', $keyword);
+			*/
 		}
 		$this->titre_page = 'Ajouter un film';
 		$this->side_section = 'site';
@@ -115,16 +134,22 @@ class FilmController extends \library\BaseController {
 		$this->view->with('genres', $genres);
 
 		// Si on est connecté, on propose des films de l'API à ajouter
+
 		if(!$this->user->infos['is_guest']) {
+			$tmdb = new \modules\Tmdb\Tmdb();
+			$datas = $tmdb->searchFilm($this->request->postData('keyword'));
+			$this->view->with('datasAPI', $datas);
+			
+			/*
 			$keyword = str_replace('+', ' ', $this->request->postData('keyword'));
 
 			$allocine = new \modules\Allocine\Allocine();
 			$datas = $allocine->search($keyword);
 			$this->view->with('datasAPI', $datas);
+			*/
 
 			$this->jsfile = 'film_searchAllocine';
 		}
-
 		$this->makeView();
 	}
 
@@ -136,7 +161,9 @@ class FilmController extends \library\BaseController {
 		ob_start();
 		$id = intval($this->request->getData('id'));
 
-		$allocine = new \modules\Allocine\Allocine();
+		$tmdb = new \modules\Tmdb\Tmdb();
+
+		// $allocine = new \modules\Allocine\Allocine();
 		
 		$film = new \modules\Film\Film();
 		$film->exists($id, true);
@@ -146,7 +173,8 @@ class FilmController extends \library\BaseController {
 			$id = $film->infos[$film->key];
 		}
 		else {
-			$datas = $allocine->getFilm($id);
+			// $datas = $allocine->getFilm($id);
+			$datas = $tmdb->getFilm($id);			
 			$film->hydrate($datas);
 
 			$id = $film->add();
@@ -162,7 +190,6 @@ class FilmController extends \library\BaseController {
 
 			// On track l'ajout du film
 			$this->track('movie_add', $id);
-
 		}	
 		ob_end_clean();
 		// On renvoi l'id au code JS
@@ -206,6 +233,30 @@ class FilmController extends \library\BaseController {
 
 			return $film;
 		}
+	}
+
+		public function showAssociate() {
+		// On redirige vers l'accueil si c'est un invité
+		if($this->user->infos['is_guest'])
+			$this->response->redirect('');
+		
+		$id = intval($this->request->getData('id'));
+		$film = new \modules\Film\Film();
+		$film->exists($id);
+
+		if($film->exists) {
+			$this->titre_page = $film->infos['titrevf']." - Associer ficher TMDB";
+
+			// Récupération des informations depuis l'API TMDB
+			$tmdb = new \modules\Tmdb\Tmdb();
+			$datas = $tmdb->searchFilm($film->infos['titrevf']);
+
+			$this->view->with('datasAPI', $datas);
+			$this->view->with('curId', $id);
+			$this->makeView();	
+		}
+		else
+			$this->response->redirect('');
 	}
 
 	public function showCasting() {
@@ -394,8 +445,14 @@ class FilmController extends \library\BaseController {
 		// Si la fiche n'existe pas, on redirige vers l'accueil du module
 		if($film->exists) {
 			// On récupère les informations allocine
+			/*
 			$allocine = new \modules\Allocine\Allocine();
 			$datas = $allocine->getFilm($film->infos['code']);
+			*/
+
+			// Récupération des informations depuis l'API TMDB
+			$tmdb = new \modules\Tmdb\Tmdb();
+			$datas = $tmdb->getFilm($film->infos['tmdbid']);
 
 			$film->hydrate($datas);
 			$film->edit($film->infos);
@@ -411,6 +468,37 @@ class FilmController extends \library\BaseController {
 
 	    	$this->response->redirect('film/'.$id);		
 		}
+		else
+			$this->response->redirect('');
+	}
+
+	public function associate() {
+		$id = intval($this->request->getData('id'));
+		$tmdbid = intval($this->request->getData('tmdbid'));
+		
+		$film = new \modules\Film\Film();
+		$film->exists($id);
+
+		if($film->exists) {
+			$film->infos['tmdbid'] = $tmdbid;
+
+			$tmdb = new \modules\Tmdb\Tmdb();
+			$datas = $tmdb->getFilm($film->infos['tmdbid']);
+
+			$film->hydrate($datas);
+			$film->edit($film->infos);
+			// Mise à jour des genres
+			$film->assocGenre($id, $datas['genre']);
+			// Mise à jour du casting
+			$film->assocPerson($id, $datas);
+			// Mise à jour de l'affiche
+			if($film->pictureurl != '') {
+				$film->getPoster($id);
+				\library\Image::generateAffiche($film->infos['folder'].$film->infos['movieid'].'.jpg', $film->infos['titrevf']);
+			}
+
+	    	$this->response->redirect('film/'.$id);		
+			}
 		else
 			$this->response->redirect('');
 	}
@@ -432,8 +520,13 @@ class FilmController extends \library\BaseController {
 		// Si la fiche n'existe pas, on redirige vers l'accueil du module
 		if($film->exists) {
 			// On récupère les informations allocine
+			/*
 			$allocine = new \modules\Allocine\Allocine();
 			$datas = $allocine->getFilm($film->infos['code']);
+			*/
+
+			$tmdb = new \modules\Tmdb\Tmdb();
+			$datas = $tmdb->getFilm($film->infos['tmdbid']);
 
 			$film->hydrate($datas);
 			$film->edit($film->infos);

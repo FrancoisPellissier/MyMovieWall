@@ -35,7 +35,13 @@ foreach($liens AS $lien) {
 foreach($stats AS $annee => $stat) {
 	$tot = 0;
 	echo "\n\t".'<tr>';
-	echo "\n\t".'<td>'.$annee.'</td>';
+	if($type == 'all') {
+		$link = 'user/'.$curUser['id'].'/lastview/'.$annee;
+	}
+	else {
+		$link = 'user/'.$curUser['id'].'/lastview/'.$liens[$type]['value'].'/'.$annee;	
+	}
+	echo "\n\t".'<td><a href="'.$link.'">'.$annee.'</a></td>';
 	
 	for($i=1;$i<=12;$i++) {
 		if($type == 'all') {
@@ -89,4 +95,5 @@ foreach($liste AS $infos) {
 <?php
 }
 ?>
+<p><i>Ces statistiques sont uniquement sur les trois dernières années coulissantes et ne prennent pas en compte le filtre du décompte par année / mois.</i></p>
 </div>

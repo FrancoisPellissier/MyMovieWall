@@ -24,7 +24,8 @@ class Film extends \library\BaseModel {
 	    'realisateur' => array('fieldtype' => 'VARCHAR', 'required' => false, 'default' => '', 'publicname' => 'Réalisateur'),
 	    'acteur' => array('fieldtype' => 'VARCHAR', 'required' => false, 'default' => '', 'publicname' => 'Acteurs principaux'),
 		'code' => array('fieldtype' => 'INT', 'required' => false, 'default' => 0, 'publicname' => 'Code Allocine'),
-		'trailerdate' => array('fieldtype' => 'DATETIME', 'required' => false, 'default' => 'NULL', 'publicname' => 'Date de mise à jour des bande-annonces'),
+		'tmdbid' => array('fieldtype' => 'INT', 'required' => false, 'default' => 0, 'publicname' => 'Code TMDB'),
+		'trailerdate' => array('fieldtype' => 'DATE', 'required' => false, 'default' => 'NULL', 'publicname' => 'Date de mise à jour des bande-annonces'),
 	    );
 	}
 
@@ -81,6 +82,16 @@ class Film extends \library\BaseModel {
 
 	public function getFilmsGenre($genreid) {
 		$result = $this->db->query('SELECT m.* FROM movie AS m INNER JOIN movie_genre AS mg ON m.movieid = mg.movieid AND mg.genreid = '.$this->db->escape(intval($genreid)).' ORDER BY titrevf');
+
+		$films = array();
+		while($cur = $this->db->fetch_assoc($result)) {
+			$films[] = $cur;
+		}
+		return $films;
+	}
+
+	public function getFilmToAssociate() {
+		$result = $this->db->query('SELECT * FROM movie WHERE tmdbid = 0 ORDER BY titrevf desc limit 36');
 
 		$films = array();
 		while($cur = $this->db->fetch_assoc($result)) {
@@ -159,7 +170,7 @@ class Film extends \library\BaseModel {
 
 	public function getToUpdate() {
 
-		$sql = 'SELECT * FROM movie WHERE (datesortie >= CURDATE() OR datesortie = \'0000-00-00\') AND updated_at <= ADDDATE(NOW(), INTERVAL -1 DAY) ORDER BY updated_at LIMIT 1';
+		$sql = 'SELECT * FROM movie WHERE tmdbid != 0 AND (datesortie >= CURDATE() OR datesortie = \'0000-00-00\' OR datesortie IS NULL) AND updated_at <= ADDDATE(NOW(), INTERVAL -7 DAY) ORDER BY updated_at LIMIT 1';
 
 		$result = $this->db->query($sql)or error('Impossible récupérer le prochain film a updater', __FILE__, __LINE__, $this->db->error());;
 

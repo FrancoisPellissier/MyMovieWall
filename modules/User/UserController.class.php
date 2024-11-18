@@ -90,6 +90,9 @@ class UserController extends \library\BaseController {
 
 		// Voir un mois en particulier
 		$annee = intval($this->request->getData('annee'));
+		if($annee < 2014) {
+			$annee = date('Y');
+		}
 		$mois = intval($this->request->getData('mois'));
 		
 		$this->titre_page = 'Derniers films vus';

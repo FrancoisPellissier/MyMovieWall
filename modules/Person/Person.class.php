@@ -17,7 +17,8 @@ class Person extends \library\BaseModel {
         $this->schema = array(
         'personid' => array('fieldtype' => 'INT', 'required' => false, 'default' => '', 'publicname' => 'ID de la personne'),
         'fullname' => array('fieldtype' => 'VARCHAR', 'required' => false, 'default' => '', 'publicname' => 'Nom complet de la personne'),
-        'code' => array('fieldtype' => 'INT', 'required' => false, 'default' => 0, 'publicname' => 'Code Allocine')
+        'code' => array('fieldtype' => 'INT', 'required' => false, 'default' => 0, 'publicname' => 'Code Allocine'),
+        'tmdbid' => array('fieldtype' => 'INT', 'required' => false, 'default' => 0, 'publicname' => 'Code TMDB')
         );
     }
 
@@ -31,6 +32,20 @@ class Person extends \library\BaseModel {
         $films = array();
         while($cur = $this->db->fetch_assoc($result)) {
             $films[] = $cur;
+        }
+        return $films;
+    }
+
+    public function getFilmsIds($id) {
+        $type = intval($type);
+        if(!in_array($type, array(1, 2)))
+            $type = 1;
+
+        $result = $this->db->query('SELECT DISTINCT m.tmdbid FROM movie AS m INNER JOIN movie_person AS mp ON m.movieid = mp.movieid AND mp.personid = '.$this->db->escape(intval($id)).' ORDER BY m.tmdbid');
+
+        $films = array();
+        while($cur = $this->db->fetch_assoc($result)) {
+            $films[$cur['tmdbid']] = $cur;
         }
         return $films;
     }
