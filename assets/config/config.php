@@ -1,8 +1,8 @@
 <?php
-if($_SERVER['SERVER_NAME'] == 'localhost') {
-	define('ROOT', 'C:/xampp/htdocs/MyMovieWall/');
+if($_SERVER['SERVER_NAME'] == 'www.mymoviewall.test') {
+	define('ROOT', '/var/www/mymoviewall/');
     define('PUN_ROOT', ROOT.'forum/');
-    define('WWW_ROOT', 'http://localhost/MyMovieWall/');
+    define('WWW_ROOT', 'http://www.mymoviewall.test');
     define('MAINTENANCE_MOD', false);
 	}
 else if($_SERVER['SERVER_NAME'] == 'www.mymoviewall.com') {
