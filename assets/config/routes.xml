@@ -12,11 +12,13 @@
  	<route url="/film/associate" module="Film" action="showFilmsToAssociate" />
  	<route url="/film/([0-9]+)" module="Film" action="showCasting" vars="id" />
  	<route url="/film/([0-9]+)/casting" module="Film" action="showCasting" vars="id" />
+	<!--
  	<route url="/film/([0-9]+)/trailer" module="Film" action="showTrailer" vars="id" />
  	<route url="/film/([0-9]+)/seance" module="Film" action="showSeance" vars="id" />
  	<route url="/film/([0-9]+)/avis" module="Film" action="showAvis" vars="id" />
  	<route url="/film/([0-9]+)/associate" module="Film" action="showAssociate" vars="id" />
  	<route url="/film/([0-9]+)/associate/([0-9]+)" module="Film" action="associate" vars="id,tmdbid" />
+	-->
 
  	<route url="/film/searchAllocine/(.*)" module="Film" action="searchAllocine" vars="keyword" />
  	<route url="/film/searchAllocine" module="Film" action="searchAllocine" />
@@ -34,10 +36,10 @@
  	<route url="/film/([0-9]+)/addWish/([a-z]+)" module="Film" action="addWish" vars="id,type" />
  	<route url="/film/([0-9]+)/delWish/([a-z]+)" module="Film" action="delWish" vars="id,type" />
 	<route url="/film/([0-9]+)/rate/([0-9]+)" module="Film" action="rate" vars="id,rate" />
-
+	<!--
 	<route url="/avis/add/([0-9]+)" module="Avis" action="add" vars="id" />
 	<route url="/avis/edit/([0-9]+)" module="Avis" action="edit" vars="id" />
-
+	-->
  	<route url="/user/([0-9]+)" module="User" action="showResume" vars="id" />
  	<route url="/user/([0-9]+)/edit" module="User" action="edit" vars="id" />
   	<route url="/user/([0-9]+)/lastview/([a-z]+)" module="User" action="lastview" vars="id,type" />
@@ -83,13 +85,13 @@
 	<route url="/ticket/([0-9]+)/comment/([0-9]+)/edit" module="Comment" action="editComment" vars="tid,id" />
 
 	<route url="/agenda" module="Agenda" action="showAgenda" />
-
+	<!--
 	<route url="/theater" module="Theater" action="myTheaters" />
 	<route url="/theater/search" module="Theater" action="search" />
 	<route url="/theater/search/post" module="Theater" action="searchPost" />
 	<route url="/theater/add/([A-Za-z0-9]+)" module="Theater" action="addToUser" vars="code" />
 	<route url="/theater/del/([0-9]+)" module="Theater" action="delFromUser" vars="id" />
-
+	-->
 	<route url="/timeline" module="Timeline" action="showLast" />
 
  	<route url="/about" module="About" action="about" />

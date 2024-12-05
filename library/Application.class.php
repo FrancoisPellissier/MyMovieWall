@@ -60,7 +60,7 @@ class Application {
 	    catch (\RuntimeException $e) {
 	      if ($e->getCode() == \Library\Router::NO_ROUTE) {
 	        // Si aucune route ne correspond, c'est que la page demandée n'existe pas.
-	         $matchedRoute = new Route($url, 'Error', 'error_404', array());
+	         $matchedRoute = new Route($this->httpRequest->requestURI(), 'Error', 'error_404', array());
 	        // $this->httpResponse->redirect404();
 	      }
 	    }

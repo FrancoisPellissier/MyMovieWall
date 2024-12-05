@@ -29,6 +29,7 @@ class FilmController extends \library\BaseController {
 
 		$this->view->with('params', $params);
 		$this->view->with('films', $films);
+		$this->view->with('force_biblio', false);
 		$this->makeView();
 	}
 	

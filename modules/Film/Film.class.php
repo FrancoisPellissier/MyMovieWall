@@ -109,6 +109,7 @@ class Film extends \library\BaseModel {
 
 		$films = array();
 		while($cur = $this->db->fetch_assoc($result)) {
+			$cur['rate'] = '';
 			$films[] = $cur;
 		}
 		return $films;

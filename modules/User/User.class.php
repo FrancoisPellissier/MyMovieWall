@@ -139,10 +139,11 @@ class User extends \library\BaseModel {
     }
 
     public function getLastBiblio($limit = 6) {
-        $result = $this->db->query('SELECT m.* FROM movie AS m INNER JOIN users_biblio AS ub ON m.movieid = ub.movieid AND ub.userid = '.$this->infos['id'].' ORDER BY ub.updated_at DESC LIMIT '.$limit);
+        $result = $this->db->query('SELECT m.*, ur.rate FROM movie AS m INNER JOIN users_biblio AS ub ON m.movieid = ub.movieid AND ub.userid = '.$this->infos['id'].' LEFT JOIN users_rate AS ur ON m.movieid = ur.movieid AND ur.userid = '.$this->infos['id'].' ORDER BY ub.updated_at DESC LIMIT '.$limit);
 
         $last = array();
         while($cur = $this->db->fetch_assoc($result)) {
+            $cur['rate'] = $this->displayRate($cur['rate']);
             $last[] = $cur;
         }
         return $last;

@@ -10,6 +10,8 @@ class Search extends \library\BaseModel {
         $params['acteur'] = '';
         $params['genre'] = 0;
         $params['ordre'] = 1;
+        $params['own'] = 1;
+        $params['biblio'] = 0;
 
         return $params;
     }
