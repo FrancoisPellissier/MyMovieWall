@@ -56,7 +56,7 @@
 
         <p>Vous le possédez en :<br />
             <?php
-            foreach(array('bluray' => 'Blu-Ray', 'dvd' => 'DVD', 'numerique' => 'Numérique') AS $type => $typename) {
+            foreach(array('bluray' => 'Blu-Ray', 'dvd' => 'DVD') AS $type => $typename) {
                 if($user['hasFilm'][$type] == 0)
                     echo "\n\t\t\t".'<button type="button" class="btn btn-default" id="'.$type.'" onClick="addBiblio('.$curFiche['movieid'].', \''.$type.'\')">'.$typename.'</button>';
                 else
